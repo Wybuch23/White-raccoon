@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "TT Fellows Trial Variable";
+  src: url("../../src/assets/fonts/TT_Fellows/woff2/TT_Fellows_Medium.woff2") format("woff2"), url("../../src/assets/fonts/TT_Fellows/woff/TT_Fellows_Medium.woff") format("woff");
+}
+.btn-hero_black {
+  display: inline-flex;
+  height: 72px;
+  padding: 0px 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 36px;
+  border: 3px solid #0D1824;
+  background: none;
+  transition: 0.2s;
+  font-family: "TT Fellows Trial Variable";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 105%;
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+  color: #0D1824;
+}
+@media (max-width: 440px) {
+  .btn-hero_black {
+    font-size: 28px;
+    letter-spacing: -0.56px;
+  }
+}
+.btn-hero_black:hover {
+  color: #EBEFF0;
+  background: #0D1824;
+}
+
+.header {
+  background: red;
+}
+
+* {
+  background: grey;
+}/*# sourceMappingURL=main.css.map */
