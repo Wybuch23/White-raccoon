@@ -32,27 +32,4 @@
 .btn-hero_black:hover {
   color: #EBEFF0;
   background: #0D1824;
-}
-
-.header {
-  background: red;
-}
-
-p {
-  display: flex;
-  justify-content: center;
-  font-family: "TT Fellows Trial Variable";
-  font-size: 84px;
-  font-style: normal;
-  font-weight: 490;
-  line-height: 100%;
-  letter-spacing: -1.68px;
-  text-transform: uppercase;
-  color: #0D1824;
-}
-@media (max-width: 440px) {
-  p {
-    font-size: 60px;
-    letter-spacing: -1.2px;
-  }
 }/*# sourceMappingURL=main.css.map */
