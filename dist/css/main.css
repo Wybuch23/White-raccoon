@@ -2,34 +2,83 @@
   font-family: "TT Fellows Trial Variable";
   src: url("../../src/assets/fonts/TT_Fellows/woff2/TT_Fellows_Medium.woff2") format("woff2"), url("../../src/assets/fonts/TT_Fellows/woff/TT_Fellows_Medium.woff") format("woff");
 }
-.btn-hero_black {
+.btn-nav {
   display: inline-flex;
-  height: 72px;
-  padding: 0px 40px;
+  height: 24px;
+  padding: 5px 10px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
-  border-radius: 36px;
-  border: 3px solid #0D1824;
-  background: none;
-  transition: 0.2s;
+  border: none;
+  border-radius: 12px;
+  background: #EBEFF0;
   font-family: "TT Fellows Trial Variable";
-  font-size: 32px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 490;
-  line-height: 105%;
-  letter-spacing: -0.64px;
+  line-height: 130%;
+  letter-spacing: -0.28px;
   text-transform: uppercase;
   color: #0D1824;
+  transition: 0.2s;
 }
-@media (max-width: 440px) {
-  .btn-hero_black {
-    font-size: 28px;
-    letter-spacing: -0.56px;
+@media (max-width: 375px) {
+  .btn-nav {
+    font-size: 12px;
+    letter-spacing: -0.24px;
   }
 }
-.btn-hero_black:hover {
+.btn-nav:hover {
+  background: #0D1824;
+  color: #EBEFF0;
+}
+
+.btn-icon__dots {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 24px;
+  background: #EBEFF0;
+  color: #0D1824;
+  transition: 0.2s;
+}
+.btn-icon__dots:hover {
   color: #EBEFF0;
   background: #0D1824;
+}
+
+header .navigation {
+  display: flex;
+  justify-content: space-between;
+}
+header .navigation__logo {
+  margin-right: auto;
+}
+header .navigation__navbar {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+}
+header .navigation__item {
+  margin-right: 12.8px;
+}
+header .navigation__button {
+  display: flex;
+  align-items: center;
+}
+
+body {
+  background: #EBEFF0;
+}
+
+.container {
+  max-width: 1186px;
+  margin: 0 auto;
 }/*# sourceMappingURL=main.css.map */

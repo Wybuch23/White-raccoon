@@ -1,16 +1,37 @@
-.btn-hero_black
+.btn-nav
     display: inline-flex
-    height: 72px
-    padding: 0px 40px
+    height: 24px
+    padding: 5px 10px
     justify-content: center
     align-items: center
     gap: 10px
     flex-shrink: 0
-    border-radius: 36px
-    border: 3px solid $--black-primary
-    background: none
+    border: none
+    border-radius: 12px
+    background: $--white-primary
+    +helper-title-desktop
     transition: 0.2s
-    +secondary-title-desktop
+    &:hover
+        background: $--black-primary
+        color: $--white-primary
+
+.btn-icon__dots
+    display: flex
+    width: 48px
+    height: 48px
+    padding: 12px
+    justify-content: center
+    align-items: center
+    flex-shrink: 0
+    border: none
+    border-radius: 24px
+    background: $--white-primary
+    color: $--black-primary
+    transition: 0.2s
     &:hover
         color: $--white-primary
         background: $--black-primary
+
+
+
+        
