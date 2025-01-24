@@ -56,9 +56,14 @@
 header .navigation {
   display: flex;
   justify-content: space-between;
+  height: 80px;
 }
 header .navigation__logo {
   margin-right: auto;
+  width: 128.889px;
+  height: 60px;
+  flex-shrink: 0;
+  margin-top: 10px;
 }
 header .navigation__navbar {
   display: flex;
