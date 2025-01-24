@@ -66,12 +66,25 @@ header .navigation__navbar {
   list-style-type: none;
   padding: 0;
 }
+header .navigation__navbar .hidden {
+  display: none;
+}
 header .navigation__item {
   margin-right: 12.8px;
 }
 header .navigation__button {
   display: flex;
   align-items: center;
+}
+header .navigation.active .navigation__logo {
+  display: none;
+}
+header .navigation.active .navigation__navbar {
+  width: 100%;
+  justify-content: space-between;
+}
+header .navigation.active .navigation__navbar .hidden {
+  display: block;
 }
 
 body {

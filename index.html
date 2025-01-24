@@ -15,17 +15,20 @@
 <body>
     <header>
         <div class="container">
-            <div class="navigation">
+            <div id="target-block" class="navigation">
                 <img src="src/assets/images/header/logo.svg" alt="" class="navigation__logo">
                 <ul class="navigation__navbar">
                     <li class="navigation__item"><button class="btn-nav">уборка</button></li>
                     <li class="navigation__item"><button class="btn-nav">химчистка</button></li>
                     <li class="navigation__item"><button class="btn-nav">почему нам доверяют?</button></li>
                     <li class="navigation__item"><button class="btn-nav">как происходит уборка?</button></li>
+                    <li class="navigation__item hidden"><button class="btn-nav">наши работы</button></li>
+                    <li class="navigation__item hidden"><button class="btn-nav">отзывы</button></li>
+                    <li class="navigation__item hidden"><button class="btn-nav">faq</button></li>
                     <li class="navigation__item"><button class="btn-nav">контакты</button></li>
                 </ul>
                 <div class="navigation__button">
-                    <button class="btn-icon__dots">
+                    <button id="add-class-button" class="btn-icon__dots">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -36,5 +39,7 @@
             </div>
         </div>
     </header>
+
+    <script src="src/js/main.js"></script>
 </body>
 </html>
