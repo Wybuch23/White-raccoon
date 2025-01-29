@@ -12,10 +12,11 @@
     +helper-title-desktop
     transition: 0.2s
     &:hover
+        transition: none
         background: $--black-primary
         color: $--white-primary
 
-.btn-icon__dots
+.btn-icon
     display: flex
     width: 48px
     height: 48px
@@ -28,7 +29,14 @@
     background: $--white-primary
     color: $--black-primary
     transition: 0.2s
+    .icon
+        position: absolute
+        transition: opacity 0.2s ease-in
+        opacity: 0
+        &.active
+            opacity: 1
     &:hover
+        transition: none
         color: $--white-primary
         background: $--black-primary
 
