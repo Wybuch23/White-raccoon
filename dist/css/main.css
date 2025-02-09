@@ -38,6 +38,9 @@
   }
 }
 @media (max-width: 1185px) {
+  .btn-nav {
+    transition: none;
+  }
   .btn-nav:active {
     color: #EBEFF0;
     background: #0D1824;
@@ -75,6 +78,9 @@
   }
 }
 @media (max-width: 1185px) {
+  .btn-icon {
+    transition: none;
+  }
   .btn-icon:active {
     color: #EBEFF0;
     background: #0D1824;
