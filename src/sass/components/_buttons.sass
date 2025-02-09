@@ -11,17 +11,27 @@
     background: $--white-primary
     +helper-title-desktop
     transition: 0.2s
+
+    -webkit-tap-highlight-color: transparent
+    touch-action: manipulation
+    user-select: none
+
     @media (hover: hover)
         &:hover
             transition: none
             background: $--black-primary
             color: $--white-primary
+    
     @media (hover: none)
-        &:active 
-            background: $--black-primary;
+        &:active
+            background: $--black-primary
             color: $--white-primary
+
     @media (max-width: 1185px)
         transition: none
+        // &:active
+        //     color: $--white-primary
+        //     background: $--black-primary
 
 .btn-icon
     display: flex
@@ -36,8 +46,6 @@
     background: $--white-primary
     color: $--black-primary
     transition: 0.2s
-    touch-action: manipulation
-    -webkit-tap-highlight-color: transparent
     .icon
         position: absolute
         transition: opacity 0.2s ease-in
@@ -49,11 +57,9 @@
             transition: none
             background: $--black-primary
             color: $--white-primary
-    @media (hover: none)
-        &:active 
-            background: $--black-primary;
+    @media (max-width: 1185px)     
+        &:active
             color: $--white-primary
-    @media (max-width: 1185px)
-        transition: none     
+            background: $--black-primary
 
         

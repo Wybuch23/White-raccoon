@@ -22,7 +22,11 @@
   text-transform: uppercase;
   color: #0D1824;
   transition: 0.2s;
+  -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 @media (max-width: 375px) {
   .btn-nav {
@@ -37,13 +41,15 @@
     color: #EBEFF0;
   }
 }
+@media (hover: none) {
+  .btn-nav:active {
+    background: #0D1824;
+    color: #EBEFF0;
+  }
+}
 @media (max-width: 1185px) {
   .btn-nav {
     transition: none;
-  }
-  .btn-nav:active {
-    color: #EBEFF0;
-    background: #0D1824;
   }
 }
 
@@ -60,7 +66,6 @@
   background: #EBEFF0;
   color: #0D1824;
   transition: 0.2s;
-  touch-action: manipulation;
 }
 .btn-icon .icon {
   position: absolute;
@@ -78,9 +83,6 @@
   }
 }
 @media (max-width: 1185px) {
-  .btn-icon {
-    transition: none;
-  }
   .btn-icon:active {
     color: #EBEFF0;
     background: #0D1824;
