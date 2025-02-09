@@ -78,7 +78,6 @@
 //     document.getElementById("navigation-switch-header-mobile").classList.toggle("active");
 // });
 
-
 document.getElementById("toggle-btn-header-dekstop").addEventListener("click", () => {
     // Переключаем иконки
     document.getElementById("icon-dots-horizontal-header-dekstop").classList.toggle("active");

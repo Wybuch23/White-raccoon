@@ -34,6 +34,12 @@
   background: #0D1824;
   color: #EBEFF0;
 }
+@media (max-width: 1185px) {
+  .btn-nav:hover {
+    color: inherit;
+    background: inherit;
+  }
+}
 
 .btn-icon {
   display: flex;
@@ -61,6 +67,12 @@
   transition: none;
   color: #EBEFF0;
   background: #0D1824;
+}
+@media (max-width: 1185px) {
+  .btn-icon:hover {
+    color: inherit;
+    background: inherit;
+  }
 }
 
 header .navigation__mobile {
