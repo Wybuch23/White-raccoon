@@ -38,22 +38,31 @@ header
             .navigation__logo
                 width: 118.148px
                 height: 55px
-            .navigation__navbar_mobile
-                list-style-type: none
+            .navigation__wrapper_mobile
                 position: absolute
                 top: 0
                 left: 0
                 width: 100%
-                height: 100%
-                padding: 0
-                padding-top: 110px
-                margin: 0
+                height: calc(100vh - 80px)
+                margin-top: 80px
                 display: flex
-                flex-direction: column
                 align-items: center
                 justify-content: center
-                .navigation__item
-                    padding-bottom: 30px
+                display: none
+
+                opacity: 0
+                transition: opacity 0.2s ease-in-out
+                &.active
+                    display: flex
+                    opacity: 1
+                .navigation__navbar_mobile
+                    list-style-type: none
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+                    justify-content: center
+                    .navigation__item
+                        padding-bottom: 30px
 
                 
 
