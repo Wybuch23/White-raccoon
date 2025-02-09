@@ -1,22 +1,7 @@
-// document.getElementById("toggle-btn").addEventListener("click", () => {
-//     // Переключаем иконки
-//     document.getElementById("icon-dots-horizontal").classList.toggle("active");
-//     document.getElementById("icon-close").classList.toggle("active");
-  
-//     // Переключаем классы у navigation__wrapper
-//     const firstElement = document.getElementById("1");
-//     const secondElement = document.getElementById("2");
-  
-//     if (firstElement && secondElement) {
-//       firstElement.classList.toggle("active");
-//       secondElement.classList.toggle("active");
-//     }
-// });
-
-document.getElementById("toggle-btn").addEventListener("click", () => {
+document.getElementById("toggle-btn-header-dekstop").addEventListener("click", () => {
     // Переключаем иконки
-    document.getElementById("icon-dots-horizontal").classList.toggle("active");
-    document.getElementById("icon-close").classList.toggle("active");
+    document.getElementById("icon-dots-horizontal-header-dekstop").classList.toggle("active");
+    document.getElementById("icon-close-header-dekstop").classList.toggle("active");
 
     // Переключаем классы у navigation__wrapper
     const firstElement = document.getElementById("1");
@@ -32,7 +17,7 @@ document.getElementById("toggle-btn").addEventListener("click", () => {
                 setTimeout(() => {
                     secondElement.style.opacity = "1"; // Плавное появление
                 }, 10);
-            }, 200); // Ждем 300ms перед скрытием
+            }, 200); // Ждем 200ms перед скрытием
         } else {
             secondElement.style.opacity = "0"; // Исчезает плавно
 
