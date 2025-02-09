@@ -11,14 +11,19 @@
     background: $--white-primary
     +helper-title-desktop
     transition: 0.2s
-    &:hover
-        transition: none
-        background: $--black-primary
-        color: $--white-primary
-    @media (max-width: 1185px)
+    // &:hover
+    //     transition: none
+    //     background: $--black-primary
+    //     color: $--white-primary
+    @media (hover: hover)
         &:hover
-            color: inherit
-            background: inherit
+            transition: none
+            background: $--black-primary
+            color: $--white-primary
+    @media (max-width: 1185px)
+        &:active
+            color: $--white-primary
+            background: $--black-primary
 
 .btn-icon
     display: flex
@@ -39,14 +44,14 @@
         opacity: 0
         &.active
             opacity: 1
-    &:hover
-        transition: none
-        color: $--white-primary
-        background: $--black-primary
-    @media (max-width: 1185px)
+    @media (hover: hover)
         &:hover
-            color: inherit
-            background: inherit       
-
+            transition: none
+            background: $--black-primary
+            color: $--white-primary
+    @media (max-width: 1185px)     
+        &:active
+            color: $--white-primary
+            background: $--black-primary
 
         
