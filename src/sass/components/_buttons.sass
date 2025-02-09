@@ -11,10 +11,7 @@
     background: $--white-primary
     +helper-title-desktop
     transition: 0.2s
-    // &:hover
-    //     transition: none
-    //     background: $--black-primary
-    //     color: $--white-primary
+    touch-action: manipulation
     @media (hover: hover)
         &:hover
             transition: none
@@ -38,6 +35,7 @@
     background: $--white-primary
     color: $--black-primary
     transition: 0.2s
+    touch-action: manipulation
     .icon
         position: absolute
         transition: opacity 0.2s ease-in

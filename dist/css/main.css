@@ -22,6 +22,7 @@
   text-transform: uppercase;
   color: #0D1824;
   transition: 0.2s;
+  touch-action: manipulation;
 }
 @media (max-width: 375px) {
   .btn-nav {
@@ -56,6 +57,7 @@
   background: #EBEFF0;
   color: #0D1824;
   transition: 0.2s;
+  touch-action: manipulation;
 }
 .btn-icon .icon {
   position: absolute;
