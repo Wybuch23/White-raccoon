@@ -12,20 +12,16 @@
     +helper-title-desktop
     transition: 0.2s
 
-    -webkit-tap-highlight-color: transparent
-    touch-action: manipulation
-    user-select: none
-
     @media (hover: hover)
         &:hover
             transition: none
             background: $--black-primary
             color: $--white-primary
     
-    @media (hover: none)
-        &:active
-            background: $--black-primary
-            color: $--white-primary
+    // @media (hover: none)
+    //     &:active
+    //         background: $--black-primary
+    //         color: $--white-primary
 
     @media (max-width: 1185px)
         transition: none
@@ -57,9 +53,9 @@
             transition: none
             background: $--black-primary
             color: $--white-primary
-    @media (max-width: 1185px)     
-        &:active
-            color: $--white-primary
-            background: $--black-primary
+    // @media (max-width: 1185px)     
+    //     &:active
+    //         color: $--white-primary
+    //         background: $--black-primary
 
         

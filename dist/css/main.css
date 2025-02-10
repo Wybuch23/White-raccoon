@@ -22,11 +22,6 @@
   text-transform: uppercase;
   color: #0D1824;
   transition: 0.2s;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
 }
 @media (max-width: 375px) {
   .btn-nav {
@@ -37,12 +32,6 @@
 @media (hover: hover) {
   .btn-nav:hover {
     transition: none;
-    background: #0D1824;
-    color: #EBEFF0;
-  }
-}
-@media (hover: none) {
-  .btn-nav:active {
     background: #0D1824;
     color: #EBEFF0;
   }
@@ -80,12 +69,6 @@
     transition: none;
     background: #0D1824;
     color: #EBEFF0;
-  }
-}
-@media (max-width: 1185px) {
-  .btn-icon:active {
-    color: #EBEFF0;
-    background: #0D1824;
   }
 }
 
