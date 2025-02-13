@@ -72,6 +72,125 @@
   }
 }
 
+.basic {
+  display: grid;
+  grid-template-columns: 382px auto;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+.basic__content {
+  display: grid;
+  grid-template-rows: repeat(auto);
+  row-gap: 80px;
+  padding-top: 34px;
+}
+.basic__top {
+  display: grid;
+  gap: 40px;
+}
+.basic__bottom {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.basic__sticky-title {
+  font-family: "TT Fellows Trial Variable";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 105%;
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+  color: #0D1824;
+  color: #606970;
+  position: sticky;
+  top: 80px;
+}
+@media (max-width: 440px) {
+  .basic__sticky-title {
+    font-size: 28px;
+    letter-spacing: -0.56px;
+  }
+}
+
+.basic__top-title {
+  font-family: "TT Fellows Trial Variable";
+  font-size: 52px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 100%;
+  letter-spacing: -1.04px;
+  color: #0D1824;
+}
+@media (max-width: 440px) {
+  .basic__top-title {
+    font-size: 44px;
+    letter-spacing: -0.88px;
+  }
+}
+
+.basic__card-primary {
+  width: 382px;
+  height: 382px;
+  background: #93A0AD;
+  border-radius: 8px;
+  position: relative;
+}
+.basic__card-primary .basic__card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 40px;
+  width: 100%;
+  height: 100%;
+}
+.basic__card-primary .basic__card-content .basic__card-icon {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+.basic__card-primary .basic__card-content .basic__card-img {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: -40px;
+  right: 0;
+}
+.basic__card-primary .basic__card-content .basic__card-title {
+  font-family: "TT Fellows Trial Variable";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 115%;
+  letter-spacing: -0.4px;
+  text-transform: uppercase;
+  color: #0D1824;
+}
+@media (max-width: 440px) {
+  .basic__card-primary .basic__card-content .basic__card-title {
+    font-size: 18px;
+    letter-spacing: -0.36px;
+  }
+}
+.basic__card-primary .basic__card-content .basic__card-text {
+  margin-top: 20px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #0D1824;
+}
+@media (max-width: 375px) {
+  .basic__card-primary .basic__card-content .basic__card-text {
+    font-size: 16px;
+  }
+}
+
 header {
   position: fixed;
   top: 0;
@@ -157,11 +276,6 @@ header .navigation .navigation__wrapper .navigation__navbar {
     padding-bottom: 30px;
   }
 }
-.lol {
-  margin-top: 80px;
-  height: 1500px;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -180,4 +294,8 @@ body {
     max-width: 440px;
     padding: 0 15px;
   }
+}
+
+.lol {
+  height: 500px;
 }/*# sourceMappingURL=main.css.map */
