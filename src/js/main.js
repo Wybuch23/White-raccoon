@@ -53,3 +53,111 @@ document.getElementById("toggle-btn-header-mobile").addEventListener("click", ()
         }, 10);
     }
 });
+
+
+// Секция уборка
+
+// Отвечает за добавление класа focus-blue и задержку перед появлением
+
+document.addEventListener("DOMContentLoaded", () => {
+    let hoverTimeout = null;
+    let leaveTimeout = null;
+    let lastHoveredCard = null;
+    let isHoveringAnyCard = false;
+
+    const allCards = document.querySelectorAll(".basic__card-primary");
+    const targetElementsSelector = ".basic__card-primary, .basic__card-img, .basic__card-title, .basic__sticky-title, .basic__top-title, body, .basic__card-icon, .basic__card-title, .basic__card-text"; // Укажите нужные классы
+    const getTargetElements = () => document.querySelectorAll(targetElementsSelector);
+
+    allCards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+            clearTimeout(leaveTimeout); // Отменяем удаление классов
+            isHoveringAnyCard = true;
+
+            hoverTimeout = setTimeout(() => {
+                getTargetElements().forEach(el => el.classList.add("focus-blue")); // Добавляем нужным элементам
+                card.querySelectorAll(targetElementsSelector).forEach(el => el.classList.remove("focus-blue")); // Убираем у элементов внутри текущей карточки
+                lastHoveredCard = card;
+            }, 200);
+        });
+
+        card.addEventListener("mouseleave", () => {
+            clearTimeout(hoverTimeout); // Отменяем, если курсор ушел раньше 200ms
+
+            leaveTimeout = setTimeout(() => {
+                if (lastHoveredCard === card) {
+                    card.querySelectorAll(targetElementsSelector).forEach(el => el.classList.add("focus-blue")); // Вернем класс только если курсора нет
+                }
+                checkGlobalHover(); // Проверяем, не ушел ли курсор вообще
+            }, 200);
+        });
+    });
+
+    function checkGlobalHover() {
+        setTimeout(() => {
+            if (!isHoveringAnyCard) {
+                getTargetElements().forEach(el => el.classList.remove("focus-blue")); // Убираем классы у всех целевых элементов
+            }
+        }, 200);
+    }
+
+    document.addEventListener("mousemove", (event) => {
+        const isHovering = [...allCards].some(card => card.contains(event.target));
+        isHoveringAnyCard = isHovering;
+        if (!isHovering) {
+            checkGlobalHover();
+        }
+    });
+});
+
+// Задержка анимации в card-primary 
+
+document.addEventListener("DOMContentLoaded", () => {
+    let hoverTimeout = null;
+    let leaveTimeout = null;
+    let lastHoveredCard = null;
+    let isHoveringAnyCard = false; // Флаг, указывающий, есть ли курсор над карточками
+
+    const allCards = document.querySelectorAll(".basic__card-primary");
+
+    allCards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+            clearTimeout(leaveTimeout); // Отменяем таймер удаления классов
+            isHoveringAnyCard = true; // Курсор на карточке
+
+            if (lastHoveredCard) {
+                lastHoveredCard.classList.remove("hover-active"); // Удаляем у предыдущей
+                card.classList.add("hover-active"); // Добавляем новой сразу
+                lastHoveredCard = card;
+            } else {
+                hoverTimeout = setTimeout(() => {
+                    card.classList.add("hover-active");
+                    lastHoveredCard = card;
+                }, 200);
+            }
+        });
+
+        card.addEventListener("mouseleave", () => {
+            clearTimeout(hoverTimeout); // Отменяем добавление класса, если курсор ушел раньше 200 мс
+
+            leaveTimeout = setTimeout(() => {
+                if (!isHoveringAnyCard) {
+                    allCards.forEach(el => el.classList.remove("hover-active")); // Удаляем классы у всех, если курсора нигде нет
+                    lastHoveredCard = null;
+                }
+            }, 200);
+        });
+    });
+
+    document.addEventListener("mousemove", (event) => {
+        isHoveringAnyCard = [...allCards].some(card => card.contains(event.target));
+        if (!isHoveringAnyCard) {
+            clearTimeout(hoverTimeout);
+            clearTimeout(leaveTimeout);
+            leaveTimeout = setTimeout(() => {
+                allCards.forEach(el => el.classList.remove("hover-active")); // Полностью удаляем класс, если курсора нет 200 мс
+                lastHoveredCard = null;
+            }, 200);
+        }
+    });
+});
