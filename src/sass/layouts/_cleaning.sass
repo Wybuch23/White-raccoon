@@ -1,0 +1,37 @@
+.cleaning
+    .speech-bubble__card
+        .speech-bubble__card_top
+            position: fixed
+            top: 150px
+        .speech-bubble__card_bottom
+            position: fixed
+            bottom: 70px
+        .speech-bubble__massage
+            display: flex
+            align-items: flex-end
+            margin-bottom: 10px
+            .speech-bubble__body
+                box-sizing: border-box
+                display: flex
+                padding: 10px 20px
+                justify-content: flex-start
+                align-items: center
+                height: 100%
+                background: $--blue-primary
+                +helper-text-desktop
+                color: $--white-primary
+                border-radius: 16px 16px 16px 0px
+            .speech-bubble__rectangle_right
+                transform: scaleX(-1)
+            .speech-bubble__body_long
+                width: 302px
+            .speech-bubble__body_medium
+                width: 282px
+            .speech-bubble__body_short
+                width: 262px
+            .speech-bubble__body_answer
+                width: 342px
+                border-radius: 16px 16px 0px 16px
+                background: $--blue-secondary
+    .speech-bubble__card-01
+        opacity: 0

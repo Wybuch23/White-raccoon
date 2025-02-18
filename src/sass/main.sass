@@ -1,8 +1,10 @@
 @import 'base/variables/colors.sass'
 @import 'base/mixins/fonst-mixins.sass'
+@import 'base/mixins/animation.sass'
 @import 'components/buttons.sass'
 @import 'components/basic.sass'
 @import 'layouts/_header.sass'
+@import 'layouts/_cleaning.sass'
 
 *
     padding: 0
@@ -10,7 +12,7 @@
 
 body
     background: $--white-primary
-    transition: 0.4s
+    +transition-focus-blue
     &.focus-blue
         background: $--black-primary
         

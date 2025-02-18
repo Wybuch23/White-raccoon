@@ -20,13 +20,15 @@
         color: $--grey-secondary
         position: sticky
         top: 120px
+        +transition-focus-blue
         &.focus-blue
             color: $--black-secondary
     
 .basic__top-title
     +lowercase-title-desktop
+    +transition-focus-blue
     &.focus-blue
-            color: $--black-secondary
+        color: $--black-secondary
 
 .basic__card-primary
     width: 382px
@@ -36,7 +38,7 @@
     position: relative
     box-sizing: border-box
     padding: 40px
-    transition: 0.4s
+    +transition-focus-blue
     &.focus-blue
         outline: 2px solid $--black-secondary
         background: $--black-primary
@@ -46,7 +48,7 @@
             position: absolute
             top: -40px
             right: 0
-            transition: 0.4s
+            +transition-focus-blue
             &.focus-blue
                 opacity: 0
     .basic__card-icon
@@ -55,7 +57,7 @@
             position: absolute
             top: 40px
             left: 40px
-            transition: 0.4s
+            +transition-focus-blue
             &.focus-blue
                 color: $--black-secondary
     .basic__card-content
@@ -72,20 +74,16 @@
         .basic__card-title
             +tertiary-title-desktop
             transform: translateY(68px)
-            transition: 0.4s
+            +transition-focus-blue
             &.focus-blue
                 color: $--black-secondary
         .basic__card-text
             margin-top: 20px
             +body-text-desktop
             transform: translateY(68px)
-            transition: 0.4s
+            +transition-focus-blue
             &.focus-blue
                 color: $--black-secondary
-        .btn-primary
-            transform: translateY(68px)
-            opacity: 0
-            transition: transform 0.4s ease, opacity 0.4s ease-in
 
 
 .basic__card-primary
@@ -101,5 +99,25 @@
                 .basic__card-text
                     transform: translateY(0)
                 .btn-primary
-                    transform: translateY(0)
-                    opacity: 1
+                    animation: moveUpPrimaryButton 0.4s ease-in forwards
+        &:not(.hover-active)
+            .btn-primary
+                animation: moveDownPrimaryButton 0.4s ease-in forwards
+
+
+@keyframes moveUpPrimaryButton
+    from
+        transform: translateY(68px)
+        opacity: 0
+    to
+        transform: translateY(0px)
+        opacity: 1
+
+
+@keyframes moveDownPrimaryButton
+    from
+        transform: translateY(0px)
+        opacity: 1
+    to
+        transform: translateY(68px)
+        opacity: 0

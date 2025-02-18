@@ -142,6 +142,7 @@
   color: #606970;
   position: sticky;
   top: 120px;
+  transition: 0.4s ease-in;
 }
 @media (max-width: 440px) {
   .basic__sticky-title {
@@ -161,6 +162,7 @@
   line-height: 100%;
   letter-spacing: -1.04px;
   color: #0D1824;
+  transition: 0.4s ease-in;
 }
 @media (max-width: 440px) {
   .basic__top-title {
@@ -180,7 +182,7 @@
   position: relative;
   box-sizing: border-box;
   padding: 40px;
-  transition: 0.4s;
+  transition: 0.4s ease-in;
 }
 .basic__card-primary.focus-blue {
   outline: 2px solid #14283D;
@@ -192,7 +194,7 @@
   position: absolute;
   top: -40px;
   right: 0;
-  transition: 0.4s;
+  transition: 0.4s ease-in;
 }
 .basic__card-primary .basic__card-img.focus-blue {
   opacity: 0;
@@ -203,7 +205,7 @@
   position: absolute;
   top: 40px;
   left: 40px;
-  transition: 0.4s;
+  transition: 0.4s ease-in;
 }
 .basic__card-primary .basic__card-icon.focus-blue {
   color: #14283D;
@@ -228,7 +230,7 @@
   text-transform: uppercase;
   color: #0D1824;
   transform: translateY(68px);
-  transition: 0.4s;
+  transition: 0.4s ease-in;
 }
 @media (max-width: 440px) {
   .basic__card-primary .basic__card-content .basic__card-title {
@@ -248,7 +250,7 @@
   line-height: 130%;
   color: #0D1824;
   transform: translateY(68px);
-  transition: 0.4s;
+  transition: 0.4s ease-in;
 }
 @media (max-width: 375px) {
   .basic__card-primary .basic__card-content .basic__card-text {
@@ -257,11 +259,6 @@
 }
 .basic__card-primary .basic__card-content .basic__card-text.focus-blue {
   color: #14283D;
-}
-.basic__card-primary .basic__card-content .btn-primary {
-  transform: translateY(68px);
-  opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease-in;
 }
 
 .basic__card-primary.hover-active {
@@ -280,10 +277,32 @@
   transform: translateY(0);
 }
 .basic__card-primary.hover-active .basic__card-content .btn-primary {
-  transform: translateY(0);
-  opacity: 1;
+  animation: moveUpPrimaryButton 0.4s ease-in forwards;
+}
+.basic__card-primary:not(.hover-active) .btn-primary {
+  animation: moveDownPrimaryButton 0.4s ease-in forwards;
 }
 
+@keyframes moveUpPrimaryButton {
+  from {
+    transform: translateY(68px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes moveDownPrimaryButton {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(68px);
+    opacity: 0;
+  }
+}
 header {
   position: fixed;
   top: 0;
@@ -370,6 +389,62 @@ header .navigation .navigation__wrapper .navigation__navbar {
     padding-bottom: 30px;
   }
 }
+.cleaning .speech-bubble__card .speech-bubble__card_top {
+  position: fixed;
+  top: 150px;
+}
+.cleaning .speech-bubble__card .speech-bubble__card_bottom {
+  position: fixed;
+  bottom: 70px;
+}
+.cleaning .speech-bubble__card .speech-bubble__massage {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+.cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body {
+  box-sizing: border-box;
+  display: flex;
+  padding: 10px 20px;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  background: #244A70;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #0D1824;
+  color: #EBEFF0;
+  border-radius: 16px 16px 16px 0px;
+}
+@media (max-width: 375px) {
+  .cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body {
+    font-size: 12px;
+  }
+}
+.cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__rectangle_right {
+  transform: scaleX(-1);
+}
+.cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_long {
+  width: 302px;
+}
+.cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_medium {
+  width: 282px;
+}
+.cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_short {
+  width: 262px;
+}
+.cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_answer {
+  width: 342px;
+  border-radius: 16px 16px 0px 16px;
+  background: #18324D;
+}
+.cleaning .speech-bubble__card-01 {
+  opacity: 0;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -377,7 +452,7 @@ header .navigation .navigation__wrapper .navigation__navbar {
 
 body {
   background: #EBEFF0;
-  transition: 0.4s;
+  transition: 0.4s ease-in;
 }
 body.focus-blue {
   background: #0D1824;
