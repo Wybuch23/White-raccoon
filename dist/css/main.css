@@ -142,7 +142,7 @@
   color: #606970;
   position: sticky;
   top: 120px;
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 @media (max-width: 440px) {
   .basic__sticky-title {
@@ -162,7 +162,7 @@
   line-height: 100%;
   letter-spacing: -1.04px;
   color: #0D1824;
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 @media (max-width: 440px) {
   .basic__top-title {
@@ -182,7 +182,7 @@
   position: relative;
   box-sizing: border-box;
   padding: 40px;
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 .basic__card-primary.focus-blue {
   outline: 2px solid #14283D;
@@ -194,7 +194,7 @@
   position: absolute;
   top: -40px;
   right: 0;
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 .basic__card-primary .basic__card-img.focus-blue {
   opacity: 0;
@@ -205,7 +205,7 @@
   position: absolute;
   top: 40px;
   left: 40px;
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 .basic__card-primary .basic__card-icon.focus-blue {
   color: #14283D;
@@ -230,7 +230,7 @@
   text-transform: uppercase;
   color: #0D1824;
   transform: translateY(68px);
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 @media (max-width: 440px) {
   .basic__card-primary .basic__card-content .basic__card-title {
@@ -250,7 +250,7 @@
   line-height: 130%;
   color: #0D1824;
   transform: translateY(68px);
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 @media (max-width: 375px) {
   .basic__card-primary .basic__card-content .basic__card-text {
@@ -277,10 +277,10 @@
   transform: translateY(0);
 }
 .basic__card-primary.hover-active .basic__card-content .btn-primary {
-  animation: moveUpPrimaryButton 0.4s ease-in forwards;
+  animation: moveUpPrimaryButton 0.2s ease-in forwards;
 }
 .basic__card-primary:not(.hover-active) .btn-primary {
-  animation: moveDownPrimaryButton 0.4s ease-in forwards;
+  animation: moveDownPrimaryButton 0.2s ease-in forwards;
 }
 
 @keyframes moveUpPrimaryButton {
@@ -452,7 +452,7 @@ header .navigation .navigation__wrapper .navigation__navbar {
 
 body {
   background: #EBEFF0;
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 body.focus-blue {
   background: #0D1824;
