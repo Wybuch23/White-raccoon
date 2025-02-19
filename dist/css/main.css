@@ -198,7 +198,6 @@
   transition: 0.2s ease-in;
 }
 .basic__card-primary .basic__card-img.focus-blue {
-  transition: 0.2s ease-in;
   opacity: 0;
 }
 .basic__card-primary .basic__card-icon {
@@ -289,10 +288,12 @@
   from {
     transform: translateY(68px);
     opacity: 0;
+    transition: 0.2s ease-in;
   }
   to {
     transform: translateY(0px);
     opacity: 1;
+    transition: 0.2s ease-in;
   }
 }
 @keyframes moveDownPrimaryButton {
@@ -312,6 +313,7 @@ header {
   transform: translateX(-50%);
   width: 100%;
   height: 80px;
+  border-radius: 0px 0px 32px 32px;
   background-color: #EBEFF0;
   z-index: 1;
   transition: 0.2s ease-in;

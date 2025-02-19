@@ -51,7 +51,6 @@
             pointer-events: none
             +transition-focus-blue
             &.focus-blue
-                +transition-focus-blue
                 opacity: 0
     .basic__card-icon
             width: 24px
@@ -89,31 +88,33 @@
 
 
 .basic__card-primary
-        &.hover-active
-            background: $--grey-primary
-            .basic__card-img
-                transform: translateY(-68px)
-            .basic__card-icon
-                opacity: 0
-            .basic__card-content
-                .basic__card-title
-                    transform: translateY(0)
-                .basic__card-text
-                    transform: translateY(0)
-                .btn-primary
-                    animation: moveUpPrimaryButton 0.2s ease-in forwards
-        &:not(.hover-active)
+    &.hover-active
+        background: $--grey-primary
+        .basic__card-img
+            transform: translateY(-68px)
+        .basic__card-icon
+            opacity: 0
+        .basic__card-content
+            .basic__card-title
+                transform: translateY(0)
+            .basic__card-text
+                transform: translateY(0)
             .btn-primary
-                animation: moveDownPrimaryButton 0.2s ease-in forwards
+                animation: moveUpPrimaryButton 0.2s ease-in forwards
+    &:not(.hover-active)
+        .btn-primary
+            animation: moveDownPrimaryButton 0.2s ease-in forwards
 
 
 @keyframes moveUpPrimaryButton
     from
         transform: translateY(68px)
         opacity: 0
+        +transition-focus-blue
     to
         transform: translateY(0px)
         opacity: 1
+        +transition-focus-blue
 
 
 @keyframes moveDownPrimaryButton
