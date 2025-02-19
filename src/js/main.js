@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let isHoveringAnyCard = false;
 
     const allCards = document.querySelectorAll(".basic__card-primary");
-    const targetElementsSelector = ".basic__card-primary, .basic__card-img, .basic__card-title, .basic__sticky-title, .basic__top-title, body, .basic__card-icon, .basic__card-title, .basic__card-text"; // Укажите нужные классы
+    const targetElementsSelector = ".basic__card-primary, .basic__card-img, .basic__card-title, .basic__sticky-title, .basic__top-title, body, .basic__card-icon, .basic__card-title, .basic__card-text, .header"; // Укажите нужные классы
     const getTargetElements = () => document.querySelectorAll(targetElementsSelector);
 
     allCards.forEach(card => {
@@ -205,4 +205,21 @@ for (let i = 1; i <= 6; i++) {
     });
   }
 
+// Скрытые шапки
 
+
+let lastScrollTop = 0;
+const header = document.querySelector(".header");
+const scrollThreshold = 160;
+
+window.addEventListener("scroll", () => {
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+    
+    if (scrollTop > lastScrollTop + scrollThreshold) {
+        header.classList.add("hide");
+        lastScrollTop = scrollTop;
+    } else if (scrollTop < lastScrollTop - scrollThreshold) {
+        header.classList.remove("hide");
+        lastScrollTop = scrollTop;
+    }
+});

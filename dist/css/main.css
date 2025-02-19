@@ -198,6 +198,7 @@
   transition: 0.2s ease-in;
 }
 .basic__card-primary .basic__card-img.focus-blue {
+  transition: 0.2s ease-in;
   opacity: 0;
 }
 .basic__card-primary .basic__card-icon {
@@ -313,6 +314,15 @@ header {
   height: 80px;
   background-color: #EBEFF0;
   z-index: 1;
+  transition: 0.2s ease-in;
+}
+header.header.hide {
+  top: -80px;
+  transition: 0.2s ease-in;
+}
+header.header.focus-blue {
+  top: -80px;
+  transition: 0.2s ease-in;
 }
 header .navigation__mobile {
   display: none;
@@ -520,8 +530,4 @@ body.focus-blue {
 
 .lol {
   height: 500px;
-}
-
-header {
-  display: none;
 }/*# sourceMappingURL=main.css.map */

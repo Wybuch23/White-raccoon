@@ -7,6 +7,14 @@ header
     height: 80px
     background-color: $--white-primary
     z-index: 1
+    +transition-focus-blue
+    &.header
+        &.hide
+            top: -80px
+            +transition-focus-blue
+        &.focus-blue
+            top: -80px
+            +transition-focus-blue
     .navigation__mobile
         display: none
     .navigation
