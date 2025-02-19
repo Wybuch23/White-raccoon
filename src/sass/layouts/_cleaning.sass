@@ -2,10 +2,11 @@
     .speech-bubble__card
         .speech-bubble__card_top
             position: fixed
-            top: 150px
+            top: 80px
         .speech-bubble__card_bottom
             position: fixed
             bottom: 70px
+            padding-left: 20px
         .speech-bubble__massage
             display: flex
             align-items: flex-end
@@ -33,5 +34,38 @@
                 width: 342px
                 border-radius: 16px 16px 0px 16px
                 background: $--blue-secondary
+                +body-text-desktop
+                color: $--white-primary
     .speech-bubble__card-01
+        display: none
         opacity: 0
+        transition: opacity 0.2s ease-in
+    .speech-bubble__card-02
+        display: none
+        opacity: 0
+        transition: opacity 0.2s ease-in
+    .speech-bubble__card-03
+        display: none
+        opacity: 0
+        transition: opacity 0.2s ease-in
+    .speech-bubble__card-04
+        display: none
+        opacity: 0
+        transition: opacity 0.2s ease-in
+    .speech-bubble__card-05
+        display: none
+        opacity: 0
+        transition: opacity 0.2s ease-in
+    .speech-bubble__card-06
+        display: none
+        opacity: 0
+        transition: opacity 0.2s ease-in
+
+
+@media (max-width: 1440px)
+    .cleaning
+        .speech-bubble__card
+            .speech-bubble__card_top
+                top: 40px
+            .speech-bubble__card_bottom
+                bottom: 30px

@@ -21,7 +21,7 @@
   letter-spacing: -0.28px;
   text-transform: uppercase;
   color: #0D1824;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 @media (max-width: 375px) {
   .btn-nav {
@@ -54,7 +54,7 @@
   border-radius: 24px;
   background: #EBEFF0;
   color: #0D1824;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 .btn-icon .icon {
   position: absolute;
@@ -84,7 +84,7 @@
   border-radius: 36px;
   border: 2px solid #0D1824;
   background: none;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
   font-family: "TT Fellows Trial Variable";
   font-size: 20px;
   font-style: normal;
@@ -194,6 +194,7 @@
   position: absolute;
   top: -40px;
   right: 0;
+  pointer-events: none;
   transition: 0.2s ease-in;
 }
 .basic__card-primary .basic__card-img.focus-blue {
@@ -391,11 +392,12 @@ header .navigation .navigation__wrapper .navigation__navbar {
 }
 .cleaning .speech-bubble__card .speech-bubble__card_top {
   position: fixed;
-  top: 150px;
+  top: 80px;
 }
 .cleaning .speech-bubble__card .speech-bubble__card_bottom {
   position: fixed;
   bottom: 70px;
+  padding-left: 20px;
 }
 .cleaning .speech-bubble__card .speech-bubble__massage {
   display: flex;
@@ -440,11 +442,58 @@ header .navigation .navigation__wrapper .navigation__navbar {
   width: 342px;
   border-radius: 16px 16px 0px 16px;
   background: #18324D;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #0D1824;
+  color: #EBEFF0;
+}
+@media (max-width: 375px) {
+  .cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_answer {
+    font-size: 16px;
+  }
 }
 .cleaning .speech-bubble__card-01 {
+  display: none;
   opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+.cleaning .speech-bubble__card-02 {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+.cleaning .speech-bubble__card-03 {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+.cleaning .speech-bubble__card-04 {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+.cleaning .speech-bubble__card-05 {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+.cleaning .speech-bubble__card-06 {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
 }
 
+@media (max-width: 1440px) {
+  .cleaning .speech-bubble__card .speech-bubble__card_top {
+    top: 40px;
+  }
+  .cleaning .speech-bubble__card .speech-bubble__card_bottom {
+    bottom: 30px;
+  }
+}
 * {
   padding: 0;
   margin: 0;
@@ -471,4 +520,8 @@ body.focus-blue {
 
 .lol {
   height: 500px;
+}
+
+header {
+  display: none;
 }/*# sourceMappingURL=main.css.map */

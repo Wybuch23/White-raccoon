@@ -161,3 +161,48 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// появление блоков с сообщениями
+
+
+// Для каждого триггера (1-6) добавляем обработчик событий
+for (let i = 1; i <= 6; i++) {
+    const trigger = document.querySelector(`.bubble__massage_triger-${i}`);
+    const bubbleCard = document.querySelector(`.speech-bubble__card-0${i}`);
+  
+    let enterTimeout;
+    let leaveTimeout;
+  
+    // Навешиваем событие на наведение
+    trigger.addEventListener('mouseenter', () => {
+      // Отменяем предыдущий таймер, если он был
+      clearTimeout(leaveTimeout);
+  
+      // Запускаем таймер для задержки 200 мс перед показом
+      enterTimeout = setTimeout(() => {
+        // Делаем элемент видимым (сразу)
+        bubbleCard.style.display = 'block';
+  
+        // Плавно меняем opacity
+        bubbleCard.style.opacity = '1';
+      }, 200); // Задержка перед появлением
+    });
+  
+    // Навешиваем событие на увод мыши
+    trigger.addEventListener('mouseleave', () => {
+      // Отменяем таймер для появления, если курсор быстро уходит
+      clearTimeout(enterTimeout);
+  
+      // Запускаем таймер для задержки 200 мс перед скрытием
+      leaveTimeout = setTimeout(() => {
+        bubbleCard.style.opacity = '0';
+  
+        // Прячем элемент через 0.2s (по времени анимации)
+        setTimeout(() => {
+          bubbleCard.style.display = 'none';
+        }, 200); // Задержка перед скрытием
+      }, 200); // Задержка перед исчезновением
+    });
+  }
+
+
