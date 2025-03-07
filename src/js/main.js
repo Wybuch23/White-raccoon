@@ -1,225 +1,137 @@
-document.getElementById("toggle-btn-header-dekstop").addEventListener("click", () => {
-    // Переключаем иконки
-    document.getElementById("icon-dots-horizontal-header-dekstop").classList.toggle("active");
-    document.getElementById("icon-close-header-dekstop").classList.toggle("active");
-
-    // Переключаем классы у navigation__wrapper
-    const firstElement = document.getElementById("1");
-    const secondElement = document.getElementById("2");
-
-    if (firstElement && secondElement) {
-        if (firstElement.classList.contains("active")) {
-            firstElement.style.opacity = "0"; // Исчезает плавно
-
-            setTimeout(() => {
-                firstElement.classList.remove("active"); // Убираем display: flex
-                secondElement.classList.add("active"); // Показываем второй элемент
-                setTimeout(() => {
-                    secondElement.style.opacity = "1"; // Плавное появление
-                }, 10);
-            }, 200); // Ждем 200ms перед скрытием
-        } else {
-            secondElement.style.opacity = "0"; // Исчезает плавно
-
-            setTimeout(() => {
-                secondElement.classList.remove("active");
-                firstElement.classList.add("active");
-                setTimeout(() => {
-                    firstElement.style.opacity = "1"; // Плавное появление
-                }, 10);
-            }, 200);
-        }
-    }
-});
-
-// Мобильная версия с плавным появлением
-document.getElementById("toggle-btn-header-mobile").addEventListener("click", () => {
-    // Переключаем иконки
-    document.getElementById("icon-dots-vertical-header-mobile").classList.toggle("active");
-    document.getElementById("icon-close-header-mobile").classList.toggle("active");
-
-    // Переключаем навигацию с плавной анимацией
-    const nav = document.getElementById("navigation-switch-header-mobile");
-
-    if (nav.classList.contains("active")) {
-        nav.style.opacity = "0"; // Исчезает плавно
-        setTimeout(() => {
-            nav.classList.remove("active");
-        }, 200); // Ждем перед скрытием
-    } else {
-        nav.classList.add("active");
-        setTimeout(() => {
-            nav.style.opacity = "1"; // Плавное появление
-        }, 10);
-    }
-});
-
-
-// Секция уборка
-
-// Отвечает за добавление класа focus-blue и задержку перед появлением
+// import { fadeIn, fadeOut } from "./modules/fade.js";
+import { setupHeaderToggle } from "./modules/headerToggle.js";
+import { setupMobileNavigation } from "./modules/mobileNavigation.js";
+import { setupCardHoverEffect } from "./modules/cardHover.js";
+import { setupMessageBubbles } from "./modules/messageBubbles.js";
+import { setupScrollHeader } from "./modules/scrollHeader.js";
+import { setupFocusBlue } from "./modules/focusBlue.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    let hoverTimeout = null;
-    let leaveTimeout = null;
-    let lastHoveredCard = null;
-    let isHoveringAnyCard = false;
+    setupHeaderToggle();
+    setupMobileNavigation();
+    setupCardHoverEffect();
+    setupMessageBubbles();
+    setupScrollHeader();
+    setupFocusBlue();
+});
 
-    const allCards = document.querySelectorAll(".basic__card-primary");
-    const targetElementsSelector = ".basic__card-primary, .basic__card-img, .basic__card-title, .basic__sticky-title, .basic__top-title, body, .basic__card-icon, .basic__card-title, .basic__card-text, .header"; // Укажите нужные классы
-    const getTargetElements = () => document.querySelectorAll(targetElementsSelector);
+// рабочая версия
 
-    allCards.forEach(card => {
-        card.addEventListener("mouseenter", () => {
-            clearTimeout(leaveTimeout); // Отменяем удаление классов
-            isHoveringAnyCard = true;
+// const swiper = new Swiper('.swiper', {
+//     loop: true,
+//     pagination: false,  // Отключаем встроенную пагинацию
+//     slidesPerView: 'auto',
+//     spaceBetween: window.innerWidth * 0.5,
+//     centeredSlides: true,
+//     grabCursor: true,
+//     allowTouchMove: true,
+//     speed: 500,
+// });
 
-            hoverTimeout = setTimeout(() => {
-                getTargetElements().forEach(el => el.classList.add("focus-blue")); // Добавляем нужным элементам
-                card.querySelectorAll(targetElementsSelector).forEach(el => el.classList.remove("focus-blue")); // Убираем у элементов внутри текущей карточки
-                lastHoveredCard = card;
-            }, 200);
-        });
+// // Функция для обновления заголовка и текста
+// function updateContent() {
+//     const activeSlide = document.querySelector('.swiper-slide-active');
 
-        card.addEventListener("mouseleave", () => {
-            clearTimeout(hoverTimeout); // Отменяем, если курсор ушел раньше 200ms
+//     // Проверяем, если у слайда есть нужные атрибуты
+//     if (activeSlide) {
+//         const title = activeSlide.dataset.title || "Нет заголовка";  // Убедитесь, что атрибуты есть
+//         const text = activeSlide.dataset.text || "Нет текста";      // Убедитесь, что атрибуты есть
 
-            leaveTimeout = setTimeout(() => {
-                if (lastHoveredCard === card) {
-                    card.querySelectorAll(targetElementsSelector).forEach(el => el.classList.add("focus-blue")); // Вернем класс только если курсора нет
-                }
-                checkGlobalHover(); // Проверяем, не ушел ли курсор вообще
-            }, 200);
-        });
+//         // Обновляем содержимое
+//         document.querySelector('.mobile-card__title').textContent = title;
+//         document.querySelector('.mobile-card__text').innerHTML = text;
+//     }
+// }
+
+// // Инициализируем обновление контента сразу после загрузки страницы
+// updateContent();
+
+// // Синхронизация активных точек и обновление текста при изменении слайда
+// swiper.on('slideChangeTransitionEnd', function () {
+//     const activeIndex = swiper.realIndex; // Получаем индекс активного слайда
+//     const dots = document.querySelectorAll('.mobile-card__dot');
+
+//     // Снимаем класс 'active' со всех точек
+//     dots.forEach(dot => dot.classList.remove('active'));
+
+//     // Добавляем класс 'active' к точке, соответствующей текущему слайду
+//     dots[activeIndex].classList.add('active');
+
+//     // Обновляем текст
+//     updateContent();
+// });
+
+// Анимация появления 
+
+const swiper = new Swiper('.swiper', {
+    loop: true,
+    pagination: false,  // Отключаем встроенную пагинацию
+    slidesPerView: 'auto',
+    spaceBetween: window.innerWidth * 0.5,
+    centeredSlides: true,
+    grabCursor: true,
+    allowTouchMove: true,
+    speed: 400,
+});
+
+// Функция для обновления активного слайда и точек
+function updateActiveSlide() {
+    document.querySelectorAll('.swiper-slide').forEach(slide => {
+        slide.classList.remove('active'); // Убираем у всех слайдов
     });
 
-    function checkGlobalHover() {
-        setTimeout(() => {
-            if (!isHoveringAnyCard) {
-                getTargetElements().forEach(el => el.classList.remove("focus-blue")); // Убираем классы у всех целевых элементов
-            }
-        }, 200);
+    const activeSlide = document.querySelector('.swiper-slide-active');
+    if (activeSlide) {
+        activeSlide.classList.add('active'); // Добавляем активному
     }
 
-    document.addEventListener("mousemove", (event) => {
-        const isHovering = [...allCards].some(card => card.contains(event.target));
-        isHoveringAnyCard = isHovering;
-        if (!isHovering) {
-            checkGlobalHover();
-        }
-    });
-});
+    updateDots(swiper.realIndex); // Обновляем точки
+}
 
-// Задержка анимации в card-primary 
+// Функция для обновления заголовка, текста и анимации
+function updateContent() {
+    const activeSlide = document.querySelector('.swiper-slide-active');
+    const titleElement = document.querySelector('.mobile-card__title');
+    const textElement = document.querySelector('.mobile-card__text');
 
-document.addEventListener("DOMContentLoaded", () => {
-    let hoverTimeout = null;
-    let leaveTimeout = null;
-    let lastHoveredCard = null;
-    let isHoveringAnyCard = false; // Флаг, указывающий, есть ли курсор над карточками
+    if (activeSlide) {
+        const title = activeSlide.dataset.title || "Нет заголовка";
+        const text = activeSlide.dataset.text || "Нет текста";
 
-    const allCards = document.querySelectorAll(".basic__card-primary");
+        // Анимация исчезновения
+        titleElement.style.opacity = 0;
+        textElement.style.opacity = 0;
 
-    allCards.forEach(card => {
-        card.addEventListener("mouseenter", () => {
-            clearTimeout(leaveTimeout); // Отменяем таймер удаления классов
-            isHoveringAnyCard = true; // Курсор на карточке
-
-            if (lastHoveredCard) {
-                lastHoveredCard.classList.remove("hover-active"); // Удаляем у предыдущей
-                card.classList.add("hover-active"); // Добавляем новой сразу
-                lastHoveredCard = card;
-            } else {
-                hoverTimeout = setTimeout(() => {
-                    card.classList.add("hover-active");
-                    lastHoveredCard = card;
-                }, 200);
-            }
-        });
-
-        card.addEventListener("mouseleave", () => {
-            clearTimeout(hoverTimeout); // Отменяем добавление класса, если курсор ушел раньше 200 мс
-
-            leaveTimeout = setTimeout(() => {
-                if (!isHoveringAnyCard) {
-                    allCards.forEach(el => el.classList.remove("hover-active")); // Удаляем классы у всех, если курсора нигде нет
-                    lastHoveredCard = null;
-                }
-            }, 200);
-        });
-    });
-
-    document.addEventListener("mousemove", (event) => {
-        isHoveringAnyCard = [...allCards].some(card => card.contains(event.target));
-        if (!isHoveringAnyCard) {
-            clearTimeout(hoverTimeout);
-            clearTimeout(leaveTimeout);
-            leaveTimeout = setTimeout(() => {
-                allCards.forEach(el => el.classList.remove("hover-active")); // Полностью удаляем класс, если курсора нет 200 мс
-                lastHoveredCard = null;
-            }, 200);
-        }
-    });
-});
-
-// появление блоков с сообщениями
-
-
-// Для каждого триггера (1-6) добавляем обработчик событий
-for (let i = 1; i <= 6; i++) {
-    const trigger = document.querySelector(`.bubble__massage_triger-${i}`);
-    const bubbleCard = document.querySelector(`.speech-bubble__card-0${i}`);
-  
-    let enterTimeout;
-    let leaveTimeout;
-  
-    // Навешиваем событие на наведение
-    trigger.addEventListener('mouseenter', () => {
-      // Отменяем предыдущий таймер, если он был
-      clearTimeout(leaveTimeout);
-  
-      // Запускаем таймер для задержки 200 мс перед показом
-      enterTimeout = setTimeout(() => {
-        // Делаем элемент видимым (сразу)
-        bubbleCard.style.display = 'block';
-  
-        // Плавно меняем opacity
-        bubbleCard.style.opacity = '1';
-      }, 200); // Задержка перед появлением
-    });
-  
-    // Навешиваем событие на увод мыши
-    trigger.addEventListener('mouseleave', () => {
-      // Отменяем таймер для появления, если курсор быстро уходит
-      clearTimeout(enterTimeout);
-  
-      // Запускаем таймер для задержки 200 мс перед скрытием
-      leaveTimeout = setTimeout(() => {
-        bubbleCard.style.opacity = '0';
-  
-        // Прячем элемент через 0.2s (по времени анимации)
         setTimeout(() => {
-          bubbleCard.style.display = 'none';
-        }, 200); // Задержка перед скрытием
-      }, 200); // Задержка перед исчезновением
-    });
-  }
+            titleElement.textContent = title;
+            textElement.innerHTML = text;
 
-// Скрытые шапки
-
-
-let lastScrollTop = 0;
-const header = document.querySelector(".header");
-const scrollThreshold = 160;
-
-window.addEventListener("scroll", () => {
-    let scrollTop = window.scrollY || document.documentElement.scrollTop;
-    
-    if (scrollTop > lastScrollTop + scrollThreshold) {
-        header.classList.add("hide");
-        lastScrollTop = scrollTop;
-    } else if (scrollTop < lastScrollTop - scrollThreshold) {
-        header.classList.remove("hide");
-        lastScrollTop = scrollTop;
+            // Анимация появления
+            titleElement.style.opacity = 1;
+            textElement.style.opacity = 1;
+        }, 200); // Совпадает с CSS-анимацией
     }
+}
+
+// Функция для обновления точек (пагинации)
+function updateDots(activeIndex) {
+    const dots = document.querySelectorAll('.mobile-card__dot');
+
+    if (dots.length > 0) {
+        dots.forEach(dot => dot.classList.remove('active')); // Убираем у всех
+        if (dots[activeIndex]) {
+            dots[activeIndex].classList.add('active'); // Добавляем только активной
+        }
+    }
+}
+
+// Инициализация
+updateActiveSlide();
+updateContent();
+
+// Обновляем при смене слайда
+swiper.on('slideChangeTransitionEnd', function () {
+    updateActiveSlide();
+    updateContent();
 });
+

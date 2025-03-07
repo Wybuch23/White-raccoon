@@ -1,4 +1,4 @@
-header
+.header
     position: fixed
     top: 0
     left: 50%
@@ -7,17 +7,8 @@ header
     height: 80px
     border-radius: 0px 0px 32px 32px
     background-color: $--white-primary
-    z-index: 1
+    z-index: 2
     +transition-focus-blue
-    &.header
-        &.hide
-            top: -80px
-            +transition-focus-blue
-        &.focus-blue
-            top: -80px
-            +transition-focus-blue
-    .navigation__mobile
-        display: none
     .navigation
         display: flex
         justify-content: space-between
@@ -29,11 +20,9 @@ header
             width: 100%
             margin-right: 20px
             display: none
-            opacity: 0
-            transition: opacity 0.2s ease-in-out
+            transition: opacity 0.2s ease-in
             &.active
                 display: flex
-                opacity: 1
             .navigation__logo
                 margin-right: 272px
             .navigation__navbar
@@ -42,42 +31,46 @@ header
                 list-style-type: none
                 padding: 0
                 width: 100%
+    .navigation__mobile
+        display: none
+        justify-content: space-between
+        align-items: center
+        padding-top: 15px
+        .navigation__logo
+            width: 118.148px
+            height: 55px
+        .navigation__wrapper_mobile
+            position: fixed
+            display: none
+            background-color: $--white-primary
+            top: 0
+            left: 0
+            width: 100%
+            height: 100vh
+            margin-top: 79px
+            transition: opacity 0.2s ease-in-out
+            &.active
+                display: flex
+                justify-content: center
+                align-items: center
+            .navigation__navbar_mobile
+                list-style-type: none
+                display: flex
+                flex-direction: column
+                align-items: center
+                justify-content: center
+                .navigation__item
+                    padding-bottom: 30px
+
+.header
+    &.hide
+        top: -80px
+    &.focus-blue
+        top: -80px
 
 @media (max-width: 1185px)
-    header
+    .header
         .navigation
             display: none
         .navigation__mobile
             display: flex
-            justify-content: space-between
-            align-items: center
-            padding-top: 15px
-            .navigation__logo
-                width: 118.148px
-                height: 55px
-            .navigation__wrapper_mobile
-                position: fixed
-                display: none
-                background-color: $--white-primary
-                top: 0
-                left: 0
-                width: 100%
-                height: 100vh
-                margin-top: 79px
-
-                opacity: 0
-                transition: opacity 0.2s ease-in-out
-                &.active
-                    display: flex
-                    justify-content: center
-                    align-items: center
-                    opacity: 1
-                .navigation__navbar_mobile
-                    // margin-top: 110px
-                    list-style-type: none
-                    display: flex
-                    flex-direction: column
-                    align-items: center
-                    justify-content: center
-                    .navigation__item
-                        padding-bottom: 30px

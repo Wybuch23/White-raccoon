@@ -1,0 +1,74 @@
+// Рабочая версия
+
+.mobile-card_primary
+    background-color: $--grey-primary
+    border-radius: 8px
+    width: 100%
+    .mobile-card__slider
+        display: flex
+        flex-direction: column
+        transform: translateY(-30px)
+        .mobile-card__wrapper
+            width: 100%
+            padding-left: 30px
+            margin-bottom: 30px
+            .mobile-card__image
+                width: 100%
+        .mobile-card__dots
+            display: flex
+            justify-content: center
+            gap: 5px
+            .mobile-card__dots_wrapped
+                display: flex
+                justify-content: center
+                align-items: center
+                width: 10px
+                height: 10px
+                .mobile-card__dot
+                    width: 8px
+                    height: 8px
+                    border-radius: 10px
+                    border: 2px solid $--black-primary
+
+                    &.active
+                        width: 10px
+                        height: 10px
+                        background: $--black-primary
+    .mobile-card__content
+        // padding: 30px
+        display: flex
+        flex-direction: column
+        gap: 15px
+        .mobile-card__title
+            +tertiary-title-desktop
+        .mobile-card__text
+            +body-text-desktop
+            min-height: 92px
+
+@media (min-width: 1185px)
+    .mobile-card_primary
+        display: none
+
+// тест анимация появления
+
+.swiper-slide 
+  opacity: 0
+  transition: opacity 0.6s ease-in
+
+
+/* Активный слайд (появляется) */
+.swiper-slide-active,
+.swiper-slide.active 
+  opacity: 1
+
+
+/* Уходящий слайд (постепенно исчезает) */
+.swiper-slide-prev,
+.swiper-slide-next 
+  opacity: 0
+
+/* Анимация появления заголовка и текста */
+.mobile-card__title,
+.mobile-card__text 
+  transition: opacity 0.4s ease-in-out
+

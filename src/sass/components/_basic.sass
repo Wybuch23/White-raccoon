@@ -30,97 +30,21 @@
     &.focus-blue
         color: $--black-secondary
 
-.basic__card-primary
-    width: 382px
-    height: 382px
-    background: $--grey-primary
-    border-radius: 8px
-    position: relative
-    box-sizing: border-box
-    padding: 40px
-    +transition-focus-blue
-    &.focus-blue
-        outline: 2px solid $--black-secondary
-        background: $--black-primary
-    .basic__card-img
-            width: 250px
-            height: 250px
-            position: absolute
-            top: -40px
-            right: 0
-            pointer-events: none
-            +transition-focus-blue
-            &.focus-blue
-                opacity: 0
-    .basic__card-icon
-            width: 24px
-            height: 24px
-            position: absolute
-            top: 40px
-            left: 40px
-            +transition-focus-blue
-            &.focus-blue
-                color: $--black-secondary
-    .basic__card-content
+@media (max-width: 1185px)
+    .basic
         display: flex
         flex-direction: column
-        justify-content: flex-end
-        align-items: flex-start
-        
-        width: 100%
-        height: 100%
+        &__content
+            display: flex
+            flex-direction: column
+            padding-top: 60px
+            row-gap: 60px
+        &__top
+            display: flex
+            flex-direction: column
+            gap: 30px
+        &__bottom
+            display: flex
 
-        position: relative
-        overflow: hidden
-        .basic__card-title
-            +tertiary-title-desktop
-            transform: translateY(68px)
-            +transition-focus-blue
-            &.focus-blue
-                color: $--black-secondary
-        .basic__card-text
-            margin-top: 20px
-            +body-text-desktop
-            transform: translateY(68px)
-            +transition-focus-blue
-            &.focus-blue
-                color: $--black-secondary
-
-
-.basic__card-primary
-    &.hover-active
-        background: $--grey-primary
-        .basic__card-img
-            transform: translateY(-68px)
-        .basic__card-icon
-            opacity: 0
-        .basic__card-content
-            .basic__card-title
-                transform: translateY(0)
-            .basic__card-text
-                transform: translateY(0)
-            .btn-primary
-                animation: moveUpPrimaryButton 0.2s ease-in forwards
-    &:not(.hover-active)
-        .btn-primary
-            animation: moveDownPrimaryButton 0.2s ease-in forwards
-
-
-@keyframes moveUpPrimaryButton
-    from
-        transform: translateY(68px)
-        opacity: 0
-        +transition-focus-blue
-    to
-        transform: translateY(0px)
-        opacity: 1
-        +transition-focus-blue
-
-
-@keyframes moveDownPrimaryButton
-    from
-        transform: translateY(0px)
-        opacity: 1
-    to
-        transform: translateY(68px)
-        opacity: 0
+    .basic__card-primary
+        display: none

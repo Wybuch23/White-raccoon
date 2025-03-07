@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
     <link rel="stylesheet" href="dist/css/main.css">
 </head>
@@ -18,7 +19,7 @@
 
             <div class="navigation">
 
-                <div id="1" class="navigation__wrapper active">
+                <div id="nav-primary" class="navigation__wrapper active">
 
                     <img src="src/assets/images/header/logo.svg" alt="" class="navigation__logo">
 
@@ -32,7 +33,7 @@
                     
                 </div>
 
-                <div id="2" class="navigation__wrapper">
+                <div id="nav-secondary" class="navigation__wrapper">
 
                     <ul class="navigation__navbar">
                         <li class="navigation__item"><button class="btn-nav">уборка</button></li>
@@ -113,8 +114,6 @@
         </div>
 
     </header>
-
-    <div class="lol"></div>
     
     <section class="cleaning">
         <div class="container">
@@ -125,10 +124,10 @@
                 <div class="basic__content">
                     <div class="basic__top">
                         <h2 class="basic__top-title">
-                            Мы&nbsp;выполняем полную <br> и&nbsp;частичную уборку,
+                            Мы выполняем полную <br> и частичную уборку,
                         </h2>
                         <h2 class="basic__top-title">
-                            а&nbsp;вы&nbsp;наслаждаетесь свободным временем и&nbsp;чистотой в&nbsp;вашем помещении
+                            а вы наслаждаетесь свободным <br> временем и чистотой в вашем <br> помещении
                         </h2>
                     </div>
                     <div class="basic__bottom">
@@ -225,6 +224,64 @@
                                 <button class="btn-primary">
                                     заказать уборку
                                 </button>
+                            </div>
+                        </div>
+
+                        <div class="mobile-card mobile-card_primary">
+                            <div class="mobile-card__slider swiper">
+                                <div class="mobile-card__wrapper swiper-wrapper">
+                                    <div class="swiper-slide" data-title="Заголовок 1" data-text="Текст для 1 слайда">
+                                        <img class="mobile-card__image" src="src/assets/images/cleaning/simple.png" alt="">
+                                    </div>
+
+                                    <div class="swiper-slide" data-title="Заголовок 2" data-text="Текст для 2 слайда">
+                                        <img class="mobile-card__image" src="src/assets/images/cleaning/simple.png" alt="">
+                                    </div>
+                                    
+                                    <div class="swiper-slide" data-title="lol3" data-text="lol">
+                                        <img class="mobile-card__image" src="src/assets/images/cleaning/simple.png" alt="">
+                                    </div>
+
+                                    <div class="swiper-slide" data-title="lol4" data-text="lol">
+                                        <img class="mobile-card__image" src="src/assets/images/cleaning/simple.png" alt="">
+                                    </div>
+
+                                    <div class="swiper-slide" data-title="lol5" data-text="lol">
+                                        <img class="mobile-card__image" src="src/assets/images/cleaning/simple.png" alt="">
+                                    </div>
+
+                                    <div class="swiper-slide" data-title="lol6" data-text="lol">
+                                        <img class="mobile-card__image" src="src/assets/images/cleaning/simple.png" alt="">
+                                    </div>
+                                </div>
+                        
+                                <div class="mobile-card__dots">
+                                    <div class="mobile-card__dots_wrapped">
+                                        <div class="mobile-card__dot active"></div>
+                                    </div>
+                                    <div class="mobile-card__dots_wrapped">
+                                        <div class="mobile-card__dot"></div>
+                                    </div>
+                                    <div class="mobile-card__dots_wrapped">
+                                        <div class="mobile-card__dot"></div>
+                                    </div>
+                                    <div class="mobile-card__dots_wrapped">
+                                        <div class="mobile-card__dot"></div>
+                                    </div>
+                                    <div class="mobile-card__dots_wrapped">
+                                        <div class="mobile-card__dot"></div>
+                                    </div>
+                                    <div class="mobile-card__dots_wrapped">
+                                        <div class="mobile-card__dot"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="mobile-card__content">
+                                <div class="mobile-card__title"></div>
+                                <div class="mobile-card__text"></div>
+                        
+                                <button class="mobile-card__button btn-mobile">заказать уборку</button>
                             </div>
                         </div>
 
@@ -469,7 +526,7 @@
         </div>
     </section>
 
-    <div class="lol"></div>
-    <script src="src/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="src/js/main.js"></script>
 </body>
 </html>
