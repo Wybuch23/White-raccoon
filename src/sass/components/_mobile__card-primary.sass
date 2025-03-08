@@ -1,19 +1,17 @@
-// Рабочая версия
-
 .mobile-card_primary
     background-color: $--grey-primary
     border-radius: 8px
-    width: 100%
+    width: 330px
     .mobile-card__slider
         display: flex
         flex-direction: column
-        transform: translateY(-30px)
         .mobile-card__wrapper
             width: 100%
             padding-left: 30px
-            margin-bottom: 30px
             .mobile-card__image
-                width: 100%
+              width: 100%
+              transform: translateY(-30px)
+
         .mobile-card__dots
             display: flex
             justify-content: center
@@ -31,11 +29,12 @@
                     border: 2px solid $--black-primary
 
                     &.active
-                        width: 10px
-                        height: 10px
-                        background: $--black-primary
+                      width: 10px
+                      height: 10px
+                      background: $--black-primary
+
     .mobile-card__content
-        // padding: 30px
+        padding: 30px
         display: flex
         flex-direction: column
         gap: 15px
@@ -48,27 +47,3 @@
 @media (min-width: 1185px)
     .mobile-card_primary
         display: none
-
-// тест анимация появления
-
-.swiper-slide 
-  opacity: 0
-  transition: opacity 0.6s ease-in
-
-
-/* Активный слайд (появляется) */
-.swiper-slide-active,
-.swiper-slide.active 
-  opacity: 1
-
-
-/* Уходящий слайд (постепенно исчезает) */
-.swiper-slide-prev,
-.swiper-slide-next 
-  opacity: 0
-
-/* Анимация появления заголовка и текста */
-.mobile-card__title,
-.mobile-card__text 
-  transition: opacity 0.4s ease-in-out
-

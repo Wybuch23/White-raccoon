@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: "TT Fellows Trial Variable";
   src: url("../../src/assets/fonts/TT_Fellows/woff2/TT_Fellows_Medium.woff2") format("woff2"), url("../../src/assets/fonts/TT_Fellows/woff/TT_Fellows_Medium.woff") format("woff");
@@ -366,20 +365,19 @@
 .mobile-card_primary {
   background-color: #93A0AD;
   border-radius: 8px;
-  width: 100%;
+  width: 330px;
 }
 .mobile-card_primary .mobile-card__slider {
   display: flex;
   flex-direction: column;
-  transform: translateY(-30px);
 }
 .mobile-card_primary .mobile-card__slider .mobile-card__wrapper {
   width: 100%;
   padding-left: 30px;
-  margin-bottom: 30px;
 }
 .mobile-card_primary .mobile-card__slider .mobile-card__wrapper .mobile-card__image {
   width: 100%;
+  transform: translateY(-30px);
 }
 .mobile-card_primary .mobile-card__slider .mobile-card__dots {
   display: flex;
@@ -405,6 +403,7 @@
   background: #0D1824;
 }
 .mobile-card_primary .mobile-card__content {
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -445,27 +444,21 @@
     display: none;
   }
 }
+.swiper {
+  width: 100%;
+  padding-top: 30px;
+}
+
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .swiper-slide {
-  opacity: 0;
-  transition: opacity 0.6s ease-in;
-}
-
-/* Активный слайд (появляется) */
-.swiper-slide-active,
-.swiper-slide.active {
-  opacity: 1;
-}
-
-/* Уходящий слайд (постепенно исчезает) */
-.swiper-slide-prev,
-.swiper-slide-next {
-  opacity: 0;
-}
-
-/* Анимация появления заголовка и текста */
-.mobile-card__title,
-.mobile-card__text {
-  transition: opacity 0.4s ease-in-out;
+  width: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {
