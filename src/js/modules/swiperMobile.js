@@ -1,13 +1,67 @@
 // export function setupSwiperMobile() {
-//     const swiper = new Swiper(".swiper", {
-//         slidesPerView: "auto", // Автоматическая ширина карточек
-//         spaceBetween: 15, // Отступ между карточками
-//         centeredSlides: false, // ОТКЛЮЧАЕМ центрирование
-//         loop: false, // Отключаем бесконечную прокрутку
-//         grabCursor: true, // Красивый курсор "рука"
-//         slideToClickedSlide: true, // Клик по карточке — листает
-//         resistanceRatio: 0.5, // Чувствительность к свайпу
-//         threshold: 10, // Минимальная чувствительность к свайпу
+//     function getSwiperConfig() {
+//         return {
+//             slidesPerView: "auto",
+//             spaceBetween: 10,
+//             centeredSlides: false,
+//             loop: false,
+//             grabCursor: true,
+//             slideToClickedSlide: true,
+//             resistanceRatio: 0.5,
+//             threshold: 10,
+//         };
+//     }
+
+//     let swiper = new Swiper(".swiper", getSwiperConfig());
+
+//     // Функция подёргивания первого слайда
+//     function shakeFirstSlide() {
+//         const firstSlide = document.querySelector(".swiper-slide");
+//         if (!firstSlide) return;
+
+//         firstSlide.style.transition = "transform 0.15s ease-in-out";
+//         firstSlide.style.transform = "translateX(-10px)";
+
+//         setTimeout(() => {
+//             firstSlide.style.transform = "translateX(0px)";
+//         }, 150);
+
+//         setTimeout(() => {
+//             firstSlide.style.transform = "translateX(-5px)";
+//         }, 300);
+
+//         setTimeout(() => {
+//             firstSlide.style.transform = "translateX(0px)";
+//         }, 450);
+//     }
+
+//     // Следим, когда первый слайд полностью в зоне видимости
+//     function observeFirstSlide() {
+//         const firstSlide = document.querySelector(".swiper-slide");
+//         if (!firstSlide || window.innerWidth > 375) return;
+
+//         const observer = new IntersectionObserver(
+//             (entries, observer) => {
+//                 entries.forEach((entry) => {
+//                     if (entry.isIntersecting) {
+//                         shakeFirstSlide();
+//                         observer.disconnect();
+//                     }
+//                 });
+//             },
+//             { threshold: 1.0 }
+//         );
+
+//         observer.observe(firstSlide);
+//     }
+
+//     observeFirstSlide();
+
+//     // Обновляем Swiper при изменении экрана
+//     window.addEventListener("resize", () => {
+//         swiper.destroy(true, true);
+//         swiper = new Swiper(".swiper", getSwiperConfig());
+//         observeFirstSlide();
 //     });
 // }
 
@@ -22,13 +76,11 @@ export function setupSwiperMobile() {
             slideToClickedSlide: true,
             resistanceRatio: 0.5,
             threshold: 10,
-            slidesOffsetAfter: window.innerWidth <= 375 ? 40 : 0,
         };
     }
 
     let swiper = new Swiper(".swiper", getSwiperConfig());
 
-    // Функция подёргивания первого слайда
     function shakeFirstSlide() {
         const firstSlide = document.querySelector(".swiper-slide");
         if (!firstSlide) return;
@@ -49,7 +101,6 @@ export function setupSwiperMobile() {
         }, 450);
     }
 
-    // Следим, когда первый слайд полностью в зоне видимости
     function observeFirstSlide() {
         const firstSlide = document.querySelector(".swiper-slide");
         if (!firstSlide || window.innerWidth > 375) return;
@@ -59,11 +110,11 @@ export function setupSwiperMobile() {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         shakeFirstSlide();
-                        observer.disconnect(); // Отключаем после первого срабатывания
+                        observer.disconnect();
                     }
                 });
             },
-            { threshold: 1.0 } // Запускаем только когда 100% в зоне видимости
+            { threshold: 1.0 }
         );
 
         observer.observe(firstSlide);
@@ -71,10 +122,15 @@ export function setupSwiperMobile() {
 
     observeFirstSlide();
 
-    // Обновляем Swiper при изменении экрана
+    // Фикс: отслеживаем только изменение ширины, а не высоты
+    let lastWindowWidth = window.innerWidth;
+
     window.addEventListener("resize", () => {
-        swiper.destroy(true, true);
-        swiper = new Swiper(".swiper", getSwiperConfig());
-        observeFirstSlide(); // Заново отслеживаем первый слайд
+        if (window.innerWidth !== lastWindowWidth) { // Только если изменилась ширина
+            lastWindowWidth = window.innerWidth; // Обновляем значение ширины
+            swiper.destroy(true, true);
+            swiper = new Swiper(".swiper", getSwiperConfig());
+            observeFirstSlide();
+        }
     });
 }
