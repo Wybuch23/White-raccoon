@@ -94,7 +94,7 @@
   text-transform: uppercase;
   color: #0D1824;
 }
-@media (max-width: 440px) {
+@media (max-width: 1185px) {
   .btn-primary {
     font-size: 18px;
     letter-spacing: -0.36px;
@@ -128,7 +128,7 @@
   text-transform: uppercase;
   color: #0D1824;
 }
-@media (max-width: 440px) {
+@media (max-width: 1185px) {
   .btn-mobile {
     font-size: 18px;
     letter-spacing: -0.36px;
@@ -177,7 +177,7 @@
   top: 120px;
   transition: 0.2s ease-in;
 }
-@media (max-width: 440px) {
+@media (max-width: 1185px) {
   .basic__sticky-title {
     font-size: 28px;
     letter-spacing: -0.56px;
@@ -197,7 +197,7 @@
   color: #0D1824;
   transition: 0.2s ease-in;
 }
-@media (max-width: 440px) {
+@media (max-width: 1185px) {
   .basic__top-title {
     font-size: 44px;
     letter-spacing: -0.88px;
@@ -225,6 +225,10 @@
   }
   .basic__bottom {
     display: flex;
+  }
+  .basic__bottom.basic__bottom_slider {
+    width: calc(100% + 30px);
+    transform: translateX(-15px);
   }
   .basic__card-primary {
     display: none;
@@ -289,7 +293,7 @@
   transform: translateY(68px);
   transition: 0.2s ease-in;
 }
-@media (max-width: 440px) {
+@media (max-width: 1185px) {
   .basic__card-primary .basic__card-content .basic__card-title {
     font-size: 18px;
     letter-spacing: -0.36px;
@@ -418,7 +422,7 @@
   text-transform: uppercase;
   color: #0D1824;
 }
-@media (max-width: 440px) {
+@media (max-width: 1185px) {
   .mobile-card_primary .mobile-card__content .mobile-card__title {
     font-size: 18px;
     letter-spacing: -0.36px;
@@ -679,6 +683,9 @@ body.focus-blue {
     max-width: 440px;
     padding: 0 15px;
   }
+}
+.container .container_non-padding {
+  padding: 0;
 }
 
 .cleaning {

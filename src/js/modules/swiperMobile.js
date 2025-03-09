@@ -69,7 +69,7 @@ export function setupSwiperMobile() {
     function getSwiperConfig() {
         return {
             slidesPerView: "auto",
-            spaceBetween: 10,
+            spaceBetween: 15,
             centeredSlides: false,
             loop: false,
             grabCursor: true,
