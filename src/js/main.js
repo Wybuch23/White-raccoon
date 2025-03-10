@@ -1,4 +1,4 @@
-// import { fadeIn, fadeOut } from "./modules/fade.js";
+import { fadeIn, fadeOut } from "./modules/fade.js";
 import { setupHeaderToggle } from "./modules/headerToggle.js";
 import { setupMobileNavigation } from "./modules/mobileNavigation.js";
 import { setupCardHoverEffect } from "./modules/cardHover.js";
@@ -15,4 +15,63 @@ document.addEventListener("DOMContentLoaded", () => {
     setupScrollHeader();
     setupFocusBlue();
     setupSwiperMobile();
+});
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     const tabs = document.querySelectorAll(".tabs-control__tub");
+//     const image = document.querySelector(".card-tabs-img__img img");
+
+//     // Массив путей картинок
+//     const images = [
+//         "src/assets/images/dry-cleaning/dry-cleaning-img-1.png",
+//         "src/assets/images/dry-cleaning/dry-cleaning-img-2.png",
+//         "src/assets/images/dry-cleaning/dry-cleaning-img-3.png",
+//         "src/assets/images/dry-cleaning/dry-cleaning-img-4.png",
+//         "src/assets/images/dry-cleaning/dry-cleaning-img-5.png"
+//     ];
+
+//     tabs.forEach((tab, index) => {
+//         tab.addEventListener("click", () => {
+//             // Убираем активный класс у всех табов
+//             tabs.forEach(t => t.classList.remove("active"));
+//             tab.classList.add("active");
+
+//             // Используем fadeOut → меняем картинку → fadeIn
+//             fadeOut(image, () => {
+//                 image.src = images[index]; // Меняем изображение
+//                 fadeIn(image);
+//             });
+//         });
+//     });
+// });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".tabs-control__tub");
+    const images = document.querySelectorAll(".card-tabs-img__wrapped_right .card-tabs-img__img");
+
+    // Массив путей картинок
+    const imageSources = [
+        "src/assets/images/dry-cleaning/dry-cleaning-img-1.png",
+        "src/assets/images/dry-cleaning/dry-cleaning-img-2.png",
+        "src/assets/images/dry-cleaning/dry-cleaning-img-3.png",
+        "src/assets/images/dry-cleaning/dry-cleaning-img-4.png",
+        "src/assets/images/dry-cleaning/dry-cleaning-img-5.png"
+    ];
+
+    tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => {
+            // Убираем активный класс у всех табов
+            tabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            // Скрываем все картинки с плавным переходом
+            images.forEach(img => fadeOut(img));
+
+            // Меняем картинку и показываем её с плавным переходом
+            fadeOut(images[index], () => {
+                images[index].src = imageSources[index]; // Меняем изображение
+                fadeIn(images[index]); // Плавно показываем новое изображение
+            });
+        });
+    });
 });

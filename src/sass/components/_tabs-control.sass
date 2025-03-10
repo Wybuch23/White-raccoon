@@ -1,0 +1,33 @@
+.tabs-control
+    display: flex
+    flex-wrap: wrap
+    gap: 10px
+    &__tub
+        display: flex
+        height: 24px
+        padding: 5px 10px
+        justify-content: center
+        align-items: center
+        border-radius: 12px
+        cursor: default
+        +helper-title-desktop
+        transition: 0.2s ease-in
+        &.tabs-control__tub_black
+            color: $--black-primary
+            border: 1px solid $--black-primary
+            &.active
+                color: $--grey-primary
+                background: $--black-primary
+                border: 1px solid $--black-primary
+        &.tabs-control__tub_grey
+            color: $--grey-primary
+            border: 1px solid $--grey-primary
+            &.active
+                color: $--black-primary
+                background: $--grey-primary
+                border: 1px solid $--grey-primary
+        @media (hover: hover)
+                &:hover
+                    transition: none
+                    color: $--white-primary
+                    border: 1px solid $--white-primary

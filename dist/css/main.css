@@ -162,6 +162,9 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
+.basic__bottom.basic__bottom_column-auto {
+  grid-template-columns: auto;
+}
 
 .basic__sticky-title {
   font-family: "TT Fellows Trial Variable";
@@ -176,6 +179,7 @@
   position: sticky;
   top: 120px;
   transition: 0.2s ease-in;
+  z-index: -1;
 }
 @media (max-width: 1185px) {
   .basic__sticky-title {
@@ -230,7 +234,10 @@
     width: calc(100% + 30px);
     transform: translateX(-15px);
   }
-  .basic__card-primary {
+  .basic .basic__card-primary {
+    display: none;
+  }
+  .basic .card-tabs-img {
     display: none;
   }
 }
@@ -238,7 +245,7 @@
   width: 382px;
   height: 382px;
   background: #93A0AD;
-  border-radius: 8px;
+  border-radius: 16px;
   position: relative;
   box-sizing: border-box;
   padding: 40px;
@@ -383,6 +390,9 @@
   width: 100%;
   transform: translateY(-30px);
 }
+.mobile-card_primary .mobile-card__slider .mobile-card__wrapper .mobile-card__image.mobile-card__image_long {
+  height: 361px;
+}
 .mobile-card_primary .mobile-card__slider .mobile-card__dots {
   display: flex;
   justify-content: center;
@@ -443,14 +453,9 @@
   }
 }
 
-@media (min-width: 1185px) {
-  .mobile-card_primary {
-    display: none;
-  }
-}
 .swiper {
   width: 100%;
-  padding-top: 30px;
+  padding: 30px 15px 0 15px;
 }
 
 .swiper-wrapper {
@@ -463,6 +468,121 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 1185px) {
+  .swiper {
+    display: none;
+  }
+}
+.card-tabs-img {
+  width: 100%;
+  background: #93A0AD;
+  border-radius: 16px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.2s ease-in;
+}
+.card-tabs-img.focus-blue {
+  outline: 2px solid #14283D;
+  background: #0D1824;
+}
+.card-tabs-img__wrapped {
+  width: 302px;
+  height: 329px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-tabs-img__wrapped_text-and-btn .card-tabs-img__text {
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #0D1824;
+}
+@media (max-width: 375px) {
+  .card-tabs-img__wrapped_text-and-btn .card-tabs-img__text {
+    font-size: 16px;
+  }
+}
+.card-tabs-img__wrapped.card-tabs-img__wrapped_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.card-tabs-img__wrapped.card-tabs-img__wrapped_right .card-tabs-img__img {
+  width: 342px;
+  height: 412px;
+  display: none;
+  z-index: 1;
+}
+.card-tabs-img__wrapped.card-tabs-img__wrapped_right .card-tabs-img__img.card-tabs-img__img_2 {
+  display: block;
+}
+.card-tabs-img__wrapped.card-tabs-img__wrapped_right .card-tabs-img__img.card-tabs-img__img_4 {
+  width: 342px;
+  height: 452px;
+  transform: translateY(40px);
+}
+
+.tabs-control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tabs-control__tub {
+  display: flex;
+  height: 24px;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  cursor: default;
+  font-family: "TT Fellows Trial Variable";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 130%;
+  letter-spacing: -0.28px;
+  text-transform: uppercase;
+  color: #0D1824;
+  transition: 0.2s ease-in;
+}
+@media (max-width: 375px) {
+  .tabs-control__tub {
+    font-size: 12px;
+    letter-spacing: -0.24px;
+  }
+}
+.tabs-control__tub.tabs-control__tub_black {
+  color: #0D1824;
+  border: 1px solid #0D1824;
+}
+.tabs-control__tub.tabs-control__tub_black.active {
+  color: #93A0AD;
+  background: #0D1824;
+  border: 1px solid #0D1824;
+}
+.tabs-control__tub.tabs-control__tub_grey {
+  color: #93A0AD;
+  border: 1px solid #93A0AD;
+}
+.tabs-control__tub.tabs-control__tub_grey.active {
+  color: #0D1824;
+  background: #93A0AD;
+  border: 1px solid #93A0AD;
+}
+@media (hover: hover) {
+  .tabs-control__tub:hover {
+    transition: none;
+    color: #EBEFF0;
+    border: 1px solid #EBEFF0;
+  }
 }
 
 .header {
@@ -555,6 +675,9 @@
   .header .navigation__mobile {
     display: flex;
   }
+}
+.cleaning {
+  margin-top: 160px;
 }
 .cleaning .speech-bubble__card .speech-bubble__card_top {
   position: fixed;
@@ -660,6 +783,21 @@
     bottom: 30px;
   }
 }
+.dry-cleaning {
+  margin-top: 160px;
+}
+.dry-cleaning .card-tabs-img .card-tabs-img__wrapped .tabs-control .tabs-control__tub.focus-blue {
+  border: 2px solid #14283D;
+  color: #14283D;
+}
+.dry-cleaning .card-tabs-img .card-tabs-img__wrapped .card-tabs-img__wrapped_text-and-btn .card-tabs-img__text.focus-blue {
+  color: #14283D;
+}
+.dry-cleaning .card-tabs-img .card-tabs-img__wrapped .card-tabs-img__wrapped_text-and-btn .btn-primary.focus-blue {
+  border: 2px solid #14283D;
+  color: #14283D;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -688,6 +826,6 @@ body.focus-blue {
   padding: 0;
 }
 
-.cleaning {
-  margin-top: 80px;
+.lol {
+  height: 1000px;
 }/*# sourceMappingURL=main.css.map */

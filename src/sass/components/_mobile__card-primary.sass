@@ -11,6 +11,9 @@
             .mobile-card__image
               width: 100%
               transform: translateY(-30px)
+              &.mobile-card__image_long
+                height: 361px
+
 
         .mobile-card__dots
             display: flex
@@ -43,7 +46,3 @@
         .mobile-card__text
             +body-text-desktop
             min-height: 92px
-
-@media (min-width: 1185px)
-    .mobile-card_primary
-        display: none

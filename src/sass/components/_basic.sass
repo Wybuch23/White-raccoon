@@ -14,6 +14,9 @@
         display: grid
         grid-template-columns: repeat(2, 1fr)
         gap: 20px
+        &.basic__bottom_column-auto
+            grid-template-columns: auto
+
 
 .basic__sticky-title
         +secondary-title-desktop
@@ -21,6 +24,7 @@
         position: sticky
         top: 120px
         +transition-focus-blue
+        z-index: -1
         &.focus-blue
             color: $--black-secondary
     
@@ -48,6 +52,7 @@
             &.basic__bottom_slider
                 width: calc( 100% + 30px)
                 transform: translateX(-15px)
-
-    .basic__card-primary
-        display: none
+        .basic__card-primary
+            display: none
+        .card-tabs-img
+            display: none

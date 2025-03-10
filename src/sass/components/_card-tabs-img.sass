@@ -1,0 +1,38 @@
+.card-tabs-img
+    width: 100%
+    background: $--grey-primary
+    border-radius: 16px
+    position: relative
+    box-sizing: border-box
+    padding: 40px
+    display: flex
+    justify-content: space-between
+    +transition-focus-blue
+    &.focus-blue
+        outline: 2px solid $--black-secondary
+        background: $--black-primary
+    &__wrapped
+        width: 302px
+        height: 329px
+
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        &_text-and-btn
+            .card-tabs-img__text
+                +body-text-desktop
+        &.card-tabs-img__wrapped_right
+            display: flex
+            flex-direction: column
+            justify-content: end
+            .card-tabs-img__img
+                width: 342px
+                height: 412px
+                display: none
+                z-index: 1
+                &.card-tabs-img__img_2
+                    display: block
+                &.card-tabs-img__img_4
+                    width: 342px
+                    height: 452px
+                    transform: translateY(40px)
