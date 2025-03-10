@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     tabs.forEach((tab, index) => {
         tab.addEventListener("click", () => {
+            if (tab.classList.contains("active")) return;
             // Убираем активный класс у всех табов
             tabs.forEach(t => t.classList.remove("active"));
             tab.classList.add("active");

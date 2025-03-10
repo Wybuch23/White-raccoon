@@ -491,7 +491,7 @@
   transition: 0.2s ease-in;
 }
 .card-tabs-img.focus-blue {
-  outline: 1px solid #14283D;
+  outline: 2px solid #14283D;
   background: #0D1824;
 }
 .card-tabs-img__wrapped {
@@ -791,7 +791,7 @@
   margin-top: 160px;
 }
 .dry-cleaning .card-tabs-img .card-tabs-img__wrapped .tabs-control .tabs-control__tub.focus-blue {
-  border: 2px solid #14283D;
+  border: 1px solid #14283D;
   color: #14283D;
 }
 .dry-cleaning .card-tabs-img .card-tabs-img__wrapped .card-tabs-img__wrapped_text-and-btn .card-tabs-img__text.focus-blue {
