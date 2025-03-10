@@ -468,6 +468,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: 15px;
+}
+.swiper-slide:nth-last-child(1) {
+  margin-right: 0;
 }
 
 @media (min-width: 1185px) {
@@ -487,7 +491,7 @@
   transition: 0.2s ease-in;
 }
 .card-tabs-img.focus-blue {
-  outline: 2px solid #14283D;
+  outline: 1px solid #14283D;
   background: #0D1824;
 }
 .card-tabs-img__wrapped {

@@ -1,8 +1,9 @@
+
 // export function setupSwiperMobile() {
 //     function getSwiperConfig() {
 //         return {
 //             slidesPerView: "auto",
-//             spaceBetween: 10,
+//             spaceBetween: false,
 //             centeredSlides: false,
 //             loop: false,
 //             grabCursor: true,
@@ -14,28 +15,18 @@
 
 //     let swiper = new Swiper(".swiper", getSwiperConfig());
 
-//     // Функция подёргивания первого слайда
 //     function shakeFirstSlide() {
-//         const firstSlide = document.querySelector(".swiper-slide");
+//         const firstSlide = document.querySelector(".swiper");
 //         if (!firstSlide) return;
 
-//         firstSlide.style.transition = "transform 0.15s ease-in-out";
-//         firstSlide.style.transform = "translateX(-10px)";
+//         firstSlide.style.transition = "transform 0.20s ease-in-out";
+//         firstSlide.style.transform = "translateX(-30px)";
 
 //         setTimeout(() => {
 //             firstSlide.style.transform = "translateX(0px)";
-//         }, 150);
-
-//         setTimeout(() => {
-//             firstSlide.style.transform = "translateX(-5px)";
-//         }, 300);
-
-//         setTimeout(() => {
-//             firstSlide.style.transform = "translateX(0px)";
-//         }, 450);
+//         }, 400);
 //     }
 
-//     // Следим, когда первый слайд полностью в зоне видимости
 //     function observeFirstSlide() {
 //         const firstSlide = document.querySelector(".swiper-slide");
 //         if (!firstSlide || window.innerWidth > 375) return;
@@ -57,19 +48,25 @@
 
 //     observeFirstSlide();
 
-//     // Обновляем Swiper при изменении экрана
+//     // Фикс: отслеживаем только изменение ширины, а не высоты
+//     let lastWindowWidth = window.innerWidth;
+
 //     window.addEventListener("resize", () => {
-//         swiper.destroy(true, true);
-//         swiper = new Swiper(".swiper", getSwiperConfig());
-//         observeFirstSlide();
+//         if (window.innerWidth !== lastWindowWidth) { // Только если изменилась ширина
+//             lastWindowWidth = window.innerWidth; // Обновляем значение ширины
+//             swiper.destroy(true, true);
+//             swiper = new Swiper(".swiper", getSwiperConfig());
+//             observeFirstSlide();
+//         }
 //     });
 // }
+
 
 export function setupSwiperMobile() {
     function getSwiperConfig() {
         return {
             slidesPerView: "auto",
-            spaceBetween: 15,
+            spaceBetween: false,
             centeredSlides: false,
             loop: false,
             grabCursor: true,
@@ -79,48 +76,49 @@ export function setupSwiperMobile() {
         };
     }
 
-    let swiper = new Swiper(".swiper", getSwiperConfig());
+    let swipers = document.querySelectorAll(".swiper");
+    let swiperInstances = [];
 
-    function shakeFirstSlide() {
-        const firstSlide = document.querySelector(".swiper-slide");
-        if (!firstSlide) return;
+    swipers.forEach((swiperElement) => {
+        let swiper = new Swiper(swiperElement, getSwiperConfig());
+        swiperInstances.push(swiper);
+    });
 
-        firstSlide.style.transition = "transform 0.15s ease-in-out";
-        firstSlide.style.transform = "translateX(-10px)";
+    function shakeSwiper(swiperWrapper) {
+        if (!swiperWrapper) return;
 
-        setTimeout(() => {
-            firstSlide.style.transform = "translateX(0px)";
-        }, 150);
-
-        setTimeout(() => {
-            firstSlide.style.transform = "translateX(-5px)";
-        }, 300);
+        swiperWrapper.style.transition = "transform 0.2s ease-in-out";
+        swiperWrapper.style.transform = "translateX(-30px)";
 
         setTimeout(() => {
-            firstSlide.style.transform = "translateX(0px)";
-        }, 450);
+            swiperWrapper.style.transform = "translateX(0px)";
+        }, 400);
     }
 
-    function observeFirstSlide() {
-        const firstSlide = document.querySelector(".swiper-slide");
-        if (!firstSlide || window.innerWidth > 375) return;
+    function observeSwipers() {
+        swipers.forEach((swiperElement) => {
+            if (window.innerWidth > 375) return;
 
-        const observer = new IntersectionObserver(
-            (entries, observer) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        shakeFirstSlide();
-                        observer.disconnect();
-                    }
-                });
-            },
-            { threshold: 1.0 }
-        );
+            const swiperWrapper = swiperElement.querySelector(".swiper-wrapper");
+            if (!swiperWrapper) return;
 
-        observer.observe(firstSlide);
+            const observer = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            shakeSwiper(swiperWrapper);
+                            observer.disconnect(); // Анимация для этого элемента только один раз
+                        }
+                    });
+                },
+                { threshold: 1.0 }
+            );
+
+            observer.observe(swiperElement);
+        });
     }
 
-    observeFirstSlide();
+    observeSwipers();
 
     // Фикс: отслеживаем только изменение ширины, а не высоты
     let lastWindowWidth = window.innerWidth;
@@ -128,9 +126,16 @@ export function setupSwiperMobile() {
     window.addEventListener("resize", () => {
         if (window.innerWidth !== lastWindowWidth) { // Только если изменилась ширина
             lastWindowWidth = window.innerWidth; // Обновляем значение ширины
-            swiper.destroy(true, true);
-            swiper = new Swiper(".swiper", getSwiperConfig());
-            observeFirstSlide();
+
+            swiperInstances.forEach((swiper) => swiper.destroy(true, true));
+            swiperInstances = [];
+
+            swipers.forEach((swiperElement) => {
+                let newSwiper = new Swiper(swiperElement, getSwiperConfig());
+                swiperInstances.push(newSwiper);
+            });
+
+            observeSwipers();
         }
     });
 }
