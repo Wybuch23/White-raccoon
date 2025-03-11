@@ -464,14 +464,13 @@
 }
 
 .swiper-slide {
-  width: 330px;
+  width: 345px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-right: 15px;
+  justify-content: flex-start;
 }
 .swiper-slide:nth-last-child(1) {
-  margin-right: 0;
+  width: 330px;
 }
 
 @media (min-width: 1185px) {
@@ -712,28 +711,31 @@
   line-height: 130%;
   color: #0D1824;
   color: #EBEFF0;
-  border-radius: 16px 16px 16px 0px;
+  border-radius: 16px;
 }
 @media (max-width: 375px) {
   .cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body {
     font-size: 12px;
   }
 }
+.cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__rectangle {
+  transform: translateX(10px);
+}
 .cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__rectangle_right {
-  transform: scaleX(-1);
+  transform: scaleX(-1) translateX(10px);
 }
 .cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_long {
-  width: 302px;
+  width: 332px;
 }
 .cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_medium {
-  width: 282px;
+  width: 312px;
 }
 .cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_short {
-  width: 262px;
+  width: 292px;
 }
 .cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_answer {
-  width: 342px;
-  border-radius: 16px 16px 0px 16px;
+  width: 332px;
+  border-radius: 16px;
   background: #18324D;
   font-family: Roboto;
   font-size: 18px;

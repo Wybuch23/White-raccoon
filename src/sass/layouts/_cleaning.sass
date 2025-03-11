@@ -22,18 +22,20 @@
                 background: $--blue-primary
                 +helper-text-desktop
                 color: $--white-primary
-                border-radius: 16px 16px 16px 0px
+                border-radius: 16px
+            .speech-bubble__rectangle
+                transform: translateX(10px)
             .speech-bubble__rectangle_right
-                transform: scaleX(-1)
+                transform: scaleX(-1) translateX(10px)
             .speech-bubble__body_long
-                width: 302px
+                width: 332px
             .speech-bubble__body_medium
-                width: 282px
+                width: 312px
             .speech-bubble__body_short
-                width: 262px
+                width: 292px
             .speech-bubble__body_answer
-                width: 342px
-                border-radius: 16px 16px 0px 16px
+                width: 332px
+                border-radius: 16px
                 background: $--blue-secondary
                 +body-text-desktop
                 color: $--white-primary
