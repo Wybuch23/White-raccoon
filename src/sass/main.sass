@@ -4,6 +4,7 @@
 @import 'components/buttons.sass'
 @import 'components/basic.sass'
 @import 'components/basic__card-primary.sass'
+@import 'components/basic__card-secondary.sass'
 @import 'components/mobile__card-primary.sass'
 @import 'components/swiper-mobile.sass'
 @import 'components/card-tabs-img.sass'
@@ -11,6 +12,7 @@
 @import 'layouts/header.sass'
 @import 'layouts/cleaning.sass'
 @import 'layouts/dry-cleaning.sass'
+@import 'layouts/why-cleaning.sass'
 
 *
     box-sizing: border-box
@@ -34,3 +36,37 @@ body
 
 .lol
     height: 1000px
+
+.mySwiper
+    overflow: hidden
+    width: 1186px
+    height: 400px
+    position: relative
+    .swiper-wrapper
+        .swiper-slide
+            width: 290px
+            height: 290px
+            .box
+                width: 382px
+                height: 382px
+                border: 2px solid black
+    .swiper-button-prev
+        width: 48px
+        height: 48px
+        background: red
+        border-radius: 50%
+        display: block
+        &.swiper-button-disabled
+            display: none
+    .swiper-button-next
+        width: 48px
+        height: 48px
+        background: blue
+        border-radius: 50%
+        display: block
+        &.swiper-button-disabled
+            display: none
+
+.swiper-button-prev::after,
+.swiper-button-next::after 
+    content: ''

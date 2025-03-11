@@ -373,6 +373,55 @@
     opacity: 0;
   }
 }
+.basic__card-secondary {
+  width: 382px;
+  height: 382px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 16px;
+  border: 1px solid #0D1824;
+  background: #EBEFF0;
+  position: relative;
+}
+.basic__card-secondary .basic__card-secondary-num {
+  font-family: "TT Fellows Trial Variable";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 105%;
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+  color: #0D1824;
+}
+@media (max-width: 1185px) {
+  .basic__card-secondary .basic__card-secondary-num {
+    font-size: 28px;
+    letter-spacing: -0.56px;
+  }
+}
+.basic__card-secondary .basic__card-secondary-text {
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #0D1824;
+}
+@media (max-width: 375px) {
+  .basic__card-secondary .basic__card-secondary-text {
+    font-size: 16px;
+  }
+}
+.basic__card-secondary .basic__card-secondary-img {
+  width: 220px;
+  height: 207px;
+  position: absolute;
+  top: -69px;
+  right: 40px;
+}
+
 .mobile-card_primary {
   background-color: #93A0AD;
   border-radius: 8px;
@@ -736,6 +785,7 @@
 .cleaning .speech-bubble__card .speech-bubble__massage .speech-bubble__body_answer {
   width: 332px;
   border-radius: 16px;
+  padding: 20px;
   background: #18324D;
   font-family: Roboto;
   font-size: 18px;
@@ -804,6 +854,57 @@
   color: #14283D;
 }
 
+.why-cleaning {
+  margin-top: 160px;
+}
+.why-cleaning .basic .basic__sidebar .basic__sticky-title {
+  display: flex;
+  flex-direction: column;
+}
+.why-cleaning .basic .basic__content {
+  padding-top: 68px;
+  gap: 0;
+}
+.why-cleaning .basic .basic__content .basic__top {
+  gap: 0;
+}
+.why-cleaning .basic .basic__content .basic__top .basic__top-text {
+  margin-top: 20px;
+  max-width: 516px;
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #0D1824;
+}
+@media (max-width: 375px) {
+  .why-cleaning .basic .basic__content .basic__top .basic__top-text {
+    font-size: 16px;
+  }
+}
+.why-cleaning .basic .basic__content .basic__top .basic__top-title_second {
+  margin-top: 80px;
+  font-family: "TT Fellows Trial Variable";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 105%;
+  letter-spacing: -0.64px;
+  text-transform: uppercase;
+  color: #0D1824;
+}
+@media (max-width: 1185px) {
+  .why-cleaning .basic .basic__content .basic__top .basic__top-title_second {
+    font-size: 28px;
+    letter-spacing: -0.56px;
+  }
+}
+.why-cleaning .basic .basic__content .basic__bottom {
+  margin-top: 40px;
+  margin-bottom: 120px;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -834,4 +935,45 @@ body.focus-blue {
 
 .lol {
   height: 1000px;
+}
+
+.mySwiper {
+  overflow: hidden;
+  width: 1186px;
+  height: 400px;
+  position: relative;
+}
+.mySwiper .swiper-wrapper .swiper-slide {
+  width: 290px;
+  height: 290px;
+}
+.mySwiper .swiper-wrapper .swiper-slide .box {
+  width: 382px;
+  height: 382px;
+  border: 2px solid black;
+}
+.mySwiper .swiper-button-prev {
+  width: 48px;
+  height: 48px;
+  background: red;
+  border-radius: 50%;
+  display: block;
+}
+.mySwiper .swiper-button-prev.swiper-button-disabled {
+  display: none;
+}
+.mySwiper .swiper-button-next {
+  width: 48px;
+  height: 48px;
+  background: blue;
+  border-radius: 50%;
+  display: block;
+}
+.mySwiper .swiper-button-next.swiper-button-disabled {
+  display: none;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  content: "";
 }/*# sourceMappingURL=main.css.map */
