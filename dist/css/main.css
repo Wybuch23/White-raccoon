@@ -422,6 +422,14 @@
   right: 40px;
 }
 
+@media (max-width: 1186px) {
+  .basic__card-secondary {
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    aspect-ratio: 1/1;
+  }
+}
 .mobile-card_primary {
   background-color: #93A0AD;
   border-radius: 8px;
@@ -892,7 +900,7 @@
   position: absolute;
 }
 .why-cleaning .basic .basic__content {
-  padding-top: 68px;
+  padding-top: 60px;
   gap: 0;
 }
 .why-cleaning .basic .basic__content .basic__top {
@@ -937,6 +945,12 @@
   margin-top: 40px;
   margin-bottom: 120px;
 }
+.why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper {
+  display: none;
+}
+.why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap {
+  flex-wrap: wrap;
+}
 .why-cleaning .basic .basic__content .basic__bottom.desktop-slider-wrapper {
   margin: 0;
   position: relative;
@@ -946,6 +960,7 @@
   height: 542px;
   position: absolute;
   right: 0;
+  margin-top: 40px;
 }
 .why-cleaning .basic .basic__content .basic__bottom.desktop-slider-wrapper .mySwiper .swiper-wrapper {
   height: 382px;
@@ -960,6 +975,7 @@
   position: relative;
 }
 .why-cleaning .basic .basic__content .basic__bottom.desktop-slider-wrapper .mySwiper .swiper-wrapper .basic__card-secondary.basic__card-secondary_desktop-slider .basic__card-secondary__img_desktop-slider {
+  background: #D9D9D9;
   position: absolute;
   width: 339px;
   height: 339px;
@@ -1022,6 +1038,73 @@
   opacity: 0;
 }
 
+@media (max-width: 1186px) {
+  .why-cleaning .basic .basic__sidebar .why-cleaning__trigger-top {
+    display: none;
+  }
+  .why-cleaning .basic .basic__content .desktop-slider-wrapper {
+    display: none;
+  }
+  .why-cleaning .basic .basic__content .basic__top.basic__top_mt90 {
+    margin-top: 90px;
+  }
+  .why-cleaning .basic .basic__content .basic__top .basic__top-title_second {
+    margin-top: 60px;
+  }
+  .why-cleaning .basic .basic__content .basic__top .basic__top-text {
+    margin-top: 15px;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap {
+    margin-top: 15px;
+    margin-bottom: 90px;
+    gap: 15px;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary-img {
+    display: none;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper {
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper .swiper .swiper-wrapper .swiper-slide .basic__card-secondary_mobile-slider {
+    background: #93A0AD;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    width: 330px;
+    height: 330px;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper .swiper .swiper-wrapper .swiper-slide .basic__card-secondary_mobile-slider .basic__card-secondary__img_mobile-slider {
+    position: absolute;
+    top: -30px;
+    width: 300px;
+    height: 300px;
+    background: #D9D9D9;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper .swiper .swiper-wrapper .swiper-slide .basic__card-secondary_mobile-slider .basic__card-secondary__img_mobile-slider img {
+    width: 100%;
+    height: 100%;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper .swiper .swiper-wrapper .swiper-slide .basic__card-secondary_mobile-slider .basic__card-secondary__text_mobile-slider {
+    font-family: "TT Fellows Trial Variable";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 490;
+    line-height: 115%;
+    letter-spacing: -0.4px;
+    text-transform: uppercase;
+    color: #0D1824;
+  }
+}
+@media (max-width: 1186px) and (max-width: 1185px) {
+  .why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper .swiper .swiper-wrapper .swiper-slide .basic__card-secondary_mobile-slider .basic__card-secondary__text_mobile-slider {
+    font-size: 18px;
+    letter-spacing: -0.36px;
+  }
+}
 * {
   box-sizing: border-box;
   padding: 0;
