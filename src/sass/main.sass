@@ -7,6 +7,7 @@
 @import 'components/basic__card-secondary.sass'
 @import 'components/mobile__card-primary.sass'
 @import 'components/swiper-mobile.sass'
+@import 'components/slider-desktop.sass'
 @import 'components/card-tabs-img.sass'
 @import 'components/tabs-control.sass'
 @import 'layouts/header.sass'
@@ -36,37 +37,3 @@ body
 
 .lol
     height: 1000px
-
-.mySwiper
-    overflow: hidden
-    width: 1186px
-    height: 400px
-    position: relative
-    .swiper-wrapper
-        .swiper-slide
-            width: 290px
-            height: 290px
-            .box
-                width: 382px
-                height: 382px
-                border: 2px solid black
-    .swiper-button-prev
-        width: 48px
-        height: 48px
-        background: red
-        border-radius: 50%
-        display: block
-        &.swiper-button-disabled
-            display: none
-    .swiper-button-next
-        width: 48px
-        height: 48px
-        background: blue
-        border-radius: 50%
-        display: block
-        &.swiper-button-disabled
-            display: none
-
-.swiper-button-prev::after,
-.swiper-button-next::after 
-    content: ''

@@ -2,9 +2,19 @@
     margin-top: 160px
     .basic
         .basic__sidebar
+            position: relative
             .basic__sticky-title
                 display: flex
                 flex-direction: column
+                .basic__sticky-title_hidden
+                    transition: 0.2s ease-in
+                    &.touched
+                        opacity: 0
+            .why-cleaning__trigger-top
+                width: 100%
+                height: 542px
+                top: 1105px
+                position: absolute
         .basic__content
             padding-top: 68px
             gap: 0
@@ -17,6 +27,69 @@
                 .basic__top-title_second
                     margin-top: 80px
                     +secondary-title-desktop
+                &.basic__top_mt120
+                    margin-top: 120px
             .basic__bottom
                 margin-top: 40px
                 margin-bottom: 120px
+                &.desktop-slider-wrapper
+                    margin: 0
+                    position: relative
+                    height: 442px
+                    .mySwiper
+                        height: 542px
+                        position: absolute
+                        right: 0
+                        .swiper-wrapper
+                            height: 382px
+                            padding-top: 40px
+                            .basic__card-secondary
+                                &.basic__card-secondary_desktop-slider
+                                    background: $--grey-primary
+                                    border: none
+                                    display: flex
+                                    flex-direction: column
+                                    justify-content: flex-end
+                                    position: relative
+                                    .basic__card-secondary__img_desktop-slider
+                                        position: absolute
+                                        width: 339px
+                                        height: 339px
+                                        top: -40px
+                                        right: 0
+                                        img
+                                            width: 100%
+                                            height: 100%
+                                    .basic__card-secondary__text_desktop-slider
+                                        +tertiary-title-desktop
+                    .swiper-button-prev
+                        user-select: none
+                        width: 48px
+                        height: 48px
+
+                        border-radius: 50%
+
+
+                        top: 50%
+                        left: -20px
+                        transition: 0.2s
+                        border: 2px solid $--black-primary
+                        left: 0
+                        transform: translateX(-425px)
+                        &.swiper-button-disabled
+                            opacity: 0
+                    .swiper-button-next
+                        user-select: none
+                        width: 48px
+                        height: 48px
+
+                        border-radius: 50%
+
+                        right: 0
+                        transform: translateX(50%)
+                        transition: 0.2s
+                        border: 2px solid $--black-primary
+                        img
+                            transform: scaleX(-1)
+                        &.swiper-button-disabled
+                            opacity: 0
