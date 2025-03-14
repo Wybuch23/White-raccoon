@@ -36,6 +36,8 @@
                 margin-bottom: 120px
                 &.basic__bottom_wrap
                     flex-wrap: wrap
+                    .basic__img_adaptive
+                        display: none
                 &.desktop-slider-wrapper
                     margin: 0
                     position: relative
@@ -119,9 +121,21 @@
                         margin-top: 15px
                 .basic__bottom
                     &.basic__bottom_wrap
-                        margin-top: 15px
+                        margin-top: 60px
                         margin-bottom: 90px
                         gap: 15px
+                        position: relative
+                        .basic__img_adaptive
+                            display: block
+                            position: absolute
+                            top: -30px
+                            right: 29.81px
+                            width: 50.53%
+                            margin-left: 140px
+                            z-index: 1
+                        .basic__card-secondary_mobile-stiky
+                            position: sticky
+                            top: 80px 
                         .basic__card-secondary-img
                             display: none
                     &.mobile-slider-wrapper
@@ -139,7 +153,7 @@
                                         justify-content: flex-end
                                         position: relative
                                         width: 330px
-                                        height: 330px
+                                        height: 351px
                                         .basic__card-secondary__img_mobile-slider
                                             position: absolute
                                             top: -30px

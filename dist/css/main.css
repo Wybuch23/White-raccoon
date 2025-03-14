@@ -951,6 +951,9 @@
 .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap {
   flex-wrap: wrap;
 }
+.why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__img_adaptive {
+  display: none;
+}
 .why-cleaning .basic .basic__content .basic__bottom.desktop-slider-wrapper {
   margin: 0;
   position: relative;
@@ -1055,9 +1058,23 @@
     margin-top: 15px;
   }
   .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap {
-    margin-top: 15px;
+    margin-top: 60px;
     margin-bottom: 90px;
     gap: 15px;
+    position: relative;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__img_adaptive {
+    display: block;
+    position: absolute;
+    top: -30px;
+    right: 29.81px;
+    width: 50.53%;
+    margin-left: 140px;
+    z-index: 1;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary_mobile-stiky {
+    position: sticky;
+    top: 80px;
   }
   .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary-img {
     display: none;
@@ -1075,7 +1092,7 @@
     justify-content: flex-end;
     position: relative;
     width: 330px;
-    height: 330px;
+    height: 351px;
   }
   .why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper .swiper .swiper-wrapper .swiper-slide .basic__card-secondary_mobile-slider .basic__card-secondary__img_mobile-slider {
     position: absolute;

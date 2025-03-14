@@ -128,40 +128,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // window.addEventListener('scroll', function() {
-//     const sticky = document.querySelector('.basic__sticky-title_hidden');  // Блок, который двигается
-//     const triggerTop = document.querySelector('.why-cleaning__trigger-top');  // Верхний триггер
+//     // Все элементы с классом .basic__sticky-title
+//     const stickies = document.querySelectorAll('.basic__sticky-title_hidden');  
+//     // Верхний триггер
+//     const triggerTop = document.querySelector('.why-cleaning__trigger-top');  
 
-//     // Получаем координаты блока sticky и триггера
-//     const stickyRect = sticky.getBoundingClientRect();
-//     const triggerTopRect = triggerTop.getBoundingClientRect();
+//     stickies.forEach(function(sticky) {
+//         // Получаем координаты блока sticky и триггера
+//         const stickyRect = sticky.getBoundingClientRect();
+//         const triggerTopRect = triggerTop.getBoundingClientRect();
 
-//     // Проверяем, касаются ли они
-//     if (stickyRect.bottom >= triggerTopRect.top && stickyRect.top <= triggerTopRect.bottom) {
-//         sticky.classList.add('touched');
-//     } else {
-//         sticky.classList.remove('touched');
-//     }
+//         // Проверяем, касаются ли они
+//         if (stickyRect.bottom >= triggerTopRect.top && stickyRect.top <= triggerTopRect.bottom) {
+//             sticky.classList.add('touched');  // Добавляем класс, если касаются
+//         } else {
+//             sticky.classList.remove('touched');  // Убираем класс, если не касаются
+//         }
+//     });
 // });
 
 
-window.addEventListener('scroll', function() {
-    // Все элементы с классом .basic__sticky-title
-    const stickies = document.querySelectorAll('.basic__sticky-title_hidden');  
-    // Верхний триггер
-    const triggerTop = document.querySelector('.why-cleaning__trigger-top');  
+window.addEventListener('scroll', function () {
+    const stickies = document.querySelectorAll('.basic__sticky-title_hidden');
+    const triggerTop = document.querySelector('.why-cleaning__trigger-top');
 
-    stickies.forEach(function(sticky) {
-        // Получаем координаты блока sticky и триггера
+    // Проверка, существует ли триггер и он видимый
+    if (!triggerTop || triggerTop.offsetHeight === 0) return;
+
+    stickies.forEach(function (sticky) {
         const stickyRect = sticky.getBoundingClientRect();
         const triggerTopRect = triggerTop.getBoundingClientRect();
 
         // Проверяем, касаются ли они
-        if (stickyRect.bottom >= triggerTopRect.top && stickyRect.top <= triggerTopRect.bottom) {
-            sticky.classList.add('touched');  // Добавляем класс, если касаются
+        if (
+            stickyRect.bottom >= triggerTopRect.top &&
+            stickyRect.top <= triggerTopRect.bottom
+        ) {
+            sticky.classList.add('touched');
         } else {
-            sticky.classList.remove('touched');  // Убираем класс, если не касаются
+            sticky.classList.remove('touched');
         }
     });
 });
-
-
