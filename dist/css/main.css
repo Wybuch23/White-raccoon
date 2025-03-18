@@ -165,6 +165,12 @@
 .basic__bottom.basic__bottom_column-auto {
   grid-template-columns: auto;
 }
+.basic__bottom.basic__bottom_wrap {
+  flex-wrap: wrap;
+}
+.basic__bottom.basic__bottom_wrap .basic__img_adaptive {
+  display: none;
+}
 
 .basic__sticky-title {
   font-family: "TT Fellows Trial Variable";
@@ -179,7 +185,6 @@
   position: sticky;
   top: 120px;
   transition: 0.2s ease-in;
-  z-index: -1;
 }
 @media (max-width: 1185px) {
   .basic__sticky-title {
@@ -422,12 +427,50 @@
   right: 40px;
 }
 
+.basic__card-secondary.basic__card-secondary_dark-section {
+  background: none;
+  border: 1px solid #93A0AD;
+  justify-content: flex-end;
+  position: relative;
+  gap: 20px;
+}
+.basic__card-secondary.basic__card-secondary_dark-section .basic__card-secondary-num {
+  padding: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #EBEFF0;
+}
+.basic__card-secondary.basic__card-secondary_dark-section .basic__card-secondary-title {
+  font-family: "TT Fellows Trial Variable";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 115%;
+  letter-spacing: -0.4px;
+  text-transform: uppercase;
+  color: #0D1824;
+  color: #EBEFF0;
+}
+@media (max-width: 1185px) {
+  .basic__card-secondary.basic__card-secondary_dark-section .basic__card-secondary-title {
+    font-size: 18px;
+    letter-spacing: -0.36px;
+  }
+}
+.basic__card-secondary.basic__card-secondary_dark-section .basic__card-secondary-text {
+  color: #93A0AD;
+}
+
 @media (max-width: 1186px) {
   .basic__card-secondary {
     width: 100%;
     height: auto;
     padding: 30px;
     aspect-ratio: 1/1;
+  }
+  .basic__card-secondary.basic__card-secondary_dark-section .basic__card-secondary-num {
+    padding: 30px;
   }
 }
 .mobile-card_primary {
@@ -603,6 +646,119 @@
   width: 342px;
   height: 452px;
   transform: translateY(40px);
+}
+
+.card-tabs-list {
+  width: 100%;
+  background: none;
+  border-radius: 16px;
+  border: 1px solid #93A0AD;
+  position: relative;
+  box-sizing: border-box;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  height: 450px;
+}
+.card-tabs-list__wrapped {
+  width: 302px;
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-tabs-list__wrapped_text-and-btn {
+  height: 203px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.card-tabs-list__wrapped_text-and-btn .card-tabs-list__title {
+  font-family: "TT Fellows Trial Variable";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 115%;
+  letter-spacing: -0.4px;
+  text-transform: uppercase;
+  color: #0D1824;
+  color: #EBEFF0;
+}
+@media (max-width: 1185px) {
+  .card-tabs-list__wrapped_text-and-btn .card-tabs-list__title {
+    font-size: 18px;
+    letter-spacing: -0.36px;
+  }
+}
+.card-tabs-list__wrapped_text-and-btn .card-tabs-list__text {
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #0D1824;
+  color: #93A0AD;
+  display: none;
+  height: 92px;
+}
+@media (max-width: 375px) {
+  .card-tabs-list__wrapped_text-and-btn .card-tabs-list__text {
+    font-size: 16px;
+  }
+}
+.card-tabs-list__wrapped_text-and-btn .card-tabs-list__text.active {
+  display: block;
+}
+.card-tabs-list__wrapped_text-and-btn .btn-primary {
+  margin-top: 0;
+  color: #EBEFF0;
+  border: 2px solid #EBEFF0;
+}
+@media (hover: hover) {
+  .card-tabs-list__wrapped_text-and-btn .btn-primary:hover {
+    transition: none;
+    background: #EBEFF0;
+    color: #0D1824;
+  }
+}
+.card-tabs-list__wrapped.card-tabs-list__wrapped_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.card-tabs-list__wrapped.card-tabs-list__wrapped_right .card-tabs-list__list {
+  opacity: 0;
+}
+.card-tabs-list__wrapped.card-tabs-list__wrapped_right .card-tabs-list__list.active {
+  opacity: 1;
+}
+.card-tabs-list__wrapped.card-tabs-list__wrapped_right .card-tabs-list__list ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.card-tabs-list__wrapped.card-tabs-list__wrapped_right .card-tabs-list__list ul li {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.card-tabs-list__wrapped.card-tabs-list__wrapped_right .card-tabs-list__list ul li span {
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #0D1824;
+  color: #93A0AD;
+}
+@media (max-width: 375px) {
+  .card-tabs-list__wrapped.card-tabs-list__wrapped_right .card-tabs-list__list ul li span {
+    font-size: 12px;
+  }
+}
+.card-tabs-list__wrapped.card-tabs-list__wrapped_right .card-tabs-list__list ul li svg {
+  flex-shrink: 0;
 }
 
 .tabs-control {
@@ -948,12 +1104,6 @@
 .why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper {
   display: none;
 }
-.why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap {
-  flex-wrap: wrap;
-}
-.why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__img_adaptive {
-  display: none;
-}
 .why-cleaning .basic .basic__content .basic__bottom.desktop-slider-wrapper {
   margin: 0;
   position: relative;
@@ -1122,6 +1272,17 @@
     letter-spacing: -0.36px;
   }
 }
+.how-cleaning {
+  padding-top: 80px;
+}
+.how-cleaning .basic .basic__content {
+  gap: 20px;
+}
+
+.dark-sections_wrapped .how-cleaning .basic .basic__sidebar .basic__sticky-title {
+  color: #93A0AD;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -1148,6 +1309,12 @@ body.focus-blue {
 }
 .container .container_non-padding {
   padding: 0;
+}
+
+.dark-sections_wrapped {
+  margin-top: 80px;
+  border-radius: 32px 32px 0 0;
+  background: #0D1824;
 }
 
 .lol {

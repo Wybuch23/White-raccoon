@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSwiperMobile();
 });
 
+// card-tabs-img 
+
 document.addEventListener("DOMContentLoaded", () => {
     const tabs = document.querySelectorAll(".tabs-control__tub");
     const images = document.querySelectorAll(".card-tabs-img__wrapped_right .card-tabs-img__img");
@@ -170,3 +172,91 @@ window.addEventListener('scroll', function () {
         }
     });
 });
+
+
+// card-tabs-list 
+
+// // Получаем все табы и все блоки с контентом внутри секции .how-cleaning
+// const tabs = document.querySelectorAll('.how-cleaning .tabs-control__tub');
+// const lists = document.querySelectorAll('.how-cleaning .card-tabs-list__list');
+
+// // Добавляем обработчик события на каждый таб
+// tabs.forEach((tab, index) => {
+//     tab.addEventListener('click', () => {
+//         // Убираем класс 'active' с всех табов и списков
+//         tabs.forEach(t => t.classList.remove('active'));
+        
+//         // Скрываем текущий активный список с плавным эффектом
+//         const activeList = document.querySelector('.how-cleaning .card-tabs-list__list.active');
+//         if (activeList) {
+//             fadeOut(activeList, () => {
+//                 // После того как текущий список скрыт, убираем класс 'active' и показываем новый
+//                 activeList.classList.remove('active');
+
+//                 // Показываем новый список с плавным эффектом
+//                 lists[index].classList.add('active');
+//                 fadeIn(lists[index]);
+//             });
+//         } else {
+//             // Если нет активного списка, сразу добавляем класс 'active' и показываем
+//             lists[index].classList.add('active');
+//             fadeIn(lists[index]);
+//         }
+
+//         // Добавляем класс 'active' на текущий таб
+//         tab.classList.add('active');
+//     });
+// });
+
+
+const tabs = document.querySelectorAll('.how-cleaning .tabs-control__tub');
+const lists = document.querySelectorAll('.how-cleaning .card-tabs-list__list');
+const texts = document.querySelectorAll('.how-cleaning .card-tabs-list__text');
+
+// Добавляем обработчик события на каждый таб
+tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+        // Убираем класс 'active' с всех табов и списков
+        tabs.forEach(t => t.classList.remove('active'));
+        
+        // Скрываем текущий активный список с плавным эффектом
+        const activeList = document.querySelector('.how-cleaning .card-tabs-list__list.active');
+        if (activeList) {
+            fadeOut(activeList, () => {
+                // После того как текущий список скрыт, убираем класс 'active' и показываем новый
+                activeList.classList.remove('active');
+
+                // Показываем новый список с плавным эффектом
+                lists[index].classList.add('active');
+                fadeIn(lists[index]);
+            });
+        } else {
+            // Если нет активного списка, сразу добавляем класс 'active' и показываем
+            lists[index].classList.add('active');
+            fadeIn(lists[index]);
+        }
+
+        // Скрываем текущий активный текст с плавным эффектом
+        const activeText = document.querySelector('.how-cleaning .card-tabs-list__text.active');
+        if (activeText) {
+            fadeOut(activeText, () => {
+                // После того как текущий текст скрыт, убираем класс 'active' и показываем новый
+                activeText.classList.remove('active');
+
+                // Показываем новый текст с плавным эффектом
+                texts[index].classList.add('active');
+                fadeIn(texts[index]);
+            });
+        } else {
+            // Если нет активного текста, сразу добавляем класс 'active' и показываем
+            texts[index].classList.add('active');
+            fadeIn(texts[index]);
+        }
+
+        // Добавляем класс 'active' на текущий таб
+        tab.classList.add('active');
+    });
+});
+
+
+

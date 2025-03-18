@@ -1,0 +1,64 @@
+.card-tabs-list
+    width: 100%
+    background: none
+    border-radius: 16px
+    border: 1px solid $--grey-primary
+    position: relative
+    box-sizing: border-box
+    padding: 40px
+    display: flex
+    justify-content: space-between
+    height: 450px
+    &__wrapped
+        width: 302px
+        height: 370px
+
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        &_text-and-btn
+            height: 203px
+            display: flex
+            flex-direction: column
+            gap: 20px
+            .card-tabs-list__title
+                +tertiary-title-desktop
+                color: $--white-primary
+            .card-tabs-list__text
+                +body-text-desktop
+                color: $--grey-primary
+                display: none
+                height: 92px
+                &.active
+                    display: block
+            .btn-primary
+                margin-top: 0
+                color: $--white-primary
+                border: 2px solid $--white-primary
+                @media (hover: hover)
+                    &:hover
+                        transition: none
+                        background: $--white-primary
+                        color: $--black-primary
+        &.card-tabs-list__wrapped_right
+            display: flex
+            flex-direction: column
+            justify-content: flex-start
+            .card-tabs-list__list
+                opacity: 0
+                &.active
+                    opacity: 1
+                ul
+                    list-style-type: none
+                    display: flex
+                    flex-direction: column
+                    gap: 20px
+                    li
+                        display: flex
+                        align-items: center
+                        gap: 20px
+                        span
+                            +helper-text-desktop
+                            color: $--grey-primary
+                        svg
+                            flex-shrink: 0

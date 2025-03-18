@@ -16,6 +16,10 @@
         gap: 20px
         &.basic__bottom_column-auto
             grid-template-columns: auto
+        &.basic__bottom_wrap
+                    flex-wrap: wrap
+                    .basic__img_adaptive
+                        display: none
 
 
 .basic__sticky-title
@@ -24,7 +28,6 @@
         position: sticky
         top: 120px
         +transition-focus-blue
-        z-index: -1
         &.focus-blue
             color: $--black-secondary
     

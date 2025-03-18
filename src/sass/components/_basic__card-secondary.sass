@@ -20,10 +20,35 @@
         top: -69px
         right: 40px
 
+// dark section
+
+.basic__card-secondary
+    &.basic__card-secondary_dark-section
+        background: none
+        border: 1px solid $--grey-primary
+        justify-content: flex-end
+        position: relative
+        gap: 20px
+        .basic__card-secondary-num
+            padding: 40px
+            position: absolute
+            top: 0
+            left: 0
+            color: $--white-primary
+        .basic__card-secondary-title
+            +tertiary-title-desktop
+            color: $--white-primary
+        .basic__card-secondary-text
+            color: $--grey-primary
+
+
+
 @media ( max-width: 1186px)
     .basic__card-secondary
         width: 100%
         height: auto
         padding: 30px
         aspect-ratio: 1 / 1
-    
+        &.basic__card-secondary_dark-section
+            .basic__card-secondary-num
+                padding: 30px
