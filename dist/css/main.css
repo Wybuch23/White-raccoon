@@ -1278,6 +1278,64 @@
 .how-cleaning .basic .basic__content {
   gap: 20px;
 }
+.how-cleaning .basic .basic__content .basic__bottom.basic__bottom_column-auto {
+  display: none;
+}
+.how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper {
+  padding-top: 0;
+}
+.how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper .basic__card-secondary {
+  height: 596px;
+  width: 330px;
+  justify-content: flex-start;
+}
+.how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper .basic__card-secondary .basic__card-secondary-title {
+  margin-top: 59px;
+}
+.how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper .basic__card-secondary .card-tabs-list__list ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper .basic__card-secondary .card-tabs-list__list ul li {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper .basic__card-secondary .card-tabs-list__list ul li span {
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: #0D1824;
+  color: #93A0AD;
+}
+@media (max-width: 375px) {
+  .how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper .basic__card-secondary .card-tabs-list__list ul li span {
+    font-size: 12px;
+  }
+}
+.how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper .basic__card-secondary .card-tabs-list__list ul li svg {
+  flex-shrink: 0;
+}
+.how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper .basic__card-secondary .btn-primary {
+  position: absolute;
+  margin-top: 0;
+  color: #EBEFF0;
+  border: 2px solid #EBEFF0;
+  width: 100%;
+  width: 270px;
+  bottom: 30px;
+}
+
+.how-cleaning {
+  padding-top: 80px;
+}
+.how-cleaning .basic .basic__content {
+  gap: 15px;
+}
 
 .dark-sections_wrapped .how-cleaning .basic .basic__sidebar .basic__sticky-title {
   color: #93A0AD;

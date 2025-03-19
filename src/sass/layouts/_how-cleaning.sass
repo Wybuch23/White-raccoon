@@ -3,3 +3,45 @@
     .basic
         .basic__content
             gap: 20px
+            .basic__bottom
+                &.basic__bottom_column-auto
+                    display: none
+                &.basic__bottom_slider
+                    .swiper
+                        padding-top: 0
+                        .basic__card-secondary
+                            height: 596px
+                            width: 330px
+                            justify-content: flex-start
+                            .basic__card-secondary-title
+                                margin-top: 59px
+                            .card-tabs-list__list
+                                ul
+                                    list-style-type: none
+                                    display: flex
+                                    flex-direction: column
+                                    gap: 15px
+                                    li
+                                        display: flex
+                                        align-items: center
+                                        gap: 20px
+                                        span
+                                            +helper-text-desktop
+                                            color: $--grey-primary
+                                        svg
+                                            flex-shrink: 0
+                            .btn-primary
+                                position: absolute
+                                margin-top: 0
+                                color: $--white-primary
+                                border: 2px solid $--white-primary
+                                width: 100%
+                                width: 270px
+                                bottom: 30px
+                    
+@media ( max-width: 1186px)
+.how-cleaning
+    padding-top: 80px
+    .basic
+        .basic__content
+            gap: 15px
