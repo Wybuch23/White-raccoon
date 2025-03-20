@@ -4,8 +4,6 @@
         .basic__content
             gap: 20px
             .basic__bottom
-                &.basic__bottom_column-auto
-                    display: none
                 &.basic__bottom_slider
                     .swiper
                         padding-top: 0
@@ -40,8 +38,11 @@
                                 bottom: 30px
                     
 @media ( max-width: 1186px)
-.how-cleaning
-    padding-top: 80px
-    .basic
-        .basic__content
-            gap: 15px
+    .how-cleaning
+        padding-top: 80px
+        .basic
+            .basic__content
+                gap: 15px
+                .basic__bottom
+                    &.basic__bottom_column-auto
+                        display: none
