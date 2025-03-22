@@ -12,8 +12,8 @@
                         opacity: 0
             .why-cleaning__trigger-top
                 width: 100%
-                height: 542px
-                top: 1105px
+                height: 530px
+                top: 1050px
                 position: absolute
         .basic__content
             padding-top: 60px
@@ -73,28 +73,41 @@
 
                         border-radius: 50%
 
-
-                        top: 50%
+                        background: $--white-secondary
+                        top: 271px
                         left: -20px
                         transition: 0.2s
-                        border: 2px solid $--black-primary
                         left: 0
                         transform: translateX(-425px)
+                        color: $--black-primary
+                        svg
+                            width: 24px
+                            height: 24px
+                        &:hover
+                            transition: none
+                            background: $--black-primary
+                            color: $--white-primary
                         &.swiper-button-disabled
                             opacity: 0
                     .swiper-button-next
                         user-select: none
                         width: 48px
                         height: 48px
-
+                        top: 271px
                         border-radius: 50%
-
+                        background: $--white-secondary
                         right: 0
                         transform: translateX(50%)
                         transition: 0.2s
-                        border: 2px solid $--black-primary
-                        img
+                        color: $--black-primary
+                        &:hover
+                            transition: none
+                            background: $--black-primary
+                            color: $--white-primary
+                        svg
                             transform: scaleX(-1)
+                            width: 24px
+                            height: 24px
                         &.swiper-button-disabled
                             opacity: 0
 
@@ -126,7 +139,7 @@
                         .basic__card-secondary_mobile-stiky
                             z-index: -1
                             position: sticky
-                            top: 80px 
+                            top: 60px 
                         .basic__card-secondary-img
                             display: none
                         .basic__mask-wrapped
@@ -137,8 +150,6 @@
                             height: 100%
                             z-index: 1
                             .basic__mask-box
-                                // background: red 
-                                // opacity: 0.4
                                 width: 100%
                                 height: auto
                                 padding: 30px
@@ -146,13 +157,21 @@
                                 &.basic__mask-box_stiky
                                     // background: blue 
                                     position: sticky
-                                    top: 80px
+                                    top: 60px
                                     .basic__img_adaptive
                                         display: block
                                         position: absolute
-                                        width: 45%
+                                        width: 195px
+                                        height: 195px
                                         top: -30px
                                         right: 30px
+                                        @media ( max-width: 412px)
+                                            width: 165px
+                                            height: 165px
+                                        @media ( max-width: 375px)
+                                            width: 150px
+                                            height: 150px
+
                     &.mobile-slider-wrapper
                         display: block
                         margin-top: 30px
