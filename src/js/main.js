@@ -162,54 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
-  
-
-
-
-
-//   пока не надо 
-
-
-// // слайдер галерея
-
-// const swiper = new Swiper('.slider-gellery', {
-//     loop: true,
-//     slidesPerView: "auto", // Количество видимых слайдов
-//     centeredSlides: true, // Центрируем активный слайд
-//     spaceBetween: 20, // Расстояние между слайдами
-//     navigation: {
-//       nextEl: '.slider-gellery__swiper-button-next',
-//       prevEl: '.slider-gellery__swiper-button-prev',
-//     },
-//     pagination: {
-//       el: '.swiper-pagination',
-//       clickable: true,
-//     },
-//   });
-
-// // Получаем все табы в слайде в галерее 
-
-// /// Находим все слайды внутри секции .our-works
-// const ourWorks = document.querySelector('.our-works');
-// const swiperSlides = ourWorks.querySelectorAll('.swiper-slide');
-
-// swiperSlides.forEach(slide => {
-//   const tabsGallery = slide.querySelectorAll('.tabs-control__tub');
-//   const imagesGallery = slide.querySelectorAll('.slider-gellery__img');
-
-//   tabsGallery.forEach((tab, index) => {
-//     tab.addEventListener('click', () => {
-//       // Убираем активный класс у всех табов и картинок внутри этого слайда
-//       tabsGallery.forEach(t => t.classList.remove('active'));
-//       imagesGallery.forEach(img => img.classList.remove('active'));
-
-//       // Добавляем активный класс к текущему табу и картинке внутри этого слайда
-//       tab.classList.add('active');
-//       imagesGallery[index].classList.add('active');
-//     });
-//   });
-// });
-
 
 // наши работы мобилка 
 
@@ -250,13 +202,15 @@ document.addEventListener("DOMContentLoaded", () => {
   loadMoreBtn.addEventListener("click", () => {
     const hiddenCards = Array.from(cards).slice(visibleCards, visibleCards + 3);
 
-    hiddenCards.forEach(card => (card.style.display = "block"));
+    hiddenCards.forEach((card) => {
+      fadeIn(card);
+    });
+
     visibleCards += 3;
 
-    // Если карточки закончились — скрываем кнопку
+    // Если карточки закончились — скрываем кнопку с анимацией
     if (visibleCards >= cards.length) {
-      loadMoreBtn.style.display = "none";
+      fadeOut(loadMoreBtn);
     }
   });
 });
-
