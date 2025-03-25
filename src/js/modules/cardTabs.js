@@ -2,7 +2,7 @@
 import { fadeIn, fadeOut } from "./fade.js";
 
 export function setupCardTabs() {
-    const tabs = document.querySelectorAll(".tabs-control__tub");
+    const tabs = document.querySelectorAll(".dry-cleaning .tabs-control__tub");
     const images = document.querySelectorAll(".card-tabs-img__wrapped_right .card-tabs-img__img");
 
     // Массив путей картинок

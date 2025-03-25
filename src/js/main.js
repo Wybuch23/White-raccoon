@@ -209,3 +209,54 @@ document.addEventListener("DOMContentLoaded", function () {
 //     });
 //   });
 // });
+
+
+// наши работы мобилка 
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".our-works .basic__card-secondary");
+
+  cards.forEach((card) => {
+      const images = card.querySelectorAll(".our-works .basic__card-secondary_img");
+      const tabs = card.querySelectorAll(".our-works .tabs-control__tub");
+
+      let currentImage = 0;
+
+      card.addEventListener("click", () => {
+          // Снимаем "active" с текущих элементов
+          images[currentImage].classList.remove("active");
+          tabs[currentImage].classList.remove("active");
+
+          // Переключаемся на следующий индекс
+          currentImage = (currentImage + 1) % images.length;
+
+          // Добавляем "active" новой картинке и табу
+          images[currentImage].classList.add("active");
+          tabs[currentImage].classList.add("active");
+      });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".our-works .basic__card-secondary");
+  const loadMoreBtn = document.querySelector(".our-works .btn-mobile");
+  let visibleCards = 3;
+
+  // Скрываем все карточки, кроме первых трех
+  cards.forEach((card, index) => {
+    if (index >= visibleCards) card.style.display = "none";
+  });
+
+  loadMoreBtn.addEventListener("click", () => {
+    const hiddenCards = Array.from(cards).slice(visibleCards, visibleCards + 3);
+
+    hiddenCards.forEach(card => (card.style.display = "block"));
+    visibleCards += 3;
+
+    // Если карточки закончились — скрываем кнопку
+    if (visibleCards >= cards.length) {
+      loadMoreBtn.style.display = "none";
+    }
+  });
+});
+

@@ -137,7 +137,8 @@
 .btn-mobile.btn-mobile_white {
   border: 2px solid #EBEFF0;
 }
-.btn-mobile.btn-mobile_white {
+.btn-mobile.btn-mobile_grey {
+  color: #93A0AD;
   border: 2px solid #93A0AD;
 }
 
@@ -1415,6 +1416,9 @@
 .our-works .basic .basic__content .basic__bottom {
   margin-top: 80px;
 }
+.our-works .basic .basic__content .basic__bottom.basic__bottom_mobile {
+  display: none;
+}
 .our-works .basic .basic__content .basic__bottom .slider-gellery {
   position: relative;
   width: 784px;
@@ -1505,6 +1509,80 @@
   height: 24px;
 }
 
+@media (max-width: 1186px) {
+  .our-works {
+    margin-top: 120px;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_desktop {
+    display: none;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile {
+    display: flex;
+    margin-top: 60px;
+    gap: 15px;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__tip {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 15px;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__tip span {
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    color: #0D1824;
+    color: #93A0AD;
+  }
+}
+@media (max-width: 1186px) and (max-width: 375px) {
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__tip span {
+    font-size: 16px;
+  }
+}
+@media (max-width: 1186px) {
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__tip svg {
+    flex-shrink: 0;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__card-secondary_mobile-card-slider {
+    position: relative;
+    overflow: hidden;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__card-secondary_mobile-card-slider .tabs-control {
+    z-index: 1;
+    position: relative;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__card-secondary_mobile-card-slider .tabs-control .tabs-control__tub {
+    position: absolute;
+    opacity: 0;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__card-secondary_mobile-card-slider .tabs-control .tabs-control__tub.active {
+    color: #0D1824;
+    border: 1px solid #0D1824;
+    background: none;
+    opacity: 1;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__card-secondary_mobile-card-slider .basic__card-secondary_img {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s ease-in;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__card-secondary_mobile-card-slider .basic__card-secondary_img.active {
+    opacity: 1;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .basic__card-secondary_mobile-card-slider .basic__card-secondary_img img {
+    width: 100%;
+    height: 100%;
+  }
+  .our-works .basic .basic__content .basic__bottom.basic__bottom_mobile .btn-mobile {
+    width: 100%;
+  }
+}
 * {
   box-sizing: border-box;
   padding: 0;
