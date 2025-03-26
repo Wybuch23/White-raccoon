@@ -23,28 +23,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // появление и изчезание заголовка 
 
+// window.addEventListener('scroll', function () {
+//     const stickies = document.querySelectorAll('.basic__sticky-title_hidden');
+//     const triggerTop = document.querySelector('.why-cleaning__trigger-top');
+
+//     // Проверка, существует ли триггер и он видимый
+//     if (!triggerTop || triggerTop.offsetHeight === 0) return;
+
+//     stickies.forEach(function (sticky) {
+//         const stickyRect = sticky.getBoundingClientRect();
+//         const triggerTopRect = triggerTop.getBoundingClientRect();
+
+//         // Проверяем, касаются ли они
+//         if (
+//             stickyRect.bottom >= triggerTopRect.top &&
+//             stickyRect.top <= triggerTopRect.bottom
+//         ) {
+//             sticky.classList.add('touched');
+//         } else {
+//             sticky.classList.remove('touched');
+//         }
+//     });
+// });
+
 window.addEventListener('scroll', function () {
-    const stickies = document.querySelectorAll('.basic__sticky-title_hidden');
-    const triggerTop = document.querySelector('.why-cleaning__trigger-top');
+  const sections = document.querySelectorAll('.basic');
 
-    // Проверка, существует ли триггер и он видимый
-    if (!triggerTop || triggerTop.offsetHeight === 0) return;
+  sections.forEach((section) => {
+    const sticky = section.querySelector('.basic__sticky-title_hidden');
+    const triggerTop = section.querySelector('.why-cleaning__trigger-top');
 
-    stickies.forEach(function (sticky) {
-        const stickyRect = sticky.getBoundingClientRect();
-        const triggerTopRect = triggerTop.getBoundingClientRect();
+    // Если вдруг чего-то нет — выходим из этой секции
+    if (!sticky || !triggerTop || triggerTop.offsetHeight === 0) return;
 
-        // Проверяем, касаются ли они
-        if (
-            stickyRect.bottom >= triggerTopRect.top &&
-            stickyRect.top <= triggerTopRect.bottom
-        ) {
-            sticky.classList.add('touched');
-        } else {
-            sticky.classList.remove('touched');
-        }
-    });
+    const stickyRect = sticky.getBoundingClientRect();
+    const triggerTopRect = triggerTop.getBoundingClientRect();
+
+    // Проверяем касание и добавляем/убираем класс
+    if (
+      stickyRect.bottom >= triggerTopRect.top &&
+      stickyRect.top <= triggerTopRect.bottom
+    ) {
+      sticky.classList.add('touched');
+    } else {
+      sticky.classList.remove('touched');
+    }
+  });
 });
+
+
+
+
 
 // card-tabs-list 
 

@@ -1,0 +1,76 @@
+.reviews
+    margin-top: 160px
+    .basic
+        &.basic_desktop
+            .basic__sidebar
+                position: relative
+                .basic__sticky-title
+                    display: flex
+                    flex-direction: column
+                    .basic__sticky-title_hidden
+                        transition: 0.2s ease-in
+                        &.touched
+                            opacity: 0
+                .why-cleaning__trigger-top
+                    width: 100%
+                    height: 422px
+                    margin-top: 387px
+                    position: absolute
+            .basic__content
+                gap: 20px
+                .basic__bottom
+                    position: relative
+                    &.basic__bottom_three-card
+                        height: 382px
+                        .basic__bottom_three-wrapped
+                            position: absolute
+                            display: flex
+                            gap: 20px
+                            transform: translateX(-402px)
+                    .basic__card-secondary_review
+                        background: $--grey-primary
+                        justify-content: flex-end
+                        gap: 20px
+                        .basic__card-secondary-stars
+                            display: flex
+                            align-items: center
+                            gap: 5px
+                            position: absolute
+                            top: 40px
+                        .basic__card-secondary-title
+                            +tertiary-title-desktop
+                    .basic__card-secondary_market
+                        justify-content: space-between
+                        align-items: flex-start
+
+
+@media ( max-width: 1186px)
+    .reviews
+        margin-top: 120px
+        .basic_desktop
+            display: none
+        .basic_mobile
+            display: flex
+            .basic__bottom
+                margin-top: 30px
+                .basic__card-secondary_review
+                    width: 330px
+                    height: 330px
+                    background: $--grey-primary
+                    justify-content: flex-end
+                    gap: 15px
+                    .basic__card-secondary-stars
+                        display: flex
+                        align-items: center
+                        gap: 5px
+                        position: absolute
+                        top: 40px
+                    .basic__card-secondary-title
+                        +tertiary-title-desktop
+                    .basic__card-secondary-text
+                        font-size: 16px
+                .basic__card-secondary_market
+                    width: 330px
+                    height: 330px
+                    justify-content: space-between
+                    align-items: flex-start
