@@ -1600,6 +1600,9 @@
 .reviews {
   margin-top: 160px;
 }
+.reviews .basic.basic_mobile {
+  display: none;
+}
 .reviews .basic.basic_desktop .basic__sidebar {
   position: relative;
 }
