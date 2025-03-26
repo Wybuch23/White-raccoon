@@ -49,30 +49,32 @@
 @media ( max-width: 1186px)
     .reviews
         margin-top: 120px
-        .basic_desktop
-            display: none
-        .basic_mobile
-            display: flex
-            .basic__bottom
-                margin-top: 30px
-                .basic__card-secondary_review
-                    width: 330px
-                    height: 330px
-                    background: $--grey-primary
-                    justify-content: flex-end
-                    gap: 15px
-                    .basic__card-secondary-stars
-                        display: flex
-                        align-items: center
-                        gap: 5px
-                        position: absolute
-                        top: 40px
-                    .basic__card-secondary-title
-                        +tertiary-title-desktop
-                    .basic__card-secondary-text
-                        font-size: 16px
-                .basic__card-secondary_market
-                    width: 330px
-                    height: 330px
-                    justify-content: space-between
-                    align-items: flex-start
+        .basic
+
+            &.basic_desktop
+                display: none
+            &.basic_mobile
+                display: flex
+                .basic__bottom
+                    margin-top: 30px
+                    .basic__card-secondary_review
+                        width: 330px
+                        height: 330px
+                        background: $--grey-primary
+                        justify-content: flex-end
+                        gap: 15px
+                        .basic__card-secondary-stars
+                            display: flex
+                            align-items: center
+                            gap: 5px
+                            position: absolute
+                            top: 40px
+                        .basic__card-secondary-title
+                            +tertiary-title-desktop
+                        .basic__card-secondary-text
+                            font-size: 16px
+                    .basic__card-secondary_market
+                        width: 330px
+                        height: 330px
+                        justify-content: space-between
+                        align-items: flex-start

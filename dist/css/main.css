@@ -1674,30 +1674,30 @@
   .reviews {
     margin-top: 120px;
   }
-  .reviews .basic_desktop {
+  .reviews .basic.basic_desktop {
     display: none;
   }
-  .reviews .basic_mobile {
+  .reviews .basic.basic_mobile {
     display: flex;
   }
-  .reviews .basic_mobile .basic__bottom {
+  .reviews .basic.basic_mobile .basic__bottom {
     margin-top: 30px;
   }
-  .reviews .basic_mobile .basic__bottom .basic__card-secondary_review {
+  .reviews .basic.basic_mobile .basic__bottom .basic__card-secondary_review {
     width: 330px;
     height: 330px;
     background: #93A0AD;
     justify-content: flex-end;
     gap: 15px;
   }
-  .reviews .basic_mobile .basic__bottom .basic__card-secondary_review .basic__card-secondary-stars {
+  .reviews .basic.basic_mobile .basic__bottom .basic__card-secondary_review .basic__card-secondary-stars {
     display: flex;
     align-items: center;
     gap: 5px;
     position: absolute;
     top: 40px;
   }
-  .reviews .basic_mobile .basic__bottom .basic__card-secondary_review .basic__card-secondary-title {
+  .reviews .basic.basic_mobile .basic__bottom .basic__card-secondary_review .basic__card-secondary-title {
     font-family: "TT Fellows Trial Variable";
     font-size: 20px;
     font-style: normal;
@@ -1709,16 +1709,16 @@
   }
 }
 @media (max-width: 1186px) and (max-width: 1185px) {
-  .reviews .basic_mobile .basic__bottom .basic__card-secondary_review .basic__card-secondary-title {
+  .reviews .basic.basic_mobile .basic__bottom .basic__card-secondary_review .basic__card-secondary-title {
     font-size: 18px;
     letter-spacing: -0.36px;
   }
 }
 @media (max-width: 1186px) {
-  .reviews .basic_mobile .basic__bottom .basic__card-secondary_review .basic__card-secondary-text {
+  .reviews .basic.basic_mobile .basic__bottom .basic__card-secondary_review .basic__card-secondary-text {
     font-size: 16px;
   }
-  .reviews .basic_mobile .basic__bottom .basic__card-secondary_market {
+  .reviews .basic.basic_mobile .basic__bottom .basic__card-secondary_market {
     width: 330px;
     height: 330px;
     justify-content: space-between;
