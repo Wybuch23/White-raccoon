@@ -74,8 +74,47 @@
                 background: $--grey-primary
                 color: $--black-primary
 
+.btn-hero
+    display: inline-flex
+    height: 72px
+    padding: 0px 40px
+    justify-content: center
+    align-items: center
+    gap: 10px
+    flex-shrink: 0
+    border-radius: 36px
+    border: 3px solid $--black-primary
+    +secondary-title-desktop
+    transition: 0.2s ease-in
+    background: none
+    @media (hover: hover)
+        &:hover
+            transition: none
+            background: $--black-primary
+            color: $--white-primary
+    &.btn-hero-white
+        border-color: $--white-primary
+        color: $--white-primary
+        @media (hover: hover)
+            &:hover
+                background: $--white-primary
+                color: $--black-primary
 
 // buttons mobile
+
+.btn-hero-mobile
+    display: inline-flex
+    height: 72px
+    padding: 0px 30px
+    justify-content: center
+    align-items: center
+    gap: 10px
+    flex-shrink: 0
+    border-radius: 36px
+    border: 3px solid $--black-primary
+    background: none
+    +secondary-title-desktop
+    color: $--black-primary
 
 .btn-mobile
     display: inline-flex

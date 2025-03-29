@@ -9,7 +9,7 @@
         background: $--black-primary
         max-height: 88px
 
-        transition: max-height 0.4s, padding 0.4s, box-shadow 0.2s, background 0.4s
+        transition: max-height 0.4s, padding 0.4s, box-shadow 0.4s, background 0.4s
 
         overflow: hidden
 
@@ -34,7 +34,7 @@
             +body-text-desktop
             width: 610px
             opacity: 0
-            transition: 0.4s
+            transition: 0.2s
         &.active
             display: flex
             flex-direction: column
@@ -54,34 +54,9 @@
         @media (hover: hover)
             &:hover
                 box-shadow: inset 0 0 0 2px $--grey-primary
+                transition: box-shadow 0.01s
                 .accordion__wrapped-title-button
                     .accordion__button
                         transition: none
                         background: $--grey-primary
                         color: $--black-primary
-
-
-// .lol
-//     margin-top: 100px
-//     .boxes
-//         display: flex
-//         flex-direction: column
-//         align-items: center
-//         gap: 20px
-//         .box
-//             border: 1px solid red 
-//             background: white
-//             width: 100px
-//             max-height: 100px
-//             transition: 0.4s
-
-//             overflow: hidden
-//             .b
-//                 color: green
-//                 opacity: 0
-//                 transition: 0.4s
-//             &.active
-//                 padding: 10px
-//                 max-height: 300px
-//                 .b
-//                     opacity: 1
