@@ -3,60 +3,81 @@
     flex-direction: column
     gap: 20px
     .accordion__item
+        display: flex
         padding: 20px 40px
+        flex-direction: column
+        align-items: flex-start
+        gap: 17px
+        align-self: stretch
+
         border-radius: 16px
         box-shadow: inset 0 0 0 1px $--grey-primary
         background: $--black-primary
-        max-height: 88px
 
-        transition: max-height 0.4s, padding 0.4s, box-shadow 0.4s, background 0.4s
+        height: 88px
+
+        transition: padding 0.4s, background 0.4s, height 0.4s, box-shadow 0.2s ease-in
 
         overflow: hidden
 
-        .accordion__wrapped-title-button
-            display: flex
-            justify-content: space-between
-            align-items: center
-            .accordion__title
-                +tertiary-title-desktop
-                color: $--grey-primary
-            .accordion__button
-                border-radius: 24px
-                display: flex
-                width: 48px
-                height: 48px
-                padding: 12px
-                justify-content: center
-                align-items: center
-                color: $--grey-primary
-                transition: 0.2s
+        position: relative
+        .accordion__title
+            +tertiary-title-desktop
+            color: $--grey-primary
+
+            margin-top: 12.5px
         .accordion__text
             +body-text-desktop
             width: 610px
+
             opacity: 0
-            transition: 0.2s
-        &.active
+        .accordion__button
             display: flex
-            flex-direction: column
-            gap: 17px
-            padding: 40px
-            background: $--grey-primary
-            pointer-events: none
-            .accordion__wrapped-title-button
-                .accordion__title
-                    color: $--black-primary
-                .accordion__button
-                    display: none
-                    opacity: 0
-                    height: 0
-            .accordion__text
-                opacity: 1
+            width: 48px
+            height: 48px
+            padding: 12px
+            justify-content: center
+            align-items: center
+            border-radius: 24px
+            background: $--black-primary
+            color: $--grey-primary
+
+            position: absolute
+            top: 20px
+            right: 40px
+
+            transition: 0.2s ease-in
         @media (hover: hover)
             &:hover
                 box-shadow: inset 0 0 0 2px $--grey-primary
-                transition: box-shadow 0.01s
-                .accordion__wrapped-title-button
-                    .accordion__button
-                        transition: none
-                        background: $--grey-primary
-                        color: $--black-primary
+                transition: padding 0.4s, background 0.4s, height 0.4s, box-shadow 0.001s ease-in
+                .accordion__button
+                    background: $--grey-primary
+                    color: $--black-primary
+                    transition: none
+                
+        &.active
+            padding: 40px
+            background: $--grey-primary
+            height: 212px
+            .accordion__title
+                color: $--black-primary
+                margin-top: 0
+            .accordion__text
+                opacity: 1
+            .accordion__button
+                opacity: 0
+
+@media (max-width: 1185px)
+    .accordion
+        gap: 15px
+        .accordion__item
+            padding: 15px 30px
+            height: 78px
+            .accordion__title
+                margin-top: 0
+            .accordion__text
+                width: 100%
+            &.active
+                padding: 30px
+                height: 243px

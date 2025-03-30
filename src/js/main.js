@@ -248,55 +248,55 @@ document.addEventListener("DOMContentLoaded", () => {
 // Аккордион 
 
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const accordionItems = document.querySelectorAll(".accordion__item");
-
-//   accordionItems.forEach(item => {
-//       item.addEventListener("click", () => {
-//           // Удаляем класс active у всех элементов
-//           accordionItems.forEach(el => el.classList.remove("active"));
-//           // Добавляем active только к текущему
-//           item.classList.add("active");
-//       });
-//   });
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
   const accordionItems = document.querySelectorAll(".accordion__item");
 
   accordionItems.forEach(item => {
-    // Устанавливаем начальную высоту для активных элементов при загрузке
-    if (item.classList.contains("active")) {
-      item.style.maxHeight = item.scrollHeight + 60 + "px"; // Устанавливаем правильную высоту для активного элемента
-    } else {
-      item.style.maxHeight = "88px"; // Устанавливаем начальную высоту для неактивных элементов
-    }
-
-    item.addEventListener("click", () => {
-      const isActive = item.classList.contains("active");
-
-      // Если элемент уже активен, просто убираем класс и сбрасываем maxHeight
-      if (isActive) {
-        item.classList.remove("active");
-        item.style.maxHeight = "88px"; // Сбрасываем max-height
-      } else {
-        // Закрываем все элементы
-        accordionItems.forEach(el => {
-          el.classList.remove("active");
-          el.style.maxHeight = "88px"; // Сбрасываем max-height
-        });
-
-        // Добавляем класс active и устанавливаем максимальную высоту
-        item.classList.add("active");
-
-        // Устанавливаем максимальную высоту с запасом
-        setTimeout(() => {
-          item.style.maxHeight = item.scrollHeight + 60 + "px"; // +60px для запаса
-        }, 10);
-      }
-    });
+      item.addEventListener("click", () => {
+          // Удаляем класс active у всех элементов
+          accordionItems.forEach(el => el.classList.remove("active"));
+          // Добавляем active только к текущему
+          item.classList.add("active");
+      });
   });
 });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const accordionItems = document.querySelectorAll(".accordion__item");
+
+//   accordionItems.forEach(item => {
+//     // Устанавливаем начальную высоту для активных элементов при загрузке
+//     if (item.classList.contains("active")) {
+//       item.style.maxHeight = item.scrollHeight + 60 + "px"; // Устанавливаем правильную высоту для активного элемента
+//     } else {
+//       item.style.maxHeight = "88px"; // Устанавливаем начальную высоту для неактивных элементов
+//     }
+
+//     item.addEventListener("click", () => {
+//       const isActive = item.classList.contains("active");
+
+//       // Если элемент уже активен, просто убираем класс и сбрасываем maxHeight
+//       if (isActive) {
+//         item.classList.remove("active");
+//         item.style.maxHeight = "88px"; // Сбрасываем max-height
+//       } else {
+//         // Закрываем все элементы
+//         accordionItems.forEach(el => {
+//           el.classList.remove("active");
+//           el.style.maxHeight = "88px"; // Сбрасываем max-height
+//         });
+
+//         // Добавляем класс active и устанавливаем максимальную высоту
+//         item.classList.add("active");
+
+//         // Устанавливаем максимальную высоту с запасом
+//         setTimeout(() => {
+//           item.style.maxHeight = item.scrollHeight + 60 + "px"; // +60px для запаса
+//         }, 10);
+//       }
+//     });
+//   });
+// });
 
 
 
