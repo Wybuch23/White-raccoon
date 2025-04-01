@@ -261,42 +261,73 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// динамическая высота 
+
 // document.addEventListener("DOMContentLoaded", () => {
-//   const accordionItems = document.querySelectorAll(".accordion__item");
-
-//   accordionItems.forEach(item => {
-//     // Устанавливаем начальную высоту для активных элементов при загрузке
-//     if (item.classList.contains("active")) {
-//       item.style.maxHeight = item.scrollHeight + 60 + "px"; // Устанавливаем правильную высоту для активного элемента
-//     } else {
-//       item.style.maxHeight = "88px"; // Устанавливаем начальную высоту для неактивных элементов
-//     }
-
-//     item.addEventListener("click", () => {
-//       const isActive = item.classList.contains("active");
-
-//       // Если элемент уже активен, просто убираем класс и сбрасываем maxHeight
-//       if (isActive) {
-//         item.classList.remove("active");
-//         item.style.maxHeight = "88px"; // Сбрасываем max-height
-//       } else {
-//         // Закрываем все элементы
-//         accordionItems.forEach(el => {
-//           el.classList.remove("active");
-//           el.style.maxHeight = "88px"; // Сбрасываем max-height
-//         });
-
-//         // Добавляем класс active и устанавливаем максимальную высоту
-//         item.classList.add("active");
-
-//         // Устанавливаем максимальную высоту с запасом
-//         setTimeout(() => {
-//           item.style.maxHeight = item.scrollHeight + 60 + "px"; // +60px для запаса
-//         }, 10);
-//       }
-//     });
-//   });
+//   const accordionElements = document.querySelectorAll(".accordion__item");
+  
+//   function updateHeight() {
+//       accordionElements.forEach(element => {
+//           const titleBlocks = element.querySelectorAll(".accordion__title");
+//           const textBlock = element.querySelector(".accordion__text");
+          
+//           requestAnimationFrame(() => {
+//               let totalTitleHeight = 0;
+//               titleBlocks.forEach(title => {
+//                   totalTitleHeight += title.offsetHeight;
+//               });
+              
+//               if (element.classList.contains("active") && textBlock) {
+//                   element.style.height = totalTitleHeight + textBlock.offsetHeight + "px";
+//               } else {
+//                   element.style.height = totalTitleHeight + "px";
+//               }
+//           });
+//       });
+//   }
+  
+//   window.addEventListener("load", updateHeight);
+//   window.addEventListener("resize", updateHeight);
+  
+//   new MutationObserver(updateHeight).observe(document.body, { attributes: true, subtree: true, attributeFilter: ["class"] });
 // });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const accordionElements = document.querySelectorAll(".accordion__item");
+
+  function updateHeight() {
+      accordionElements.forEach(element => {
+          const titleBlocks = element.querySelectorAll(".accordion__title");
+          const textBlock = element.querySelector(".accordion__text");
+          const gap = parseFloat(getComputedStyle(element).gap) || 0;
+
+          requestAnimationFrame(() => {
+              let totalTitleHeight = 0;
+              titleBlocks.forEach(title => {
+                  totalTitleHeight += title.offsetHeight;
+              });
+
+              if (element.classList.contains("active") && textBlock) {
+                  element.style.height = totalTitleHeight + textBlock.offsetHeight + gap + "px";
+              } else {
+                  element.style.height = totalTitleHeight + "px";
+              }
+          });
+      });
+  }
+
+  window.addEventListener("load", updateHeight);
+  window.addEventListener("resize", updateHeight);
+
+  new MutationObserver(updateHeight).observe(document.body, { attributes: true, subtree: true, attributeFilter: ["class"] });
+});
+
+
+
+
+
+
 
 
 

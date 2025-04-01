@@ -1,3 +1,88 @@
+// .accordion
+//     display: flex
+//     flex-direction: column
+//     gap: 20px
+//     .accordion__item
+//         display: flex
+//         padding: 20px 40px
+//         flex-direction: column
+//         align-items: flex-start
+//         gap: 17px
+//         align-self: stretch
+
+//         border-radius: 16px
+//         box-shadow: inset 0 0 0 1px $--grey-primary
+//         background: $--black-primary
+
+//         height: 88px
+
+//         transition: padding 0.4s, background 0.4s, height 0.4s, box-shadow 0.2s ease-in
+
+//         overflow: hidden
+
+//         position: relative
+//         .accordion__title
+//             +tertiary-title-desktop
+//             color: $--grey-primary
+
+//             margin-top: 12.5px
+//         .accordion__text
+//             +body-text-desktop
+//             width: 610px
+
+//             opacity: 0
+//         .accordion__button
+//             display: flex
+//             width: 48px
+//             height: 48px
+//             padding: 12px
+//             justify-content: center
+//             align-items: center
+//             border-radius: 24px
+//             background: $--black-primary
+//             color: $--grey-primary
+
+//             position: absolute
+//             top: 20px
+//             right: 40px
+
+//             transition: 0.2s ease-in
+//         @media (hover: hover)
+//             &:hover
+//                 box-shadow: inset 0 0 0 2px $--grey-primary
+//                 transition: padding 0.4s, background 0.4s, height 0.4s, box-shadow 0.001s ease-in
+//                 .accordion__button
+//                     background: $--grey-primary
+//                     color: $--black-primary
+//                     transition: none
+                
+//         &.active
+//             padding: 40px
+//             background: $--grey-primary
+//             height: 212px
+//             .accordion__title
+//                 color: $--black-primary
+//                 margin-top: 0
+//             .accordion__text
+//                 opacity: 1
+//             .accordion__button
+//                 opacity: 0
+
+// @media (max-width: 1185px)
+//     .accordion
+//         gap: 15px
+//         .accordion__item
+//             padding: 15px 30px
+//             height: 78px
+//             .accordion__title
+//                 margin-top: 0
+//             .accordion__text
+//                 width: 100%
+//             &.active
+//                 padding: 30px
+//                 height: 243px
+
+
 .accordion
     display: flex
     flex-direction: column
@@ -14,18 +99,26 @@
         box-shadow: inset 0 0 0 1px $--grey-primary
         background: $--black-primary
 
-        height: 88px
+        // height: 88px
 
         transition: padding 0.4s, background 0.4s, height 0.4s, box-shadow 0.2s ease-in
 
         overflow: hidden
 
         position: relative
+
+        box-sizing: content-box
         .accordion__title
             +tertiary-title-desktop
             color: $--grey-primary
 
-            margin-top: 12.5px
+            min-height: 48px
+            padding-right: 88px
+
+            display: flex
+            align-items: center
+
+            // margin-top: 12.5px
         .accordion__text
             +body-text-desktop
             width: 610px
@@ -59,10 +152,11 @@
         &.active
             padding: 40px
             background: $--grey-primary
-            height: 212px
+            // height: 212px
             .accordion__title
                 color: $--black-primary
                 margin-top: 0
+                min-height: 0
             .accordion__text
                 opacity: 1
             .accordion__button
@@ -74,8 +168,17 @@
         .accordion__item
             padding: 15px 30px
             height: 78px
-            .accordion__title
-                margin-top: 0
+            .accordion__item_wrapped
+                display: flex
+                width: 100%
+                justify-content: space-between
+                // align-items: center
+                .accordion__title
+                    margin-top: 0
+                    max-width: 262px
+                    padding-right: 0
+                .accordion__button
+                    position: static
             .accordion__text
                 width: 100%
             &.active

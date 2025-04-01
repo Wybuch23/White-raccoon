@@ -947,10 +947,10 @@
   border-radius: 16px;
   box-shadow: inset 0 0 0 1px #93A0AD;
   background: #0D1824;
-  height: 88px;
   transition: padding 0.4s, background 0.4s, height 0.4s, box-shadow 0.2s ease-in;
   overflow: hidden;
   position: relative;
+  box-sizing: content-box;
 }
 .accordion .accordion__item .accordion__title {
   font-family: "TT Fellows Trial Variable";
@@ -962,7 +962,10 @@
   text-transform: uppercase;
   color: #0D1824;
   color: #93A0AD;
-  margin-top: 12.5px;
+  min-height: 48px;
+  padding-right: 88px;
+  display: flex;
+  align-items: center;
 }
 @media (max-width: 1185px) {
   .accordion .accordion__item .accordion__title {
@@ -1014,11 +1017,11 @@
 .accordion .accordion__item.active {
   padding: 40px;
   background: #93A0AD;
-  height: 212px;
 }
 .accordion .accordion__item.active .accordion__title {
   color: #0D1824;
   margin-top: 0;
+  min-height: 0;
 }
 .accordion .accordion__item.active .accordion__text {
   opacity: 1;
@@ -1035,8 +1038,18 @@
     padding: 15px 30px;
     height: 78px;
   }
-  .accordion .accordion__item .accordion__title {
+  .accordion .accordion__item .accordion__item_wrapped {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .accordion .accordion__item .accordion__item_wrapped .accordion__title {
     margin-top: 0;
+    max-width: 262px;
+    padding-right: 0;
+  }
+  .accordion .accordion__item .accordion__item_wrapped .accordion__button {
+    position: static;
   }
   .accordion .accordion__item .accordion__text {
     width: 100%;
