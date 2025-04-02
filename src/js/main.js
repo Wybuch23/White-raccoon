@@ -263,55 +263,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // динамическая высота 
 
+
 // document.addEventListener("DOMContentLoaded", () => {
 //   const accordionElements = document.querySelectorAll(".accordion__item");
-  
+
 //   function updateHeight() {
 //       accordionElements.forEach(element => {
 //           const titleBlocks = element.querySelectorAll(".accordion__title");
 //           const textBlock = element.querySelector(".accordion__text");
-          
+//           const gap = parseFloat(getComputedStyle(element).gap) || 0;
+
 //           requestAnimationFrame(() => {
 //               let totalTitleHeight = 0;
 //               titleBlocks.forEach(title => {
 //                   totalTitleHeight += title.offsetHeight;
 //               });
-              
+
 //               if (element.classList.contains("active") && textBlock) {
-//                   element.style.height = totalTitleHeight + textBlock.offsetHeight + "px";
+//                   element.style.height = totalTitleHeight + textBlock.offsetHeight + gap + "px";
 //               } else {
 //                   element.style.height = totalTitleHeight + "px";
 //               }
 //           });
 //       });
 //   }
-  
+
 //   window.addEventListener("load", updateHeight);
 //   window.addEventListener("resize", updateHeight);
-  
+
 //   new MutationObserver(updateHeight).observe(document.body, { attributes: true, subtree: true, attributeFilter: ["class"] });
 // });
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const accordionElements = document.querySelectorAll(".accordion__item");
 
   function updateHeight() {
       accordionElements.forEach(element => {
-          const titleBlocks = element.querySelectorAll(".accordion__title");
+          const wrappedBlock = element.querySelector(".accordion__item_wrapped");
           const textBlock = element.querySelector(".accordion__text");
           const gap = parseFloat(getComputedStyle(element).gap) || 0;
 
           requestAnimationFrame(() => {
-              let totalTitleHeight = 0;
-              titleBlocks.forEach(title => {
-                  totalTitleHeight += title.offsetHeight;
-              });
+              let wrappedHeight = wrappedBlock ? wrappedBlock.offsetHeight : 0;
 
               if (element.classList.contains("active") && textBlock) {
-                  element.style.height = totalTitleHeight + textBlock.offsetHeight + gap + "px";
+                  element.style.height = wrappedHeight + textBlock.offsetHeight + gap + "px";
               } else {
-                  element.style.height = totalTitleHeight + "px";
+                  element.style.height = wrappedHeight + "px";
               }
           });
       });
@@ -322,6 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   new MutationObserver(updateHeight).observe(document.body, { attributes: true, subtree: true, attributeFilter: ["class"] });
 });
+
 
 
 

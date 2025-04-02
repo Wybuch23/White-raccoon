@@ -9,7 +9,7 @@ export function setupSwiperCleaners() {
             prevEl: ".swiper-button-prev",
         },
         mousewheel: false,
-        loop: false,
+        loop: true,
     });
 
     // Функция для обновления видимости кнопок

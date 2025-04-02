@@ -1,10 +1,11 @@
 .how-cleaning
-    padding-top: 80px
+    padding-top: 60px
     .basic
         .basic__content
             gap: 20px
             .basic__bottom
                 &.basic__bottom_slider
+                    display: none
                     .swiper
                         padding-top: 0
                         .basic__card-secondary
@@ -30,12 +31,14 @@
                                             flex-shrink: 0
                             .btn-primary
                                 position: absolute
-                                margin-top: 0
+                                margin-top: 30px
                                 color: $--white-primary
                                 border: 2px solid $--white-primary
                                 width: 100%
                                 width: 270px
                                 bottom: 30px
+                                transform: translateY(4px)
+
                     
 @media ( max-width: 1186px)
     .how-cleaning
@@ -44,5 +47,7 @@
             .basic__content
                 gap: 15px
                 .basic__bottom
+                    &.basic__bottom_slider
+                        display: flex
                     &.basic__bottom_column-auto
                         display: none

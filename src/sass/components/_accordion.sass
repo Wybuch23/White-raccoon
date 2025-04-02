@@ -139,7 +139,7 @@
             top: 20px
             right: 40px
 
-            transition: 0.2s ease-in
+            transition: 0.4s ease-in
         @media (hover: hover)
             &:hover
                 box-shadow: inset 0 0 0 2px $--grey-primary
@@ -168,11 +168,13 @@
         .accordion__item
             padding: 15px 30px
             height: 78px
+
+            gap: 15px
             .accordion__item_wrapped
                 display: flex
                 width: 100%
                 justify-content: space-between
-                // align-items: center
+                align-items: center
                 .accordion__title
                     margin-top: 0
                     max-width: 262px
@@ -183,4 +185,6 @@
                 width: 100%
             &.active
                 padding: 30px
-                height: 243px
+                // height: 243px
+                .accordion__item_wrapped
+                    // align-items: flex-ends
