@@ -1599,9 +1599,13 @@
   width: 100%;
   width: 270px;
   bottom: 30px;
-  transform: translateY(4px);
 }
 
+@media (max-width: 375px) {
+  .how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider .swiper .basic__card-secondary {
+    height: 540px;
+  }
+}
 @media (max-width: 1186px) {
   .how-cleaning {
     padding-top: 80px;
@@ -2004,6 +2008,9 @@
   }
 }
 .footer .container .basic.basic_desktop .contact-details .contact-details__organization-data .contact-details__item {
+  -webkit-touch-callout: none;
+  text-decoration: none;
+  color: inherit;
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
