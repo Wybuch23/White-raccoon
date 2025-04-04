@@ -25,6 +25,9 @@
                 display: flex
             .navigation__logo
                 margin-right: 272px
+                display: none
+                &.active
+                    display: block
             .navigation__navbar
                 display: flex
                 justify-content: space-between
@@ -69,6 +72,15 @@
         top: -80px
     &.focus-blue
         top: -80px
+    &.dark-theme
+        background-color: $--black-primary
+        .navigation
+            .navigation__button
+                button
+                    background-color: $--black-primary
+                    color: $--white-primary
+
+
 
 @media (max-width: 1185px)
     .header
@@ -76,3 +88,16 @@
             display: none
         .navigation__mobile
             display: flex
+        &.dark-theme
+            .navigation__mobile
+                .navigation__logo
+                    display: none
+                    &.active
+                        display: block
+                .navigation__button
+                    button
+                        background-color: $--black-primary
+                        color: $--white-primary
+                .navigation__wrapper_mobile
+                    background-color: $--black-primary
+                

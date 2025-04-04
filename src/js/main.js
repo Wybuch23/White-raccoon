@@ -322,6 +322,81 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// добавляет темную тему для хедера при пересечении dark section
+
+// const header = document.querySelector('.header');
+// const darkSection = document.querySelector('.dark-sections_wrapped');
+
+// window.addEventListener('scroll', () => {
+//   const sectionTop = darkSection.getBoundingClientRect().top;
+
+//   if (sectionTop <= 0) {
+//     header.classList.add('dark-theme');
+//   } else {
+//     header.classList.remove('dark-theme');
+//   }
+// });
+
+
+// const header = document.querySelector('.header'); // или .navigation__wrapper, если хочешь
+// const darkSection = document.querySelector('.dark-sections_wrapped');
+
+// const logoWhite = document.querySelector('.navigation__logo.white');
+// const logoDark = document.querySelector('.navigation__logo.dark');
+
+// window.addEventListener('scroll', () => {
+//   const sectionTop = darkSection.getBoundingClientRect().top;
+
+//   if (sectionTop <= 0) {
+//     header.classList.add('dark-theme');
+//     logoWhite.classList.remove('active');
+//     logoDark.classList.add('active');
+//   } else {
+//     header.classList.remove('dark-theme');
+//     logoWhite.classList.add('active');
+//     logoDark.classList.remove('active');
+//   }
+// });
+
+
+
+const header = document.querySelector('.header');
+const darkSection = document.querySelector('.dark-sections_wrapped');
+
+const logoWhite = document.querySelector('.navigation .navigation__logo.white');
+const logoDark = document.querySelector('.navigation .navigation__logo.dark');
+
+const logoWhiteMobile = document.querySelector('.navigation__mobile .navigation__logo.white');
+const logoDarkMobile = document.querySelector('.navigation__mobile .navigation__logo.dark');
+
+const navButtons = document.querySelectorAll('.navigation .btn-nav');
+
+window.addEventListener('scroll', () => {
+  const sectionTop = darkSection.getBoundingClientRect().top;
+
+  const inDarkSection = sectionTop <= 0;
+
+  // Добавляем или убираем тему для шапки
+  if (inDarkSection) {
+    header.classList.add('dark-theme');
+  } else {
+    header.classList.remove('dark-theme');
+  }
+
+  // Переключаем логотипы (десктоп)
+  logoWhite?.classList.toggle('active', !inDarkSection);
+  logoDark?.classList.toggle('active', inDarkSection);
+
+  // Переключаем логотипы (мобильная навигация)
+  logoWhiteMobile?.classList.toggle('active', !inDarkSection);
+  logoDarkMobile?.classList.toggle('active', inDarkSection);
+
+  // Кнопки навигации
+  navButtons.forEach(btn => {
+    btn.classList.toggle('btn-nav_dark', inDarkSection);
+  });
+});
+
 
 
 
