@@ -1190,6 +1190,10 @@
     background-color: #0D1824;
     color: #EBEFF0;
   }
+  .header.dark-theme .navigation__mobile .navigation__button a {
+    background-color: #0D1824;
+    color: #EBEFF0;
+  }
   .header.dark-theme .navigation__mobile .navigation__wrapper_mobile {
     background-color: #0D1824;
   }
