@@ -40,7 +40,7 @@
 
 let disableScrollDetection = false;
 
-// Экспортируем флаг для управления извне
+// Экспортируем флаг для управления извне убирает отслеживание скрола
 export function temporarilyDisableScrollHeader(ms = 1000) {
     disableScrollDetection = true;
     setTimeout(() => {

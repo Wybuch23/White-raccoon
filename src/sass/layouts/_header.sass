@@ -36,12 +36,21 @@
                 width: 100%
     .navigation__mobile
         display: none
-        justify-content: space-between
+        justify-content: flex-end
         align-items: center
         padding-top: 15px
+
+        position: relative
         .navigation__logo
+            position: absolute
             width: 118.148px
             height: 55px
+
+            left: 0
+
+            display: none
+            &.active
+                display: block
         .navigation__wrapper_mobile
             position: fixed
             display: none
@@ -90,10 +99,6 @@
             display: flex
         &.dark-theme
             .navigation__mobile
-                .navigation__logo
-                    display: none
-                    &.active
-                        display: block
                 .navigation__button
                     button
                         background-color: $--black-primary
