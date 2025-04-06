@@ -105,7 +105,7 @@
 //         }
 //     });
 
-//     // Клики по пунктам меню
+//     // Клики по пунктам мобильного меню
 //     const navLinks = nav.querySelectorAll(".btn-nav");
 //     navLinks.forEach((link) => {
 //         link.addEventListener("click", () => {
@@ -126,7 +126,23 @@
 //             }
 //         });
 //     });
+
+//     // Клики по пунктам десктоп меню
+//     const navPrimary = document.getElementById("nav-primary");
+//     if (navPrimary) {
+//         const desktopLinks = navPrimary.querySelectorAll(".btn-nav");
+//         desktopLinks.forEach((link) => {
+//             link.addEventListener("click", () => {
+//                 const header = document.querySelector(".header");
+//                 if (header && !header.classList.contains("hide")) {
+//                     header.classList.add("hide");
+//                     temporarilyDisableScrollHeader(1500);
+//                 }
+//             });
+//         });
+//     }
 // }
+
 
 import { fadeIn, fadeOut } from "./fade.js";
 import { temporarilyDisableScrollHeader } from "./scrollHeader.js";
@@ -168,7 +184,6 @@ export function setupMobileNavigation() {
                     iconClose.classList.remove("active");
                     iconDots.classList.add("active");
 
-                    // Скрываем хедер и отключаем scroll-логику на 1.5 секунды
                     const header = document.querySelector(".header");
                     if (header && !header.classList.contains("hide")) {
                         header.classList.add("hide");
@@ -179,10 +194,10 @@ export function setupMobileNavigation() {
         });
     });
 
-    // Клики по пунктам десктоп меню
-    const navPrimary = document.getElementById("nav-primary");
-    if (navPrimary) {
-        const desktopLinks = navPrimary.querySelectorAll(".btn-nav");
+    // ======= Десктопная часть =======
+    const desktopNav = document.querySelector(".navigation");
+    if (desktopNav) {
+        const desktopLinks = desktopNav.querySelectorAll(".btn-nav");
         desktopLinks.forEach((link) => {
             link.addEventListener("click", () => {
                 const header = document.querySelector(".header");
