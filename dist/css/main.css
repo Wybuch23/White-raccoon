@@ -1078,7 +1078,7 @@
     padding: 30px;
   }
   .accordion .accordion__item.active .accordion__item_wrapped .accordion__button {
-    display: none;
+    transition: none;
   }
 }
 .header {
