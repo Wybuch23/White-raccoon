@@ -1070,13 +1070,15 @@
   }
   .accordion .accordion__item .accordion__item_wrapped .accordion__button {
     position: static;
-    background: none;
   }
   .accordion .accordion__item .accordion__text {
     width: 100%;
   }
   .accordion .accordion__item.active {
     padding: 30px;
+  }
+  .accordion .accordion__item.active .accordion__item_wrapped .accordion__button {
+    display: none;
   }
 }
 .header {
