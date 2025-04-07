@@ -1519,6 +1519,8 @@
   }
   .why-cleaning .basic .basic__content .basic__top .basic__top-text {
     margin-top: 15px;
+  }
+  .why-cleaning .basic .basic__content .basic__top .basic__top-text.opacity-0 {
     opacity: 0;
   }
   .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap {
