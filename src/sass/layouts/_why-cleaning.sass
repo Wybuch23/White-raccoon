@@ -23,6 +23,14 @@
                 &.basic__top_mt120
                     margin-top: 120px
             .basic__bottom
+                &.basic__bottom_wrap
+                    margin-top: 60px
+                    margin-bottom: 90px
+                    gap: 15px
+                    position: relative
+                    .basic__card-secondary_mobile-stiky
+                        .basic__top-text_stiky
+                            display: none
                 &.mobile-slider-wrapper
                     display: none
                 margin-top: 80px
@@ -122,6 +130,7 @@
                         margin-top: 60px
                     .basic__top-text
                         margin-top: 15px
+                        opacity: 0
                 .basic__bottom
                     &.basic__bottom_wrap
                         margin-top: 60px
@@ -134,6 +143,19 @@
                             z-index: -1
                             position: sticky
                             top: 120px 
+                            .basic__top-text_stiky
+                                display: block
+                                +body-text-desktop
+                                position: absolute
+                                left: 0
+                                top: -155px
+                                @media (max-width: 412px)
+                                    top: -177px
+                                @media (max-width: 375px)
+                                    top: -145px
+                                @media (max-width: 370px)
+                                    top: -165px
+
                         .basic__card-secondary-img
                             display: none
                         .basic__mask-wrapped

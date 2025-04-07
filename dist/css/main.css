@@ -1384,6 +1384,15 @@
   margin-bottom: 120px;
   row-gap: 0;
 }
+.why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap {
+  margin-top: 60px;
+  margin-bottom: 90px;
+  gap: 15px;
+  position: relative;
+}
+.why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary_mobile-stiky .basic__top-text_stiky {
+  display: none;
+}
 .why-cleaning .basic .basic__content .basic__bottom.mobile-slider-wrapper {
   display: none;
 }
@@ -1510,6 +1519,7 @@
   }
   .why-cleaning .basic .basic__content .basic__top .basic__top-text {
     margin-top: 15px;
+    opacity: 0;
   }
   .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap {
     margin-top: 60px;
@@ -1525,6 +1535,40 @@
     position: sticky;
     top: 120px;
   }
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary_mobile-stiky .basic__top-text_stiky {
+    display: block;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    color: #0D1824;
+    position: absolute;
+    left: 0;
+    top: -155px;
+  }
+}
+@media (max-width: 1186px) and (max-width: 375px) {
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary_mobile-stiky .basic__top-text_stiky {
+    font-size: 16px;
+  }
+}
+@media (max-width: 1186px) and (max-width: 412px) {
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary_mobile-stiky .basic__top-text_stiky {
+    top: -177px;
+  }
+}
+@media (max-width: 1186px) and (max-width: 375px) {
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary_mobile-stiky .basic__top-text_stiky {
+    top: -145px;
+  }
+}
+@media (max-width: 1186px) and (max-width: 370px) {
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary_mobile-stiky .basic__top-text_stiky {
+    top: -165px;
+  }
+}
+@media (max-width: 1186px) {
   .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary-img {
     display: none;
   }

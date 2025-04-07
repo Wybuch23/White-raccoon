@@ -400,7 +400,24 @@ window.addEventListener('scroll', () => {
 
 
 
+// стики 
 
+// Находим элемент с классом .top-stiky
+const stickyBlock = document.querySelector('.top-stiky');
+
+// Расстояние от верхней части окна до блока, при котором он должен стать фиксированным
+const offset = stickyBlock.offsetTop; // Исходное положение блока
+
+window.addEventListener('scroll', () => {
+  // Проверяем, на каком расстоянии от верхней части окна находится stickyBlock
+  if (window.scrollY >= offset) {
+    // Если мы прокрутили достаточно, добавляем класс fixed
+    stickyBlock.classList.add('fixed');
+  } else {
+    // Убираем класс fixed, если блок ещё не достиг верхней части экрана
+    stickyBlock.classList.remove('fixed');
+  }
+});
 
 
 
