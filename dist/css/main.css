@@ -247,7 +247,7 @@
   display: grid;
   grid-template-rows: repeat(auto);
   row-gap: 80px;
-  padding-top: 34px;
+  padding-top: 29px;
 }
 .basic__top {
   display: grid;
@@ -517,6 +517,17 @@
   border: 1px solid #0D1824;
   background: #EBEFF0;
   position: relative;
+  transition: 0.2s ease-in;
+}
+.basic__card-secondary.focus-blue {
+  outline: 2px solid #14283D;
+  background: #0D1824;
+}
+.basic__card-secondary.focus-blue .basic__card-secondary-num {
+  color: #14283D;
+}
+.basic__card-secondary.focus-blue .basic__card-secondary-text {
+  color: #14283D;
 }
 .basic__card-secondary .basic__card-secondary-num {
   font-family: "TT Fellows Trial Variable";
@@ -1182,6 +1193,11 @@
   background-color: #0D1824;
   color: #EBEFF0;
 }
+.header.dark-theme .navigation .navigation__button button:hover {
+  transition: none;
+  background: #EBEFF0;
+  color: #0D1824;
+}
 
 @media (max-width: 1185px) {
   .header .navigation {
@@ -1660,6 +1676,7 @@
   padding-top: 60px;
 }
 .how-cleaning .basic .basic__content {
+  padding-top: 58px;
   gap: 20px;
 }
 .how-cleaning .basic .basic__content .basic__bottom.basic__bottom_slider {
@@ -1740,6 +1757,7 @@
   margin-top: 60px;
   border-radius: 32px 32px 0 0;
   background: #0D1824;
+  position: relative;
 }
 .dark-sections_wrapped .how-cleaning .basic .basic__sidebar .basic__sticky-title {
   color: #93A0AD;
@@ -1747,6 +1765,7 @@
 
 .our-works {
   margin-top: 160px;
+  overflow: hidden;
 }
 .our-works .basic .basic__sidebar {
   position: relative;
@@ -1755,6 +1774,9 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+.our-works .basic .basic__content {
+  padding-top: 0;
 }
 .our-works .basic .basic__content .basic__bottom {
   margin-top: 80px;
@@ -2063,7 +2085,7 @@
   margin-top: 160px;
 }
 .faq .basic .basic__content {
-  padding-top: 68px;
+  padding-top: 58px;
 }
 
 @media (max-width: 1186px) {

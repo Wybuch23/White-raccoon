@@ -9,6 +9,16 @@
     border: 1px solid $--black-primary
     background: $--white-primary
     position: relative
+
+    +transition-focus-blue
+    &.focus-blue
+        outline: 2px solid $--black-secondary
+        background: $--black-primary
+        .basic__card-secondary-num
+            color: $--black-secondary
+        .basic__card-secondary-text
+            color: $--black-secondary
+
     .basic__card-secondary-num
         +secondary-title-desktop
     .basic__card-secondary-text

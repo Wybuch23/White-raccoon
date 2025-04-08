@@ -38,7 +38,7 @@
 export function setupFocusBlue() {
     const allCards = document.querySelectorAll(".basic__card-primary");
     const header = document.querySelector(".header");
-    const targetElementsSelector = ".header, .basic__card-primary, .basic__card-img, .basic__card-title, .basic__sticky-title, .basic__top-title, body, .basic__card-icon, .basic__card-title, .basic__card-text, .card-tabs-img, .tabs-control__tub, .btn-primary, .card-tabs-img__text";
+    const targetElementsSelector = ".basic__card-secondary, .header, .basic__card-primary, .basic__card-img, .basic__card-title, .basic__sticky-title, .basic__top-title, body, .basic__card-icon, .basic__card-title, .basic__card-text, .card-tabs-img, .tabs-control__tub, .btn-primary, .card-tabs-img__text";
 
     const getTargetElements = () => document.querySelectorAll(targetElementsSelector);
 
