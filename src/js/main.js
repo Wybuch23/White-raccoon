@@ -399,5 +399,33 @@ window.addEventListener('scroll', () => {
 
 
 
+// парралакс 
+
+const parallax = document.querySelector('.dark-sections__parallax-bg');
+
+window.addEventListener('scroll', () => {
+  const rect = parallax.getBoundingClientRect();
+
+  // Сколько пикселей от нижней части экрана до верхней части блока
+  const progress = 1 - rect.top / window.innerHeight;
+
+  // Ограничим от 0 до 1
+  const clampedProgress = Math.max(0, Math.min(progress, 1));
+
+  // Коэффициент скорости. Уменьшаем его, чтобы блок двигался медленнее
+  const speedFactor = 0.5; // чем меньше значение, тем медленнее движение
+
+  // Двигаем блок вверх на maxMove пикселей, умножаем на speedFactor для замедления
+  const maxMove = 300; // Максимальный сдвиг
+  const moveY = clampedProgress * maxMove * speedFactor;
+
+  parallax.style.transform = `translateY(-${moveY}px)`;
+});
+
+
+
+
+
+
 
 
