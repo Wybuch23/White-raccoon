@@ -1761,19 +1761,20 @@
   .group-images {
     margin-top: 60px;
   }
-  .group-images .group-images_wrapped {
+  .group-images .container .group-images_wrapped {
     display: none;
   }
-  .group-images .group-images_wrapped-mobile {
+  .group-images .container .group-images_wrapped-mobile {
     display: flex;
     flex-direction: column;
   }
-  .group-images .group-images_wrapped-mobile .group-images__sticky-group {
+  .group-images .container .group-images_wrapped-mobile .group-images__sticky-group {
     width: 100%;
     position: sticky;
     top: -100px;
+    z-index: -1;
   }
-  .group-images .group-images_wrapped-mobile .group-images__sticky-group .basic__top-text {
+  .group-images .container .group-images_wrapped-mobile .group-images__sticky-group .basic__top-text {
     margin-top: 15px;
     font-family: Roboto;
     font-size: 18px;
@@ -1784,26 +1785,23 @@
   }
 }
 @media (max-width: 1186px) and (max-width: 375px) {
-  .group-images .group-images_wrapped-mobile .group-images__sticky-group .basic__top-text {
+  .group-images .container .group-images_wrapped-mobile .group-images__sticky-group .basic__top-text {
     font-size: 16px;
   }
 }
 @media (max-width: 1186px) {
-  .group-images .group-images_wrapped-mobile .group-images__sticky-group .group-images__back-img {
+  .group-images .container .group-images_wrapped-mobile .group-images__sticky-group .group-images__back-img {
     margin-top: 60px;
-    overflow: hidden;
     width: 795px;
     height: 368px;
     flex-shrink: 0;
     transform: translateX(-50px);
-    z-index: -1;
   }
-  .group-images .group-images_wrapped-mobile .group-images__sticky-group .group-images__back-img img {
-    z-index: -1;
+  .group-images .container .group-images_wrapped-mobile .group-images__sticky-group .group-images__back-img img {
     width: 100%;
     height: 100%;
   }
-  .group-images .group-images_wrapped-mobile .group-images__front-img {
+  .group-images .container .group-images_wrapped-mobile .group-images__front-img {
     width: 478px;
     height: 375px;
     z-index: 1;

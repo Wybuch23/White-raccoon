@@ -29,31 +29,30 @@
 @media (max-width: 1186px)
     .group-images
         margin-top: 60px
-        .group-images_wrapped
-            display: none
-        .group-images_wrapped-mobile
-            display: flex
-            flex-direction: column
-            .group-images__sticky-group
-                width: 100%
-                position: sticky
-                top: -100px
-                .basic__top-text
-                    margin-top: 15px
-                    +body-text-desktop
-                .group-images__back-img
-                    margin-top: 60px
-                    overflow: hidden
-                    width: 795px
-                    height: 368px
-                    flex-shrink: 0
-                    transform: translateX(-50px)
+        .container
+            .group-images_wrapped
+                display: none
+            .group-images_wrapped-mobile
+                display: flex
+                flex-direction: column
+                .group-images__sticky-group
+                    width: 100%
+                    position: sticky
+                    top: -100px
                     z-index: -1
-                    img
-                        z-index: -1
-                        width: 100%
-                        height: 100%
-            .group-images__front-img
-                width: 478px
-                height: 375px
-                z-index: 1
+                    .basic__top-text
+                        margin-top: 15px
+                        +body-text-desktop
+                    .group-images__back-img
+                        margin-top: 60px
+                        width: 795px
+                        height: 368px
+                        flex-shrink: 0
+                        transform: translateX(-50px)
+                        img
+                            width: 100%
+                            height: 100%
+                .group-images__front-img
+                    width: 478px
+                    height: 375px
+                    z-index: 1
