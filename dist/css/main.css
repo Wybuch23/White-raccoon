@@ -1796,6 +1796,7 @@
     height: 368px;
     flex-shrink: 0;
     transform: translateX(-50px);
+    z-index: -1;
   }
   .group-images .group-images_wrapped-mobile .group-images__sticky-group .group-images__back-img img {
     width: 100%;
