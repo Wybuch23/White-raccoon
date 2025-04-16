@@ -123,8 +123,10 @@
                 .desktop-slider-wrapper
                     display: none
                 .basic__top
+                    &.sticky-display-none
+                        display: none
                     &.basic__top_mt90
-                        margin-top: 90px
+                        margin-top: 60px
 
                     .basic__top-title_second
                         margin-top: 60px
@@ -144,19 +146,6 @@
                             z-index: -1
                             position: sticky
                             top: 120px 
-                            .basic__top-text_stiky
-                                display: block
-                                +body-text-desktop
-                                position: absolute
-                                left: 0
-                                top: -155px
-                                @media (max-width: 412px)
-                                    top: -177px
-                                @media (max-width: 375px)
-                                    top: -145px
-                                @media (max-width: 370px)
-                                    top: -165px
-
                         .basic__card-secondary-img
                             display: none
                         .basic__mask-wrapped
