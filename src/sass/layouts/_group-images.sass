@@ -1,5 +1,7 @@
 .group-images
     margin-top: 80px
+    .container
+        overflow: clip 
     .group-images_wrapped-mobile
         display: none
     .group-images_wrapped
@@ -35,6 +37,10 @@
             .group-images_wrapped-mobile
                 display: flex
                 flex-direction: column
+
+                position: relative
+
+                padding-bottom: 150px
                 .group-images__sticky-group
                     width: 100%
                     position: sticky
@@ -44,15 +50,23 @@
                         margin-top: 15px
                         +body-text-desktop
                     .group-images__back-img
-                        margin-top: 60px
-                        width: 795px
-                        height: 368px
-                        flex-shrink: 0
-                        transform: translateX(-50px)
+                        margin-top: 30px
+                        width: 738.486px
+                        height: 370px
                         img
                             width: 100%
                             height: 100%
                 .group-images__front-img
-                    width: 478px
-                    height: 375px
+                    position: absolute
+                    bottom: 0
+                    transform: translateX(30px)
+                    width: 497px
+                    height: 390px
                     z-index: 1
+                    img
+                        width: 100%
+                        height: 100%
+                .test-box
+                    opacity: 0.2
+                    background: red
+                    height: 100px
