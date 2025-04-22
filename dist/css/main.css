@@ -1557,6 +1557,7 @@
   .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__bottom_wpapped-sticky {
     position: sticky;
     top: -30px;
+    z-index: -1;
   }
   .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__top-text {
     font-family: Roboto;
