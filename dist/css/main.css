@@ -1366,6 +1366,9 @@
 .why-cleaning {
   margin-top: 160px;
 }
+.why-cleaning .basic__top-text_desktop-none {
+  display: none;
+}
 .why-cleaning .basic .basic__sidebar {
   position: relative;
 }
@@ -1543,14 +1546,35 @@
     margin-top: 15px;
   }
   .why-cleaning .basic .basic__content .basic__top .basic__top-text.opacity-0 {
-    opacity: 0;
+    display: none;
   }
   .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap {
-    margin-top: 60px;
+    margin-top: 15px;
     margin-bottom: 90px;
     gap: 15px;
     position: relative;
   }
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__bottom_wpapped-sticky {
+    position: sticky;
+    top: -30px;
+  }
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__top-text {
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    color: #0D1824;
+    margin-bottom: 60px;
+    display: block;
+  }
+}
+@media (max-width: 1186px) and (max-width: 375px) {
+  .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__top-text {
+    font-size: 16px;
+  }
+}
+@media (max-width: 1186px) {
   .why-cleaning .basic .basic__content .basic__bottom.basic__bottom_wrap .basic__card-secondary {
     z-index: 1;
   }

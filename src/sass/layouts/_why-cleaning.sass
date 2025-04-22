@@ -1,5 +1,7 @@
 .why-cleaning
     margin-top: 160px
+    .basic__top-text_desktop-none
+        display: none
     .basic
         .basic__sidebar
             position: relative
@@ -135,13 +137,20 @@
                     .basic__top-text
                         margin-top: 15px
                         &.opacity-0
-                            opacity: 0
+                            display: none
                 .basic__bottom
                     &.basic__bottom_wrap
-                        margin-top: 60px
+                        margin-top: 15px
                         margin-bottom: 90px
                         gap: 15px
                         position: relative
+                        .basic__bottom_wpapped-sticky
+                            position: sticky
+                            top: -30px
+                        .basic__top-text
+                            +body-text-desktop
+                            margin-bottom: 60px
+                            display: block
                         .basic__card-secondary
                             z-index: 1
                         .basic__card-secondary_mobile-stiky
