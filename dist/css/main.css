@@ -1218,6 +1218,20 @@
     background-color: #0D1824;
   }
 }
+.hero .hero_mobile {
+  display: none;
+}
+.hero .hero_desktop .swiper-wrapper {
+  display: flex;
+}
+.hero .hero_desktop .swiper-wrapper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
 .cleaning {
   margin-top: 160px;
 }
