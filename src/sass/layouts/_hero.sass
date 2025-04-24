@@ -1,12 +1,45 @@
+// .hero
+//     .hero_mobile
+//         display: none
+//     .hero__desktop
+//         height: 100vh
+//         width: 300vw
+//         position: sticky
+//         top: 0
+//         overflow: hidden
+//         .hero__scroll
+//             display: flex
+//             height: 100%
+//             .scroll-slide
+//                 width: 100vw
+//                 height: 100vh
+//                 flex-shrink: 0
+//                 display: flex
+//                 align-items: center
+//                 justify-content: center
+//                 font-size: 3rem
+//                 background: #ccc
+
+
 .hero
-    .hero_mobile
-        display: none
-    .hero_desktop
-        .swiper-wrapper
-            display: flex
-            .swiper-slide
-                display: flex
-                justify-content: center
-                align-items: center
-                width: 100vw
-                height: 100vh
+  position: relative
+  height: 300vh // высота на 3 экрана, т.к. 3 слайда
+  .hero__desktop
+    position: sticky
+    top: 0
+    height: 100vh
+    overflow: hidden
+    .hero__scroll
+      display: flex
+      height: 100%
+      width: 300vw // 3 слайда
+      .scroll-slide
+        flex: 0 0 100vw
+        height: 100vh
+        &:nth-child(1)
+            background: red
+        &:nth-child(2)
+            background: green
+        &:nth-child(3)
+            background: blue
+            

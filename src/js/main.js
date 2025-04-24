@@ -427,48 +427,22 @@ window.addEventListener('scroll', () => {
 
 
 
-const swiperContainer = document.querySelector('.hero_desktop');
+const scrollContainer = document.querySelector('.hero__scroll');
+const section = document.querySelector('.hero');
 
-const swiper = new Swiper(swiperContainer, {
-  direction: 'horizontal',
-  slidesPerView: 1,
-  loop: false,
-  spaceBetween: 0,
-  speed: 800,
-  effect: 'slide',
-  mousewheel: {
-    releaseOnEdges: true,
-    sensitivity: 1
-  },
-  on: {
-    slideChange: function () {
-      checkSwiperScrollControl(this);
-    }
+window.addEventListener('scroll', () => {
+  const sectionTop = section.offsetTop;
+  const scrollY = window.scrollY;
+  const relativeY = scrollY - sectionTop;
+
+  // Ограничим прокрутку только на высоте 2 экранов (первый + два слайда)
+  const maxScroll = window.innerHeight * 2;
+
+  if (relativeY >= 0 && relativeY <= maxScroll) {
+    const progress = relativeY / window.innerHeight;
+    scrollContainer.style.transform = `translateX(-${progress * 100}vw)`;
   }
 });
-
-function checkSwiperScrollControl(swiperInstance) {
-  // Следим за скроллом страницы
-  window.addEventListener('scroll', () => {
-    const rect = swiperContainer.getBoundingClientRect();
-    const isAtTop = rect.top === 0;
-
-    if (swiperInstance.activeIndex === swiperInstance.slides.length - 1) {
-      if (isAtTop) {
-        swiperInstance.mousewheel.enable(); // можно скроллить вверх к предыдущим слайдам
-      } else {
-        swiperInstance.mousewheel.disable(); // пока скроллим обычную страницу вниз
-      }
-    } else {
-      swiperInstance.mousewheel.enable(); // для всех предыдущих слайдов mousewheel активен
-    }
-  });
-}
-
-
-
-
-
 
 
 

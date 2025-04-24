@@ -1218,18 +1218,33 @@
     background-color: #0D1824;
   }
 }
-.hero .hero_mobile {
-  display: none;
+.hero {
+  position: relative;
+  height: 300vh;
 }
-.hero .hero_desktop .swiper-wrapper {
-  display: flex;
-}
-.hero .hero_desktop .swiper-wrapper .swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
+.hero .hero__desktop {
+  position: sticky;
+  top: 0;
   height: 100vh;
+  overflow: hidden;
+}
+.hero .hero__desktop .hero__scroll {
+  display: flex;
+  height: 100%;
+  width: 300vw;
+}
+.hero .hero__desktop .hero__scroll .scroll-slide {
+  flex: 0 0 100vw;
+  height: 100vh;
+}
+.hero .hero__desktop .hero__scroll .scroll-slide:nth-child(1) {
+  background: red;
+}
+.hero .hero__desktop .hero__scroll .scroll-slide:nth-child(2) {
+  background: green;
+}
+.hero .hero__desktop .hero__scroll .scroll-slide:nth-child(3) {
+  background: blue;
 }
 
 .cleaning {
