@@ -1,45 +1,78 @@
-// .hero
-//     .hero_mobile
-//         display: none
-//     .hero__desktop
-//         height: 100vh
-//         width: 300vw
-//         position: sticky
-//         top: 0
-//         overflow: hidden
-//         .hero__scroll
-//             display: flex
-//             height: 100%
-//             .scroll-slide
-//                 width: 100vw
-//                 height: 100vh
-//                 flex-shrink: 0
-//                 display: flex
-//                 align-items: center
-//                 justify-content: center
-//                 font-size: 3rem
-//                 background: #ccc
-
-
 .hero
-  position: relative
-  height: 300vh // высота на 3 экрана, т.к. 3 слайда
-  .hero__desktop
-    position: sticky
-    top: 0
-    height: 100vh
-    overflow: hidden
-    .hero__scroll
-      display: flex
-      height: 100%
-      width: 300vw // 3 слайда
-      .scroll-slide
-        flex: 0 0 100vw
-        height: 100vh
-        &:nth-child(1)
-            background: red
-        &:nth-child(2)
-            background: green
-        &:nth-child(3)
-            background: blue
-            
+	.hero__desktop
+		position: relative
+		height: 310vh
+		.hero__slide-logo
+			position: absolute
+			top: 0
+			width: 100vw
+			height: 100vh
+			img
+				width: 516.189px
+				height: 405px
+		.hero__scroll
+			display: flex
+			position: sticky
+			top: 0
+			overflow: hidden
+			width: 300vw
+			height: 100vh
+
+			transition: transform 0.1s ease-out
+			.hero__scroll-slide
+				position: relative
+				width: 100vw
+				height: 100vh
+				.hero__wrapped-top
+					width: 1186px
+					display: flex
+					flex-direction: column
+					align-items: center
+					gap: 40px
+
+					position: absolute
+					top: 160px
+					left: 50%
+					transform: translateX(-50%)
+					.hero__title
+						+hero-title-desktop
+						color: $--grey-primary
+						text-align: center
+						letter-spacing: -3.36px
+				.hero__wrapped-bottom
+					width: 1186px
+					height: 405px
+					position: absolute
+					bottom: 0
+					left: 50%
+					transform: translateX(-50%)
+					.hero__img_left
+						position: absolute
+						bottom: 10px
+						left: -40px
+						img
+							width: 512.815px
+							height: 315px
+					.hero__img_right
+						position: absolute
+						bottom: 40px
+						right: 0
+						img
+							width: 536.686px
+							height: 240px
+					.hero__img_center-second
+						position: absolute
+						bottom: 30px
+						left: 50%
+						transform: translateX(-50%)
+						img
+							width: 998px
+							height: 490px
+					.hero__img_center-third
+						position: absolute
+						bottom: 20px
+						left: 50%
+						transform: translateX(-50%)
+						img
+							width: 1013px
+							height: 320px

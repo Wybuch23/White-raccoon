@@ -427,22 +427,80 @@ window.addEventListener('scroll', () => {
 
 
 
-const scrollContainer = document.querySelector('.hero__scroll');
-const section = document.querySelector('.hero');
+// document.addEventListener('scroll', () => {
+//   const section = document.querySelector('.hero__desktop');
+//   const scrollContainer = document.querySelector('.hero__scroll');
+//   const sectionTop = section.offsetTop;
+//   const scrollY = window.scrollY;
+//   const viewportHeight = window.innerHeight;
+//   const maxScroll = viewportHeight * 2; // только 2 экрана для анимации
 
-window.addEventListener('scroll', () => {
+//   if (scrollY >= sectionTop && scrollY <= sectionTop + maxScroll) {
+//     const scrollDistance = scrollY - sectionTop;
+//     const progress = scrollDistance / maxScroll;
+//     scrollContainer.style.transform = `translateX(-${progress * 200}vw)`;
+//   }
+
+//   // Зафиксировать последний слайд, если проскроллили дальше
+//   if (scrollY > sectionTop + maxScroll) {
+//     scrollContainer.style.transform = `translateX(-200vw)`;
+//   }
+// });
+
+
+
+
+document.addEventListener('scroll', () => {
+  const section = document.querySelector('.hero__desktop');
+  const scrollContainer = document.querySelector('.hero__scroll');
   const sectionTop = section.offsetTop;
   const scrollY = window.scrollY;
-  const relativeY = scrollY - sectionTop;
+  const viewportHeight = window.innerHeight;
+  const maxScroll = viewportHeight * 2; // только 2 экрана для анимации
 
-  // Ограничим прокрутку только на высоте 2 экранов (первый + два слайда)
-  const maxScroll = window.innerHeight * 2;
+  // Проверяем, находится ли прокрутка в пределах секции
+  if (scrollY >= sectionTop && scrollY <= sectionTop + maxScroll) {
+    const scrollDistance = scrollY - sectionTop;
+    const progress = scrollDistance / maxScroll;
 
-  if (relativeY >= 0 && relativeY <= maxScroll) {
-    const progress = relativeY / window.innerHeight;
-    scrollContainer.style.transform = `translateX(-${progress * 100}vw)`;
+    // Устанавливаем движение слайдов
+    scrollContainer.style.transform = `translateX(-${Math.min(progress * 200, 200)}vw)`; // Останавливаем на 200vw для последнего слайда
+  }
+
+  // Если прокручено больше, чем два экрана, фиксируем последний слайд
+  if (scrollY > sectionTop + maxScroll) {
+    scrollContainer.style.transform = `translateX(-200vw)`; // Последний слайд фиксируется на 200vw
   }
 });
+
+
+// document.addEventListener('scroll', () => {
+//   const section = document.querySelector('.hero__desktop');
+//   const scrollContainer = document.querySelector('.hero__scroll');
+//   const sectionTop = section.offsetTop;
+//   const scrollY = window.scrollY;
+//   const viewportHeight = window.innerHeight;
+//   const maxScroll = viewportHeight * 3; // 3 экрана для всей секции
+
+//   // Проверяем, находится ли скролл в пределах секции
+//   if (scrollY >= sectionTop && scrollY <= sectionTop + maxScroll) {
+//     const scrollDistance = scrollY - sectionTop;
+//     const sectionHeight = viewportHeight; // Высота одного экрана
+//     const totalSections = 3; // Всего три секции
+
+//     // Рассчитываем на какой секции сейчас находится скролл
+//     const currentSection = Math.floor(scrollDistance / sectionHeight);
+
+//     // Двигаем слайд в зависимости от секции
+//     scrollContainer.style.transform = `translateX(-${currentSection * 100}vw)`;
+//   }
+
+//   // Фиксируем последний слайд, если скролл больше, чем 3 экрана
+//   if (scrollY > sectionTop + maxScroll) {
+//     scrollContainer.style.transform = `translateX(-200vw)`; // Последний слайд фиксируется
+//   }
+// });
+
 
 
 

@@ -1218,33 +1218,109 @@
     background-color: #0D1824;
   }
 }
-.hero {
-  position: relative;
-  height: 300vh;
-}
 .hero .hero__desktop {
-  position: sticky;
+  position: relative;
+  height: 310vh;
+}
+.hero .hero__desktop .hero__slide-logo {
+  position: absolute;
   top: 0;
+  width: 100vw;
   height: 100vh;
-  overflow: hidden;
+}
+.hero .hero__desktop .hero__slide-logo img {
+  width: 516.189px;
+  height: 405px;
 }
 .hero .hero__desktop .hero__scroll {
   display: flex;
-  height: 100%;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
   width: 300vw;
+  height: 100vh;
+  transition: transform 0.1s ease-out;
 }
-.hero .hero__desktop .hero__scroll .scroll-slide {
-  flex: 0 0 100vw;
+.hero .hero__desktop .hero__scroll .hero__scroll-slide {
+  position: relative;
+  width: 100vw;
   height: 100vh;
 }
-.hero .hero__desktop .hero__scroll .scroll-slide:nth-child(1) {
-  background: red;
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top {
+  width: 1186px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
 }
-.hero .hero__desktop .hero__scroll .scroll-slide:nth-child(2) {
-  background: green;
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top .hero__title {
+  font-family: "TT Fellows Trial Variable";
+  font-size: 84px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 100%;
+  letter-spacing: -1.68px;
+  text-transform: uppercase;
+  color: #0D1824;
+  color: #93A0AD;
+  text-align: center;
+  letter-spacing: -3.36px;
 }
-.hero .hero__desktop .hero__scroll .scroll-slide:nth-child(3) {
-  background: blue;
+@media (max-width: 1185px) {
+  .hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top .hero__title {
+    font-size: 48px;
+    letter-spacing: -1.2px;
+  }
+}
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom {
+  width: 1186px;
+  height: 405px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_left {
+  position: absolute;
+  bottom: 10px;
+  left: -40px;
+}
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_left img {
+  width: 512.815px;
+  height: 315px;
+}
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_right {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+}
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_right img {
+  width: 536.686px;
+  height: 240px;
+}
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-second {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-second img {
+  width: 998px;
+  height: 490px;
+}
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-third {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-third img {
+  width: 1013px;
+  height: 320px;
 }
 
 .cleaning {
