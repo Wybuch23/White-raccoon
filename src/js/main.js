@@ -501,6 +501,29 @@ document.addEventListener('scroll', () => {
 //   }
 // });
 
+// logo slide 
+
+document.addEventListener('scroll', () => {
+  const wrapper = document.querySelector('.hero__wrapped-logo');
+  const slide = document.querySelector('.hero__slide-logo');
+  const logo = document.querySelector('.hero__logo-img');
+
+  if (!wrapper || !slide || !logo) return;
+
+  const wrapperRect = wrapper.getBoundingClientRect();
+  const slideRect = slide.getBoundingClientRect();
+
+  const start = wrapperRect.top;
+  const end = wrapperRect.bottom - slideRect.height;
+
+  // Прокрутка внутри видимой части контейнера
+  const scrollProgress = Math.min(Math.max((0 - start) / (end - start), 0), 1);
+
+  const maxTranslate = -270; // пикселей
+  const translateX = scrollProgress * maxTranslate;
+
+  logo.style.transform = `translateX(${translateX}px)`;
+});
 
 
 

@@ -1,5 +1,5 @@
 .cleaning
-    margin-top: 160px
+    margin-top: 80px
     .speech-bubble__card
         .speech-bubble__card_top
             position: fixed
@@ -65,12 +65,18 @@
         opacity: 0
         transition: opacity 0.2s ease-in
 
-@media ( max-width: 375px)
+@media (max-width: 1440px)
     .cleaning
-        .mobile-card_primary
-            .mobile-card__content
-                .mobile-card__text
-                    height: 60px
+        margin-top: 40px
+        .speech-bubble__card
+            .speech-bubble__card_top
+                top: 40px
+            .speech-bubble__card_bottom
+                bottom: 30px
+
+@media (max-width: 1280px)
+    .cleaning
+        margin-top: 20px
 
 @media ( max-width: 1186px)
     .cleaning
@@ -78,12 +84,9 @@
             .basic__content
                 row-gap: 30px
 
-
-@media (max-width: 1440px)
+@media ( max-width: 375px)
     .cleaning
-        margin-top: 120px
-        .speech-bubble__card
-            .speech-bubble__card_top
-                top: 40px
-            .speech-bubble__card_bottom
-                bottom: 30px
+        .mobile-card_primary
+            .mobile-card__content
+                .mobile-card__text
+                    height: 60px

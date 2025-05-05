@@ -1,7 +1,25 @@
 .hero
 	.hero__desktop
 		position: relative
-		height: 310vh
+		height: 300vh
+		.hero__wrapped-logo
+			position: absolute
+			width: 100%
+			height: 100%
+			.hero__slide-logo
+				width: 1186px
+				height: 100vh
+				position: sticky
+				top: 0
+				margin: 0 auto
+				z-index: 1
+				pointer-events: none
+				.hero__logo-img
+					position: absolute
+					bottom: 80px
+					right: 0
+					width: 516.189px
+					height: 405px
 		.hero__slide-logo
 			position: absolute
 			top: 0
@@ -43,9 +61,10 @@
 					width: 1186px
 					height: 405px
 					position: absolute
-					bottom: 0
+					bottom: 80px
 					left: 50%
 					transform: translateX(-50%)
+					pointer-events: none
 					.hero__img_left
 						position: absolute
 						bottom: 10px
@@ -55,11 +74,13 @@
 							height: 315px
 					.hero__img_right
 						position: absolute
-						bottom: 40px
-						right: 0
+						bottom: 20px
+						right: -39.69px
+						width: 536.686px
+						height: 240px
 						img
-							width: 536.686px
-							height: 240px
+							width: 100%
+							height: 100%
 					.hero__img_center-second
 						position: absolute
 						bottom: 30px
@@ -76,3 +97,23 @@
 						img
 							width: 1013px
 							height: 320px
+
+@media ( max-width: 1440px)
+	.hero
+		.hero__desktop
+			.hero__scroll
+				.hero__scroll-slide
+					.hero__wrapped-top
+						top: 120px
+					.hero__wrapped-bottom
+						bottom: 40px
+
+@media ( max-width: 1280px)
+	.hero
+		.hero__desktop
+			.hero__scroll
+				.hero__scroll-slide
+					.hero__wrapped-top
+						top: 100px
+					.hero__wrapped-bottom
+						bottom: 20px
