@@ -48,20 +48,19 @@ export function setupMessageBubbles() {
             clearTimeout(enterTimeout);
             leaveTimeout = setTimeout(() => {
                 bubbleCard.style.opacity = "0";
-                setTimeout(() => bubbleCard.style.display = "none", 200);
-            }, 200);
-        });
-
-        // Добавляем отслеживание выхода триггера из области видимости
-        const observer = new IntersectionObserver(([entry]) => {
-            if (!entry.isIntersecting) {
-                // Скрываем карточку, если элемент вышел из области видимости
-                clearTimeout(enterTimeout);
-                clearTimeout(leaveTimeout);
-                bubbleCard.style.opacity = "0";
                 setTimeout(() => {
                     bubbleCard.style.display = "none";
                 }, 200);
+            }, 200);
+        });
+
+        // Наблюдатель скрывает карточку, если триггер уходит с экрана
+        const observer = new IntersectionObserver(([entry]) => {
+            if (!entry.isIntersecting) {
+                clearTimeout(enterTimeout);
+                clearTimeout(leaveTimeout);
+                bubbleCard.style.opacity = "0";
+                bubbleCard.style.display = "none"; // мгновенно скрываем
             }
         }, {
             threshold: 0.01
