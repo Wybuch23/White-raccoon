@@ -1,5 +1,6 @@
 .hero
 	.hero__desktop
+		overflow-x: clip
 		position: relative
 		height: 300vh
 		.hero__wrapped-logo
@@ -32,7 +33,7 @@
 			display: flex
 			position: sticky
 			top: 0
-			overflow: hidden
+			overflow: clip
 			width: 300vw
 			height: 100vh
 
@@ -117,3 +118,8 @@
 						top: 100px
 					.hero__wrapped-bottom
 						bottom: 20px
+
+@media ( max-width: 1186px)
+	.hero
+		.hero__desktop
+			display: none

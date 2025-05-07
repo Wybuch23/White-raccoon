@@ -776,7 +776,7 @@
 .card-tabs-img__wrapped.card-tabs-img__wrapped_right {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .card-tabs-img__wrapped.card-tabs-img__wrapped_right .card-tabs-img__img {
   width: 342px;
@@ -1219,6 +1219,7 @@
   }
 }
 .hero .hero__desktop {
+  overflow-x: clip;
   position: relative;
   height: 300vh;
 }
@@ -1257,7 +1258,7 @@
   display: flex;
   position: sticky;
   top: 0;
-  overflow: hidden;
+  overflow: clip;
   width: 300vw;
   height: 100vh;
   transition: transform 0.1s ease-out;
@@ -1361,6 +1362,11 @@
   }
   .hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom {
     bottom: 20px;
+  }
+}
+@media (max-width: 1186px) {
+  .hero .hero__desktop {
+    display: none;
   }
 }
 .cleaning {
@@ -1917,6 +1923,7 @@
   position: absolute;
   left: 40px;
   top: -40px;
+  z-index: 1;
 }
 .group-images .group-images_wrapped .group-images__back-img img {
   width: 100%;
