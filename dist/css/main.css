@@ -1218,17 +1218,17 @@
     background-color: #0D1824;
   }
 }
-.hero .hero__desktop {
+.hero-desktop {
   overflow-x: clip;
   position: relative;
   height: 300vh;
 }
-.hero .hero__desktop .hero__wrapped-logo {
+.hero-desktop .hero__wrapped-logo {
   position: absolute;
   width: 100%;
   height: 100%;
 }
-.hero .hero__desktop .hero__wrapped-logo .hero__slide-logo {
+.hero-desktop .hero__wrapped-logo .hero__slide-logo {
   width: 1186px;
   height: 100vh;
   position: sticky;
@@ -1237,24 +1237,14 @@
   z-index: 1;
   pointer-events: none;
 }
-.hero .hero__desktop .hero__wrapped-logo .hero__slide-logo .hero__logo-img {
+.hero-desktop .hero__wrapped-logo .hero__slide-logo .hero__logo-img {
   position: absolute;
   bottom: 80px;
   right: 0;
   width: 516.189px;
   height: 405px;
 }
-.hero .hero__desktop .hero__slide-logo {
-  position: absolute;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-}
-.hero .hero__desktop .hero__slide-logo img {
-  width: 516.189px;
-  height: 405px;
-}
-.hero .hero__desktop .hero__scroll {
+.hero-desktop .hero__scroll {
   display: flex;
   position: sticky;
   top: 0;
@@ -1263,12 +1253,12 @@
   height: 100vh;
   transition: transform 0.1s ease-out;
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide {
+.hero-desktop .hero__scroll .hero__scroll-slide {
   position: relative;
   width: 100vw;
   height: 100vh;
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top {
   width: 1186px;
   display: flex;
   flex-direction: column;
@@ -1279,7 +1269,7 @@
   left: 50%;
   transform: translateX(-50%);
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top .hero__title {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top .hero__title {
   font-family: "TT Fellows Trial Variable";
   font-size: 84px;
   font-style: normal;
@@ -1293,12 +1283,17 @@
   letter-spacing: -3.36px;
 }
 @media (max-width: 1185px) {
-  .hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top .hero__title {
-    font-size: 48px;
-    letter-spacing: -1.2px;
+  .hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top .hero__title {
+    font-size: 42px;
+    letter-spacing: -1.52px;
   }
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom {
+@media (max-width: 375px) {
+  .hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top .hero__title {
+    font-size: 38px;
+  }
+}
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom {
   width: 1186px;
   height: 405px;
   position: absolute;
@@ -1307,68 +1302,127 @@
   transform: translateX(-50%);
   pointer-events: none;
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_left {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_left {
   position: absolute;
   bottom: 10px;
   left: -40px;
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_left img {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_left img {
   width: 512.815px;
   height: 315px;
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_right {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_right {
   position: absolute;
   bottom: 20px;
   right: -39.69px;
   width: 536.686px;
   height: 240px;
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_right img {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_right img {
   width: 100%;
   height: 100%;
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-second {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-second {
   position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-second img {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-second img {
   width: 998px;
   height: 490px;
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-third {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-third {
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
 }
-.hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-third img {
+.hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom .hero__img_center-third img {
   width: 1013px;
   height: 320px;
 }
 
 @media (max-width: 1440px) {
-  .hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top {
+  .hero-desktop .hero__wrapped-logo .hero__slide-logo .hero__logo-img {
+    bottom: 40px;
+  }
+  .hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top {
     top: 120px;
   }
-  .hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom {
+  .hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom {
     bottom: 40px;
   }
 }
 @media (max-width: 1280px) {
-  .hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top {
+  .hero-desktop .hero__wrapped-logo .hero__slide-logo .hero__logo-img {
+    bottom: 20px;
+  }
+  .hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-top {
     top: 100px;
   }
-  .hero .hero__desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom {
+  .hero-desktop .hero__scroll .hero__scroll-slide .hero__wrapped-bottom {
     bottom: 20px;
   }
 }
 @media (max-width: 1186px) {
-  .hero .hero__desktop {
+  .hero-desktop {
     display: none;
   }
 }
+.hero-mobile .container {
+  overflow: hidden;
+}
+.hero-mobile .container .hero-mobile_subsection {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.hero-mobile .container .hero-mobile_subsection .hero-mobile_title {
+  font-family: "TT Fellows Trial Variable";
+  font-size: 84px;
+  font-style: normal;
+  font-weight: 490;
+  line-height: 100%;
+  letter-spacing: -1.68px;
+  text-transform: uppercase;
+  color: #0D1824;
+  text-align: center;
+  color: #93A0AD;
+  margin-bottom: 30px;
+}
+@media (max-width: 1185px) {
+  .hero-mobile .container .hero-mobile_subsection .hero-mobile_title {
+    font-size: 42px;
+    letter-spacing: -1.52px;
+  }
+}
+@media (max-width: 375px) {
+  .hero-mobile .container .hero-mobile_subsection .hero-mobile_title {
+    font-size: 38px;
+  }
+}
+.hero-mobile .container .hero-mobile_subsection .hero-mobile_wrapped-img {
+  height: 290px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 60px;
+}
+.hero-mobile .container .hero-mobile_subsection .hero-mobile_wrapped-img .hero-mobile_img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 290px;
+}
+.hero-mobile .container .hero-mobile_subsection .btn-hero {
+  margin-bottom: 30px;
+}
+.hero-mobile .container .hero-mobile_subsection.hero-mobile_subsection__second {
+  justify-content: center;
+}
+
 .cleaning {
   margin-top: 80px;
 }

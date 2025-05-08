@@ -36,6 +36,7 @@ export function setupMessageBubbles() {
 
         let enterTimeout, leaveTimeout;
 
+        // Показываем пузырь при наведении
         trigger.addEventListener("mouseenter", () => {
             clearTimeout(leaveTimeout);
             enterTimeout = setTimeout(() => {
@@ -44,28 +45,31 @@ export function setupMessageBubbles() {
             }, 200);
         });
 
+        // Скрываем пузырь при убирании курсора
         trigger.addEventListener("mouseleave", () => {
             clearTimeout(enterTimeout);
             leaveTimeout = setTimeout(() => {
                 bubbleCard.style.opacity = "0";
-                setTimeout(() => {
-                    bubbleCard.style.display = "none";
-                }, 200);
+                setTimeout(() => bubbleCard.style.display = "none", 200);
             }, 200);
         });
 
-        // Наблюдатель скрывает карточку, если триггер уходит с экрана
+        // Наблюдаем за выходом триггера из области видимости
         const observer = new IntersectionObserver(([entry]) => {
             if (!entry.isIntersecting) {
                 clearTimeout(enterTimeout);
                 clearTimeout(leaveTimeout);
                 bubbleCard.style.opacity = "0";
-                bubbleCard.style.display = "none"; // мгновенно скрываем
+                setTimeout(() => {
+                    bubbleCard.style.display = "none";
+                }, 200);
             }
         }, {
-            threshold: 0.01
+            threshold: 0.01,
         });
 
         observer.observe(trigger);
     }
 }
+
+

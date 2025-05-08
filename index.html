@@ -163,57 +163,82 @@
 
     </header>
 
-    <section class="hero">
-        <div class="hero__desktop">
-            <div class="hero__wrapped-logo">
-                <div class="hero__slide-logo">
-                    <img class="hero__logo-img" src="src/assets/images/group-images/front-img.svg" alt="">
+    <section class="hero-desktop">
+        <div class="hero__wrapped-logo">
+            <div class="hero__slide-logo">
+                <img class="hero__logo-img" src="src/assets/images/group-images/front-img.svg" alt="">
+            </div>
+        </div>
+        <div class="hero__scroll">
+            <div class="hero__scroll-slide">
+                <div class="hero__wrapped-top">
+                    <h2 class="hero__title">Профессиональная уборка жилых и&nbsp;коммерческих помещений</h2>
+                    <button class="btn-hero">заказать уборку</button>
+                </div>
+                <div class="hero__wrapped-bottom">
+                    <div class="hero__img_left">
+                        <img  src="src/assets/images/hero/first-slide/img-first-slide-bottom-left.png" alt="">
+                    </div>
+                    <div class="hero__img_right">
+                        <img src="src/assets/images/hero/first-slide/img-first-slide-bottom-right.png" alt="">
+                    </div>
                 </div>
             </div>
-            <div class="hero__scroll">
-                <div class="hero__scroll-slide">
-                    <div class="hero__wrapped-top">
-                        <h2 class="hero__title">Профессиональная уборка жилых и&nbsp;коммерческих помещений</h2>
-                        <button class="btn-hero">заказать уборку</button>
-                    </div>
-                    <div class="hero__wrapped-bottom">
-                        <div class="hero__img_left">
-                            <img  src="src/assets/images/hero/first-slide/img-first-slide-bottom-left.png" alt="">
-                        </div>
-                        <div class="hero__img_right">
-                            <img src="src/assets/images/hero/first-slide/img-first-slide-bottom-right.png" alt="">
-                        </div>
+
+            <div class="hero__scroll-slide">
+                <div class="hero__wrapped-top">
+                    <h2 class="hero__title">Коттеджей, таунхаусов, квартир, апартаментов, отелей и&nbsp;гостиниц</h2>
+                </div>
+                <div class="hero__wrapped-bottom">
+                    <div class="hero__img_center-second">
+                        <img  src="src/assets/images/hero/second-slide/img-second-slide-center.png" alt="">
                     </div>
                 </div>
+            </div>
 
-                <div class="hero__scroll-slide">
-                    <div class="hero__wrapped-top">
-                        <h2 class="hero__title">Коттеджей, таунхаусов, квартир, апартаментов, отелей и&nbsp;гостиниц</h2>
-                    </div>
-                    <div class="hero__wrapped-bottom">
-                        <div class="hero__img_center-second">
-                            <img  src="src/assets/images/hero/second-slide/img-second-slide-center.png" alt="">
-                        </div>
-                    </div>
+            <div class="hero__scroll-slide">
+                <div class="hero__wrapped-top">
+                    <h2 class="hero__title">малой и&nbsp;крупной коммерции от&nbsp;офиса до&nbsp;бизнес-центра</h2>
                 </div>
-
-                <div class="hero__scroll-slide">
-                    <div class="hero__wrapped-top">
-                        <h2 class="hero__title">малой и&nbsp;крупной коммерции от&nbsp;офиса до&nbsp;бизнес-центра</h2>
-                    </div>
-                    <div class="hero__wrapped-bottom">
-                        <div class="hero__img_center-third">
-                            <img  src="src/assets/images/hero/third-slide/img-third-slide-center.png" alt="">
-                        </div>
+                <div class="hero__wrapped-bottom">
+                    <div class="hero__img_center-third">
+                        <img  src="src/assets/images/hero/third-slide/img-third-slide-center.png" alt="">
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="hero_mobile"></div>
     </section>
-    
-    
+
+    <section class="hero-mobile">
+        <div class="container">
+            <div class="hero-mobile_subsection">
+                <h2 class="hero-mobile_title">
+                    профессиональ<br>ная уборка жилых и&nbsp;коммерческих помещений
+                </h2>
+                <div class="hero-mobile_wrapped-img">
+                    <img class="hero-mobile_img" src="src/assets/images/hero-mobile/dinning-table-mobile-min.png" alt="">
+                </div>
+                <button class="btn-hero">заказать уборку</button>
+            </div>
+            <div class="hero-mobile_subsection hero-mobile_subsection__second">
+                <h2 class="hero-mobile_title">
+                    от&nbsp;дивана в&nbsp;гостиной до&nbsp;просторной квартиры с&nbsp;собственной терассой
+                </h2>
+                <div class="hero-mobile_wrapped-img">
+                    <img class="hero-mobile_img" src="src/assets/images/hero-mobile/living-room-mobile-min.png" alt="">
+                </div>
+            </div>
+            <div class="hero-mobile_subsection hero-mobile_subsection__second">
+                <h2 class="hero-mobile_title">
+                    малой и&nbsp;крупной коммерции от&nbsp;офиса до&nbsp;бизнес-центра
+                </h2>
+                <div class="hero-mobile_wrapped-img">
+                    <img class="hero-mobile_img" src="src/assets/images/hero-mobile/office-room-mobile.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="link_cleaning" class="cleaning anchor-section">
         <div class="container">
             <div class="basic">
@@ -229,7 +254,7 @@
                             а&nbsp;вы наслаждаетесь свободным временем и&nbsp;чистотой в&nbsp;вашем помещении
                         </h2>
                     </div>
-                    <div class="basic__bottom basic__bottom_slider">
+                    <div class="basic__bottom basic__bottom_slider focus-blue-trigger">
                         <div class="basic__card-primary bubble__massage_triger-1">
                             <img src="src/assets/images/cleaning/cleaning-img-1.png" alt="" class="basic__card-img">
                             <svg class="basic__card-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

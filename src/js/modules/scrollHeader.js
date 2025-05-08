@@ -24,7 +24,7 @@
 export function setupScrollHeader() {
     let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
     const header = document.querySelector(".header");
-    const hero = document.querySelector(".hero");
+    const hero = document.querySelector(".hero-desktop");
     const scrollThreshold = 160;
 
     window.addEventListener("scroll", () => {

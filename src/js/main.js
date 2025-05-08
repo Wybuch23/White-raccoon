@@ -451,7 +451,7 @@ window.addEventListener('scroll', () => {
 
 
 document.addEventListener('scroll', () => {
-  const section = document.querySelector('.hero__desktop');
+  const section = document.querySelector('.hero-desktop');
   const scrollContainer = document.querySelector('.hero__scroll');
   const sectionTop = section.offsetTop;
   const scrollY = window.scrollY;
@@ -524,6 +524,12 @@ document.addEventListener('scroll', () => {
 
   logo.style.transform = `translateX(${translateX}px)`;
 });
+
+
+
+
+
+
 
 
 

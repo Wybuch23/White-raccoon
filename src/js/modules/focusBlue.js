@@ -97,7 +97,7 @@
 // }
 
 export function setupFocusBlue() {
-    const cleaningSection = document.querySelector(".cleaning");
+    const focusBlueTrigger = document.querySelector(".focus-blue-trigger");
     const header = document.querySelector(".header");
     const targetElementsSelector = ".basic__card-secondary, .header, .basic__card-primary, .basic__card-img, .basic__card-title, .basic__sticky-title, .basic__top-title, body, .basic__card-icon, .basic__card-title, .basic__card-text, .card-tabs-img, .tabs-control__tub, .btn-primary, .card-tabs-img__text";
 
@@ -135,7 +135,7 @@ export function setupFocusBlue() {
         });
     });
 
-    if (cleaningSection) {
+    if (focusBlueTrigger) {
         const observer = new IntersectionObserver(([entry]) => {
             if (!entry.isIntersecting) {
                 getTargetElements().forEach(el => el.classList.remove("focus-blue"));
@@ -147,6 +147,6 @@ export function setupFocusBlue() {
             threshold: 0.01,
         });
 
-        observer.observe(cleaningSection);
+        observer.observe(focusBlueTrigger);
     }
 }
