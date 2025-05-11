@@ -1,5 +1,8 @@
 .group-images
     margin-top: 80px
+    margin-bottom: 80px
+    .group-images_wrapped-mobile-slider-logo
+        display: none
     .group-images_wrapped-mobile
         display: none
     .group-images_wrapped
@@ -30,6 +33,25 @@
 @media (max-width: 1186px)
     .group-images
         margin-top: 60px
+        .group-images_wrapped-mobile-slider-logo
+            display: block
+            position: relative
+            max-width: 440px
+            margin: 0 auto
+            z-index: 1
+            .group-images_mobile_slider-logo
+                position: absolute
+                bottom: -180px
+                left: 0
+                width: 100%
+                height: 390px
+                overflow: hidden
+                img
+                    position: absolute
+                    top: 0
+                    left: 45px
+                    width: 497px
+                    height: 390px
         .container
             overflow: clip 
             .group-images_wrapped
@@ -37,36 +59,26 @@
             .group-images_wrapped-mobile
                 display: flex
                 flex-direction: column
-
                 position: relative
-
-                padding-bottom: 140px
-                .group-images__sticky-group
-                    width: 100%
-                    position: sticky
-                    top: -100px
-                    z-index: -1
-                    .basic__top-text
-                        margin-top: 15px
-                        +body-text-desktop
-                    .group-images__back-img
-                        margin-top: 30px
-                        width: 738.486px
-                        height: 370px
-                        img
-                            width: 100%
-                            height: 100%
+                .basic__top-text
+                    margin-top: 15px
+                    +body-text-desktop
+                .group-images__back-img
+                    margin-top: 30px
+                    width:  425px
+                    height: 370px
+                    margin-bottom: 160px
+                    img
+                        width: 100%
+                        height: 100%
                 .group-images__front-img
                     position: absolute
-                    bottom: 0
-                    transform: translateX(30px)
+                    bottom: -180px
+                    left: 30px
+                    // transform: translateX(30px)
                     width: 497px
                     height: 390px
                     z-index: 1
                     img
                         width: 100%
                         height: 100%
-                .test-box
-                    // opacity: 0.2
-                    // background: red
-                    height: 130px

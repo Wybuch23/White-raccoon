@@ -527,6 +527,55 @@ document.addEventListener('scroll', () => {
 
 
 
+// hero mobile logo slide 
+
+document.addEventListener('scroll', () => {
+  const trigger = document.querySelector('.hero-mobile_subsection__second-slide');
+  const logo = document.querySelector('.hero-mobile_slider-logo');
+
+  if (!trigger || !logo) return;
+
+  const triggerRect = trigger.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+
+  const start = viewportHeight; // когда блок только касается нижней границы экрана
+  const end = 0;                // когда верх блока касается верха экрана
+
+  const progress = Math.min(Math.max((start - triggerRect.top) / (start - end), 0), 1);
+  const translateY = -180 * progress;
+
+  logo.style.transform = `translateY(${translateY}px)`;
+});
+
+// group images logo slide 
+
+document.addEventListener('scroll', () => {
+  const trigger = document.querySelector('.group-images');
+  const logo = document.querySelector('.group-images_mobile_slider-logo');
+
+  if (!trigger || !logo) return;
+
+  const triggerRect = trigger.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+
+  const start = viewportHeight; // когда блок только касается нижней границы экрана
+  const end = 0;                // когда верх блока касается верха экрана
+
+  const progress = Math.min(Math.max((start - triggerRect.top) / (start - end), 0), 1);
+  const translateY = -180 * progress;
+
+  logo.style.transform = `translateY(${translateY}px)`;
+});
+
+
+
+
+
+
+
+
+
+
 
 
 
