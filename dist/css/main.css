@@ -1176,19 +1176,16 @@
   padding-top: 15px;
   position: relative;
 }
-.header .navigation__mobile a {
+.header .navigation__mobile .link_hero-mobile-wrapped {
   position: absolute;
-  top: 15px;
   left: 0;
 }
-.header .navigation__mobile a .navigation__logo {
-  position: absolute;
+.header .navigation__mobile .navigation__logo {
   width: 118.148px;
   height: 55px;
-  left: 0;
   display: none;
 }
-.header .navigation__mobile a .navigation__logo.active {
+.header .navigation__mobile .navigation__logo.active {
   display: block;
 }
 .header .navigation__mobile .navigation__wrapper_mobile {
