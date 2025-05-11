@@ -23,29 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // появление и изчезание заголовка 
 
-// window.addEventListener('scroll', function () {
-//     const stickies = document.querySelectorAll('.basic__sticky-title_hidden');
-//     const triggerTop = document.querySelector('.why-cleaning__trigger-top');
-
-//     // Проверка, существует ли триггер и он видимый
-//     if (!triggerTop || triggerTop.offsetHeight === 0) return;
-
-//     stickies.forEach(function (sticky) {
-//         const stickyRect = sticky.getBoundingClientRect();
-//         const triggerTopRect = triggerTop.getBoundingClientRect();
-
-//         // Проверяем, касаются ли они
-//         if (
-//             stickyRect.bottom >= triggerTopRect.top &&
-//             stickyRect.top <= triggerTopRect.bottom
-//         ) {
-//             sticky.classList.add('touched');
-//         } else {
-//             sticky.classList.remove('touched');
-//         }
-//     });
-// });
-
 window.addEventListener('scroll', function () {
   const sections = document.querySelectorAll('.basic');
 
@@ -263,37 +240,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // динамическая высота 
 
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const accordionElements = document.querySelectorAll(".accordion__item");
-
-//   function updateHeight() {
-//       accordionElements.forEach(element => {
-//           const titleBlocks = element.querySelectorAll(".accordion__title");
-//           const textBlock = element.querySelector(".accordion__text");
-//           const gap = parseFloat(getComputedStyle(element).gap) || 0;
-
-//           requestAnimationFrame(() => {
-//               let totalTitleHeight = 0;
-//               titleBlocks.forEach(title => {
-//                   totalTitleHeight += title.offsetHeight;
-//               });
-
-//               if (element.classList.contains("active") && textBlock) {
-//                   element.style.height = totalTitleHeight + textBlock.offsetHeight + gap + "px";
-//               } else {
-//                   element.style.height = totalTitleHeight + "px";
-//               }
-//           });
-//       });
-//   }
-
-//   window.addEventListener("load", updateHeight);
-//   window.addEventListener("resize", updateHeight);
-
-//   new MutationObserver(updateHeight).observe(document.body, { attributes: true, subtree: true, attributeFilter: ["class"] });
-// });
-
 document.addEventListener("DOMContentLoaded", () => {
   const accordionElements = document.querySelectorAll(".accordion__item");
 
@@ -323,42 +269,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // добавляет темную тему для хедера при пересечении dark section
-
-// const header = document.querySelector('.header');
-// const darkSection = document.querySelector('.dark-sections_wrapped');
-
-// window.addEventListener('scroll', () => {
-//   const sectionTop = darkSection.getBoundingClientRect().top;
-
-//   if (sectionTop <= 0) {
-//     header.classList.add('dark-theme');
-//   } else {
-//     header.classList.remove('dark-theme');
-//   }
-// });
-
-
-// const header = document.querySelector('.header'); // или .navigation__wrapper, если хочешь
-// const darkSection = document.querySelector('.dark-sections_wrapped');
-
-// const logoWhite = document.querySelector('.navigation__logo.white');
-// const logoDark = document.querySelector('.navigation__logo.dark');
-
-// window.addEventListener('scroll', () => {
-//   const sectionTop = darkSection.getBoundingClientRect().top;
-
-//   if (sectionTop <= 0) {
-//     header.classList.add('dark-theme');
-//     logoWhite.classList.remove('active');
-//     logoDark.classList.add('active');
-//   } else {
-//     header.classList.remove('dark-theme');
-//     logoWhite.classList.add('active');
-//     logoDark.classList.remove('active');
-//   }
-// });
-
-
 
 const header = document.querySelector('.header');
 const darkSection = document.querySelector('.dark-sections_wrapped');
@@ -425,31 +335,6 @@ window.addEventListener('scroll', () => {
 
 // hero slider 
 
-
-
-// document.addEventListener('scroll', () => {
-//   const section = document.querySelector('.hero__desktop');
-//   const scrollContainer = document.querySelector('.hero__scroll');
-//   const sectionTop = section.offsetTop;
-//   const scrollY = window.scrollY;
-//   const viewportHeight = window.innerHeight;
-//   const maxScroll = viewportHeight * 2; // только 2 экрана для анимации
-
-//   if (scrollY >= sectionTop && scrollY <= sectionTop + maxScroll) {
-//     const scrollDistance = scrollY - sectionTop;
-//     const progress = scrollDistance / maxScroll;
-//     scrollContainer.style.transform = `translateX(-${progress * 200}vw)`;
-//   }
-
-//   // Зафиксировать последний слайд, если проскроллили дальше
-//   if (scrollY > sectionTop + maxScroll) {
-//     scrollContainer.style.transform = `translateX(-200vw)`;
-//   }
-// });
-
-
-
-
 document.addEventListener('scroll', () => {
   const section = document.querySelector('.hero-desktop');
   const scrollContainer = document.querySelector('.hero__scroll');
@@ -472,34 +357,6 @@ document.addEventListener('scroll', () => {
     scrollContainer.style.transform = `translateX(-200vw)`; // Последний слайд фиксируется на 200vw
   }
 });
-
-
-// document.addEventListener('scroll', () => {
-//   const section = document.querySelector('.hero__desktop');
-//   const scrollContainer = document.querySelector('.hero__scroll');
-//   const sectionTop = section.offsetTop;
-//   const scrollY = window.scrollY;
-//   const viewportHeight = window.innerHeight;
-//   const maxScroll = viewportHeight * 3; // 3 экрана для всей секции
-
-//   // Проверяем, находится ли скролл в пределах секции
-//   if (scrollY >= sectionTop && scrollY <= sectionTop + maxScroll) {
-//     const scrollDistance = scrollY - sectionTop;
-//     const sectionHeight = viewportHeight; // Высота одного экрана
-//     const totalSections = 3; // Всего три секции
-
-//     // Рассчитываем на какой секции сейчас находится скролл
-//     const currentSection = Math.floor(scrollDistance / sectionHeight);
-
-//     // Двигаем слайд в зависимости от секции
-//     scrollContainer.style.transform = `translateX(-${currentSection * 100}vw)`;
-//   }
-
-//   // Фиксируем последний слайд, если скролл больше, чем 3 экрана
-//   if (scrollY > sectionTop + maxScroll) {
-//     scrollContainer.style.transform = `translateX(-200vw)`; // Последний слайд фиксируется
-//   }
-// });
 
 // logo slide 
 
