@@ -1489,9 +1489,6 @@
     display: none;
   }
 }
-.cleaning {
-  margin-top: 80px;
-}
 .cleaning .speech-bubble__card .speech-bubble__card_top {
   position: fixed;
   top: 80px;
@@ -1590,9 +1587,19 @@
   transition: opacity 0.2s ease-in;
 }
 
+@media (min-width: 1920px) {
+  .cleaning {
+    margin-top: 80px;
+  }
+}
+@media (max-width: 1920px) {
+  .cleaning {
+    margin-top: 120px;
+  }
+}
 @media (max-width: 1440px) {
   .cleaning {
-    margin-top: 40px;
+    margin-top: 140px;
   }
   .cleaning .speech-bubble__card .speech-bubble__card_top {
     top: 40px;
@@ -1601,12 +1608,10 @@
     bottom: 30px;
   }
 }
-@media (max-width: 1280px) {
-  .cleaning {
-    margin-top: 20px;
-  }
-}
 @media (max-width: 1186px) {
+  .cleaning {
+    margin-top: 0;
+  }
   .cleaning .basic .basic__content {
     row-gap: 30px;
   }
