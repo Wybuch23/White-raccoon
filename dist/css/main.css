@@ -2095,6 +2095,7 @@
     height: 390px;
     transform: translateX(400px);
     transition: 1s ease;
+    z-index: 1;
   }
   .group-images .container .group-images_wrapped-mobile .group-images_logo-raccoon.active {
     transform: translateX(0);
