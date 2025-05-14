@@ -8,45 +8,49 @@ import { setupFocusBlue } from "./modules/focusBlue.js";
 import { setupSwiperMobile } from "./modules/swiperMobile.js";
 import { setupCardTabs } from "./modules/cardTabs.js";
 import { setupSwiperCleaners } from "./modules/swiperCleanersSetup.js";
+import { setupBasicTitleHidden } from "./modules/basicTitleHidden.js";
+import { setupSliderGallaryDesktop } from "./modules/sliderGalleryDesktop.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    setupHeaderToggle();
-    setupMobileNavigation();
-    setupCardHoverEffect();
-    setupMessageBubbles();
-    setupScrollHeader();
-    setupFocusBlue();
-    setupSwiperMobile();
-    setupCardTabs();
-    setupSwiperCleaners();
+  setupHeaderToggle();
+  setupMobileNavigation();
+  setupCardHoverEffect();
+  setupMessageBubbles();
+  setupScrollHeader();
+  setupFocusBlue();
+  setupSwiperMobile();
+  setupCardTabs();
+  setupSwiperCleaners();
+  setupBasicTitleHidden();
+  setupSliderGallaryDesktop();
 });
 
 // появление и изчезание заголовка 
 
-window.addEventListener('scroll', function () {
-  const sections = document.querySelectorAll('.basic');
+// window.addEventListener('scroll', function () {
+//   const sections = document.querySelectorAll('.basic');
 
-  sections.forEach((section) => {
-    const sticky = section.querySelector('.basic__sticky-title_hidden');
-    const triggerTop = section.querySelector('.why-cleaning__trigger-top');
+//   sections.forEach((section) => {
+//     const sticky = section.querySelector('.basic__sticky-title_hidden');
+//     const triggerTop = section.querySelector('.why-cleaning__trigger-top');
 
-    // Если вдруг чего-то нет — выходим из этой секции
-    if (!sticky || !triggerTop || triggerTop.offsetHeight === 0) return;
+//     // Если вдруг чего-то нет — выходим из этой секции
+//     if (!sticky || !triggerTop || triggerTop.offsetHeight === 0) return;
 
-    const stickyRect = sticky.getBoundingClientRect();
-    const triggerTopRect = triggerTop.getBoundingClientRect();
+//     const stickyRect = sticky.getBoundingClientRect();
+//     const triggerTopRect = triggerTop.getBoundingClientRect();
 
-    // Проверяем касание и добавляем/убираем класс
-    if (
-      stickyRect.bottom >= triggerTopRect.top &&
-      stickyRect.top <= triggerTopRect.bottom
-    ) {
-      sticky.classList.add('touched');
-    } else {
-      sticky.classList.remove('touched');
-    }
-  });
-});
+//     // Проверяем касание и добавляем/убираем класс
+//     if (
+//       stickyRect.bottom >= triggerTopRect.top &&
+//       stickyRect.top <= triggerTopRect.bottom
+//     ) {
+//       sticky.classList.add('touched');
+//     } else {
+//       sticky.classList.remove('touched');
+//     }
+//   });
+// });
 
 
 
@@ -107,67 +111,67 @@ tabs.forEach((tab, index) => {
 
 // слайдер галлерея
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Инициализация Swiper
-    const swiper = new Swiper('.slider-gellery', {
-      loop: true,
-      slidesPerView: "auto",
-      centeredSlides: true,
-      spaceBetween: 20,
-      navigation: {
-        nextEl: '.slider-gellery__swiper-button-next',
-        prevEl: '.slider-gellery__swiper-button-prev',
-      }
-    });
+// document.addEventListener("DOMContentLoaded", function () {
+//     // Инициализация Swiper
+//     const swiper = new Swiper('.slider-gellery', {
+//       loop: true,
+//       slidesPerView: "auto",
+//       centeredSlides: true,
+//       spaceBetween: 20,
+//       navigation: {
+//         nextEl: '.slider-gellery__swiper-button-next',
+//         prevEl: '.slider-gellery__swiper-button-prev',
+//       }
+//     });
   
-    // Получаем все слайды в секции .our-works
-    const ourWorks = document.querySelector('.our-works');
-    const swiperSlides = ourWorks.querySelectorAll('.swiper-slide');
+//     // Получаем все слайды в секции .our-works
+//     const ourWorks = document.querySelector('.our-works');
+//     const swiperSlides = ourWorks.querySelectorAll('.swiper-slide');
   
-    // Для каждого слайда создаем наблюдатель
-    swiperSlides.forEach(slide => {
-      const tabsGallery = slide.querySelectorAll('.tabs-control__tub');
-      const imagesGallery = slide.querySelectorAll('.slider-gellery__img');
+//     // Для каждого слайда создаем наблюдатель
+//     swiperSlides.forEach(slide => {
+//       const tabsGallery = slide.querySelectorAll('.tabs-control__tub');
+//       const imagesGallery = slide.querySelectorAll('.slider-gellery__img');
       
-      // Флаг для отслеживания, был ли слайд уже активирован
-      let hasSwitched = false;
+//       // Флаг для отслеживания, был ли слайд уже активирован
+//       let hasSwitched = false;
   
-      // Наблюдатель для отслеживания слайда, когда он попадает в зону экрана на 100%
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !hasSwitched) {
-            // Если слайд полностью видим и еще не был переключен
-            setTimeout(() => {
-              tabsGallery.forEach(t => t.classList.remove('active'));
-              imagesGallery.forEach(img => img.classList.remove('active'));
+//       // Наблюдатель для отслеживания слайда, когда он попадает в зону экрана на 100%
+//       const observer = new IntersectionObserver(entries => {
+//         entries.forEach(entry => {
+//           if (entry.isIntersecting && !hasSwitched) {
+//             // Если слайд полностью видим и еще не был переключен
+//             setTimeout(() => {
+//               tabsGallery.forEach(t => t.classList.remove('active'));
+//               imagesGallery.forEach(img => img.classList.remove('active'));
   
-              tabsGallery[1].classList.add('active');  // Переключаем на таб "после"
-              imagesGallery[1].classList.add('active');  // Показываем картинку "после"
-              hasSwitched = true; // Устанавливаем флаг, что слайд был переключен
-            }, 400); // Задержка 0.4 секунды
-          }
-        });
-      }, { threshold: 1.0 }); // 100% видимости слайда
+//               tabsGallery[1].classList.add('active');  // Переключаем на таб "после"
+//               imagesGallery[1].classList.add('active');  // Показываем картинку "после"
+//               hasSwitched = true; // Устанавливаем флаг, что слайд был переключен
+//             }, 400); // Задержка 0.4 секунды
+//           }
+//         });
+//       }, { threshold: 1.0 }); // 100% видимости слайда
   
-      // Начинаем отслеживание каждого слайда
-      observer.observe(slide);
-    });
+//       // Начинаем отслеживание каждого слайда
+//       observer.observe(slide);
+//     });
   
-    // Переключение табов и картинок по клику
-    swiperSlides.forEach(slide => {
-      const tabsGallery = slide.querySelectorAll('.tabs-control__tub');
-      const imagesGallery = slide.querySelectorAll('.slider-gellery__img');
+//     // Переключение табов и картинок по клику
+//     swiperSlides.forEach(slide => {
+//       const tabsGallery = slide.querySelectorAll('.tabs-control__tub');
+//       const imagesGallery = slide.querySelectorAll('.slider-gellery__img');
   
-      tabsGallery.forEach((tab, index) => {
-        tab.addEventListener('click', () => {
-          tabsGallery.forEach(t => t.classList.remove('active'));
-          imagesGallery.forEach(img => img.classList.remove('active'));
-          tab.classList.add('active');
-          imagesGallery[index].classList.add('active');
-        });
-      });
-    });
-  });
+//       tabsGallery.forEach((tab, index) => {
+//         tab.addEventListener('click', () => {
+//           tabsGallery.forEach(t => t.classList.remove('active'));
+//           imagesGallery.forEach(img => img.classList.remove('active'));
+//           tab.classList.add('active');
+//           imagesGallery[index].classList.add('active');
+//         });
+//       });
+//     });
+//   });
 
 // наши работы мобилка 
 
@@ -425,11 +429,38 @@ document.addEventListener('scroll', () => {
 });
 
 
+// анимация енотов в хиро и петс 
 
 
 
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const raccoonLogo = document.querySelector('.hero-mobile_logo-raccoon');
+    if (raccoonLogo) {
+      raccoonLogo.classList.add('active');
+    }
+  }, 200);
+});
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  const target = document.querySelector('.group-images_logo-raccoon-trigger');
+  const logo = document.querySelector('.group-images_logo-raccoon');
+
+  if (target && logo) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          logo.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1 // можно изменить чувствительность
+    });
+
+    observer.observe(target);
+  }
+});
 
 
 

@@ -33,25 +33,7 @@
 @media (max-width: 1186px)
     .group-images
         margin-top: 60px
-        .group-images_wrapped-mobile-slider-logo
-            display: block
-            position: relative
-            max-width: 440px
-            margin: 0 auto
-            z-index: 1
-            .group-images_mobile_slider-logo
-                position: absolute
-                bottom: -180px
-                left: 0
-                width: 100%
-                height: 390px
-                overflow: hidden
-                img
-                    position: absolute
-                    top: 0
-                    left: 45px
-                    width: 497px
-                    height: 390px
+        margin-bottom: 60px
         .container
             overflow: clip 
             .group-images_wrapped
@@ -67,18 +49,19 @@
                     margin-top: 30px
                     width:  425px
                     height: 370px
-                    margin-bottom: 160px
-                    img
-                        width: 100%
-                        height: 100%
-                .group-images__front-img
+                    margin-bottom: 150px
+                .group-images_logo-raccoon
                     position: absolute
-                    bottom: -180px
+                    bottom: 0
                     left: 30px
-                    // transform: translateX(30px)
                     width: 497px
                     height: 390px
-                    z-index: 1
-                    img
-                        width: 100%
-                        height: 100%
+                    transform: translateX(400px)
+                    transition: 1s ease
+                    &.active
+                        transform: translateX(0)
+                .group-images_logo-raccoon-trigger
+                    position: absolute
+                    bottom: 75px
+                    width: 100%
+                    height: 1px
