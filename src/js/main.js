@@ -10,6 +10,8 @@ import { setupCardTabs } from "./modules/cardTabs.js";
 import { setupSwiperCleaners } from "./modules/swiperCleanersSetup.js";
 import { setupBasicTitleHidden } from "./modules/basicTitleHidden.js";
 import { setupSliderGallaryDesktop } from "./modules/sliderGalleryDesktop.js";
+import { setupPopup } from "./modules/popup.js";
+import { setupCalculatorPopup } from './modules/calculator.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   setupHeaderToggle();
@@ -23,6 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSwiperCleaners();
   setupBasicTitleHidden();
   setupSliderGallaryDesktop();
+  setupPopup();
+  setupCalculatorPopup();
 });
 
 // появление и изчезание заголовка 
@@ -461,12 +465,3 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(target);
   }
 });
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,33 @@
+.input-wrapper
+    display: flex
+    height: 48px
+    width: 382px
+    padding: 0px 20px
+    justify-content: flex-start
+    align-items: center
+    gap: 10px
+    align-self: stretch
+
+    border-radius: 8px
+    background: $--white-secondary
+    &:hover
+        outline: 2px solid $--grey-primary
+    &:focus-within
+        outline: 2px solid $--black-primary
+    .input-label
+        +helper-title-desktop
+        color: $--grey-primary
+    .input
+        border: none
+        outline: none
+        background: none
+        +body-text-desktop
+        color: $--black-primary
+        &::placeholder
+            +body-text-desktop
+            color: $--grey-primary
+    .input-helper-text
+        width: 114px
+        text-align: end
+        +helper-text-desktop
+        color: $--grey-primary

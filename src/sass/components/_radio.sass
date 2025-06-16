@@ -1,0 +1,34 @@
+.radio-group 
+    display: flex
+    flex-direction: column
+    gap: 10px
+    .radio input[type="radio"]
+        display: none
+    .radio
+        display: flex
+        justify-content: space-between
+        align-items: center
+        border-radius: 8px
+        height: 48px
+        padding: 0px 20px
+        &:nth-of-type(even)
+            background: $--white-secondary
+        .radio_wrapped
+            display: flex
+            align-items: center
+            gap: 10px
+            // cursor: pointer
+            .radio__icon
+                width: 24px
+                height: 24px
+                background-image: url('../../src/assets/icons/icons_raccoon/radio-empty.svg')
+                background-size: contain
+                background-repeat: no-repeat
+            input[type="radio"]:checked + .radio__icon
+                background-image: url('../../src/assets/icons/icons_raccoon/radio-filled.svg')
+            .radio__text
+                +body-text-desktop
+                color: $--black-primary
+        .radio__right-space
+            +helper-text-desktop
+            color: $--grey-primary

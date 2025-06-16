@@ -1,0 +1,140 @@
+.popup
+
+    z-index: 11
+
+    width: 1186px
+    height: 642px
+    border-radius: 16px
+    background: $--white-primary
+    backdrop-filter: blur(18px)
+
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+    padding: 40px
+    display: grid
+    grid-template-columns: 302px 744px
+    grid-column-gap: 60px
+
+    pointer-events: none
+    opacity: 0
+
+    .popup__close-button
+        position: absolute
+        top: 20px
+        right: 20px
+    .popup__container
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+
+        .btn-primary
+            margin: 0
+        &.popup__container--left
+            .popup__head
+                display: flex
+                flex-direction: column
+                gap: 10px
+                .popup__title
+                    +secondary-title-desktop
+                    color: $--grey-primary
+                .popup__step
+                    +tertiary-title-desktop
+                    color: $--grey-primary
+            .popup__body
+                +body-text-desktop
+                color: $--grey-primary
+            .popup__footer
+                display: flex
+                flex-direction: column
+                gap: 20px
+                address
+                    display: flex
+                    flex-direction: column
+                    gap: 20px
+                    .contact-details__item
+                        a
+                            +hero-link-desktop
+                            color: $--grey-primary
+                .disclaimer
+                    +helper-text-desktop
+                    color: $--grey-primary
+                .popup__summary
+                    display: flex
+                    flex-direction: column
+                    gap: 20px
+                    .popup__summary-item
+                        display: flex
+                        flex-direction: column
+                        gap: 10px
+                        .popup__summary-label
+                            +helper-text-desktop
+                            color: $--grey-primary
+                        .popup__summary-value
+                            +hero-text-desktop
+                            color: $--grey-primary
+        &.popup__container--right
+            .popup__title
+                +lowercase-title-desktop
+            .popup__text
+                width: 516px
+                +body-text-desktop
+            .popup__btn-bar
+                display: flex
+                align-items: center
+                gap: 20px
+                .popup__wrapped-time-text
+                    display: flex
+                    align-items: center
+                    gap: 10px
+                    +body-text-desktop
+                    color: $--grey-primary
+
+            .popup__head
+                display: flex
+                flex-direction: column
+                gap: 20px
+            .popup__body
+                display: flex
+                flex-direction: column
+                gap: 10px
+            .popup__footer
+                display: flex
+                flex-direction: column
+                gap: 20px
+    &.active
+        opacity: 1
+        pointer-events: all
+    &.popup-calculator
+        .popup__container--left
+            display: grid
+            grid-template-rows: 62px auto 138px
+            grid-template-columns: 1fr
+            gap: 40px
+            .popup__body
+                display: flex
+                align-items: flex-end
+        .popup__container--right
+            display: grid
+            grid-template-rows: 52px auto 48px
+            grid-template-columns: 1fr
+            gap: 40px
+
+.popup-blur
+    z-index: 10
+    position: fixed
+    top: 0
+    width: 100vw
+    height: 100vh
+    background: rgba(13, 24, 36, 0.70)
+    backdrop-filter: blur(16px)
+
+    transition: opacity 0.4s
+
+    pointer-events: none
+    opacity: 0
+    &.active
+        opacity: 1
+        pointer-events: all
