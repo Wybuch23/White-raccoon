@@ -2611,11 +2611,11 @@
                 <div id="" class="popup__title">
                     онлайн-расчет
                 </div>
-                <div class="popup__step">
+                <div id="popup__step" class="popup__step">
                     шаг 1
                 </div>
             </div>
-            <div class="popup__body">test</div>
+            <div id="history__step" class="popup__body">test</div>
             <div class="popup__footer">
                 <div class="popup__summary">
                     <div class="popup__summary-item">
@@ -2631,12 +2631,12 @@
         </div>
         <div class="popup__container popup__container--right">
             <div class="popup__head">
-                <div class="popup__title">
+                <div id="popup__title" class="popup__title">
                     Услуга
                 </div>
             </div>
-            <div class="popup__body">
-                <div class="radio-group">
+            <div id="popup__body_content" class="popup__body">
+                <!-- <div class="radio-group">
                     <label class="radio">
                         <div class="radio_wrapped">
                             <input type="radio" name="serviceType" value="cleaning" checked>
@@ -2664,7 +2664,7 @@
                         <div class="radio__right-space">—</div>
                     </label>
 
-                    <!-- <label class="checkbox">
+                    <label class="checkbox">
                         <div class="checkbox_wrapped">
                             <input type="checkbox" class="checkbox-input">
                             <span class="checkbox__icon">
@@ -2684,19 +2684,42 @@
                             <span class="checkbox__text">Химчистка</span>
                         </div>
                         <div class="checkbox__right-space">—</div>
-                    </label> -->
+                    </label>
 
-                    <!-- <div class="input-wrapper">
+                    <div class="input-wrapper">
                         <div class="input-label">Label</div>
                         <input type="text" class="input" id="myInput" placeholder="placeholder" />
                         <div class="input-helper-text">helper-text</div>
-                    </div> -->
-                </div>
+                    </div>
+                </div> -->
                 
+
+                <!-- <div class="radio-group radio-group-inline">
+                    <label class="radio">
+                            <div class="radio_wrapped">
+                                <input type="radio" name="" value="" checked>
+                                <span class="radio__icon"></span>
+                                <span class="radio__text">Уборка помещений</span>
+                            </div>
+                    </label>
+                </div> -->
             </div>
-            <div class="popup__footer">
+
+            <div id="popup__footer_content" class="popup__footer">
+                <div id="popup__footer_help-text" class="popup__footer_help-text">
+                    <!-- Нажимая на кнопку Оставить заявку вы соглашаетесь <br> с <a href="#" class="popup__footer_help-link">Политикой конфиденциальности</a> и соглашаетесь <br> на <a href="#" class="popup__footer_help-link">Обработку персональный данных</a>. -->
+                </div>
+
+                <!-- <div id="popup__footer_help-text" class="popup__footer_help-text">
+                    *Стоимость услуг, указанная на&nbsp;сайте, а&nbsp;также предложение, сформированное в&nbsp;результате онлайн-расчёта, носят информационный характер и&nbsp;не&nbsp;являются публичной офертой (ст.&nbsp;437&nbsp;ГК РФ).
+                </div>
+
+                <div id="popup__footer_help-text" class="popup__footer_help-text">
+                    **Окончательная стоимость услуги определяется при общении с&nbsp;менеджером и&nbsp;фиксируется при заключении договора.
+                </div> -->
+
                 <div class="popup__btn-bar">
-                    <button id="btn-primary-back" class="btn-primary">
+                    <button id="btn-primary-back" class="btn-primary"> 
                         назад
                     </button>
                     <button id="btn-primary-next" class="btn-primary">
@@ -2713,6 +2736,9 @@
                     </g>
                 </svg>
             </button>
+        </div>
+        <div id="popup__thanks-logo" class="popup__thanks-logo">
+            <img src="src/assets/images/calculator/calculator-thanks-logo.png" alt="">
         </div>
     </section>
     
