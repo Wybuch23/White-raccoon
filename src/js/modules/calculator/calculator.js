@@ -1,7 +1,7 @@
 import { commonSteps, finalSteps } from './calculator-steps.js';
-import { cleaningSteps } from './cleaning-steps.js';
+import { cleaningSteps, cleaningStepsLiving, cleaningStepsOffice, cleaningStepsIndustrial } from './cleaning-steps.js';
 import { windowCleaningSteps } from './window-cleaning-steps.js';
-import { dryCleaningSteps } from './dry-cleaning-steps.js';
+import { dryCleaningSteps, dryCleaningStepsSofa, dryCleaningStepsArmchair, dryCleaningStepsChair, dryCleaningStepsCarpet, dryCleaningStepsCurtains, dryCleaningStepsMattress, dryCleaningStepsPillow } from './dry-cleaning-steps.js';
 import { renderRadioField, renderInputField, renderInlineRadioField, renderCheckboxField } from './calculator-renderers.js';
 
 export function setupCalculatorPopup() {
@@ -13,7 +13,8 @@ export function setupCalculatorPopup() {
   const footerHelpTextEl = container.querySelector('#popup__footer_help-text');
 
   let currentStep = 0;
-  let currentBranchSteps = commonSteps;
+  let currentBranchSteps = [...commonSteps];
+  currentBranchSteps.branchName = 'commonSteps';
   let selectedBranch = null;
 
   function renderStep() {
@@ -76,7 +77,8 @@ export function setupCalculatorPopup() {
     const restartBtn = document.querySelector('#popup__new-calculation');
     if (restartBtn) {
       restartBtn.addEventListener('click', () => {
-        currentBranchSteps = commonSteps;
+        currentBranchSteps = [...commonSteps];
+        currentBranchSteps.branchName = 'commonSteps';
         currentStep = 0;
         renderStep();
       });
@@ -103,21 +105,24 @@ export function setupCalculatorPopup() {
   }
 
   btnNext.addEventListener('click', () => {
-    if (currentBranchSteps === commonSteps) {
+    if (currentBranchSteps.branchName === 'commonSteps') {
       selectedBranch = getSelectedRadioValue('serviceType');
 
       if (selectedBranch === 'cleaning') {
         currentBranchSteps = [...cleaningSteps, ...finalSteps];
+        currentBranchSteps.branchName = 'cleaning';
         currentStep = 0;
         renderStep();
         return;
       } else if (selectedBranch === 'windows') {
         currentBranchSteps = [...windowCleaningSteps, ...finalSteps];
+        currentBranchSteps.branchName = 'windows';
         currentStep = 0;
         renderStep();
         return;
       } else if (selectedBranch === 'dry_cleaning') {
         currentBranchSteps = [...dryCleaningSteps, ...finalSteps];
+        currentBranchSteps.branchName = 'dry_cleaning';
         currentStep = 0;
         renderStep();
         return;
@@ -126,6 +131,65 @@ export function setupCalculatorPopup() {
         return;
       }
     }
+
+    // Ветка cleaning: выбор типа помещения
+    if (currentBranchSteps.branchName === 'cleaning') {
+      const areaType = getSelectedRadioValue('areaType');
+
+      if (areaType === 'living') {
+        currentBranchSteps = [...cleaningStepsLiving, ...finalSteps];
+        currentBranchSteps.branchName = 'cleaningLiving';
+      } else if (areaType === 'office') {
+        currentBranchSteps = [...cleaningStepsOffice, ...finalSteps];
+        currentBranchSteps.branchName = 'cleaningOffice';
+      } else if (areaType === 'industrial') {
+        currentBranchSteps = [...cleaningStepsIndustrial, ...finalSteps];
+        currentBranchSteps.branchName = 'cleaningIndustrial';
+      } else {
+        alert('Выберите тип помещения');
+        return;
+      }
+
+      currentStep = 0;
+      renderStep();
+      return;
+    }
+
+    // Ветка dry_cleaning: выбор объекта химчистки
+    if (currentBranchSteps.branchName === 'dry_cleaning') {
+      const cleanType = getSelectedRadioValue('variables');
+
+      if (cleanType === 'sofa') {
+        currentBranchSteps = [...dryCleaningStepsSofa, ...finalSteps];
+        currentBranchSteps.branchName = 'dryCleaningSofa';
+      } else if (cleanType === 'armchair') {
+        currentBranchSteps = [...dryCleaningStepsArmchair, ...finalSteps];
+        currentBranchSteps.branchName = 'dryCleaningArmchair';
+      } else if (cleanType === 'chair') {
+        currentBranchSteps = [...dryCleaningStepsChair, ...finalSteps];
+        currentBranchSteps.branchName = 'dryCleaningChair';
+      } else if (cleanType === 'carpet') {
+        currentBranchSteps = [...dryCleaningStepsCarpet, ...finalSteps];
+        currentBranchSteps.branchName = 'dryCleaningCarpet';
+      } else if (cleanType === 'curtains') {
+        currentBranchSteps = [...dryCleaningStepsCurtains, ...finalSteps];
+        currentBranchSteps.branchName = 'dryCleaningCurtains';
+      } else if (cleanType === 'mattress') {
+        currentBranchSteps = [...dryCleaningStepsMattress, ...finalSteps];
+        currentBranchSteps.branchName = 'dryCleaningMattress';
+      } else if (cleanType === 'pillow') {
+        currentBranchSteps = [...dryCleaningStepsPillow, ...finalSteps];
+        currentBranchSteps.branchName = 'dryCleaningPillow';
+      } else {
+        alert('Выберите, что нужно почистить');
+        return;
+      }
+
+      currentStep = 0;
+      renderStep();
+      return;
+    }
+
 
     if (currentStep < currentBranchSteps.length - 1) {
       currentStep++;
@@ -139,18 +203,74 @@ export function setupCalculatorPopup() {
     if (currentStep > 0) {
       currentStep--;
       renderStep();
-    } else if (currentBranchSteps === commonSteps) {
-      // Возвращаемся в попап
-      document.getElementById('popup-calculator')?.classList.remove('active');
-      document.getElementById('popup')?.classList.add('active');
-      // Если используешь затемнение и скрытие хедера, оно уже активно — не нужно ничего менять
-    } else {
-      // Если это не commonSteps, возвращаемся к выбору услуги
-      currentBranchSteps = commonSteps;
+      return;
+    }
+
+    // Возврат из подветок уборки
+    if (
+      currentBranchSteps.branchName === 'cleaningLiving' ||
+      currentBranchSteps.branchName === 'cleaningOffice' ||
+      currentBranchSteps.branchName === 'cleaningIndustrial'
+    ) {
+      currentBranchSteps = [...cleaningSteps];
+      currentBranchSteps.branchName = 'cleaning';
       currentStep = 0;
       renderStep();
+      return;
+    }
+
+    // Возврат из подветок химчистки
+    if (
+      currentBranchSteps.branchName === 'dryCleaningSofa' ||
+      currentBranchSteps.branchName === 'dryCleaningArmchair' ||
+      currentBranchSteps.branchName === 'dryCleaningChair' ||
+      currentBranchSteps.branchName === 'dryCleaningCarpet' ||
+      currentBranchSteps.branchName === 'dryCleaningCurtains' ||
+      currentBranchSteps.branchName === 'dryCleaningMattress' ||
+      currentBranchSteps.branchName === 'dryCleaningPillow'
+    ) {
+      currentBranchSteps = [...dryCleaningSteps];
+      currentBranchSteps.branchName = 'dry_cleaning';
+      currentStep = 0;
+      renderStep();
+      return;
+    }
+
+    // Возврат из базовой ветки уборки
+    if (currentBranchSteps.branchName === 'cleaning') {
+      currentBranchSteps = [...commonSteps];
+      currentBranchSteps.branchName = 'commonSteps';
+      currentStep = 0;
+      renderStep();
+      return;
+    }
+
+    // Возврат из базовой ветки химчистки
+    if (currentBranchSteps.branchName === 'dry_cleaning') {
+      currentBranchSteps = [...commonSteps];
+      currentBranchSteps.branchName = 'commonSteps';
+      currentStep = 0;
+      renderStep();
+      return;
+    }
+
+    // Возврат из ветки мытья окон
+    if (currentBranchSteps.branchName === 'windows') {
+      currentBranchSteps = [...commonSteps];
+      currentBranchSteps.branchName = 'commonSteps';
+      currentStep = 0;
+      renderStep();
+      return;
+    }
+
+    // Если в commonSteps — закрываем калькулятор
+    if (currentBranchSteps.branchName === 'commonSteps') {
+      document.getElementById('popup-calculator')?.classList.remove('active');
+      document.getElementById('popup')?.classList.add('active');
+      return;
     }
   });
 
-  renderStep();
+renderStep();
+
 }
