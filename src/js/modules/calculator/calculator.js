@@ -1,4 +1,7 @@
-import { commonSteps, cleaningSteps, windowCleaningSteps, dryCleaningSteps, finalSteps } from './calculator-steps.js';
+import { commonSteps, finalSteps } from './calculator-steps.js';
+import { cleaningSteps } from './cleaning-steps.js';
+import { windowCleaningSteps } from './window-cleaning-steps.js';
+import { dryCleaningSteps } from './dry-cleaning-steps.js';
 import { renderRadioField, renderInputField, renderInlineRadioField, renderCheckboxField } from './calculator-renderers.js';
 
 export function setupCalculatorPopup() {

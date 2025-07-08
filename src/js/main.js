@@ -11,7 +11,7 @@ import { setupSwiperCleaners } from "./modules/swiperCleanersSetup.js";
 import { setupBasicTitleHidden } from "./modules/basicTitleHidden.js";
 import { setupSliderGallaryDesktop } from "./modules/sliderGalleryDesktop.js";
 import { setupPopup } from "./modules/popup.js";
-import { setupCalculatorPopup } from './modules/calculator.js';
+import { setupCalculatorPopup } from './modules/calculator/calculator.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   setupHeaderToggle();
