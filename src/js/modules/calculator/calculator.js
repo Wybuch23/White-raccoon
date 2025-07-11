@@ -1,8 +1,170 @@
+// import { commonSteps, finalSteps } from './calculator-steps.js';
+// import {
+//   cleaningSteps, cleaningStepsLiving, cleaningStepsOffice, cleaningStepsIndustrial
+// } from './cleaning-steps.js';
+// import { windowCleaningSteps } from './window-cleaning-steps.js';
+// import {
+//   dryCleaningSteps, dryCleaningStepsSofa, dryCleaningStepsArmchair, dryCleaningStepsChair,
+//   dryCleaningStepsCarpet, dryCleaningStepsCurtains, dryCleaningStepsMattress, dryCleaningStepsPillow
+// } from './dry-cleaning-steps.js';
+// import {
+//   renderRadioField, renderInputField, renderInlineRadioField, renderCheckboxField
+// } from './calculator-renderers.js';
+
+// export function setupCalculatorPopup() {
+//   const container = document.querySelector('#popup-calculator');
+//   const titleEl = container.querySelector('#popup__title');
+//   const bodyEl = container.querySelector('#popup__body_content');
+//   const btnNext = container.querySelector('#btn-primary-next');
+//   const btnBack = container.querySelector('#btn-primary-back');
+//   const footerHelpTextEl = container.querySelector('#popup__footer_help-text');
+
+//   let currentStep = 0;
+//   let currentBranchSteps = [...commonSteps];
+//   currentBranchSteps.branchName = 'commonSteps';
+//   let selectedBranch = null;
+
+//   const branchMap = {
+//     cleaning: { steps: cleaningSteps, sub: {
+//       living: cleaningStepsLiving,
+//       office: cleaningStepsOffice,
+//       industrial: cleaningStepsIndustrial
+//     }},
+//     windows: { steps: windowCleaningSteps },
+//     dry_cleaning: { steps: dryCleaningSteps, sub: {
+//       sofa: dryCleaningStepsSofa,
+//       armchair: dryCleaningStepsArmchair,
+//       chair: dryCleaningStepsChair,
+//       carpet: dryCleaningStepsCarpet,
+//       curtains: dryCleaningStepsCurtains,
+//       mattress: dryCleaningStepsMattress,
+//       pillow: dryCleaningStepsPillow
+//     }}
+//   };
+
+//   function renderStep() {
+//     const stepData = currentBranchSteps[currentStep];
+//     const stepEl = container.querySelector('#popup__step');
+
+//     if (stepEl) stepEl.textContent = stepData.stepTitle || '';
+
+//     titleEl.innerHTML = stepData.titleHtml || stepData.title;
+//     bodyEl.innerHTML = stepData.bodyHtml || '';
+
+//     if (stepData.fields) {
+//       stepData.fields.forEach(field => {
+//         const renderers = {
+//           radio: renderRadioField,
+//           'radio-inline': renderInlineRadioField,
+//           input: renderInputField,
+//           checkbox: renderCheckboxField
+//         };
+//         renderers[field.type]?.(field, bodyEl);
+//       });
+//     }
+
+//     btnNext.textContent = stepData.nextButtonText || 'Далее';
+//     footerHelpTextEl.innerHTML = stepData.footerHtml || '';
+//     footerHelpTextEl.style.display = stepData.isFinal ? 'block' : 'none';
+//     btnNext.style.display = btnBack.style.display = stepData.hideNavButtons ? 'none' : '';
+
+//     const restartBtn = document.querySelector('#popup__new-calculation');
+//     restartBtn?.addEventListener('click', () => {
+//       currentBranchSteps = [...commonSteps];
+//       currentBranchSteps.branchName = 'commonSteps';
+//       currentStep = 0;
+//       renderStep();
+//     });
+
+//     const thanksLogoEl = container.querySelector('#popup__thanks-logo');
+//     if (thanksLogoEl) thanksLogoEl.style.display = stepData.isThankYou ? 'block' : 'none';
+//   }
+
+//   function getSelectedRadioValue(name) {
+//     return [...bodyEl.querySelectorAll(`input[name="${name}"]`)]
+//       .find(r => r.checked)?.value || null;
+//   }
+
+//   btnNext.addEventListener('click', () => {
+//     if (currentBranchSteps.branchName === 'commonSteps') {
+//       selectedBranch = getSelectedRadioValue('serviceType');
+//       const branch = branchMap[selectedBranch];
+//       if (branch) {
+//         currentBranchSteps = [...branch.steps, ...finalSteps];
+//         currentBranchSteps.branchName = selectedBranch;
+//         currentStep = 0;
+//         renderStep();
+//       } else alert('Ветка для выбранной услуги пока не реализована');
+//       return;
+//     }
+
+//     if (branchMap[currentBranchSteps.branchName]?.sub) {
+//       const valueKey = currentBranchSteps.branchName === 'cleaning' ? 'areaType' : 'variables';
+//       const selectedValue = getSelectedRadioValue(valueKey);
+//       const subSteps = branchMap[currentBranchSteps.branchName].sub[selectedValue];
+
+//       if (subSteps) {
+//         currentBranchSteps = [...subSteps, ...finalSteps];
+//         currentBranchSteps.branchName = `${currentBranchSteps.branchName}${selectedValue}`;
+//         currentStep = 0;
+//         renderStep();
+//       } else {
+//         alert('Выберите корректное значение');
+//       }
+//       return;
+//     }
+
+//     if (currentStep < currentBranchSteps.length - 1) {
+//       currentStep++;
+//       renderStep();
+//     } else alert('Калькулятор завершён');
+//   });
+
+//   btnBack.addEventListener('click', () => {
+//     if (currentStep > 0) {
+//       currentStep--;
+//       renderStep();
+//       return;
+//     }
+
+//     for (const [branchKey, branch] of Object.entries(branchMap)) {
+//       if (Object.values(branch.sub || {}).some(sub => sub.branchName === currentBranchSteps.branchName)) {
+//         currentBranchSteps = [...branch.steps];
+//         currentBranchSteps.branchName = branchKey;
+//         currentStep = 0;
+//         renderStep();
+//         return;
+//       }
+//     }
+
+//     if (currentBranchSteps.branchName !== 'commonSteps') {
+//       currentBranchSteps = [...commonSteps];
+//       currentBranchSteps.branchName = 'commonSteps';
+//       currentStep = 0;
+//       renderStep();
+//       return;
+//     }
+
+//     document.getElementById('popup-calculator')?.classList.remove('active');
+//     document.getElementById('popup')?.classList.add('active');
+//   });
+
+//   renderStep();
+// }
+
+
 import { commonSteps, finalSteps } from './calculator-steps.js';
-import { cleaningSteps, cleaningStepsLiving, cleaningStepsOffice, cleaningStepsIndustrial } from './cleaning-steps.js';
+import {
+  cleaningSteps, cleaningStepsLiving, cleaningStepsOffice, cleaningStepsIndustrial
+} from './cleaning-steps.js';
 import { windowCleaningSteps } from './window-cleaning-steps.js';
-import { dryCleaningSteps, dryCleaningStepsSofa, dryCleaningStepsArmchair, dryCleaningStepsChair, dryCleaningStepsCarpet, dryCleaningStepsCurtains, dryCleaningStepsMattress, dryCleaningStepsPillow } from './dry-cleaning-steps.js';
-import { renderRadioField, renderInputField, renderInlineRadioField, renderCheckboxField } from './calculator-renderers.js';
+import {
+  dryCleaningSteps, dryCleaningStepsSofa, dryCleaningStepsArmchair, dryCleaningStepsChair,
+  dryCleaningStepsCarpet, dryCleaningStepsCurtains, dryCleaningStepsMattress, dryCleaningStepsPillow
+} from './dry-cleaning-steps.js';
+import {
+  renderRadioField, renderInputField, renderInlineRadioField, renderCheckboxField
+} from './calculator-renderers.js';
 
 export function setupCalculatorPopup() {
   const container = document.querySelector('#popup-calculator');
@@ -17,186 +179,133 @@ export function setupCalculatorPopup() {
   currentBranchSteps.branchName = 'commonSteps';
   let selectedBranch = null;
 
+  let formData = {};  // сюда будем сохранять данные
+
+
+  const branchMap = {
+    cleaning: { steps: cleaningSteps, sub: {
+      living: cleaningStepsLiving,
+      office: cleaningStepsOffice,
+      industrial: cleaningStepsIndustrial
+    }},
+    windows: { steps: windowCleaningSteps },
+    dry_cleaning: { steps: dryCleaningSteps, sub: {
+      sofa: dryCleaningStepsSofa,
+      armchair: dryCleaningStepsArmchair,
+      chair: dryCleaningStepsChair,
+      carpet: dryCleaningStepsCarpet,
+      curtains: dryCleaningStepsCurtains,
+      mattress: dryCleaningStepsMattress,
+      pillow: dryCleaningStepsPillow
+    }}
+  };
+
   function renderStep() {
     const stepData = currentBranchSteps[currentStep];
     const stepEl = container.querySelector('#popup__step');
-    if (stepEl && stepData.stepTitle) stepEl.textContent = stepData.stepTitle;
-    else if (stepEl) stepEl.textContent = '';
 
-    titleEl.innerHTML = stepData.title;
-    bodyEl.innerHTML = '';
+    if (stepEl) stepEl.textContent = stepData.stepTitle || '';
+
+    titleEl.innerHTML = stepData.titleHtml || stepData.title;
+    bodyEl.innerHTML = stepData.bodyHtml || '';
 
     if (stepData.fields) {
       stepData.fields.forEach(field => {
-        if (field.type === 'radio') renderRadioField(field, bodyEl);
-        if (field.type === 'radio-inline') renderInlineRadioField(field, bodyEl);
-        if (field.type === 'input') renderInputField(field, bodyEl);
-        if (field.type === 'checkbox') renderCheckboxField(field, bodyEl);
+        const renderers = {
+          radio: renderRadioField,
+          'radio-inline': renderInlineRadioField,
+          input: renderInputField,
+          checkbox: renderCheckboxField
+        };
+        renderers[field.type]?.(field, bodyEl);
       });
     }
 
-    if (stepData.titleHtml) {
-      titleEl.innerHTML = stepData.titleHtml;
-    } else {
-      titleEl.innerHTML = stepData.title;
-    }
+    btnNext.textContent = stepData.nextButtonText || 'Далее';
+    footerHelpTextEl.innerHTML = stepData.footerHtml || '';
+    footerHelpTextEl.style.display = stepData.isFinal ? 'block' : 'none';
+    btnNext.style.display = btnBack.style.display = stepData.hideNavButtons ? 'none' : '';
 
-    if (stepData.bodyHtml) {
-      bodyEl.innerHTML = stepData.bodyHtml;
-    }
-
-    // Меняем текст кнопки, если нужно
-    if (stepData.nextButtonText) {
-      btnNext.textContent = stepData.nextButtonText;
-    } else {
-      btnNext.textContent = 'Далее';
-    }
-
-    // Футер
-    if (footerHelpTextEl) {
-      footerHelpTextEl.innerHTML = stepData.footerHtml || '';
-
-      // Управляем display для finalSteps
-      if (stepData.isFinal) {
-        footerHelpTextEl.style.display = 'block';
-      } else {
-        footerHelpTextEl.style.display = 'none';
-      }
-    }
-
-    // Если это финальный спасибо-шаг, можно скрыть кнопки
-    if (stepData.hideNavButtons) {
-      btnNext.style.display = 'none';
-      btnBack.style.display = 'none';
-    } else {
-      btnNext.style.display = '';
-      btnBack.style.display = '';
-    }
-
-    // Обработчик кнопки нового расчета
     const restartBtn = document.querySelector('#popup__new-calculation');
-    if (restartBtn) {
-      restartBtn.addEventListener('click', () => {
-        currentBranchSteps = [...commonSteps];
-        currentBranchSteps.branchName = 'commonSteps';
-        currentStep = 0;
-        renderStep();
-      });
-    }
+    restartBtn?.addEventListener('click', () => {
+      currentBranchSteps = [...commonSteps];
+      currentBranchSteps.branchName = 'commonSteps';
+      currentStep = 0;
+      renderStep();
+    });
 
-    // Показ/скрытие логотипа спасибо
     const thanksLogoEl = container.querySelector('#popup__thanks-logo');
-    if (thanksLogoEl) {
-      if (stepData.isThankYou) {
-        thanksLogoEl.style.display = 'block';
-      } else {
-        thanksLogoEl.style.display = 'none';
-      }
-    }
+    if (thanksLogoEl) thanksLogoEl.style.display = stepData.isThankYou ? 'block' : 'none';
   }
-
 
   function getSelectedRadioValue(name) {
-    const radios = bodyEl.querySelectorAll(`input[name="${name}"]`);
-    for (const radio of radios) {
-      if (radio.checked) return radio.value;
-    }
-    return null;
+    return [...bodyEl.querySelectorAll(`input[name="${name}"]`)]
+      .find(r => r.checked)?.value || null;
   }
 
+  function collectStepData(stepData, bodyEl, formData) {
+    if (!stepData.fields) return;
+
+    stepData.fields.forEach(field => {
+      if (field.type === 'radio' || field.type === 'radio-inline') {
+        // Собираем выбранное радио
+        const selected = bodyEl.querySelector(`input[name="${field.name}"]:checked`);
+        if (selected) formData[field.name] = selected.value;
+      } else if (field.type === 'input') {
+        // Собираем значение input
+        const input = bodyEl.querySelector(`input[name="${field.name}"]`);
+        if (input) formData[field.name] = input.value;
+      } else if (field.type === 'checkbox') {
+        // Собираем массив выбранных чекбоксов
+        const checkedBoxes = bodyEl.querySelectorAll(`input[name="${field.name}"]:checked`);
+        formData[field.name] = Array.from(checkedBoxes).map(cb => cb.value);
+      }
+    });
+  }
+
+
   btnNext.addEventListener('click', () => {
+
+    // Сохраняем все выбранные значения с текущего шага
+    const stepData = currentBranchSteps[currentStep];
+
+    collectStepData(currentBranchSteps[currentStep], bodyEl, formData);
+    console.log('Текущие данные формы:', formData);
+
+
+
     if (currentBranchSteps.branchName === 'commonSteps') {
       selectedBranch = getSelectedRadioValue('serviceType');
-
-      if (selectedBranch === 'cleaning') {
-        currentBranchSteps = [...cleaningSteps, ...finalSteps];
-        currentBranchSteps.branchName = 'cleaning';
+      const branch = branchMap[selectedBranch];
+      if (branch) {
+        currentBranchSteps = [...branch.steps, ...finalSteps];
+        currentBranchSteps.branchName = selectedBranch;
         currentStep = 0;
         renderStep();
-        return;
-      } else if (selectedBranch === 'windows') {
-        currentBranchSteps = [...windowCleaningSteps, ...finalSteps];
-        currentBranchSteps.branchName = 'windows';
-        currentStep = 0;
-        renderStep();
-        return;
-      } else if (selectedBranch === 'dry_cleaning') {
-        currentBranchSteps = [...dryCleaningSteps, ...finalSteps];
-        currentBranchSteps.branchName = 'dry_cleaning';
-        currentStep = 0;
-        renderStep();
-        return;
-      } else {
-        alert('Ветка для выбранной услуги пока не реализована');
-        return;
-      }
-    }
-
-    // Ветка cleaning: выбор типа помещения
-    if (currentBranchSteps.branchName === 'cleaning') {
-      const areaType = getSelectedRadioValue('areaType');
-
-      if (areaType === 'living') {
-        currentBranchSteps = [...cleaningStepsLiving, ...finalSteps];
-        currentBranchSteps.branchName = 'cleaningLiving';
-      } else if (areaType === 'office') {
-        currentBranchSteps = [...cleaningStepsOffice, ...finalSteps];
-        currentBranchSteps.branchName = 'cleaningOffice';
-      } else if (areaType === 'industrial') {
-        currentBranchSteps = [...cleaningStepsIndustrial, ...finalSteps];
-        currentBranchSteps.branchName = 'cleaningIndustrial';
-      } else {
-        alert('Выберите тип помещения');
-        return;
-      }
-
-      currentStep = 0;
-      renderStep();
+      } else alert('Ветка для выбранной услуги пока не реализована');
       return;
     }
 
-    // Ветка dry_cleaning: выбор объекта химчистки
-    if (currentBranchSteps.branchName === 'dry_cleaning') {
-      const cleanType = getSelectedRadioValue('variables');
+    if (branchMap[currentBranchSteps.branchName]?.sub) {
+      const valueKey = currentBranchSteps.branchName === 'cleaning' ? 'areaType' : 'variables';
+      const selectedValue = getSelectedRadioValue(valueKey);
+      const subSteps = branchMap[currentBranchSteps.branchName].sub[selectedValue];
 
-      if (cleanType === 'sofa') {
-        currentBranchSteps = [...dryCleaningStepsSofa, ...finalSteps];
-        currentBranchSteps.branchName = 'dryCleaningSofa';
-      } else if (cleanType === 'armchair') {
-        currentBranchSteps = [...dryCleaningStepsArmchair, ...finalSteps];
-        currentBranchSteps.branchName = 'dryCleaningArmchair';
-      } else if (cleanType === 'chair') {
-        currentBranchSteps = [...dryCleaningStepsChair, ...finalSteps];
-        currentBranchSteps.branchName = 'dryCleaningChair';
-      } else if (cleanType === 'carpet') {
-        currentBranchSteps = [...dryCleaningStepsCarpet, ...finalSteps];
-        currentBranchSteps.branchName = 'dryCleaningCarpet';
-      } else if (cleanType === 'curtains') {
-        currentBranchSteps = [...dryCleaningStepsCurtains, ...finalSteps];
-        currentBranchSteps.branchName = 'dryCleaningCurtains';
-      } else if (cleanType === 'mattress') {
-        currentBranchSteps = [...dryCleaningStepsMattress, ...finalSteps];
-        currentBranchSteps.branchName = 'dryCleaningMattress';
-      } else if (cleanType === 'pillow') {
-        currentBranchSteps = [...dryCleaningStepsPillow, ...finalSteps];
-        currentBranchSteps.branchName = 'dryCleaningPillow';
+      if (subSteps) {
+        currentBranchSteps = [...subSteps, ...finalSteps];
+        currentBranchSteps.branchName = `${currentBranchSteps.branchName}${selectedValue}`;
+        currentStep = 0;
+        renderStep();
       } else {
-        alert('Выберите, что нужно почистить');
-        return;
+        alert('Выберите корректное значение');
       }
-
-      currentStep = 0;
-      renderStep();
       return;
     }
-
 
     if (currentStep < currentBranchSteps.length - 1) {
       currentStep++;
       renderStep();
-    } else {
-      alert('Калькулятор завершён');
-    }
+    } else alert('Калькулятор завершён');
   });
 
   btnBack.addEventListener('click', () => {
@@ -206,38 +315,17 @@ export function setupCalculatorPopup() {
       return;
     }
 
-    // Возврат из подветок уборки
-    if (
-      currentBranchSteps.branchName === 'cleaningLiving' ||
-      currentBranchSteps.branchName === 'cleaningOffice' ||
-      currentBranchSteps.branchName === 'cleaningIndustrial'
-    ) {
-      currentBranchSteps = [...cleaningSteps];
-      currentBranchSteps.branchName = 'cleaning';
-      currentStep = 0;
-      renderStep();
-      return;
+    for (const [branchKey, branch] of Object.entries(branchMap)) {
+      if (Object.values(branch.sub || {}).some(sub => sub.branchName === currentBranchSteps.branchName)) {
+        currentBranchSteps = [...branch.steps];
+        currentBranchSteps.branchName = branchKey;
+        currentStep = 0;
+        renderStep();
+        return;
+      }
     }
 
-    // Возврат из подветок химчистки
-    if (
-      currentBranchSteps.branchName === 'dryCleaningSofa' ||
-      currentBranchSteps.branchName === 'dryCleaningArmchair' ||
-      currentBranchSteps.branchName === 'dryCleaningChair' ||
-      currentBranchSteps.branchName === 'dryCleaningCarpet' ||
-      currentBranchSteps.branchName === 'dryCleaningCurtains' ||
-      currentBranchSteps.branchName === 'dryCleaningMattress' ||
-      currentBranchSteps.branchName === 'dryCleaningPillow'
-    ) {
-      currentBranchSteps = [...dryCleaningSteps];
-      currentBranchSteps.branchName = 'dry_cleaning';
-      currentStep = 0;
-      renderStep();
-      return;
-    }
-
-    // Возврат из базовой ветки уборки
-    if (currentBranchSteps.branchName === 'cleaning') {
+    if (currentBranchSteps.branchName !== 'commonSteps') {
       currentBranchSteps = [...commonSteps];
       currentBranchSteps.branchName = 'commonSteps';
       currentStep = 0;
@@ -245,32 +333,9 @@ export function setupCalculatorPopup() {
       return;
     }
 
-    // Возврат из базовой ветки химчистки
-    if (currentBranchSteps.branchName === 'dry_cleaning') {
-      currentBranchSteps = [...commonSteps];
-      currentBranchSteps.branchName = 'commonSteps';
-      currentStep = 0;
-      renderStep();
-      return;
-    }
-
-    // Возврат из ветки мытья окон
-    if (currentBranchSteps.branchName === 'windows') {
-      currentBranchSteps = [...commonSteps];
-      currentBranchSteps.branchName = 'commonSteps';
-      currentStep = 0;
-      renderStep();
-      return;
-    }
-
-    // Если в commonSteps — закрываем калькулятор
-    if (currentBranchSteps.branchName === 'commonSteps') {
-      document.getElementById('popup-calculator')?.classList.remove('active');
-      document.getElementById('popup')?.classList.add('active');
-      return;
-    }
+    document.getElementById('popup-calculator')?.classList.remove('active');
+    document.getElementById('popup')?.classList.add('active');
   });
 
-renderStep();
-
+  renderStep();
 }
