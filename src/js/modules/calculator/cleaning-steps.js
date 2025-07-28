@@ -9,9 +9,9 @@ export const cleaningSteps = [
         type: 'radio',
         name: 'areaType',
         options: [
-          { value: 'living', label: 'Жилое помещение', rightText: '—', checked: true },
-          { value: 'office', label: 'Офис/малая коммерция', rightText: '—' },
-          { value: 'industrial', label: 'Производственное/складское помещение', rightText: '—' }
+          { value: 'living', label: 'Жилое помещение', price: 90, rightText: '—', checked: true },
+          { value: 'office', label: 'Офис/малая коммерция', price: 90, rightText: '—' },
+          { value: 'industrial', label: 'Производственное/складское помещение', price: 140, rightText: '—' }
         ]
       }
     ]
@@ -29,11 +29,11 @@ export const cleaningStepsLiving = [
         type: 'radio',
         name: 'cleaningType',
         options: [
-          { value: 'daily', label: 'Повседневная уборка', rightText: '90 ₽/м²', checked: true },
-          { value: 'general', label: 'Генеральная уборка', rightText: '130 ₽/м²' },
-          { value: 'after_repair', label: 'Уборка после ремонта', rightText: '150 ₽/м²' },
-          { value: 'daily2', label: 'Уборка до/после жильцов', rightText: '120 ₽/м²' },
-          { value: 'general2', label: 'Уборка после праздника', rightText: '120 ₽/м²' }
+          { value: 'daily', label: 'Повседневная уборка', price: 0, rightText: '90 ₽/м²', checked: true },
+          { value: 'general', label: 'Генеральная уборка',  price: 40,rightText: '130 ₽/м²' },
+          { value: 'after_repair', label: 'Уборка после ремонта',  price: 60,rightText: '150 ₽/м²' },
+          { value: 'daily2', label: 'Уборка до/после жильцов',  price: 30,rightText: '120 ₽/м²' },
+          { value: 'general2', label: 'Уборка после праздника',  price: 40,rightText: '120 ₽/м²' }
         ]
       }
     ]
@@ -46,12 +46,12 @@ export const cleaningStepsLiving = [
         type: 'radio',
         name: 'bathroomCount',
         options: [
-          { value: 'none', label: 'Без санузла', rightText: '—', checked: true },
-          { value: '1', label: '1', rightText: '1200 ₽/шт' },
-          { value: '2', label: '2', rightText: '1100 ₽/шт' },
-          { value: '3', label: '3', rightText: '1000 ₽/шт' },
-          { value: '4', label: '4', rightText: '900 ₽/шт' },
-          { value: '5+', label: '5+', rightText: '800 ₽/шт' }
+          { value: 'none', label: 'Без санузла', price: 0, rightText: '—', checked: true },
+          { value: '1', label: '1', price: 1200, rightText: '1200 ₽/шт' },
+          { value: '2', label: '2', price: 2200, rightText: '1100 ₽/шт' },
+          { value: '3', label: '3', price: 3000, rightText: '1000 ₽/шт' },
+          { value: '4', label: '4', price: 3600, rightText: '900 ₽/шт' },
+          { value: '5+', label: '5+', price: 4000, rightText: '800 ₽/шт' }
         ]
       }
     ]
@@ -66,7 +66,8 @@ export const cleaningStepsLiving = [
         inputType: 'number',
         label: 'м²',
         placeholder: 'Введите значение',
-        helperText: '90 ₽/м²'
+        helperText: '90 ₽/м²',
+        price: 90
       }
     ]
   },
@@ -78,13 +79,13 @@ export const cleaningStepsLiving = [
         type: 'checkbox',
         name: 'extraServices',
         options: [
-          { value: 'window_cleaning', label: 'Мытье окон', rightText: '450 ₽/м²' },
-          { value: 'fridge', label: 'Мытье холодильника', rightText: '800 ₽/шт' },
-          { value: 'oven', label: 'Мытье духового шкафа', rightText: '800 ₽/шт' },
-          { value: 'microwave', label: 'Мытье микроволновки', rightText: '500 ₽/шт' },
-          { value: 'hood', label: 'Мытье вытяжки', rightText: '700 ₽/шт' },
-          { value: 'stove', label: 'Мытье плиты', rightText: '400 ₽/шт' },
-          { value: 'trash_removal', label: 'Вынос мусора', rightText: '1000 ₽/шт' }
+          { value: 'window_cleaning', label: 'Мытье окон', price: 450, rightText: '450 ₽/м²' },
+          { value: 'fridge', label: 'Мытье холодильника', price: 800, rightText: '800 ₽/шт' },
+          { value: 'oven', label: 'Мытье духового шкафа', price: 800, rightText: '800 ₽/шт' },
+          { value: 'microwave', label: 'Мытье микроволновки', price: 500, rightText: '500 ₽/шт' },
+          { value: 'hood', label: 'Мытье вытяжки', price: 700, rightText: '700 ₽/шт' },
+          { value: 'stove', label: 'Мытье плиты', price: 400, rightText: '400 ₽/шт' },
+          { value: 'trash_removal', label: 'Вынос мусора', price: 1000, rightText: '1000 ₽/шт' }
         ]
       }
     ]
