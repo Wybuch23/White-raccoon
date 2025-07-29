@@ -35,15 +35,14 @@ export function renderInputField(field, bodyEl) {
   inputEl.classList.add('input');
   inputEl.name = field.name;
   inputEl.placeholder = field.placeholder || '';
-
   wrapper.appendChild(inputEl);
 
-  if (field.helperText) {
-    const helperEl = document.createElement('div');
-    helperEl.classList.add('input-helper-text');
-    helperEl.innerHTML = field.helperText;
-    wrapper.appendChild(helperEl);
-  }
+  // Обновлённая часть: helperText с data-атрибутом
+  const helperEl = document.createElement('div');
+  helperEl.classList.add('input-helper-text');
+  helperEl.setAttribute('data-helper-for', field.name);
+  helperEl.innerHTML = field.helperText || '';
+  wrapper.appendChild(helperEl);
 
   bodyEl.appendChild(wrapper);
 }

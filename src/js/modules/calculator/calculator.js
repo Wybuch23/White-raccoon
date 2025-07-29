@@ -67,6 +67,23 @@ export function setupCalculatorPopup() {
         };
         renderers[field.type]?.(field, bodyEl);
       });
+
+      // Обновляем helperText поля area, если есть rate
+      if (formData.values.cleaningType) {
+        const cleaningStep = currentBranchSteps.find(step =>
+          step.fields?.some(f => f.name === 'cleaningType')
+        );
+
+        const cleaningField = cleaningStep?.fields?.find(f => f.name === 'cleaningType');
+        const selectedOption = cleaningField?.options?.find(opt => opt.value === formData.values.cleaningType);
+
+        if (selectedOption?.rate) {
+          const helper = bodyEl.querySelector('[data-helper-for="area"]');
+          if (helper) {
+            helper.textContent = `${selectedOption.rate} ₽/м²`;
+          }
+        }
+      }
     }
 
     attachRadioListeners(stepData, bodyEl, formData);
@@ -113,8 +130,9 @@ export function setupCalculatorPopup() {
           const value = parseFloat(input.value);
           formData.values[field.name] = value;
 
-          if (!isNaN(value) && typeof field.price === 'number') {
-            formData.prices[field.name] = value * field.price;
+          const rate = formData.meta?.ratePerM2;
+          if (!isNaN(value) && typeof rate === 'number') {
+            formData.prices[field.name] = value * rate;
           }
         }
 
@@ -143,7 +161,6 @@ export function setupCalculatorPopup() {
     if (priceEl) priceEl.textContent = total;
   }
 
-
   function attachRadioListeners(stepData, bodyEl, formData) {
     if (!stepData.fields) return;
 
@@ -156,39 +173,126 @@ export function setupCalculatorPopup() {
             if (radio.checked) {
               formData.values[field.name] = radio.value;
 
-              const price = getPriceForValue(field, radio.value);
-              if (typeof price === 'number' && !isNaN(price)) {
-                formData.prices[field.name] = price;
+              const option = field.options.find(opt => opt.value === radio.value);
+              if (option) {
+                if (typeof option.price === 'number') {
+                  formData.prices[field.name] = option.price;
+                }
+
+                // Обновление ставки и helperText — для поля cleaningType
+                if (field.name === 'cleaningType' && typeof option.rate === 'number') {
+                  formData.meta = formData.meta || {};
+                  formData.meta.ratePerM2 = option.rate;
+
+                  const helper = bodyEl.querySelector('[data-helper-for="area"]');
+                  if (helper) {
+                    helper.textContent = `${option.rate} ₽/м²`;
+                  }
+                }
+
+                // Поддержка логики расчёта для подушек — при выборе размера
+                if (field.name === 'pillowSize') {
+                  const multiplier = option.priceMultiplier || 1;
+                  const countValue = formData.values.pillowCount;
+
+                  const countOption = currentBranchSteps
+                    .flatMap(step => step.fields || [])
+                    .find(f => f.name === 'pillowCount')?.options
+                    ?.find(opt => opt.value === countValue);
+
+                  const basePrice = countOption?.price || 0;
+                  const finalPrice = basePrice * multiplier;
+
+                  formData.prices.pillowCount = finalPrice;
+                }
+
+                // Поддержка логики расчёта для подушек — при выборе количества
+                if (field.name === 'pillowCount') {
+                  const basePrice = option.price || 0;
+
+                  const selectedSize = formData.values.pillowSize;
+                  const pillowSizeStep = stepData.fields.find(f => f.name === 'pillowSize');
+                  const sizeOption = pillowSizeStep?.options?.find(opt => opt.value === selectedSize);
+                  const multiplier = sizeOption?.priceMultiplier || 1;
+
+                  const finalPrice = basePrice * multiplier;
+                  formData.prices.pillowCount = finalPrice;
+                }
               }
 
               const total = calculateTotalPrice(formData.prices);
               const priceEl = document.querySelector('.popup__summary-price');
               if (priceEl) priceEl.textContent = total;
-
-              console.log('Обновлено:', formData);
-              console.log('Текущая сумма:', total);
             }
           });
-        });
 
-        // Инициализация текущего выбранного значения
+          // Инициализация выбранных radio
+          if (radio.checked && !formData.values[field.name]) {
+            formData.values[field.name] = radio.value;
+
+            const option = field.options.find(opt => opt.value === radio.value);
+            if (option) {
+              if (typeof option.price === 'number') {
+                formData.prices[field.name] = option.price;
+              }
+
+              if (field.name === 'cleaningType' && typeof option.rate === 'number') {
+                formData.meta = formData.meta || {};
+                formData.meta.ratePerM2 = option.rate;
+
+                const helper = bodyEl.querySelector('[data-helper-for="area"]');
+                if (helper) {
+                  helper.textContent = `${option.rate} ₽/м²`;
+                }
+              }
+
+              // Повтор логики для подушек при инициализации
+              if (field.name === 'pillowSize') {
+                const multiplier = option.priceMultiplier || 1;
+                const countValue = formData.values.pillowCount;
+
+                const countOption = stepData.fields
+                  .find(f => f.name === 'pillowCount')?.options
+                  ?.find(opt => opt.value === countValue);
+
+                const basePrice = countOption?.price || 0;
+                const finalPrice = basePrice * multiplier;
+
+                formData.prices.pillowCount = finalPrice;
+              }
+
+              if (field.name === 'pillowCount') {
+                const basePrice = option.price || 0;
+
+                const selectedSize = formData.values.pillowSize;
+                const pillowSizeStep = stepData.fields.find(f => f.name === 'pillowSize');
+                const sizeOption = pillowSizeStep?.options?.find(opt => opt.value === selectedSize);
+                const multiplier = sizeOption?.priceMultiplier || 1;
+
+                const finalPrice = basePrice * multiplier;
+                formData.prices.pillowCount = finalPrice;
+              }
+            }
+          }
+        });
+      }
+    });
+
+    // Принудительно запустить change у выбранных radio-кнопок
+    stepData.fields.forEach(field => {
+      if (field.type === 'radio' || field.type === 'radio-inline') {
         const checkedRadio = bodyEl.querySelector(`input[name="${field.name}"]:checked`);
         if (checkedRadio) {
-          formData.values[field.name] = checkedRadio.value;
-
-          const initPrice = getPriceForValue(field, checkedRadio.value);
-          if (typeof initPrice === 'number' && !isNaN(initPrice)) {
-            formData.prices[field.name] = initPrice;
-          }
-
-          const total = calculateTotalPrice(formData.prices);
-          const priceEl = document.querySelector('.popup__summary-price');
-          if (priceEl) priceEl.textContent = total;
+          checkedRadio.dispatchEvent(new Event('change', { bubbles: true }));
         }
       }
     });
   }
 
+
+
+
+  
   //обновление цены при нажатии на чекбокс
   function attachCheckboxListeners(stepData, bodyEl, formData) {
     if (!stepData.fields) return;
@@ -235,9 +339,11 @@ export function setupCalculatorPopup() {
   }
 
   function calculateTotalPrice(pricesObj) {
-    return Object.values(pricesObj)
-      .filter(p => typeof p === 'number' && !isNaN(p)) // ⚠️ Только числа
+    const total = Object.values(pricesObj)
+      .filter(p => typeof p === 'number' && !isNaN(p))
       .reduce((sum, price) => sum + price, 0);
+      
+    return Math.round(total);
   }
 
   btnNext.addEventListener('click', () => {
