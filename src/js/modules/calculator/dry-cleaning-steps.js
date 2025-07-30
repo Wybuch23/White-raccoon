@@ -10,8 +10,8 @@ export const dryCleaningSteps = [
           { value: 'sofa', label: 'Диван', price: 1800, rightText: 'от 1800 ₽', checked: true },
           { value: 'armchair', label: 'Кресло', price: 500, rightText: 'от 500 ₽' },
           { value: 'chair', label: 'Стул', price: 500, rightText: 'от 500 ₽' },
-          { value: 'carpet', label: 'Ковер', price: 500, rightText: 'от 500 ₽' },
-          { value: 'curtains', label: 'Шторы/тюль', price: 100, rightText: 'от 100 ₽' },
+          { value: 'carpet', label: 'Ковер', rate: 500, price: 500, rightText: 'от 500 ₽' },
+          { value: 'curtains', label: 'Шторы/тюль', rate: 100, price: 100, rightText: 'от 100 ₽' },
           { value: 'mattress', label: 'Матрас', price: 1000, rightText: 'от 1000 ₽' },
           { value: 'pillow', label: 'Подушки', price: 300, rightText: 'от 300 ₽' }
         ]
@@ -45,7 +45,7 @@ export const dryCleaningStepsSofa = [
     fields: [
       {
         type: 'radio',
-        name: 'sofaExtension',
+        name: 'sofaPull-out',
         options: [
           { value: 'no', label: 'Не раздвижной', price: 0, rightText: '-', checked: true },
           { value: 'yes', label: 'Раздвижной', price: 900, rightText: '900 ₽/шт' }
@@ -78,8 +78,8 @@ export const dryCleaningStepsSofa = [
         type: 'radio',
         name: 'pillowSize',
         options: [
-          { value: 'small', label: 'Маленькие', priceMultiplier: 1, rightText: 'от 300 ₽/шт', checked: true },
-          { value: 'large', label: 'Большие', priceMultiplier: 1.6667, rightText: 'от 500 ₽/шт' }
+          { value: 'small', label: 'Маленькие', priceMultiplier: 1, rightText: '300 ₽/шт', checked: true },
+          { value: 'large', label: 'Большие', priceMultiplier: 1.6667, rightText: '500 ₽/шт' }
         ]
       }
     ]
@@ -94,11 +94,11 @@ export const dryCleaningStepsArmchair = [
     fields: [
       {
         type: 'radio',
-        name: 'size',
+        name: 'armchairSize',
         options: [
-          { value: 'light', label: 'Стандартное', rightText: '1200 ₽/шт', checked: true },
-          { value: 'hard', label: 'Раздвижное', rightText: '1500 ₽/шт' },
-          { value: 'hard', label: 'Офисное', rightText: '500 ₽/шт' }
+          { value: 'standart', label: 'Стандартное', price: 700, rightText: '1200 ₽/шт', checked: true },
+          { value: 'pull-out', label: 'Раздвижное', price: 1000, rightText: '1500 ₽/шт' },
+          { value: 'office', label: 'Офисное', price: 0, rightText: '500 ₽/шт' }
         ]
       }
     ]
@@ -113,11 +113,11 @@ export const dryCleaningStepsChair = [
     fields: [
       {
         type: 'radio',
-        name: 'size',
+        name: 'chairSize',
         options: [
-          { value: 'light', label: 'С мягкой спинкой', rightText: '600 ₽/шт', checked: true },
-          { value: 'hard', label: 'Офисный', rightText: '700 ₽/шт' },
-          { value: 'hard', label: 'Пуф', rightText: '500 ₽/шт' }
+          { value: 'soft', label: 'С мягкой спинкой', price: 100, rightText: '600 ₽/шт', checked: true },
+          { value: 'office', label: 'Офисный', price: 200, rightText: '700 ₽/шт' },
+          { value: 'pouf', label: 'Пуф', price: 0, rightText: '500 ₽/шт' }
         ]
       }
     ]
@@ -127,21 +127,34 @@ dryCleaningStepsChair.branchName = 'dryCleaningChair';
 
 export const dryCleaningStepsCarpet = [
   {
-    stepTitle: 'Шаг 3 из 4',
+    stepTitle: 'Шаг 3 из 5',
+    title: 'Общая площадь ковра',
+    fields: [
+      {
+        type: 'input',
+        name: 'area',
+        inputType: 'number',
+        label: 'м²',
+        placeholder: 'Введите значение',
+        helperText: ''
+      }
+    ]
+  },
+  {
+    stepTitle: 'Шаг 4 из 5',
     title: 'Длина ворса',
     fields: [
       {
         type: 'radio',
-        name: 'size',
+        name: 'carpetSize',
         options: [
-          { value: 'light', label: 'Низкий ворс', rightText: '500 ₽/м²', checked: true },
-          { value: 'hard', label: 'Средний ворс', rightText: '650 ₽/м²' },
-          { value: 'hard', label: 'Высокий ворс', rightText: '700 ₽/м²' }
+          { value: 'low', label: 'Низкий ворс', price: -500, priceMultiplier: 1, rightText: '500 ₽/м²', checked: true },
+          { value: 'medium', label: 'Средний ворс', priceMultiplier: 1.3, rightText: '650 ₽/м²' },
+          { value: 'tall', label: 'Высокий ворс', priceMultiplier: 1.4, rightText: '700 ₽/м²' }
         ]
       }
     ]
   }
-  // Можешь добавить еще шаги
 ];
 dryCleaningStepsCarpet.branchName = 'dryCleaningCarpet';
 
@@ -151,18 +164,16 @@ export const dryCleaningStepsCurtains = [
     title: 'Площадь штор с тюлью',
     fields: [
       {
-        type: 'radio',
-        name: 'size',
-        options: [
-          { value: 'light', label: '<4м2', rightText: '400 ₽/шт', checked: true },
-          { value: 'hard', label: '4-8м2', rightText: '800 ₽/шт' },
-          { value: 'hard', label: '8-16м2', rightText: '1600 ₽/шт' },
-          { value: 'hard', label: '>16м2', rightText: '3200 ₽/шт' }
-        ]
+        type: 'input',
+        name: 'area',
+        inputType: 'number',
+        label: 'м²',
+        placeholder: 'Введите значение',
+        helperText: '',
       }
     ]
   }
-  // Можешь добавить еще шаги
+
 ];
 dryCleaningStepsCurtains.branchName = 'dryCleaningCurtains';
 
@@ -173,12 +184,12 @@ export const dryCleaningStepsMattress = [
     fields: [
       {
         type: 'radio',
-        name: 'size',
+        name: 'mattressSize',
         options: [
-          { value: 'light', label: 'Детский', rightText: '1000 ₽/шт', checked: true },
-          { value: 'hard', label: 'Односпальный', rightText: '2000 ₽/шт' },
-          { value: 'hard', label: 'Полутороспальный', rightText: '2500 ₽/шт' },
-          { value: 'hard', label: 'Двуспальный', rightText: '3000 ₽/шт' }
+          { value: 'children', label: 'Детский', price: 0, rightText: '1000 ₽/шт', checked: true },
+          { value: '1_place', label: 'Односпальный', price: 1000, rightText: '2000 ₽/шт' },
+          { value: '1.5_place', label: 'Полутороспальный', price: 1500, rightText: '2500 ₽/шт' },
+          { value: '2_place', label: 'Двуспальный', price: 2000, rightText: '3000 ₽/шт' }
         ]
       }
     ]
@@ -193,28 +204,26 @@ export const dryCleaningStepsPillow = [
     fields: [
       {
         type: 'radio',
-        name: 'size',
+        name: 'pillowCount',
         options: [
-          { value: 'light', label: 'Без подушек', rightText: '—', checked: true },
-          { value: 'hard', label: '1-2', rightText: 'от ??? ₽/шт' },
-          { value: 'hard', label: '3-4', rightText: 'от ??? ₽/шт' },
-          { value: 'light', label: '4-6', rightText: 'от ??? ₽/шт' },
-          { value: 'hard', label: '6-8', rightText: 'от ??? ₽/шт' },
-          { value: 'hard', label: '8+', rightText: 'от ??? ₽/шт' }
+          { value: '1', label: '1', price: 0, rightText: 'от 300 ₽/шт', checked: true },
+          { value: '2', label: '2', price: 300, rightText: 'от 600 ₽/шт' },
+          { value: '3', label: '3', price: 600, rightText: 'от 900 ₽/шт' },
+          { value: '4', label: '4+', price: 900, rightText: 'от 1200 ₽/шт' }
         ]
       }
     ]
   },
   {
-    stepTitle: 'Шаг 4 из 5',
+    stepTitle: 'шаг 6 из 7',
     title: 'Размер подушек',
     fields: [
       {
         type: 'radio',
-        name: 'size',
+        name: 'pillowSize',
         options: [
-          { value: 'light', label: 'Большой', rightText: '500 ₽/шт', checked: true },
-          { value: 'hard', label: 'Маленький', rightText: '300 ₽/шт' }
+          { value: 'small', label: 'Маленькие', priceMultiplier: 1, rightText: '300 ₽/шт', checked: true },
+          { value: 'large', label: 'Большие', priceMultiplier: 1.6667, rightText: '500 ₽/шт' }
         ]
       }
     ]

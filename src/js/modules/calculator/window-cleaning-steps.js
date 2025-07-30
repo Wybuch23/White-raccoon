@@ -21,8 +21,8 @@ export const windowCleaningSteps = [
         type: 'radio',
         name: 'urgency',
         options: [
-          { value: 'light', label: 'Легкие (пыль, грязь)', checked: true },
-          { value: 'hard', label: 'Тяжелые (следы от скотча, после ремонта)' }
+          { value: 'light', label: 'Легкие (пыль, грязь)', rate: 450, priceMultiplier: 1, rightText: '450 ₽/м²', checked: true },
+          { value: 'hard', label: 'Тяжелые (следы от скотча, после ремонта)', rate: 450, rightText: '600 ₽/м²', priceMultiplier: 1.3333 }
         ]
       }
     ]

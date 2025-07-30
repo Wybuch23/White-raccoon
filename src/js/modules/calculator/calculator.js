@@ -89,6 +89,16 @@ export function setupCalculatorPopup() {
     attachRadioListeners(stepData, bodyEl, formData);
     attachCheckboxListeners(stepData, bodyEl, formData); //обновление цены при нажатии на чекбокс
 
+    // Если выбрана мойка окон — восстановим ставку из serviceType
+    if (formData.values.serviceType === 'windows') {
+      const serviceOption = commonSteps[0].fields[0].options
+        .find(opt => opt.value === 'windows' && typeof opt.rate === 'number');
+      if (serviceOption) {
+        formData.meta = formData.meta || {};
+        formData.meta.ratePerM2 = serviceOption.rate;
+      }
+    }
+
     btnNext.textContent = stepData.nextButtonText || 'Далее';
     footerHelpTextEl.innerHTML = stepData.footerHtml || '';
     footerHelpTextEl.style.display = stepData.isFinal ? 'block' : 'none';
@@ -123,43 +133,68 @@ export function setupCalculatorPopup() {
         if (selected) {
           formData.values[field.name] = selected.value;
         }
+      }
 
-      } else if (field.type === 'input') {
+      else if (field.type === 'input') {
         const input = bodyEl.querySelector(`input[name="${field.name}"]`);
         if (input) {
           const value = parseFloat(input.value);
           formData.values[field.name] = value;
 
-          const rate = formData.meta?.ratePerM2;
+          let rate = formData.meta?.ratePerM2;
+          let multiplier = 1;
+
+          // Для ковров
+          const selectedCarpetSize = formData.values.carpetSize;
+          if (selectedCarpetSize) {
+            const carpetField = currentBranchSteps.flatMap(s => s.fields || []).find(f => f.name === 'carpetSize');
+            const carpetOption = carpetField?.options?.find(opt => opt.value === selectedCarpetSize);
+            if (carpetOption?.priceMultiplier) {
+              multiplier = carpetOption.priceMultiplier;
+            }
+          }
+
+          // Для мойки окон
+          const selectedUrgency = formData.values.urgency;
+          if (selectedUrgency) {
+            const urgencyField = currentBranchSteps.flatMap(s => s.fields || []).find(f => f.name === 'urgency');
+            const urgencyOption = urgencyField?.options?.find(opt => opt.value === selectedUrgency);
+            if (urgencyOption) {
+              if (typeof urgencyOption.rate === 'number') rate = urgencyOption.rate;
+              if (typeof urgencyOption.priceMultiplier === 'number') multiplier = urgencyOption.priceMultiplier;
+            }
+          }
+
           if (!isNaN(value) && typeof rate === 'number') {
-            formData.prices[field.name] = value * rate;
+            formData.prices[field.name] = Math.round(value * rate * multiplier);
           }
         }
+      }
 
-      } else if (field.type === 'checkbox') {
+      else if (field.type === 'checkbox') {
         const checkedBoxes = bodyEl.querySelectorAll(`input[name="${field.name}"]:checked`);
         const values = Array.from(checkedBoxes).map(cb => cb.value);
         formData.values[field.name] = values;
 
-        // 💰 расчёт суммы по выбранным чекбоксам
         let total = 0;
         if (field.options) {
           values.forEach(val => {
             const option = field.options.find(opt => opt.value === val);
-            if (option?.price) {
-              total += option.price;
-            }
+            if (option?.price) total += option.price;
           });
         }
+
         formData.prices[field.name] = total;
       }
     });
 
-    // 💵 Обновляем сумму
     const total = calculateTotalPrice(formData.prices);
     const priceEl = document.querySelector('.popup__summary-price');
     if (priceEl) priceEl.textContent = total;
   }
+
+
+
 
   function attachRadioListeners(stepData, bodyEl, formData) {
     if (!stepData.fields) return;
@@ -179,14 +214,32 @@ export function setupCalculatorPopup() {
                   formData.prices[field.name] = option.price;
                 }
 
-                // Обновление ставки и helperText — для поля cleaningType
-                if (field.name === 'cleaningType' && typeof option.rate === 'number') {
+                // Обновление ставки и helperText — для поля cleaningType или serviceType
+                if ((field.name === 'cleaningType' || field.name === 'serviceType') && typeof option.rate === 'number') {
                   formData.meta = formData.meta || {};
                   formData.meta.ratePerM2 = option.rate;
 
                   const helper = bodyEl.querySelector('[data-helper-for="area"]');
                   if (helper) {
                     helper.textContent = `${option.rate} ₽/м²`;
+                  }
+                }
+
+                // Установка ставки за м² при выборе универсальный
+                if (field.name === 'variables' && typeof option.rate === 'number') {
+                  formData.meta = formData.meta || {};
+                  formData.meta.ratePerM2 = option.rate;
+                }
+
+                // Поддержка расчета стоимости ковра по метрам
+                if (field.name === 'carpetSize') {
+                  const multiplier = option.priceMultiplier || 1;
+                  const areaValue = parseFloat(formData.values.area);
+
+                  if (!isNaN(areaValue)) {
+                    const rate = formData.meta?.ratePerM2 || 0;
+                    const price = areaValue * rate * multiplier;
+                    formData.prices.area = Math.round(price);
                   }
                 }
 
@@ -202,8 +255,18 @@ export function setupCalculatorPopup() {
 
                   const basePrice = countOption?.price || 0;
                   const finalPrice = basePrice * multiplier;
-
                   formData.prices.pillowCount = finalPrice;
+                }
+
+                // Поддержка логики расчёта для мойки окон — при выборе тяжести
+                if (field.name === 'urgency') {
+                  const multiplier = option.priceMultiplier || 1;
+                  const rate = option.rate || 0;
+                  const areaValue = parseFloat(formData.values.area);
+
+                  if (!isNaN(areaValue)) {
+                    formData.prices.area = Math.round(areaValue * rate * multiplier);
+                  }
                 }
 
                 // Поддержка логики расчёта для подушек — при выборе количества
@@ -211,10 +274,12 @@ export function setupCalculatorPopup() {
                   const basePrice = option.price || 0;
 
                   const selectedSize = formData.values.pillowSize;
-                  const pillowSizeStep = stepData.fields.find(f => f.name === 'pillowSize');
+                  const pillowSizeStep = currentBranchSteps
+                    .flatMap(step => step.fields || [])
+                    .find(f => f.name === 'pillowSize');
+
                   const sizeOption = pillowSizeStep?.options?.find(opt => opt.value === selectedSize);
                   const multiplier = sizeOption?.priceMultiplier || 1;
-
                   const finalPrice = basePrice * multiplier;
                   formData.prices.pillowCount = finalPrice;
                 }
@@ -236,7 +301,7 @@ export function setupCalculatorPopup() {
                 formData.prices[field.name] = option.price;
               }
 
-              if (field.name === 'cleaningType' && typeof option.rate === 'number') {
+              if ((field.name === 'cleaningType' || field.name === 'serviceType') && typeof option.rate === 'number') {
                 formData.meta = formData.meta || {};
                 formData.meta.ratePerM2 = option.rate;
 
@@ -246,7 +311,11 @@ export function setupCalculatorPopup() {
                 }
               }
 
-              // Повтор логики для подушек при инициализации
+              if (field.name === 'variables' && typeof option.rate === 'number') {
+                formData.meta = formData.meta || {};
+                formData.meta.ratePerM2 = option.rate;
+              }
+
               if (field.name === 'pillowSize') {
                 const multiplier = option.priceMultiplier || 1;
                 const countValue = formData.values.pillowCount;
@@ -257,18 +326,27 @@ export function setupCalculatorPopup() {
 
                 const basePrice = countOption?.price || 0;
                 const finalPrice = basePrice * multiplier;
-
                 formData.prices.pillowCount = finalPrice;
+              }
+
+              // Поддержка логики расчёта для мойки окон — при выборе тяжести
+              if (field.name === 'urgency') {
+                const multiplier = option.priceMultiplier || 1;
+                const rate = option.rate || 0;
+                const areaValue = parseFloat(formData.values.area);
+
+                if (!isNaN(areaValue)) {
+                  formData.prices.area = Math.round(areaValue * rate * multiplier);
+                }
               }
 
               if (field.name === 'pillowCount') {
                 const basePrice = option.price || 0;
-
                 const selectedSize = formData.values.pillowSize;
+
                 const pillowSizeStep = stepData.fields.find(f => f.name === 'pillowSize');
                 const sizeOption = pillowSizeStep?.options?.find(opt => opt.value === selectedSize);
                 const multiplier = sizeOption?.priceMultiplier || 1;
-
                 const finalPrice = basePrice * multiplier;
                 formData.prices.pillowCount = finalPrice;
               }
@@ -288,6 +366,7 @@ export function setupCalculatorPopup() {
       }
     });
   }
+
 
 
 

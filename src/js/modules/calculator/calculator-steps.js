@@ -8,7 +8,7 @@ export const commonSteps = [
         name: 'serviceType',
         options: [
           { value: 'cleaning', label: 'Уборка помещений', rightText: '—', checked: true },
-          { value: 'windows', label: 'Мойка окон', rightText: '—'},
+          { value: 'windows', label: 'Мойка окон', rate: 450, rightText: '—'},
           { value: 'dry_cleaning', label: 'Химчистка', rightText: '—' }
         ]
       }
