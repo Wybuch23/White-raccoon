@@ -30,11 +30,11 @@ export const dryCleaningStepsSofa = [
         type: 'radio',
         name: 'sofaSize',
         options: [
-          { value: '2', label: '2-местный', price: 0, rightText: '1800 ₽/шт', checked: true },
-          { value: '3', label: '3-местный', price: 900, rightText: '2700 ₽/шт' },
-          { value: '4', label: '4-местный', price: 1800, rightText: '3600 ₽/шт' },
-          { value: 'angle_3', label: 'Угловой стандартный (3 посадочных места)', price: 1200, rightText: '3000 ₽/шт' },
-          { value: 'angle_4', label: 'Угловой большой (4 и более посадочных мест)', price: 2600, rightText: '4400 ₽/шт' }
+          { value: '2', label: '2-местный', price: 0, duration: 100, rightText: '1800 ₽/шт', checked: true },
+          { value: '3', label: '3-местный', price: 900, duration: 120, rightText: '2700 ₽/шт' },
+          { value: '4', label: '4-местный', price: 1800, duration: 140, rightText: '3600 ₽/шт' },
+          { value: 'angle_3', label: 'Угловой стандартный (3 посадочных места)', duration: 120, price: 1200, rightText: '3000 ₽/шт' },
+          { value: 'angle_4', label: 'Угловой большой (4 и более посадочных мест)', duration: 140, price: 2600, rightText: '4400 ₽/шт' }
         ]
       }
     ]
@@ -47,8 +47,8 @@ export const dryCleaningStepsSofa = [
         type: 'radio',
         name: 'sofaPull-out',
         options: [
-          { value: 'no', label: 'Не раздвижной', price: 0, rightText: '-', checked: true },
-          { value: 'yes', label: 'Раздвижной', price: 900, rightText: '900 ₽/шт' }
+          { value: 'no', label: 'Не раздвижной', price: 0, duration: 0, rightText: '-', checked: true },
+          { value: 'yes', label: 'Раздвижной', price: 900, duration: 20, rightText: '900 ₽/шт' }
         ]
       }
     ]
@@ -61,11 +61,11 @@ export const dryCleaningStepsSofa = [
         type: 'radio',
         name: 'pillowCount',
         options: [
-          { value: 'none', label: 'Без подушек', price: 0, rightText: '—', checked: true },
-          { value: '1', label: '1', price: 300, rightText: 'от 300 ₽/шт' },
-          { value: '2', label: '2', price: 600, rightText: 'от 600 ₽/шт' },
-          { value: '3', label: '3', price: 900, rightText: 'от 900 ₽/шт' },
-          { value: '4', label: '4+', price: 1200, rightText: 'от 1200 ₽/шт' }
+          { value: 'none', label: 'Без подушек', price: 0, duration: 0, rightText: '—', checked: true },
+          { value: '1', label: '1', price: 300, duration: 5, rightText: 'от 300 ₽/шт' },
+          { value: '2', label: '2', price: 600, duration: 10, rightText: 'от 600 ₽/шт' },
+          { value: '3', label: '3', price: 900, duration: 15, rightText: 'от 900 ₽/шт' },
+          { value: '4', label: '4', price: 1200, duration: 20, rightText: 'от 1200 ₽/шт' }
         ]
       }
     ]
@@ -96,9 +96,9 @@ export const dryCleaningStepsArmchair = [
         type: 'radio',
         name: 'armchairSize',
         options: [
-          { value: 'standart', label: 'Стандартное', price: 700, rightText: '1200 ₽/шт', checked: true },
-          { value: 'pull-out', label: 'Раздвижное', price: 1000, rightText: '1500 ₽/шт' },
-          { value: 'office', label: 'Офисное', price: 0, rightText: '500 ₽/шт' }
+          { value: 'standart', label: 'Стандартное', price: 700, duration: 40, rightText: '1200 ₽/шт', checked: true },
+          { value: 'pull-out', label: 'Раздвижное', price: 1000, duration: 50, rightText: '1500 ₽/шт' },
+          { value: 'office', label: 'Офисное', price: 0, duration: 30, rightText: '500 ₽/шт' }
         ]
       }
     ]
@@ -115,9 +115,9 @@ export const dryCleaningStepsChair = [
         type: 'radio',
         name: 'chairSize',
         options: [
-          { value: 'soft', label: 'С мягкой спинкой', price: 100, rightText: '600 ₽/шт', checked: true },
-          { value: 'office', label: 'Офисный', price: 200, rightText: '700 ₽/шт' },
-          { value: 'pouf', label: 'Пуф', price: 0, rightText: '500 ₽/шт' }
+          { value: 'soft', label: 'С мягкой спинкой', price: 100, duration: 30, rightText: '600 ₽/шт', checked: true },
+          { value: 'office', label: 'Офисный', price: 200, duration: 30, rightText: '700 ₽/шт' },
+          { value: 'pouf', label: 'Пуф', price: 0, duration: 40, rightText: '500 ₽/шт' }
         ]
       }
     ]
@@ -186,10 +186,10 @@ export const dryCleaningStepsMattress = [
         type: 'radio',
         name: 'mattressSize',
         options: [
-          { value: 'children', label: 'Детский', price: 0, rightText: '1000 ₽/шт', checked: true },
-          { value: '1_place', label: 'Односпальный', price: 1000, rightText: '2000 ₽/шт' },
-          { value: '1.5_place', label: 'Полутороспальный', price: 1500, rightText: '2500 ₽/шт' },
-          { value: '2_place', label: 'Двуспальный', price: 2000, rightText: '3000 ₽/шт' }
+          { value: 'children', label: 'Детский', price: 0, duration: 40, rightText: '1000 ₽/шт', checked: true },
+          { value: '1_place', label: 'Односпальный', price: 1000, duration: 50, rightText: '2000 ₽/шт' },
+          { value: '1.5_place', label: 'Полутороспальный', price: 1500, duration: 80, rightText: '2500 ₽/шт' },
+          { value: '2_place', label: 'Двуспальный', price: 2000, duration: 120, rightText: '3000 ₽/шт' }
         ]
       }
     ]

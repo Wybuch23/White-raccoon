@@ -116,6 +116,70 @@ export function setupCalculatorPopup() {
     if (thanksLogoEl) thanksLogoEl.style.display = stepData.isThankYou ? 'block' : 'none';
   }
 
+  function calculateTotalDuration(formData) {
+    const service = formData.values.serviceType;
+    let total = 0;
+
+    if (service === 'cleaning') {
+      const type = formData.values.cleaningType;
+      const area = Number(formData.values.area) || 0;
+      const bathrooms = Number(formData.values.bathroomCount) || 0;
+
+      const bathroomMap = {
+        daily: 30,
+        general: 60,
+        after_repair: 70,
+        daily2: 30,
+        general2: 40
+      };
+
+      const areaMap = {
+        daily: 4.5,
+        general: 9,
+        after_repair: 11,
+        daily2: 3,
+        general2: 8
+      };
+
+      const bathroomTime = bathroomMap[type] ? bathrooms * bathroomMap[type] : 0;
+
+      let areaTime = area * (areaMap[type] || 0);
+      if (area > 200) areaTime /= 4;
+      else if (area > 120) areaTime /= 3;
+      else if (area > 40) areaTime /= 2;
+
+      total = bathroomTime + areaTime;
+    }
+
+    if (service === 'windows') {
+      const area = Number(formData.values.area) || 0;
+      const urgency = formData.values.urgency;
+
+      const windowDurations = {
+        light: 5,
+        hard: 7.5
+      };
+
+      const perM2 = windowDurations[urgency] || 0;
+      total = area * perM2;
+    }
+
+    // Добавляем доп.услуги
+    let extra = 0;
+    if (formData.durations) {
+      extra = Object.values(formData.durations).reduce((sum, val) => sum + val, 0);
+    }
+
+    total += extra;
+
+    const el = document.querySelector('.popup__summary-time');
+    if (el) {
+      el.textContent = `${Math.round(total)}`;
+    }
+  }
+
+
+
   function getSelectedRadioValue(name) {
     return [...bodyEl.querySelectorAll(`input[name="${name}"]`)]
       .find(r => r.checked)?.value || null;
@@ -132,6 +196,13 @@ export function setupCalculatorPopup() {
         const selected = bodyEl.querySelector(`input[name="${field.name}"]:checked`);
         if (selected) {
           formData.values[field.name] = selected.value;
+            if (field.options) {
+              const option = field.options.find(opt => opt.value === selected.value);
+              if (option?.duration) {
+                if (!formData.durations) formData.durations = {};
+                formData.durations[field.name] = option.duration;
+              }
+            }
         }
       }
 
@@ -283,11 +354,21 @@ export function setupCalculatorPopup() {
                   const finalPrice = basePrice * multiplier;
                   formData.prices.pillowCount = finalPrice;
                 }
+                // Добавляем duration от radio (в режиме onChange)
+                if (field.options) {
+                  const option = field.options.find(opt => opt.value === radio.value);
+                  if (option?.duration) {
+                    formData.durations = formData.durations || {};
+                    formData.durations[field.name] = option.duration;
+                  }
+                }
               }
 
               const total = calculateTotalPrice(formData.prices);
               const priceEl = document.querySelector('.popup__summary-price');
               if (priceEl) priceEl.textContent = total;
+
+              calculateTotalDuration(formData);
             }
           });
 
@@ -395,10 +476,28 @@ export function setupCalculatorPopup() {
 
             formData.prices[field.name] = total;
 
+            // ⏱ Обновим duration для выбранных чекбоксов
+            if (!formData.durations) formData.durations = {};
+            formData.durations[field.name] = 0;
+
+            if (field.options) {
+              values.forEach(val => {
+                const option = field.options.find(opt => opt.value === val);
+                if (option?.duration) {
+                  formData.durations[field.name] += option.duration;
+                }
+              });
+            }
+
+            // 💲 Обновим цену
             const priceEl = document.querySelector('.popup__summary-price');
             const totalPrice = calculateTotalPrice(formData.prices);
             if (priceEl) priceEl.textContent = totalPrice;
+
+            // ✅ Пересчёт времени сразу
+            calculateTotalDuration(formData);
           });
+
         });
       }
     });
@@ -466,6 +565,7 @@ export function setupCalculatorPopup() {
     if (currentStep < currentBranchSteps.length - 1) {
       currentStep++;
       renderStep();
+      calculateTotalDuration(formData);
     } else alert('Калькулятор завершён');
   });
 

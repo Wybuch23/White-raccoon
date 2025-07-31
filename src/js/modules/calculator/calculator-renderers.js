@@ -79,6 +79,7 @@ export function renderCheckboxField(field, bodyEl) {
           class="checkbox-input" 
           name="${field.name}" 
           value="${opt.value}" 
+          ${opt.duration ? `data-duration="${opt.duration}"` : ''}
           ${opt.checked ? 'checked' : ''}
         >
         <span class="checkbox__icon">
