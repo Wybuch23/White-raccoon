@@ -164,9 +164,40 @@ export function setupCalculatorPopup() {
       total = area * perM2;
     }
 
+    if (service === 'dry_cleaning') {
+      const selectedSub = formData.values.variables;
+
+      // === Ковры ===
+      if (selectedSub === 'carpet') {
+        const area = Number(formData.values.area) || 0;
+        const size = formData.values.carpetSize;
+
+        const rateMap = {
+          low: 15,
+          medium: 20,
+          tall: 30
+        };
+        const perM2 = rateMap[size] || 0;
+
+        total += area * perM2;
+      }
+
+      // === Шторы и тюль ===
+      if (selectedSub === 'curtains') {
+        const area = Number(formData.values.area) || 0;
+        total += area * 20;
+      }
+    }
+
     // Добавляем доп.услуги
+    // let extra = 0;
+    // if (formData.durations) {
+    //   extra = Object.values(formData.durations).reduce((sum, val) => sum + val, 0);
+    // }
+
     let extra = 0;
     if (formData.durations) {
+      console.log('⏱ durations:', formData.durations); // временно
       extra = Object.values(formData.durations).reduce((sum, val) => sum + val, 0);
     }
 
@@ -200,7 +231,11 @@ export function setupCalculatorPopup() {
               const option = field.options.find(opt => opt.value === selected.value);
               if (option?.duration) {
                 if (!formData.durations) formData.durations = {};
-                formData.durations[field.name] = option.duration;
+
+                // ❌ Исключение: если это pillowCount — duration будет пересчитан на шаге pillowSize
+                if (field.name !== 'pillowCount') {
+                  formData.durations[field.name] = option.duration;
+                }
               }
             }
         }
@@ -285,6 +320,11 @@ export function setupCalculatorPopup() {
                   formData.prices[field.name] = option.price;
                 }
 
+                if (option?.duration && field.name !== 'pillowCount') {
+                  formData.durations = formData.durations || {};
+                  formData.durations[field.name] = option.duration;
+                }
+
                 // Обновление ставки и helperText — для поля cleaningType или serviceType
                 if ((field.name === 'cleaningType' || field.name === 'serviceType') && typeof option.rate === 'number') {
                   formData.meta = formData.meta || {};
@@ -353,22 +393,49 @@ export function setupCalculatorPopup() {
                   const multiplier = sizeOption?.priceMultiplier || 1;
                   const finalPrice = basePrice * multiplier;
                   formData.prices.pillowCount = finalPrice;
+
+                  const baseDuration = option?.duration || 0;
+
+                  // 💾 Сохраняем как базу для дальнейшего пересчёта
+                  formData.tempDurations = formData.tempDurations || {};
+                  formData.tempDurations.pillowCountBase = baseDuration;
+
+                  // ✅ Сохраняем напрямую для отображения
+                  formData.durations = formData.durations || {};
+                  formData.durations.pillowCount = baseDuration;
+
+                  calculateTotalDuration(formData);
                 }
-                // Добавляем duration от radio (в режиме onChange)
-                if (field.options) {
-                  const option = field.options.find(opt => opt.value === radio.value);
-                  if (option?.duration) {
-                    formData.durations = formData.durations || {};
-                    formData.durations[field.name] = option.duration;
-                  }
+                
+                // Пересчёт duration для подушек при выборе размера
+                if (field.name === 'pillowSize') {
+                  const selectedCount = formData.values.pillowCount;
+
+                  const pillowCountStep = currentBranchSteps
+                    .flatMap(step => step.fields || [])
+                    .find(f => f.name === 'pillowCount');
+
+                  const countOption = pillowCountStep?.options?.find(opt => opt.value === selectedCount);
+
+                  // Берем duration напрямую из countOption, НЕ из formData.durations
+                  const baseDuration = countOption?.duration || 0;
+
+                  const sizeOption = field.options.find(opt => opt.value === radio.value);
+                  const multiplier = sizeOption?.priceMultiplier || 1;
+
+                  // Перезаписываем duration с нуля
+                  formData.durations = formData.durations || {};
+                  formData.durations.pillowCount = Math.round(baseDuration * multiplier);
                 }
+
+                calculateTotalDuration(formData);
               }
 
               const total = calculateTotalPrice(formData.prices);
               const priceEl = document.querySelector('.popup__summary-price');
               if (priceEl) priceEl.textContent = total;
 
-              calculateTotalDuration(formData);
+              
             }
           });
 
@@ -437,9 +504,10 @@ export function setupCalculatorPopup() {
       }
     });
 
-    // Принудительно запустить change у выбранных radio-кнопок
+    // Принудительно запускаем change у выбранных radio-кнопок,
+    // но пропускаем поля, которые уже были обработаны вручную
     stepData.fields.forEach(field => {
-      if (field.type === 'radio' || field.type === 'radio-inline') {
+      if ((field.type === 'radio' || field.type === 'radio-inline') && field.name !== 'pillowSize') {
         const checkedRadio = bodyEl.querySelector(`input[name="${field.name}"]:checked`);
         if (checkedRadio) {
           checkedRadio.dispatchEvent(new Event('change', { bubbles: true }));

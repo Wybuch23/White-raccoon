@@ -79,7 +79,7 @@ export const dryCleaningStepsSofa = [
         name: 'pillowSize',
         options: [
           { value: 'small', label: 'Маленькие', priceMultiplier: 1, rightText: '300 ₽/шт', checked: true },
-          { value: 'large', label: 'Большие', priceMultiplier: 1.6667, rightText: '500 ₽/шт' }
+          { value: 'large', label: 'Большие', priceMultiplier: 1.5, rightText: '500 ₽/шт' }
         ]
       }
     ]
@@ -206,10 +206,10 @@ export const dryCleaningStepsPillow = [
         type: 'radio',
         name: 'pillowCount',
         options: [
-          { value: '1', label: '1', price: 0, rightText: 'от 300 ₽/шт', checked: true },
-          { value: '2', label: '2', price: 300, rightText: 'от 600 ₽/шт' },
-          { value: '3', label: '3', price: 600, rightText: 'от 900 ₽/шт' },
-          { value: '4', label: '4+', price: 900, rightText: 'от 1200 ₽/шт' }
+          { value: '1', label: '1', price: 300, duration: 5, rightText: 'от 300 ₽/шт', checked: true },
+          { value: '2', label: '2', price: 600, duration: 10, rightText: 'от 600 ₽/шт' },
+          { value: '3', label: '3', price: 900, duration: 15, rightText: 'от 900 ₽/шт' },
+          { value: '4', label: '4', price: 1200, duration: 20, rightText: 'от 1200 ₽/шт' }
         ]
       }
     ]
@@ -218,7 +218,7 @@ export const dryCleaningStepsPillow = [
     stepTitle: 'шаг 6 из 7',
     title: 'Размер подушек',
     fields: [
-      {
+      { 
         type: 'radio',
         name: 'pillowSize',
         options: [
