@@ -78,12 +78,12 @@ export const cleaningStepsLiving = [
         type: 'checkbox',
         name: 'extraServices',
         options: [
-          { value: 'fridge', label: 'Мытье холодильника', price: 800, duration: 30, rightText: '800 ₽/шт' },
-          { value: 'oven', label: 'Мытье духового шкафа', price: 800, duration: 30, rightText: '800 ₽/шт' },
-          { value: 'microwave', label: 'Мытье микроволновки', price: 500, duration: 30, rightText: '500 ₽/шт' },
-          { value: 'hood', label: 'Мытье вытяжки', price: 700, duration: 30, rightText: '700 ₽/шт' },
-          { value: 'stove', label: 'Мытье плиты', price: 400, duration: 30, rightText: '400 ₽/шт' },
-          { value: 'trash_removal', label: 'Вынос мусора', price: 1000, duration: 30, rightText: '1000 ₽/шт' }
+          { value: 'fridge', label: 'Мытье холодильника', price: 800, duration: 20, rightText: '800 ₽/шт' },
+          { value: 'oven', label: 'Мытье духового шкафа', price: 800, duration: 20, rightText: '800 ₽/шт' },
+          { value: 'microwave', label: 'Мытье микроволновки', price: 500, duration: 10, rightText: '500 ₽/шт' },
+          { value: 'hood', label: 'Мытье вытяжки', price: 700, duration: 15, rightText: '700 ₽/шт' },
+          { value: 'stove', label: 'Мытье плиты', price: 400, duration: 10, rightText: '400 ₽/шт' },
+          { value: 'trash_removal', label: 'Вынос мусора', price: 1000, duration: 0, rightText: '1000 ₽/шт' }
         ]
       }
     ]
