@@ -637,7 +637,7 @@ export function setupCalculatorPopup() {
 
     const templateMap = {
       cleaning: ['cleaningType', 'serviceType', 'areaType', 'area', 'bathroomCount'],
-      windows: ['serviceType', 'area'],
+      windows: ['serviceType', 'area', 'urgency'],
       dry_cleaning: [
         'serviceType', 'sofaPull-out', 'sofaSize', 'variables', 'pillowCount', 'pillowSize',
         'armchairSize', 'chairSize', 'mattressSize', 'carpetSize', 'area'
