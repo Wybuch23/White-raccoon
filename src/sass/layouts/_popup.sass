@@ -44,6 +44,7 @@
                     +tertiary-title-desktop
                     color: $--grey-primary
             .popup__body
+                
                 +body-text-desktop
                 color: $--grey-primary
             .popup__footer
@@ -129,7 +130,8 @@
             gap: 40px
             .popup__body
                 display: flex
-                align-items: flex-end
+                flex-direction: column
+                justify-content: flex-end
         .popup__container--right
             display: grid
             grid-template-rows: auto 1fr auto

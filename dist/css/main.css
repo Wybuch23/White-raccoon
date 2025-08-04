@@ -3036,7 +3036,8 @@
 }
 .popup.popup-calculator .popup__container--left .popup__body {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .popup.popup-calculator .popup__container--right {
   display: grid;

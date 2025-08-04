@@ -7,9 +7,9 @@ export const commonSteps = [
         type: 'radio',
         name: 'serviceType',
         options: [
-          { value: 'cleaning', label: 'Уборка помещений', rightText: '—', checked: true },
-          { value: 'windows', label: 'Мойка окон', rate: 450, rightText: '—'},
-          { value: 'dry_cleaning', label: 'Химчистка', rightText: '—' }
+          { value: 'cleaning', label: 'Уборка помещений', wayname: 'уборка', rightText: '—', checked: true },
+          { value: 'windows', label: 'Мойка окон', wayname: 'мойка окон', rate: 450, rightText: '—'},
+          { value: 'dry_cleaning', label: 'Химчистка', wayname: 'химчистка', rightText: '—' }
         ]
       }
     ]

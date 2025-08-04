@@ -29,6 +29,8 @@ export function setupCalculatorPopup() {
     prices: {}    // тут храним цены по именам полей
   };  // сюда будем сохранять данные
 
+  let allSteps = [...commonSteps]; // будет обновляться при переходах
+
 
   const branchMap = {
     cleaning: { steps: cleaningSteps, sub: {
@@ -86,6 +88,15 @@ export function setupCalculatorPopup() {
       }
     }
 
+    // 🔁 Восстановление выбранных radio на основе formData
+    stepData.fields.forEach(field => {
+      if ((field.type === 'radio' || field.type === 'radio-inline') && formData.values?.[field.name]) {
+        const savedValue = formData.values[field.name];
+        const inputEl = bodyEl.querySelector(`input[name="${field.name}"][value="${savedValue}"]`);
+        if (inputEl) inputEl.checked = true;
+      }
+    });
+
     attachRadioListeners(stepData, bodyEl, formData);
     attachCheckboxListeners(stepData, bodyEl, formData); //обновление цены при нажатии на чекбокс
 
@@ -111,6 +122,8 @@ export function setupCalculatorPopup() {
       currentStep = 0;
       renderStep();
     });
+
+    updatePathSummary(formData);
 
     const thanksLogoEl = container.querySelector('#popup__thanks-logo');
     if (thanksLogoEl) thanksLogoEl.style.display = stepData.isThankYou ? 'block' : 'none';
@@ -450,6 +463,7 @@ export function setupCalculatorPopup() {
                 }
 
                 calculateTotalDuration(formData);
+                updatePathSummary(formData);
               }
 
               const total = calculateTotalPrice(formData.prices);
@@ -534,6 +548,7 @@ export function setupCalculatorPopup() {
           checkedRadio.dispatchEvent(new Event('change', { bubbles: true }));
         }
       }
+      updatePathSummary(formData);
     });
   }
 
@@ -585,6 +600,7 @@ export function setupCalculatorPopup() {
 
             // ✅ Пересчёт времени сразу
             calculateTotalDuration(formData);
+            updatePathSummary(formData);
           });
 
         });
@@ -613,6 +629,89 @@ export function setupCalculatorPopup() {
     return Math.round(total);
   }
 
+  function buildPathText(formData) {
+    const fullBranch = currentBranchSteps.branchName;
+    const branch = fullBranch.startsWith('cleaning') ? 'cleaning' :
+                  fullBranch.startsWith('windows') ? 'windows' :
+                  'dry_cleaning';
+
+    const templateMap = {
+      cleaning: ['cleaningType', 'serviceType', 'areaType', 'area', 'bathroomCount'],
+      windows: ['serviceType', 'area'],
+      dry_cleaning: [
+        'serviceType', 'sofaPull-out', 'sofaSize', 'variables', 'pillowCount', 'pillowSize',
+        'armchairSize', 'chairSize', 'mattressSize', 'carpetSize', 'area'
+      ]
+    };
+
+    const template = templateMap[branch];
+    const result = [];
+
+    template.forEach(key => {
+      const val = formData.values?.[key];
+      if (!val) return;
+
+      if (key === 'area') {
+        result.push(`${val} м²`);
+      } else {
+        // 🧠 Ищем поле сначала в текущей ветке, если не нашли — в commonSteps
+        let field = allSteps
+          .flatMap(step => step.fields || [])
+          .find(f => f.name === key);
+
+        if (!field) {
+          field = commonSteps
+            .flatMap(step => step.fields || [])
+            .find(f => f.name === key);
+        }
+
+        const option = field?.options?.find(opt => opt.value === val);
+        if (option?.wayname) {
+          result.push(option.wayname);
+        }
+      }
+    });
+
+    return result.join(' ');
+  }
+
+  function updatePathSummary(formData) {
+    const pathEl = document.querySelector('.history__step');
+    const checkboxListEl = document.querySelector('.history__checkbox-list');
+
+    if (!pathEl || !checkboxListEl) return;
+
+    pathEl.textContent = buildPathText(formData);
+
+    checkboxListEl.innerHTML = '';
+
+    Object.entries(formData.values).forEach(([fieldName, values]) => {
+      if (!Array.isArray(values)) return;
+
+      // 🛠 Ищем поле сначала в текущем шаге, потом в commonSteps
+      let field = currentBranchSteps
+        .flatMap(step => step.fields || [])
+        .find(f => f.name === fieldName);
+
+      if (!field) {
+        field = commonSteps
+          .flatMap(step => step.fields || [])
+          .find(f => f.name === fieldName);
+      }
+
+      values.forEach(val => {
+        const label = field?.options?.find(opt => opt.value === val)?.label;
+        if (label) {
+          const div = document.createElement('div');
+          div.className = 'history__checkbox';
+          div.textContent = `+ ${label}`;
+          checkboxListEl.appendChild(div);
+        }
+      });
+    });
+  }
+
+
   btnNext.addEventListener('click', () => {
 
     // Сохраняем все выбранные значения с текущего шага
@@ -629,6 +728,9 @@ export function setupCalculatorPopup() {
       if (branch) {
         currentBranchSteps = [...branch.steps, ...finalSteps];
         currentBranchSteps.branchName = selectedBranch;
+        formData.meta = formData.meta || {};
+        formData.meta.selectedBranch = selectedBranch; // 🧠 сохраняем выбранную ветку
+        allSteps = [...commonSteps, ...branch.steps];
         currentStep = 0;
         renderStep();
       } else alert('Ветка для выбранной услуги пока не реализована');
@@ -638,11 +740,16 @@ export function setupCalculatorPopup() {
     if (branchMap[currentBranchSteps.branchName]?.sub) {
       const valueKey = currentBranchSteps.branchName === 'cleaning' ? 'areaType' : 'variables';
       const selectedValue = getSelectedRadioValue(valueKey);
-      const subSteps = branchMap[currentBranchSteps.branchName].sub[selectedValue];
+
+      const rootBranch = formData.meta?.selectedBranch; // ← используем ранее сохранённую ветку
+      const baseSteps = branchMap[rootBranch]?.steps || [];
+      const subSteps = branchMap[rootBranch]?.sub?.[selectedValue];
 
       if (subSteps) {
         currentBranchSteps = [...subSteps, ...finalSteps];
-        currentBranchSteps.branchName = `${currentBranchSteps.branchName}${selectedValue}`;
+        currentBranchSteps.branchName = `${rootBranch}${selectedValue}`;
+        allSteps = [...commonSteps, ...baseSteps, ...subSteps]; // ← теперь всё есть
+
         currentStep = 0;
         renderStep();
       } else {

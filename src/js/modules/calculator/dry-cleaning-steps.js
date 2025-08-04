@@ -7,7 +7,7 @@ export const dryCleaningSteps = [
         type: 'radio',
         name: 'variables',
         options: [
-          { value: 'sofa', label: 'Диван', price: 1800, rightText: 'от 1800 ₽', checked: true },
+          { value: 'sofa', label: 'Диван', wayname: 'дивана', price: 1800, rightText: 'от 1800 ₽', checked: true },
           { value: 'armchair', label: 'Кресло', price: 500, rightText: 'от 500 ₽' },
           { value: 'chair', label: 'Стул', price: 500, rightText: 'от 500 ₽' },
           { value: 'carpet', label: 'Ковер', rate: 500, price: 500, rightText: 'от 500 ₽' },
@@ -30,11 +30,11 @@ export const dryCleaningStepsSofa = [
         type: 'radio',
         name: 'sofaSize',
         options: [
-          { value: '2', label: '2-местный', price: 0, duration: 100, rightText: '1800 ₽/шт', checked: true },
-          { value: '3', label: '3-местный', price: 900, duration: 120, rightText: '2700 ₽/шт' },
-          { value: '4', label: '4-местный', price: 1800, duration: 140, rightText: '3600 ₽/шт' },
-          { value: 'angle_3', label: 'Угловой стандартный (3 посадочных места)', duration: 120, price: 1200, rightText: '3000 ₽/шт' },
-          { value: 'angle_4', label: 'Угловой большой (4 и более посадочных мест)', duration: 140, price: 2600, rightText: '4400 ₽/шт' }
+          { value: '2', label: '2-местный', wayname: '2-местного', price: 0, duration: 100, rightText: '1800 ₽/шт', checked: true },
+          { value: '3', label: '3-местный', wayname: '3-местного', price: 900, duration: 120, rightText: '2700 ₽/шт' },
+          { value: '4', label: '4-местный', wayname: '4-местного', price: 1800, duration: 140, rightText: '3600 ₽/шт' },
+          { value: 'angle_3', label: 'Угловой стандартный (3 посадочных места)', wayname: 'стандартного углового', duration: 120, price: 1200, rightText: '3000 ₽/шт' },
+          { value: 'angle_4', label: 'Угловой большой (4 и более посадочных мест)', wayname: 'большого углового', duration: 140, price: 2600, rightText: '4400 ₽/шт' }
         ]
       }
     ]
@@ -47,8 +47,8 @@ export const dryCleaningStepsSofa = [
         type: 'radio',
         name: 'sofaPull-out',
         options: [
-          { value: 'no', label: 'Не раздвижной', price: 0, duration: 0, rightText: '-', checked: true },
-          { value: 'yes', label: 'Раздвижной', price: 900, duration: 20, rightText: '900 ₽/шт' }
+          { value: 'no', label: 'Не раздвижной', wayname: '', price: 0, duration: 0, rightText: '-', checked: true },
+          { value: 'yes', label: 'Раздвижной', wayname: 'раздвижного', price: 900, duration: 20, rightText: '900 ₽/шт' }
         ]
       }
     ]
@@ -61,11 +61,11 @@ export const dryCleaningStepsSofa = [
         type: 'radio',
         name: 'pillowCount',
         options: [
-          { value: 'none', label: 'Без подушек', price: 0, duration: 0, rightText: '—', checked: true },
-          { value: '1', label: '1', price: 300, duration: 5, rightText: 'от 300 ₽/шт' },
-          { value: '2', label: '2', price: 600, duration: 10, rightText: 'от 600 ₽/шт' },
-          { value: '3', label: '3', price: 900, duration: 15, rightText: 'от 900 ₽/шт' },
-          { value: '4', label: '4', price: 1200, duration: 20, rightText: 'от 1200 ₽/шт' }
+          { value: 'none', label: 'Без подушек', wayname: '', price: 0, duration: 0, rightText: '—', checked: true },
+          { value: '1', label: '1', wayname: 'с 1 подушкой', price: 300, duration: 5, rightText: 'от 300 ₽/шт' },
+          { value: '2', label: '2', wayname: 'с 2 подушками', price: 600, duration: 10, rightText: 'от 600 ₽/шт' },
+          { value: '3', label: '3', wayname: 'с 3 подушками', price: 900, duration: 15, rightText: 'от 900 ₽/шт' },
+          { value: '4', label: '4', wayname: 'с 4 подушками', price: 1200, duration: 20, rightText: 'от 1200 ₽/шт' }
         ]
       }
     ]
@@ -78,8 +78,8 @@ export const dryCleaningStepsSofa = [
         type: 'radio',
         name: 'pillowSize',
         options: [
-          { value: 'small', label: 'Маленькие', priceMultiplier: 1, rightText: '300 ₽/шт', checked: true },
-          { value: 'large', label: 'Большие', priceMultiplier: 1.5, rightText: '500 ₽/шт' }
+          { value: 'small', label: 'Маленькие', wayname: 'маленького размера', priceMultiplier: 1, rightText: '300 ₽/шт', checked: true },
+          { value: 'large', label: 'Большие', wayname: 'большого размера', priceMultiplier: 1.5, rightText: '500 ₽/шт' }
         ]
       }
     ]
