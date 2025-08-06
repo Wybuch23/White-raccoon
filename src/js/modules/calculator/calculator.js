@@ -672,7 +672,8 @@ export function setupCalculatorPopup() {
       }
     });
 
-    return result.join(' ');
+    const finalText = result.join(' ');
+    return finalText.charAt(0).toUpperCase() + finalText.slice(1);
   }
 
   function updatePathSummary(formData) {
@@ -768,28 +769,56 @@ export function setupCalculatorPopup() {
   btnBack.addEventListener('click', () => {
     if (currentStep > 0) {
       currentStep--;
+
+      const stepDataBack = currentBranchSteps[currentStep];
+      const stepFieldList = stepDataBack?.fields || [];
+      stepFieldList.forEach(field => {
+        const name = field.name;
+        delete formData.values?.[name];
+        delete formData.prices?.[name];
+        if (formData.durations) delete formData.durations[name];
+      });
+
       renderStep();
       return;
     }
 
-    for (const [branchKey, branch] of Object.entries(branchMap)) {
-      if (Object.values(branch.sub || {}).some(sub => sub.branchName === currentBranchSteps.branchName)) {
-        currentBranchSteps = [...branch.steps];
-        currentBranchSteps.branchName = branchKey;
-        currentStep = 0;
-        renderStep();
-        return;
-      }
+    // 🔁 dry_cleaning: возврат из подветки
+    const match = currentBranchSteps.branchName.match(/^(.+?)(sofa|chair|armchair|carpet|curtains|mattress|pillow)$/);
+    if (match) {
+      const rootBranch = match[1];
+      const baseBranch = formData.meta?.selectedBranch || rootBranch;
+
+      const branch = branchMap[baseBranch];
+      currentBranchSteps = [...branch.steps];
+      currentBranchSteps.branchName = baseBranch;
+      currentStep = branch.steps.length - 1;
+      renderStep();
+      return;
     }
 
+    // 🔁 cleaning: возврат из подветки living/office/industrial
+    if (/^cleaning(living|office|industrial)$/.test(currentBranchSteps.branchName)) {
+      const rootBranch = 'cleaning';
+
+      const branch = branchMap[rootBranch];
+      currentBranchSteps = [...branch.steps];
+      currentBranchSteps.branchName = rootBranch;
+      currentStep = branch.steps.length - 1;
+      renderStep();
+      return;
+    }
+
+    // 🛑 последний уровень — возврат в commonSteps
     if (currentBranchSteps.branchName !== 'commonSteps') {
       currentBranchSteps = [...commonSteps];
       currentBranchSteps.branchName = 'commonSteps';
-      currentStep = 0;
+      currentStep = commonSteps.length - 1;
       renderStep();
       return;
     }
 
+    // 🔚 Закрытие калькулятора
     document.getElementById('popup-calculator')?.classList.remove('active');
     document.getElementById('popup')?.classList.add('active');
   });
