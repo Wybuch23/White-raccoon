@@ -97,6 +97,18 @@ export function setupCalculatorPopup() {
       }
     });
 
+    // 🔁 Восстановление чекбоксов
+    stepData.fields.forEach(field => {
+      if (field.type === 'checkbox') {
+        const savedValues = formData.values?.[field.name] || [];
+
+        const checkboxes = bodyEl.querySelectorAll(`input[name="${field.name}"]`);
+        checkboxes.forEach(checkbox => {
+          checkbox.checked = savedValues.includes(checkbox.value);
+        });
+      }
+    });
+
     attachRadioListeners(stepData, bodyEl, formData);
     attachCheckboxListeners(stepData, bodyEl, formData); //обновление цены при нажатии на чекбокс
 
@@ -763,7 +775,13 @@ export function setupCalculatorPopup() {
       currentStep++;
       renderStep();
       calculateTotalDuration(formData);
-    } else alert('Калькулятор завершён');
+    } else {
+      // Финальный шаг — но всё равно сохраняем данные
+      collectStepData(currentBranchSteps[currentStep], bodyEl, formData);
+      calculateTotalDuration(formData);
+      updatePathSummary(formData);
+      alert('Калькулятор завершён');
+    }
   });
 
   btnBack.addEventListener('click', () => {
@@ -780,6 +798,10 @@ export function setupCalculatorPopup() {
       });
 
       renderStep();
+      calculateTotalDuration(formData);
+      updatePathSummary(formData);
+      const priceEl = document.querySelector('.popup__summary-price');
+      if (priceEl) priceEl.textContent = calculateTotalPrice(formData.prices);
       return;
     }
 
@@ -794,6 +816,10 @@ export function setupCalculatorPopup() {
       currentBranchSteps.branchName = baseBranch;
       currentStep = branch.steps.length - 1;
       renderStep();
+      calculateTotalDuration(formData);
+      updatePathSummary(formData);
+      const priceEl = document.querySelector('.popup__summary-price');
+      if (priceEl) priceEl.textContent = calculateTotalPrice(formData.prices);
       return;
     }
 
@@ -806,6 +832,10 @@ export function setupCalculatorPopup() {
       currentBranchSteps.branchName = rootBranch;
       currentStep = branch.steps.length - 1;
       renderStep();
+      calculateTotalDuration(formData);
+      updatePathSummary(formData);
+      const priceEl = document.querySelector('.popup__summary-price');
+      if (priceEl) priceEl.textContent = calculateTotalPrice(formData.prices);
       return;
     }
 
@@ -815,6 +845,10 @@ export function setupCalculatorPopup() {
       currentBranchSteps.branchName = 'commonSteps';
       currentStep = commonSteps.length - 1;
       renderStep();
+      calculateTotalDuration(formData);
+      updatePathSummary(formData);
+      const priceEl = document.querySelector('.popup__summary-price');
+      if (priceEl) priceEl.textContent = calculateTotalPrice(formData.prices);
       return;
     }
 
