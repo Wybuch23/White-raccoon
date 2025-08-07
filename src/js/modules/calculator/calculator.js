@@ -23,6 +23,7 @@ export function setupCalculatorPopup() {
   let currentBranchSteps = [...commonSteps];
   currentBranchSteps.branchName = 'commonSteps';
   let selectedBranch = null;
+  let stepHistory = []; // храним историю шагов
 
   let formData = {
     values: {},   // тут хранятся выбранные значения по именам полей
@@ -731,6 +732,8 @@ export function setupCalculatorPopup() {
     const stepData = currentBranchSteps[currentStep];
 
     collectStepData(currentBranchSteps[currentStep], bodyEl, formData);
+    // Сохраняем копию значений перед переходом
+    stepHistory.push(JSON.parse(JSON.stringify(formData)));
     console.log('Текущие данные формы:', formData);
 
 
@@ -788,14 +791,11 @@ export function setupCalculatorPopup() {
     if (currentStep > 0) {
       currentStep--;
 
-      const stepDataBack = currentBranchSteps[currentStep];
-      const stepFieldList = stepDataBack?.fields || [];
-      stepFieldList.forEach(field => {
-        const name = field.name;
-        delete formData.values?.[name];
-        delete formData.prices?.[name];
-        if (formData.durations) delete formData.durations[name];
-      });
+      // Восстанавливаем из истории
+      const lastStepData = stepHistory.pop();
+      if (lastStepData) {
+        formData = lastStepData;
+      }
 
       renderStep();
       calculateTotalDuration(formData);
