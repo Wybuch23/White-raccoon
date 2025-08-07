@@ -3038,6 +3038,13 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  gap: 20px;
+}
+.popup.popup-calculator .popup__container--left .popup__body .history__checkbox-list {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  gap: 10px;
 }
 .popup.popup-calculator .popup__container--right {
   display: grid;
@@ -3079,7 +3086,6 @@
 .radio-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 .radio-group .radio input[type=radio] {
   display: none;
