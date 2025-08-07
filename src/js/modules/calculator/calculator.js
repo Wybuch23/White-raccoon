@@ -367,7 +367,7 @@ export function setupCalculatorPopup() {
                   formData.prices[field.name] = option.price;
                 }
 
-                if (option?.duration && field.name !== 'pillowCount') {
+                if (field.name !== 'pillowCount' && 'duration' in option) {
                   formData.durations = formData.durations || {};
                   formData.durations[field.name] = option.duration;
                 }
