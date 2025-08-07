@@ -98,6 +98,16 @@ export function setupCalculatorPopup() {
       }
     });
 
+    // 🔁 Восстановление значений input-полей
+    stepData.fields.forEach(field => {
+      if (field.type === 'input' && formData.values?.[field.name] !== undefined) {
+        const inputEl = bodyEl.querySelector(`input[name="${field.name}"]`);
+        if (inputEl) {
+          inputEl.value = formData.values[field.name];
+        }
+      }
+    });
+
     // 🔁 Восстановление чекбоксов
     stepData.fields.forEach(field => {
       if (field.type === 'checkbox') {
