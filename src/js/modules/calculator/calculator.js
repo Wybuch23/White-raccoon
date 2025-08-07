@@ -663,22 +663,100 @@ export function setupCalculatorPopup() {
     });
   }
 
+
+  // Кастомные пути для отображении выборов если defaultTemplateMap не подходит
+  const customTemplateMap = [
+    {
+      branch: 'cleaning',
+      match: { cleaningType: 'after_repair' },
+      template: ['serviceType', 'areaType', 'cleaningType', 'area', 'bathroomCount']
+    },
+    {
+      branch: 'cleaning',
+      match: { cleaningType: 'daily2' },
+      template: ['serviceType', 'areaType', 'cleaningType', 'area', 'bathroomCount']
+    },
+    {
+      branch: 'cleaning',
+      match: { cleaningType: 'general2' },
+      template: ['serviceType', 'areaType', 'cleaningType', 'area', 'bathroomCount']
+    },
+    {
+      branch: 'dry_cleaning',
+      match: { armchairSize: 'standart' },
+      template: ['serviceType', 'armchairSize', 'variables']
+    },
+    {
+      branch: 'dry_cleaning',
+      match: { armchairSize: 'pull-out' },
+      template: ['serviceType', 'armchairSize', 'variables']
+    },
+    {
+      branch: 'dry_cleaning',
+      match: { armchairSize: 'office' },
+      template: ['serviceType', 'armchairSize', 'variables']
+    },
+    {
+      branch: 'dry_cleaning',
+      match: { chairSize: 'office' },
+      template: ['serviceType', 'chairSize', 'variables']
+    },
+    {
+      branch: 'dry_cleaning',
+      match: { mattressSize: 'children' },
+      template: ['serviceType', 'mattressSize', 'variables']
+    },
+    {
+      branch: 'dry_cleaning',
+      match: { mattressSize: '1_place' },
+      template: ['serviceType', 'mattressSize', 'variables']
+    },
+    {
+      branch: 'dry_cleaning',
+      match: { mattressSize: '1.5_place' },
+      template: ['serviceType', 'mattressSize', 'variables']
+    },
+    {
+      branch: 'dry_cleaning',
+      match: { mattressSize: '2_place' },
+      template: ['serviceType', 'mattressSize', 'variables']
+    },
+  ];
+
   function buildPathText(formData) {
     const fullBranch = currentBranchSteps.branchName;
     const branch = fullBranch.startsWith('cleaning') ? 'cleaning' :
                   fullBranch.startsWith('windows') ? 'windows' :
                   'dry_cleaning';
 
-    const templateMap = {
-      cleaning: ['cleaningType', 'serviceType', 'areaType', 'area', 'bathroomCount'],
-      windows: ['serviceType', 'area', 'urgency'],
-      dry_cleaning: [
-        'serviceType', 'sofaPull-out', 'sofaSize', 'variables', 'pillowCount', 'pillowSize',
-        'armchairSize', 'chairSize', 'mattressSize', 'carpetSize', 'area'
-      ]
-    };
+    // 🧠 Попробуем найти подходящий кастомный шаблон
+    let template = null;
 
-    const template = templateMap[branch];
+    for (const rule of customTemplateMap) {
+      if (rule.branch === branch) {
+        const match = rule.match;
+        const allMatch = Object.entries(match).every(([key, val]) => formData.values[key] === val);
+        if (allMatch) {
+          template = rule.template;
+          break;
+        }
+      }
+    }
+
+    // Если ничего не подошло — используем стандартную карту
+    if (!template) {
+      const defaultTemplateMap = {
+        cleaning: ['cleaningType', 'serviceType', 'areaType', 'area', 'bathroomCount'],
+        windows: ['serviceType', 'area', 'urgency'],
+        dry_cleaning: [
+          'serviceType', 'sofaPull-out', 'sofaSize', 'variables', 'pillowCount', 'pillowSize',
+          'armchairSize', 'chairSize', 'mattressSize', 'carpetSize', 'area'
+        ]
+      };
+
+      template = defaultTemplateMap[branch];
+    }
+
     const result = [];
 
     template.forEach(key => {
@@ -688,7 +766,6 @@ export function setupCalculatorPopup() {
       if (key === 'area') {
         result.push(`${val} м²`);
       } else {
-        // 🧠 Ищем поле сначала в текущей ветке, если не нашли — в commonSteps
         let field = allSteps
           .flatMap(step => step.fields || [])
           .find(f => f.name === key);
