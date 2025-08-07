@@ -642,6 +642,17 @@ export function setupCalculatorPopup() {
     return Math.round(total);
   }
 
+  function clearStep(step) {
+    const fieldList = step?.fields || [];
+
+    fieldList.forEach(field => {
+      const name = field.name;
+      delete formData.values?.[name];
+      delete formData.prices?.[name];
+      if (formData.durations) delete formData.durations[name];
+    });
+  }
+
   function buildPathText(formData) {
     const fullBranch = currentBranchSteps.branchName;
     const branch = fullBranch.startsWith('cleaning') ? 'cleaning' :
@@ -789,7 +800,9 @@ export function setupCalculatorPopup() {
 
   btnBack.addEventListener('click', () => {
     if (currentStep > 0) {
+      clearStep(currentBranchSteps[currentStep]);
       currentStep--;
+      renderStep();
 
       // Восстанавливаем из истории
       const lastStepData = stepHistory.pop();
@@ -808,6 +821,7 @@ export function setupCalculatorPopup() {
     // 🔁 dry_cleaning: возврат из подветки
     const match = currentBranchSteps.branchName.match(/^(.+?)(sofa|chair|armchair|carpet|curtains|mattress|pillow)$/);
     if (match) {
+      clearStep(currentBranchSteps[currentStep]); // очистить шаг перед выходом
       const rootBranch = match[1];
       const baseBranch = formData.meta?.selectedBranch || rootBranch;
 
@@ -825,6 +839,7 @@ export function setupCalculatorPopup() {
 
     // 🔁 cleaning: возврат из подветки living/office/industrial
     if (/^cleaning(living|office|industrial)$/.test(currentBranchSteps.branchName)) {
+      clearStep(currentBranchSteps[currentStep]);
       const rootBranch = 'cleaning';
 
       const branch = branchMap[rootBranch];
@@ -841,6 +856,7 @@ export function setupCalculatorPopup() {
 
     // 🛑 последний уровень — возврат в commonSteps
     if (currentBranchSteps.branchName !== 'commonSteps') {
+      clearStep(currentBranchSteps[currentStep]);
       currentBranchSteps = [...commonSteps];
       currentBranchSteps.branchName = 'commonSteps';
       currentStep = commonSteps.length - 1;

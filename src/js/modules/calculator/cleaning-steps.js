@@ -46,7 +46,7 @@ export const cleaningStepsLiving = [
         type: 'radio',
         name: 'bathroomCount',
         options: [
-          { value: 'none', label: 'Без санузла', wayname: '', price: 0, rightText: '—', checked: true },
+          { value: 'none', label: 'Без санузла', wayname: 'без санузла', price: 0, rightText: '—', checked: true },
           { value: '1', label: '1', wayname: 'с 1 санузлом', price: 1200, rightText: '1200 ₽/шт' },
           { value: '2', label: '2', wayname: 'с 2 санузлами', price: 2200, rightText: '1100 ₽/шт' },
           { value: '3', label: '3', wayname: 'с 3 санузлами', price: 3000, rightText: '1000 ₽/шт' },
@@ -117,7 +117,7 @@ export const cleaningStepsOffice = [
         type: 'radio',
         name: 'bathroomCount',
         options: [
-          { value: 'none', label: 'Без санузла', wayname: '', price: 0, rightText: '—', checked: true },
+          { value: 'none', label: 'Без санузла', wayname: 'без санузла', price: 0, rightText: '—', checked: true },
           { value: '1', label: '1', wayname: 'с 1 санузлом', price: 1200, rightText: '1200 ₽/шт' },
           { value: '2', label: '2', wayname: 'с 2 санузлами', price: 2200, rightText: '1100 ₽/шт' },
           { value: '3', label: '3', wayname: 'с 3 санузлами', price: 3000, rightText: '1000 ₽/шт' },
@@ -186,7 +186,7 @@ export const cleaningStepsIndustrial = [
         type: 'radio',
         name: 'bathroomCount',
         options: [
-          { value: 'none', label: 'Без санузла', wayname: '', price: 0, rightText: '—', checked: true },
+          { value: 'none', label: 'Без санузла', wayname: 'без санузла', price: 0, rightText: '—', checked: true },
           { value: '1', label: '1', wayname: 'с 1 санузлом', price: 1200, rightText: '1200 ₽/шт' },
           { value: '2', label: '2', wayname: 'с 2 санузлами', price: 2200, rightText: '1100 ₽/шт' },
           { value: '3', label: '3', wayname: 'с 3 санузлами', price: 3000, rightText: '1000 ₽/шт' },
