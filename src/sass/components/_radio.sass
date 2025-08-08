@@ -13,6 +13,10 @@
         padding: 0px 20px
         &:nth-of-type(even)
             background: $--white-secondary
+        &:hover
+            .radio_wrapped
+                .radio__icon
+                    background-image: url('../../src/assets/icons/icons_raccoon/radio-filled-grey.svg')
         .radio_wrapped
             display: flex
             align-items: center
@@ -21,7 +25,7 @@
             .radio__icon
                 width: 24px
                 height: 24px
-                background-image: url('../../src/assets/icons/icons_raccoon/radio-empty.svg')
+                background-image: url('../../src/assets/icons/icons_raccoon/radio-empty-grey.svg')
                 background-size: contain
                 background-repeat: no-repeat
             input[type="radio"]:checked + .radio__icon

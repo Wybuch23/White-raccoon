@@ -2955,7 +2955,7 @@
 .popup .popup__container.popup__container--right .popup__btn-bar {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 .popup .popup__container.popup__container--right .popup__btn-bar .popup__wrapped-time-text {
   display: flex;
@@ -3101,6 +3101,9 @@
 .radio-group .radio:nth-of-type(even) {
   background: #DCE0E0;
 }
+.radio-group .radio:hover .radio_wrapped .radio__icon {
+  background-image: url("../../src/assets/icons/icons_raccoon/radio-filled-grey.svg");
+}
 .radio-group .radio .radio_wrapped {
   display: flex;
   align-items: center;
@@ -3109,7 +3112,7 @@
 .radio-group .radio .radio_wrapped .radio__icon {
   width: 24px;
   height: 24px;
-  background-image: url("../../src/assets/icons/icons_raccoon/radio-empty.svg");
+  background-image: url("../../src/assets/icons/icons_raccoon/radio-empty-grey.svg");
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -3260,6 +3263,9 @@
 }
 .checkbox:nth-of-type(even) {
   background: #DCE0E0;
+}
+.checkbox:hover .checkbox_wrapped .checkbox__icon {
+  background-image: url("../../src/assets/icons/icons_raccoon/checkbox-filled-grey.svg");
 }
 .checkbox .checkbox__right-space {
   font-family: Roboto;

@@ -23,7 +23,7 @@ dryCleaningSteps.branchName = 'dry_cleaning';
 
 export const dryCleaningStepsSofa = [
   {
-    stepTitle: 'шаг 3 из 6',
+    stepTitle: 'шаг 3 из 7',
     title: 'Размер дивана',
     fields: [
       {
@@ -40,7 +40,7 @@ export const dryCleaningStepsSofa = [
     ]
   },
   {
-    stepTitle: 'шаг 4 из 6',
+    stepTitle: 'шаг 4 из 7',
     title: 'Раздвижной',
     fields: [
       {
@@ -54,7 +54,7 @@ export const dryCleaningStepsSofa = [
     ]
   },
   {
-    stepTitle: 'шаг 5 из 6',
+    stepTitle: 'шаг 5 из 7',
     title: 'Количество подушек',
     fields: [
       {
@@ -215,7 +215,7 @@ export const dryCleaningStepsPillow = [
     ]
   },
   {
-    stepTitle: 'шаг 6 из 7',
+    stepTitle: 'шаг 4 из 5',
     title: 'Размер подушек',
     fields: [
       { 
