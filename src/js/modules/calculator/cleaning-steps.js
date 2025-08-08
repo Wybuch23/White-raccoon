@@ -9,9 +9,9 @@ export const cleaningSteps = [
         type: 'radio',
         name: 'areaType',
         options: [
-          { value: 'living', label: 'Жилое помещение', wayname: 'жилого помещения', price: 90, rightText: '—', checked: true },
-          { value: 'office', label: 'Офис/малая коммерция', wayname: 'офиса', price: 90, rightText: '—' },
-          { value: 'industrial', label: 'Производственное/складское помещение', wayname: 'производственного помещения', price: 140, rightText: '—' }
+          { value: 'living', label: 'Жилое помещение', wayname: 'жилого помещения', price: 90, rightText: 'от 90 ₽/м²', checked: true },
+          { value: 'office', label: 'Офис/малая коммерция', wayname: 'офиса', price: 90, rightText: 'от 90 ₽/м²' },
+          { value: 'industrial', label: 'Производственное/складское помещение', wayname: 'производственного помещения', price: 140, rightText: 'от 140 ₽/м²' }
         ]
       }
     ]
