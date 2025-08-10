@@ -68,6 +68,24 @@ export function renderInputField(field, bodyEl) {
   bodyEl.appendChild(wrapper);
 }
 
+export function setInputError(wrapperEl, message) {
+  if (!wrapperEl) return;
+  wrapperEl.classList.add('input-wrapper_error');
+  const errText = wrapperEl.querySelector('.input-error-text');
+  if (errText) errText.textContent = message || 'Поле является обязательным для заполнения';
+  const input = wrapperEl.querySelector('.input');
+  if (input) input.setAttribute('aria-invalid', 'true');
+}
+
+export function clearInputError(wrapperEl) {
+  if (!wrapperEl) return;
+  wrapperEl.classList.remove('input-wrapper_error');
+  const errText = wrapperEl.querySelector('.input-error-text');
+  if (errText) errText.textContent = '';
+  const input = wrapperEl.querySelector('.input');
+  if (input) input.setAttribute('aria-invalid', 'false');
+}
+
 export function renderInlineRadioField(field, bodyEl) {
   const group = document.createElement('div');
   group.classList.add('radio-group', 'radio-group-inline');

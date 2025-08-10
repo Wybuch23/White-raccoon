@@ -10,6 +10,7 @@ import {
 import {
   renderRadioField, renderInputField, renderInlineRadioField, renderCheckboxField
 } from './calculator-renderers.js';
+import { setInputError, clearInputError } from './calculator-renderers.js';
 
 export function setupCalculatorPopup() {
   const container = document.querySelector('#popup-calculator');
@@ -50,6 +51,61 @@ export function setupCalculatorPopup() {
       pillow: dryCleaningStepsPillow
     }}
   };
+
+  function validateRequiredInputs(stepRoot) {
+    const wrappers = stepRoot.querySelectorAll('.input-wrapper');
+    let ok = true;
+
+    wrappers.forEach((w) => {
+      const input = w.querySelector('.input');
+      if (!input) return;
+
+      const val = String(input.value || '').trim();
+      if (val === '') {
+        setInputError(w, 'Поле является обязательным для заполнения');
+        ok = false;
+      }
+    });
+
+    return ok;
+  }
+
+  // Снимаем ошибку при вводе
+  bodyEl.addEventListener('input', (e) => {
+    const target = e.target;
+    if (!(target instanceof HTMLInputElement)) return;
+    const wrapper = target.closest('.input-wrapper');
+    if (wrapper) clearInputError(wrapper);
+  });
+
+  btnNext?.addEventListener('click', (e) => {
+    const stepRoot = bodyEl;
+    const ok = validateRequiredInputs(stepRoot);
+    if (!ok) {
+      e.preventDefault();
+      e.stopImmediatePropagation(); // ← важно: блокируем другие обработчики на этой кнопке
+      const firstErr = stepRoot.querySelector('.input-wrapper_error');
+      firstErr?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    // дальше твоя логика перехода (останется работать, когда ok === true)
+  });
+
+  // "Оформить заказ"
+  const btnOrder = container.querySelector('#btn-primary-submit');
+  btnOrder?.addEventListener('click', (e) => {
+    const stepRoot = bodyEl;
+    const ok = validateRequiredInputs(stepRoot);
+    if (!ok) {
+      e.preventDefault();
+      e.stopImmediatePropagation(); // ← то же самое
+      const firstErr = stepRoot.querySelector('.input-wrapper_error');
+      firstErr?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    // отправка формы
+  });
+
 
   function renderStep() {
     const stepData = currentBranchSteps[currentStep];
