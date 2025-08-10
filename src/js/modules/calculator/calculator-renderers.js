@@ -23,26 +23,47 @@ export function renderInputField(field, bodyEl) {
   const wrapper = document.createElement('div');
   wrapper.classList.add('input-wrapper');
 
+  const body = document.createElement('div');
+  body.classList.add('input-body');
+
+  // label
   if (field.label) {
     const labelEl = document.createElement('div');
     labelEl.classList.add('input-label');
     labelEl.innerHTML = field.label;
-    wrapper.appendChild(labelEl);
+    body.appendChild(labelEl);
   }
 
+  // input
   const inputEl = document.createElement('input');
   inputEl.type = field.inputType || 'text';
   inputEl.classList.add('input');
   inputEl.name = field.name;
   inputEl.placeholder = field.placeholder || '';
-  wrapper.appendChild(inputEl);
+  if (field.value != null) inputEl.value = String(field.value);
+  inputEl.setAttribute('autocomplete', 'off');
+  inputEl.setAttribute('aria-invalid', 'false');
+  body.appendChild(inputEl);
 
-  // Обновлённая часть: helperText с data-атрибутом
+  // helper text
   const helperEl = document.createElement('div');
   helperEl.classList.add('input-helper-text');
   helperEl.setAttribute('data-helper-for', field.name);
   helperEl.innerHTML = field.helperText || '';
-  wrapper.appendChild(helperEl);
+  body.appendChild(helperEl);
+
+  // error icon (скрыт стилями до состояния .input-wrapper_error)
+  const errorIcon = document.createElement('div');
+  errorIcon.classList.add('input-error-icon');
+  errorIcon.setAttribute('aria-hidden', 'true');
+  body.appendChild(errorIcon);
+
+  // error text (пустой, показывается при .input-wrapper_error)
+  const errorText = document.createElement('div');
+  errorText.classList.add('input-error-text');
+
+  wrapper.appendChild(body);
+  wrapper.appendChild(errorText);
 
   bodyEl.appendChild(wrapper);
 }

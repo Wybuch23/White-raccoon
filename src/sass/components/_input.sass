@@ -32,43 +32,59 @@
 //         +helper-text-desktop
 //         color: $--grey-primary
 
-
 .input-wrapper
-    display: flex
-    height: 48px
-    width: 382px
-    padding: 0px 20px
-    justify-content: space-between
-    align-items: center
-    gap: 10px
-    align-self: stretch
+    .input-body
+        display: flex
+        height: 48px
+        width: 382px
+        padding: 0px 20px
+        justify-content: space-between
+        align-items: center
+        gap: 10px
+        align-self: stretch
 
-    border-radius: 8px
-    background: $--white-secondary
-    &:hover
-        outline: 2px solid $--grey-primary
-    &:focus-within
-        outline: 2px solid $--black-primary
+        border-radius: 8px
+        background: $--white-secondary
+        &:hover
+            outline: 2px solid $--grey-primary
+        &:focus-within
+            outline: 2px solid $--black-primary
+            .input-label
+                display: block
+        &:has(.input:not(:placeholder-shown))
+            .input-label
+                display: block
         .input-label
-            display: block
-    &:has(.input:not(:placeholder-shown))
-        .input-label
-            display: block
-    .input-label
-        display: none
-        +helper-title-desktop
-        color: $--grey-primary
-    .input
-        border: none
-        outline: none
-        background: none
-        +body-text-desktop
-        color: $--black-primary
-        &::placeholder
-            +body-text-desktop
+            display: none
+            +helper-title-desktop
             color: $--grey-primary
-    .input-helper-text
-        width: 114px
-        text-align: end
-        +helper-text-desktop
-        color: $--grey-primary
+        .input
+            border: none
+            outline: none
+            background: none
+            +body-text-desktop
+            color: $--black-primary
+            &::placeholder
+                +body-text-desktop
+                color: $--grey-primary
+        .input-helper-text
+            width: 114px
+            text-align: end
+            +helper-text-desktop
+            color: $--grey-primary
+        .input-error-icon
+            display: none
+    &.input-wrapper_error
+        .input-body
+            outline: 2px solid $--alert
+            .input-error-icon
+                width: 24px
+                height: 24px
+                display: block
+                background-image: url('../../src/assets/icons/icons_raccoon/bad-error-icon.svg')
+        .input-error-text
+            margin-top: 10px
+            padding: 0 20px 0 20px
+            width: 382px
+            +helper-text-desktop
+            color: $--alert
