@@ -61,13 +61,40 @@ export function setupCalculatorPopup() {
       if (!input) return;
 
       const val = String(input.value || '').trim();
+
+      // Общая проверка на пустоту
       if (val === '') {
         setInputError(w, 'Поле является обязательным для заполнения');
         ok = false;
+        return;
+      }
+
+      // Проверка на имя
+      if (input.name === 'contactName') {
+        const nameError = validateContactName(val);
+        if (nameError) {
+          setInputError(w, nameError);
+          ok = false;
+        }
       }
     });
 
     return ok;
+  }
+
+  function validateContactName(inputValue) {
+    const val = inputValue.trim().replace(/\s+/g, ' ');
+    if (val.length < 2) {
+      return 'Имя должно содержать минимум 2 буквы';
+    }
+    if (val.length > 50) {
+      return 'Имя не может быть длиннее 50 символов';
+    }
+    // Разрешаем только буквы (русские, латинские) и пробел
+    if (!/^[A-Za-zА-Яа-яЁё\s]+$/.test(val)) {
+      return 'Имя может содержать только буквы';
+    }
+    return null; // ошибок нет
   }
 
   // Снимаем ошибку при вводе
