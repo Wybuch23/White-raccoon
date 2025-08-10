@@ -36,7 +36,26 @@ export function renderInputField(field, bodyEl) {
 
   // input
   const inputEl = document.createElement('input');
-  inputEl.type = field.inputType || 'text';
+  
+  // Маппинг пользовательских типов на валидные HTML-типы
+  const mapType = (t) => {
+    if (t === 'Mail') return 'email'; // твой кастомный тип -> email
+    if (t === 'name') return 'text';  // на будущее, если где-то используешь
+    return t || 'text';
+  };
+
+  inputEl.type = mapType(field.inputType);
+
+  // Подсказки для автозаполнения и виртуальной клавиатуры
+  if (field.name === 'contactPhone') {
+    inputEl.autocomplete = 'tel';
+    inputEl.inputMode = 'tel';
+  }
+  if (field.name === 'contactMail') {
+    inputEl.autocomplete = 'email';
+    inputEl.inputMode = 'email';
+  }
+
   inputEl.classList.add('input');
   inputEl.name = field.name;
   inputEl.placeholder = field.placeholder || '';

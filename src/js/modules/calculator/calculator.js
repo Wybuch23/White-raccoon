@@ -12,6 +12,64 @@ import {
 } from './calculator-renderers.js';
 import { setInputError, clearInputError } from './calculator-renderers.js';
 
+
+// Проверка ввода номера в инпут
+
+function extractDigits(str) {
+  return String(str || '').replace(/\D/g, '');
+}
+
+// Нормализуем под РФ: 10 национальных цифр после 7/8
+function normalizeRuDigits(d) {
+  let ds = extractDigits(d);
+  if (ds.startsWith('8')) ds = ds.slice(1);
+  else if (ds.startsWith('7')) ds = ds.slice(1);
+  return ds.slice(0, 10);
+}
+
+function formatRuPhoneFromDigits(ds) {
+  const a = ds[0] || '';
+  const b = ds[1] || '';
+  const c = ds[2] || '';
+  const d = ds[3] || '';
+  const e = ds[4] || '';
+  const f = ds[5] || '';
+  const g = ds[6] || '';
+  const h = ds[7] || '';
+  const i = ds[8] || '';
+  const j = ds[9] || '';
+
+  if (ds.length === 0) return '+7 ';
+  if (ds.length <= 3) return `+7 (${a}${b}${c}`;
+  if (ds.length <= 6) return `+7 (${a}${b}${c}) ${d}${e}${f}`;
+  if (ds.length <= 8) return `+7 (${a}${b}${c}) ${d}${e}${f}-${g}${h}`;
+  return `+7 (${a}${b}${c}) ${d}${e}${f}-${g}${h}-${i}${j}`;
+}
+
+function validatePhoneRu(value) {
+  const ds = normalizeRuDigits(value);
+  if (ds.length < 10) return 'Введите номер в формате +7 (XXX) XXX-XX-XX';
+  return null;
+}
+
+// Простой и строгий валидатор email
+function validateEmail(raw) {
+  const val = String(raw || '').trim();
+  if (val.length === 0) return 'Поле является обязательным для заполнения';
+  if (val.length > 254) return 'Слишком длинный email';
+  // Разрешаем латиницу/цифры и типовые символы в локальной части, домен — буквы/цифры и дефисы, точки как разделители
+  const re = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/;
+  if (!re.test(val)) return 'Некорректный email';
+  // Проверка на длину частей
+  const [local, domain] = val.split('@');
+  if (!local || !domain) return 'Некорректный email';
+  if (local.length > 64) return 'Слишком длинная локальная часть';
+  if (domain.length > 190) return 'Слишком длинный домен';
+  return null;
+}
+
+
+
 export function setupCalculatorPopup() {
   const container = document.querySelector('#popup-calculator');
   const titleEl = container.querySelector('#popup__title');
@@ -69,12 +127,23 @@ export function setupCalculatorPopup() {
         return;
       }
 
-      // Проверка на имя
-      if (input.name === 'contactName') {
-        const nameError = validateContactName(val);
-        if (nameError) {
-          setInputError(w, nameError);
+      // Телефон
+      if (input.name === 'contactPhone') {
+        const phoneError = validatePhoneRu(val);
+        if (phoneError) {
+          setInputError(w, phoneError);
           ok = false;
+          return;
+        }
+      }
+
+      // Email
+      if (input.name === 'contactMail') {
+        const emailError = validateEmail(val);
+        if (emailError) {
+          setInputError(w, emailError);
+          ok = false;
+          return;
         }
       }
     });
@@ -205,6 +274,7 @@ export function setupCalculatorPopup() {
 
     attachRadioListeners(stepData, bodyEl, formData);
     attachCheckboxListeners(stepData, bodyEl, formData); //обновление цены при нажатии на чекбокс
+    attachPhoneMask(bodyEl);
 
     // Если выбрана мойка окон — восстановим ставку из serviceType
     if (formData.values.serviceType === 'windows') {
@@ -233,6 +303,110 @@ export function setupCalculatorPopup() {
 
     const thanksLogoEl = container.querySelector('#popup__thanks-logo');
     if (thanksLogoEl) thanksLogoEl.style.display = stepData.isThankYou ? 'block' : 'none';
+
+    // Подключаем контактные улучшения только если есть эти поля на шаге
+    if (bodyEl.querySelector('input[name="contactPhone"]')) {
+      attachPhoneMask(bodyEl);
+    }
+  }
+
+  function attachPhoneMask(stepRoot) {
+    const input = stepRoot.querySelector('input[name="contactPhone"]');
+    if (!input) return;
+
+    input.addEventListener('focus', () => {
+      if (!input.value.trim()) {
+        input.value = '+7 ';
+        requestAnimationFrame(() => {
+          input.selectionStart = input.selectionEnd = input.value.length;
+        });
+      }
+    });
+
+    function applyMask() {
+      const ds = normalizeRuDigits(input.value);
+      input.value = formatRuPhoneFromDigits(ds);
+    }
+
+    input.addEventListener('input', applyMask);
+
+    input.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const text = (e.clipboardData || window.clipboardData).getData('text');
+      const ds = normalizeRuDigits(text);
+      input.value = formatRuPhoneFromDigits(ds);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      const prefixLimit = 3; // "+7"
+      const start = input.selectionStart ?? 0;
+      const end = input.selectionEnd ?? 0;
+      if ((e.key === 'Backspace' && start <= prefixLimit && end <= prefixLimit) ||
+          (e.key === 'Delete' && start < prefixLimit)) {
+        e.preventDefault();
+      }
+    });
+  }
+
+  function attachPhoneMask(stepRoot) {
+    const input = stepRoot.querySelector('input[name="contactPhone"]');
+    if (!input) return;
+
+    // При фокусе — автопрефикс
+    input.addEventListener('focus', () => {
+      if (!input.value || input.value.trim() === '') {
+        input.value = '+7 ';
+        // курсор в конец
+        requestAnimationFrame(() => {
+          input.selectionStart = input.selectionEnd = input.value.length;
+        });
+      }
+    });
+
+    // Маска на ввод и вставку
+    function applyMaskFromCurrentValue() {
+      const ds = normalizeRuDigits(input.value);
+      input.value = formatRuPhoneFromDigits(ds);
+    }
+
+    input.addEventListener('input', () => {
+      applyMaskFromCurrentValue();
+    });
+
+    input.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const text = (e.clipboardData || window.clipboardData).getData('text');
+      const ds = normalizeRuDigits(text);
+      input.value = formatRuPhoneFromDigits(ds);
+    });
+
+    // Запрет стирания префикса "+7"
+    input.addEventListener('keydown', (e) => {
+      const start = input.selectionStart ?? 0;
+      const end = input.selectionEnd ?? 0;
+      const isBackspace = e.key === 'Backspace';
+      const isDelete = e.key === 'Delete';
+
+      // Не даем удалить символы в зоне "+7"
+      // +7␠ => длина префикса 3 символа
+      const prefixLimit = 3;
+      if (isBackspace && start <= prefixLimit && end <= prefixLimit) {
+        e.preventDefault();
+        return;
+      }
+      if (isDelete && start < prefixLimit) {
+        e.preventDefault();
+        return;
+      }
+    });
+
+    // На blur — если остался только префикс, оставляем как есть
+    input.addEventListener('blur', () => {
+      // Ничего не делаем, пусть остается "+7 " даже если пусто.
+      // Если хочешь очищать полностью — раскомментируй:
+      // const ds = normalizeRuDigits(input.value);
+      // if (ds.length === 0) input.value = '';
+    });
   }
 
   function calculateTotalDuration(formData) {
@@ -383,39 +557,48 @@ export function setupCalculatorPopup() {
 
       else if (field.type === 'input') {
         const input = bodyEl.querySelector(`input[name="${field.name}"]`);
-        if (input) {
-          const value = parseFloat(input.value);
-          formData.values[field.name] = value;
+        if (!input) return;
 
-          let rate = formData.meta?.ratePerM2;
-          let multiplier = 1;
+        // Список полей, которые не участвуют в расчёте цены
+        const excludedFields = ['contactPhone', 'contactMail', 'contactName'];
+        if (excludedFields.includes(field.name)) {
+          formData.values[field.name] = input.value.trim();
+          delete formData.prices[field.name]; // на всякий случай убираем старое
+          return; // выходим — цену не считаем
+        }
 
-          // Для ковров
-          const selectedCarpetSize = formData.values.carpetSize;
-          if (selectedCarpetSize) {
-            const carpetField = currentBranchSteps.flatMap(s => s.fields || []).find(f => f.name === 'carpetSize');
-            const carpetOption = carpetField?.options?.find(opt => opt.value === selectedCarpetSize);
-            if (carpetOption?.priceMultiplier) {
-              multiplier = carpetOption.priceMultiplier;
-            }
-          }
+        const value = parseFloat(input.value);
+        formData.values[field.name] = value;
 
-          // Для мойки окон
-          const selectedUrgency = formData.values.urgency;
-          if (selectedUrgency) {
-            const urgencyField = currentBranchSteps.flatMap(s => s.fields || []).find(f => f.name === 'urgency');
-            const urgencyOption = urgencyField?.options?.find(opt => opt.value === selectedUrgency);
-            if (urgencyOption) {
-              if (typeof urgencyOption.rate === 'number') rate = urgencyOption.rate;
-              if (typeof urgencyOption.priceMultiplier === 'number') multiplier = urgencyOption.priceMultiplier;
-            }
-          }
+        let rate = formData.meta?.ratePerM2;
+        let multiplier = 1;
 
-          if (!isNaN(value) && typeof rate === 'number') {
-            formData.prices[field.name] = Math.round(value * rate * multiplier);
+        // Для ковров
+        const selectedCarpetSize = formData.values.carpetSize;
+        if (selectedCarpetSize) {
+          const carpetField = currentBranchSteps.flatMap(s => s.fields || []).find(f => f.name === 'carpetSize');
+          const carpetOption = carpetField?.options?.find(opt => opt.value === selectedCarpetSize);
+          if (carpetOption?.priceMultiplier) {
+            multiplier = carpetOption.priceMultiplier;
           }
         }
+
+        // Для мойки окон
+        const selectedUrgency = formData.values.urgency;
+        if (selectedUrgency) {
+          const urgencyField = currentBranchSteps.flatMap(s => s.fields || []).find(f => f.name === 'urgency');
+          const urgencyOption = urgencyField?.options?.find(opt => opt.value === selectedUrgency);
+          if (urgencyOption) {
+            if (typeof urgencyOption.rate === 'number') rate = urgencyOption.rate;
+            if (typeof urgencyOption.priceMultiplier === 'number') multiplier = urgencyOption.priceMultiplier;
+          }
+        }
+
+        if (!isNaN(value) && typeof rate === 'number') {
+          formData.prices[field.name] = Math.round(value * rate * multiplier);
+        }
       }
+
 
       else if (field.type === 'checkbox') {
         const checkedBoxes = bodyEl.querySelectorAll(`input[name="${field.name}"]:checked`);

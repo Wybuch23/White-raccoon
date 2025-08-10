@@ -68,7 +68,6 @@ export const finalStep = {
       type: 'input',
       name: 'contactMail',
       inputType: 'Mail',
-      // label: 'Телефон',
       placeholder: 'example@mail.ru'
     },
     {
