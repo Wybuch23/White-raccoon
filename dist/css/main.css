@@ -3163,7 +3163,7 @@
   height: 48px;
   width: 382px;
   padding: 0px 20px;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   align-self: stretch;
@@ -3176,7 +3176,17 @@
 .input-wrapper:focus-within {
   outline: 2px solid #0D1824;
 }
+.input-wrapper:focus-within .input-label {
+  display: block;
+}
+.input-wrapper:has(.input:not(:-moz-placeholder)) .input-label {
+  display: block;
+}
+.input-wrapper:has(.input:not(:placeholder-shown)) .input-label {
+  display: block;
+}
 .input-wrapper .input-label {
+  display: none;
   font-family: "TT Fellows Trial Variable";
   font-size: 14px;
   font-style: normal;
