@@ -1,4 +1,60 @@
+// .input-wrapper
+//     .input-body
+//         display: flex
+//         height: 48px
+//         width: 382px
+//         padding: 0px 20px
+//         justify-content: space-between
+//         align-items: center
+//         gap: 10px
+//         align-self: stretch
+
+//         border-radius: 8px
+//         background: $--white-secondary
+//         &:hover
+//             outline: 2px solid $--grey-primary
+//         &:focus-within
+//             outline: 2px solid $--black-primary
+//         &:has(.input:not(:placeholder-shown))
+//             .input-label
+//                 display: block
+//         .input-label
+//             display: none
+//             +helper-title-desktop
+//             color: $--grey-primary
+//         .input
+//             border: none
+//             outline: none
+//             background: none
+//             +body-text-desktop
+//             color: $--black-primary
+//             &::placeholder
+//                 +body-text-desktop
+//                 color: $--grey-primary
+//         .input-helper-text
+//             width: 114px
+//             text-align: end
+//             +helper-text-desktop
+//             color: $--grey-primary
+//         .input-error-icon
+//             display: none
+//     &.input-wrapper_error
+//         .input-body
+//             outline: 2px solid $--alert
+//             .input-error-icon
+//                 width: 24px
+//                 height: 24px
+//                 display: block
+//                 background-image: url('../../src/assets/icons/icons_raccoon/bad-error-icon.svg')
+//         .input-error-text
+//             margin-top: 10px
+//             padding: 0 20px 0 20px
+//             width: 382px
+//             +helper-text-desktop
+//             color: $--alert
+
 .input-wrapper
+    padding: 2px 0 0 2px
     .input-body
         display: flex
         height: 48px
@@ -18,26 +74,34 @@
         &:has(.input:not(:placeholder-shown))
             .input-label
                 display: block
-        .input-label
-            display: none
-            +helper-title-desktop
-            color: $--grey-primary
-        .input
-            border: none
-            outline: none
-            background: none
-            +body-text-desktop
-            color: $--black-primary
-            &::placeholder
-                +body-text-desktop
+        .input-main
+            display: flex
+            align-items: center
+            gap: 10px
+            .input-label
+                display: none
+                +helper-title-desktop
                 color: $--grey-primary
-        .input-helper-text
-            width: 114px
-            text-align: end
-            +helper-text-desktop
-            color: $--grey-primary
-        .input-error-icon
-            display: none
+            .input
+                border: none
+                outline: none
+                background: none
+                +body-text-desktop
+                color: $--black-primary
+                &::placeholder
+                    +body-text-desktop
+                    color: $--grey-primary
+        .input-aside
+            display: flex
+            align-items: center
+            gap: 10px
+            .input-helper-text
+                width: auto
+                text-align: end
+                +helper-text-desktop
+                color: $--grey-primary
+            .input-error-icon
+                display: none
     &.input-wrapper_error
         .input-body
             outline: 2px solid $--alert

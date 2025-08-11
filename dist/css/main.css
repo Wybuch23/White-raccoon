@@ -2983,6 +2983,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-height: 255px;
+  overflow: hidden;
 }
 .popup .popup__container.popup__container--right .popup__footer {
   display: flex;
@@ -3148,7 +3150,6 @@
   }
 }
 .radio-group.radio-group-inline {
-  padding-top: 10px;
   gap: 20px;
   flex-direction: row;
 }
@@ -3158,6 +3159,9 @@
   height: auto;
 }
 
+.input-wrapper {
+  padding: 2px 0 0 2px;
+}
 .input-wrapper .input-body {
   display: flex;
   height: 48px;
@@ -3182,7 +3186,12 @@
 .input-wrapper .input-body:has(.input:not(:placeholder-shown)) .input-label {
   display: block;
 }
-.input-wrapper .input-body .input-label {
+.input-wrapper .input-body .input-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.input-wrapper .input-body .input-main .input-label {
   display: none;
   font-family: "TT Fellows Trial Variable";
   font-size: 14px;
@@ -3195,12 +3204,12 @@
   color: #93A0AD;
 }
 @media (max-width: 375px) {
-  .input-wrapper .input-body .input-label {
+  .input-wrapper .input-body .input-main .input-label {
     font-size: 12px;
     letter-spacing: -0.24px;
   }
 }
-.input-wrapper .input-body .input {
+.input-wrapper .input-body .input-main .input {
   border: none;
   outline: none;
   background: none;
@@ -3213,11 +3222,11 @@
   color: #0D1824;
 }
 @media (max-width: 375px) {
-  .input-wrapper .input-body .input {
+  .input-wrapper .input-body .input-main .input {
     font-size: 16px;
   }
 }
-.input-wrapper .input-body .input::-moz-placeholder {
+.input-wrapper .input-body .input-main .input::-moz-placeholder {
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
@@ -3226,7 +3235,7 @@
   color: #0D1824;
   color: #93A0AD;
 }
-.input-wrapper .input-body .input::placeholder {
+.input-wrapper .input-body .input-main .input::placeholder {
   font-family: Roboto;
   font-size: 18px;
   font-style: normal;
@@ -3236,15 +3245,20 @@
   color: #93A0AD;
 }
 @media (max-width: 375px) {
-  .input-wrapper .input-body .input::-moz-placeholder {
+  .input-wrapper .input-body .input-main .input::-moz-placeholder {
     font-size: 16px;
   }
-  .input-wrapper .input-body .input::placeholder {
+  .input-wrapper .input-body .input-main .input::placeholder {
     font-size: 16px;
   }
 }
-.input-wrapper .input-body .input-helper-text {
-  width: 114px;
+.input-wrapper .input-body .input-aside {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.input-wrapper .input-body .input-aside .input-helper-text {
+  width: auto;
   text-align: end;
   font-family: Roboto;
   font-size: 14px;
@@ -3255,11 +3269,11 @@
   color: #93A0AD;
 }
 @media (max-width: 375px) {
-  .input-wrapper .input-body .input-helper-text {
+  .input-wrapper .input-body .input-aside .input-helper-text {
     font-size: 12px;
   }
 }
-.input-wrapper .input-body .input-error-icon {
+.input-wrapper .input-body .input-aside .input-error-icon {
   display: none;
 }
 .input-wrapper.input-wrapper_error .input-body {

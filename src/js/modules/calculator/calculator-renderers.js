@@ -26,27 +26,28 @@ export function renderInputField(field, bodyEl) {
   const body = document.createElement('div');
   body.classList.add('input-body');
 
-  // label
-  if (field.label) {
-    const labelEl = document.createElement('div');
-    labelEl.classList.add('input-label');
-    labelEl.innerHTML = field.label;
-    body.appendChild(labelEl);
-  }
+  // левая колонка: label + input
+  const mainCol = document.createElement('div');
+  mainCol.classList.add('input-main');
 
-  // input
+  // input (создаём раньше, чтобы связать label for=)
   const inputEl = document.createElement('input');
-  
+
   // Маппинг пользовательских типов на валидные HTML-типы
   const mapType = (t) => {
-    if (t === 'Mail') return 'email'; // твой кастомный тип -> email
-    if (t === 'name') return 'text';  // на будущее, если где-то используешь
+    if (t === 'Mail') return 'email';
+    if (t === 'name') return 'text';
     return t || 'text';
   };
-
   inputEl.type = mapType(field.inputType);
+  inputEl.classList.add('input');
+  inputEl.name = field.name;
+  inputEl.placeholder = field.placeholder || ''; // нужен для :placeholder-shown
+  if (field.value != null) inputEl.value = String(field.value);
+  inputEl.setAttribute('autocomplete', 'off');
+  inputEl.setAttribute('aria-invalid', 'false');
 
-  // Подсказки для автозаполнения и виртуальной клавиатуры
+  // подсказки для клавиатуры/автозаполнения
   if (field.name === 'contactPhone') {
     inputEl.autocomplete = 'tel';
     inputEl.inputMode = 'tel';
@@ -56,28 +57,42 @@ export function renderInputField(field, bodyEl) {
     inputEl.inputMode = 'email';
   }
 
-  inputEl.classList.add('input');
-  inputEl.name = field.name;
-  inputEl.placeholder = field.placeholder || '';
-  if (field.value != null) inputEl.value = String(field.value);
-  inputEl.setAttribute('autocomplete', 'off');
-  inputEl.setAttribute('aria-invalid', 'false');
-  body.appendChild(inputEl);
+  // генерируем id, чтобы label работал как клик‑таргет
+  const inputId = field.id || `${field.name}-${Math.random().toString(36).slice(2, 8)}`;
+  inputEl.id = inputId;
 
-  // helper text
+  // label (связан с input)
+  if (field.label) {
+    const labelEl = document.createElement('label'); // было div — делаем семантический label
+    labelEl.classList.add('input-label');
+    labelEl.setAttribute('for', inputId);
+    labelEl.innerHTML = field.label;
+    mainCol.appendChild(labelEl);
+  }
+
+  mainCol.appendChild(inputEl);
+
+  // правая колонка: helper + error icon
+  const asideCol = document.createElement('div');
+  asideCol.classList.add('input-aside');
+
   const helperEl = document.createElement('div');
   helperEl.classList.add('input-helper-text');
   helperEl.setAttribute('data-helper-for', field.name);
   helperEl.innerHTML = field.helperText || '';
-  body.appendChild(helperEl);
 
-  // error icon (скрыт стилями до состояния .input-wrapper_error)
   const errorIcon = document.createElement('div');
   errorIcon.classList.add('input-error-icon');
   errorIcon.setAttribute('aria-hidden', 'true');
-  body.appendChild(errorIcon);
 
-  // error text (пустой, показывается при .input-wrapper_error)
+  asideCol.appendChild(helperEl);
+  asideCol.appendChild(errorIcon);
+
+  // собираем .input-body
+  body.appendChild(mainCol);
+  body.appendChild(asideCol);
+
+  // текст ошибки под полем
   const errorText = document.createElement('div');
   errorText.classList.add('input-error-text');
 
