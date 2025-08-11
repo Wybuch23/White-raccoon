@@ -115,7 +115,8 @@ export function setupCalculatorPopup() {
     let ok = true;
 
     wrappers.forEach((w) => {
-      const input = w.querySelector('.input');
+      // Берём любые поля ввода, даже без класса .input
+      const input = w.querySelector('input, textarea, select');
       if (!input) return;
 
       const val = String(input.value || '').trim();
@@ -125,6 +126,16 @@ export function setupCalculatorPopup() {
         setInputError(w, 'Поле является обязательным для заполнения');
         ok = false;
         return;
+      }
+
+      // Имя
+      if (input.name === 'contactName') {
+        const nameError = validateContactName(val);
+        if (nameError) {
+          setInputError(w, nameError);
+          ok = false;
+          return;
+        }
       }
 
       // Телефон
@@ -242,6 +253,7 @@ export function setupCalculatorPopup() {
     }
 
     // 🔁 Восстановление выбранных radio на основе formData
+    if (stepData.fields) {
     stepData.fields.forEach(field => {
       if ((field.type === 'radio' || field.type === 'radio-inline') && formData.values?.[field.name]) {
         const savedValue = formData.values[field.name];
@@ -249,9 +261,10 @@ export function setupCalculatorPopup() {
         if (inputEl) inputEl.checked = true;
       }
     });
+}
 
     // 🔁 Восстановление значений input-полей
-    stepData.fields.forEach(field => {
+    if (stepData.fields) stepData.fields.forEach(field => {
       if (field.type === 'input' && formData.values?.[field.name] !== undefined) {
         const inputEl = bodyEl.querySelector(`input[name="${field.name}"]`);
         if (inputEl) {
@@ -261,16 +274,17 @@ export function setupCalculatorPopup() {
     });
 
     // 🔁 Восстановление чекбоксов
-    stepData.fields.forEach(field => {
-      if (field.type === 'checkbox') {
-        const savedValues = formData.values?.[field.name] || [];
-
-        const checkboxes = bodyEl.querySelectorAll(`input[name="${field.name}"]`);
-        checkboxes.forEach(checkbox => {
-          checkbox.checked = savedValues.includes(checkbox.value);
-        });
-      }
-    });
+    if (stepData.fields) {
+      stepData.fields.forEach(field => {
+        if (field.type === 'checkbox') {
+          const savedValues = formData.values?.[field.name] || [];
+          const checkboxes = bodyEl.querySelectorAll(`input[name="${field.name}"]`);
+          checkboxes.forEach(checkbox => {
+            checkbox.checked = savedValues.includes(checkbox.value);
+          });
+        }
+      });
+   }
 
     attachRadioListeners(stepData, bodyEl, formData);
     attachCheckboxListeners(stepData, bodyEl, formData); //обновление цены при нажатии на чекбокс

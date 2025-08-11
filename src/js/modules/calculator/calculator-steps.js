@@ -19,7 +19,6 @@ export const commonSteps = [
 export const thankYouStep = {
   isFinal: true,
   isThankYou: true,
-  stepTitle: '',
   stepTitle: 'последний шаг',
   titleHtml: `
     <div class="popup__head">
@@ -30,17 +29,17 @@ export const thankYouStep = {
         Узнайте стоимость уборки/химчистки прямо сейчас, ответив на несколько простых вопросов. После чего мы свяжемся с вами чтобы уточнить детали и договориться о встрече.
       </div>
       <div class="popup__btn-bar">
-        <button id="popup__new-calculation" class="btn-primary">новый онлайн-расчет</button>
+        <button id="popup__new-calculation" class="btn-primary">новый онлайн-расчёт</button>
       </div>
     </div>
   `,
   bodyHtml: '',
   footerHtml: `
-    <div id="popup__footer_help-text" class="popup__footer_help-text">
+    <div class="popup__footer_help-paragraph">
       *Стоимость услуг, указанная на&nbsp;сайте, а&nbsp;также предложение, сформированное в&nbsp;результате онлайн-расчёта, носят информационный характер и&nbsp;не&nbsp;являются публичной офертой (ст.&nbsp;437&nbsp;ГК РФ).
     </div>
     <br>
-    <div id="popup__footer_help-text" class="popup__footer_help-text">
+    <div class="popup__footer_help-paragraph">
       **Окончательная стоимость услуги определяется при общении с&nbsp;менеджером и&nbsp;фиксируется при заключении договора.
     </div>
   `,
@@ -55,18 +54,21 @@ export const finalStep = {
     {
       type: 'input',
       name: 'contactName',
+      label: 'имя',
       inputType: 'name',
-      placeholder: 'Имя'
+      placeholder: 'имя'
     },
     {
       type: 'input',
       name: 'contactPhone',
+      label: 'телефон',
       inputType: 'tel',
       placeholder: '+7 (999) 999-99-99'
     },
     {
       type: 'input',
       name: 'contactMail',
+      label: 'почта',
       inputType: 'Mail',
       placeholder: 'example@mail.ru'
     },
