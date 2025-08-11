@@ -52,20 +52,53 @@ function validatePhoneRu(value) {
   return null;
 }
 
-// Простой и строгий валидатор email
+// Разрешённые домены (Россия + популярные мировые)
+const ALLOWED_EMAIL_DOMAINS = new Set([
+  // Mail.ru Group
+  'mail.ru', 'inbox.ru', 'list.ru', 'bk.ru',
+  // Yandex
+  'yandex.ru', 'yandex.com', 'ya.ru', 'yandex.kz', 'yandex.by',
+  // Rambler
+  'rambler.ru', 'rambler.com',
+  // Google
+  'gmail.com', 'googlemail.com',
+  // Microsoft
+  'outlook.com', 'hotmail.com', 'live.com', 'msn.com',
+  // Apple
+  'icloud.com', 'me.com',
+  // Proton
+  'protonmail.com', 'proton.me',
+  // GMX
+  'gmx.com', 'gmx.de',
+  // Yahoo
+  'yahoo.com', 'yahoo.co.uk', 'yahoo.co.in', 'ymail.com', 'rocketmail.com',
+]);
+
+// Строгий валидатор email с проверкой домена по whitelist
 function validateEmail(raw) {
   const val = String(raw || '').trim();
   if (val.length === 0) return 'Поле является обязательным для заполнения';
   if (val.length > 254) return 'Слишком длинный email';
-  // Разрешаем латиницу/цифры и типовые символы в локальной части, домен — буквы/цифры и дефисы, точки как разделители
+
+  // Базовый формат: локальная часть и домен с точками
   const re = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/;
   if (!re.test(val)) return 'Некорректный email';
-  // Проверка на длину частей
-  const [local, domain] = val.split('@');
-  if (!local || !domain) return 'Некорректный email';
+
+  // Разделяем и проверяем длины частей
+  const [local, domainRaw] = val.split('@');
+  if (!local || !domainRaw) return 'Некорректный email';
   if (local.length > 64) return 'Слишком длинная локальная часть';
-  if (domain.length > 190) return 'Слишком длинный домен';
-  return null;
+  if (domainRaw.length > 190) return 'Слишком длинный домен';
+
+  // Приведём домен к нижнему регистру
+  const domain = domainRaw.toLowerCase();
+
+  // Проверка по списку разрешённых доменов
+  if (!ALLOWED_EMAIL_DOMAINS.has(domain)) {
+    return 'Почтовый домен не поддерживается';
+  }
+
+  return null; // ок
 }
 
 
