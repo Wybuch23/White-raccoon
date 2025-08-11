@@ -3176,9 +3176,6 @@
 .input-wrapper .input-body:focus-within {
   outline: 2px solid #0D1824;
 }
-.input-wrapper .input-body:focus-within .input-label {
-  display: block;
-}
 .input-wrapper .input-body:has(.input:not(:-moz-placeholder)) .input-label {
   display: block;
 }
