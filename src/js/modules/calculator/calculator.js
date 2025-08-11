@@ -110,6 +110,20 @@ export function setupCalculatorPopup() {
     }}
   };
 
+  let finalErrorOpacityHandler = null;
+
+  function applyInlineOpacityByErrors() {
+    // Ищем блок там, где он реально находится
+    const inline = container.querySelector('.radio-group-inline') || bodyEl.querySelector('.radio-group-inline');
+    if (!inline) return;
+
+    // Есть ли хоть одна ошибка на текущем шаге
+    const hasError = !!bodyEl.querySelector('.input-wrapper_error');
+
+    inline.style.opacity = hasError ? '0' : '1';
+    inline.style.pointerEvents = hasError ? 'none' : '';
+  }
+
   function validateRequiredInputs(stepRoot) {
     const wrappers = stepRoot.querySelectorAll('.input-wrapper');
     let ok = true;
@@ -188,6 +202,7 @@ export function setupCalculatorPopup() {
   btnNext?.addEventListener('click', (e) => {
     const stepRoot = bodyEl;
     const ok = validateRequiredInputs(stepRoot);
+    applyInlineOpacityByErrors();
     if (!ok) {
       e.preventDefault();
       e.stopImmediatePropagation(); // ← важно: блокируем другие обработчики на этой кнопке
@@ -203,6 +218,7 @@ export function setupCalculatorPopup() {
   btnOrder?.addEventListener('click', (e) => {
     const stepRoot = bodyEl;
     const ok = validateRequiredInputs(stepRoot);
+    applyInlineOpacityByErrors();
     if (!ok) {
       e.preventDefault();
       e.stopImmediatePropagation(); // ← то же самое
@@ -290,6 +306,25 @@ export function setupCalculatorPopup() {
     attachCheckboxListeners(stepData, bodyEl, formData); //обновление цены при нажатии на чекбокс
     attachPhoneMask(bodyEl);
 
+    // --- Автопрозрачность radio-group-inline на финальном шаге (по классам ошибок) ---
+    if (finalErrorOpacityHandler) {
+      bodyEl.removeEventListener('input', finalErrorOpacityHandler);
+      bodyEl.removeEventListener('change', finalErrorOpacityHandler);
+      bodyEl.removeEventListener('blur', finalErrorOpacityHandler, true);
+      finalErrorOpacityHandler = null;
+    }
+
+    if (stepData.isFinal) {
+      applyInlineOpacityByErrors(); // первичная установка
+
+      finalErrorOpacityHandler = () => applyInlineOpacityByErrors();
+      // Обновлять, когда пользователь что-то вводит/правит
+      bodyEl.addEventListener('input', finalErrorOpacityHandler);
+      bodyEl.addEventListener('change', finalErrorOpacityHandler);
+      // И на blur, чтобы поймать кейсы, когда ошибки ставятся/снимаются не сразу
+      bodyEl.addEventListener('blur', finalErrorOpacityHandler, true);
+    }
+
     // Если выбрана мойка окон — восстановим ставку из serviceType
     if (formData.values.serviceType === 'windows') {
       const serviceOption = commonSteps[0].fields[0].options
@@ -304,6 +339,11 @@ export function setupCalculatorPopup() {
     footerHelpTextEl.innerHTML = stepData.footerHtml || '';
     footerHelpTextEl.style.display = stepData.isFinal ? 'block' : 'none';
     btnNext.style.display = btnBack.style.display = stepData.hideNavButtons ? 'none' : '';
+
+    const popupBodyEl = container.querySelector('.popup__container--right .popup__body');
+    if (popupBodyEl) {
+      popupBodyEl.classList.toggle('final-step-hidden', !!stepData.isFinal);
+    }
 
     const restartBtn = document.querySelector('#popup__new-calculation');
     restartBtn?.addEventListener('click', () => {
