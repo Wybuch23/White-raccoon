@@ -3087,6 +3087,35 @@
   pointer-events: all;
 }
 
+@media (max-width: 1280px) {
+  .popup {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 95px 15px 15px;
+    overflow: scroll;
+    border-radius: 0;
+  }
+  .popup .popup__container {
+    max-width: 440px;
+  }
+  .popup.popup-calculator .popup__container--left {
+    display: flex;
+  }
+  .popup.popup-calculator .popup__container--left .popup__body {
+    display: none;
+  }
+  .popup.popup-calculator .popup__container--left .popup__footer {
+    display: none;
+  }
+  .popup.popup-calculator .popup__container--right {
+    height: 100%;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
 .radio-group {
   display: flex;
   flex-direction: column;
