@@ -3196,6 +3196,7 @@
   }
   .container_wrapped-popup .popup .popup__container.popup__container--right .popup__footer .popup__btn-bar .btn-primary {
     flex: 1 1 auto;
+    padding: 0;
   }
   .container_wrapped-popup .popup .popup__container .popup__text {
     width: 100%;
@@ -3224,8 +3225,14 @@
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__body {
     display: flex;
   }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__body .input-wrapper .input-body {
+    width: calc(100% - 2px);
+  }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__footer {
     margin-top: auto;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__footer .popup__footer_help-text {
+    width: 100%;
   }
 }
 .radio-group {
