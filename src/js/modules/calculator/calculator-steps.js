@@ -49,7 +49,7 @@ export const thankYouStep = {
 export const finalStep = {
   isFinal: true,
   stepTitle: 'последний шаг',
-  title: 'Осталось уточнить детали <br> и договориться о встрече',
+  title: 'Осталось уточнить детали и&nbsp;договориться о&nbsp;встрече',
   fields: [
     {
       type: 'input',
