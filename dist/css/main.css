@@ -356,7 +356,7 @@
 }
 @media (max-width: 1185px) {
   .basic__top-title {
-    font-size: 38px;
+    font-size: 36px;
     letter-spacing: -0.88px;
   }
 }
@@ -2929,7 +2929,7 @@
 }
 @media (max-width: 1185px) {
   .popup .popup__container.popup__container--right .popup__title {
-    font-size: 38px;
+    font-size: 36px;
     letter-spacing: -0.88px;
   }
 }
