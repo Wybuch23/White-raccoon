@@ -3200,6 +3200,33 @@
   .container_wrapped-popup .popup .popup__container .popup__text {
     width: 100%;
   }
+  .container_wrapped-popup .popup.popup-calculator {
+    overflow: inherit;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left {
+    display: flex;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__head .popup__step {
+    display: block;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__body {
+    display: none;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__footer {
+    display: none;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1 1 auto;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__body {
+    display: flex;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__footer {
+    margin-top: auto;
+  }
 }
 .radio-group {
   display: flex;

@@ -253,3 +253,27 @@
                 .popup__text
                     width: 100%
 
+    .container_wrapped-popup
+        .popup
+            &.popup-calculator
+                // opacity: 1
+                overflow: inherit
+                .popup__container
+                    &.popup__container--left
+                        display: flex
+                        .popup__head
+                            .popup__step
+                                display: block
+                        .popup__body
+                            display: none
+                        .popup__footer
+                            display: none    
+                    &.popup__container--right
+                        display: flex
+                        flex-direction: column
+                        justify-content: flex-end
+                        flex: 1 1 auto
+                        .popup__body
+                            display: flex
+                        .popup__footer
+                            margin-top: auto
