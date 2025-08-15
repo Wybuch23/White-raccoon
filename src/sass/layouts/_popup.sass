@@ -118,6 +118,8 @@
                         text-decoration-thickness: auto
                         text-underline-offset: auto
                         text-underline-position: from-font
+    .popup__footer_display-flex
+        display: none
 
     &.active
         opacity: 1
@@ -175,58 +177,79 @@
         opacity: 1
         pointer-events: all
 
-@media (max-width: 1280px)
+@media (max-width: 1185px)
     .popup-blur
         display: none
     .container_wrapped-popup
-        position: relative
         position: fixed
-        width: 100%
-        height: 100vh
         top: 0
         left: 0
+        width: 100%
+        height: 100vh
+        pointer-events: none
         display: flex
         justify-content: center
-        pointer-events: none
         .popup
-            position: static
-            display: flex
-            flex-direction: column
-            overflow: scroll
+            z-index: 11
+            max-width: 440px
+            height: 100%
             border-radius: 0
             transform: none
-            padding: 0
-
-            max-width: 440px
-            height: 100vh
-
-            padding: 15px
-
-
-        
-            &.popup-calculator
-                .popup__container--left
+            padding: 95px 15px 15px
+            display: flex
+            flex-direction: column
+            position: relative
+            overflow: scroll
+            // background: $--white-primary
+            // backdrop-filter: blur(18px)
+            top: 0
+            left: 0
+            // grid-template-columns: 302px 744px
+            // grid-column-gap: 60px
+            // pointer-events: none
+            // opacity: 0
+            gap: 30px
+            .popup__footer_display-flex
+                display: flex
+                flex-direction: column
+                gap: 15px
+                address
                     display: flex
+                    flex-direction: column
+                    gap: 15px
+                    .contact-details__item
+                        a
+                            +hero-link-desktop
+                            color: $--grey-primary
+                .disclaimer
+                    +helper-text-desktop
+                    color: $--grey-primary
+
+            .popup__container
+                &.popup__container--left
+                    .popup__head
+                        .popup__step
+                            display: none
+                    .popup__footer
+                        &.popup__footer_display-none
+                            display: none
+                &.popup__container--right
+                    gap: 30px
                     .popup__body
                         display: none
+                    .popup__head
+                        gap: 15px
+                        .popup__btn-bar
+                            gap: 10px
+                            flex-direction: column-reverse
+                            align-items: flex-start
+                            .btn-primary
+                                width: 100%
                     .popup__footer
-                        width: 100%
-                        position: absolute
-                        bottom: 93px
-                        padding: 0 15px 
-                        .popup__summary
-                            flex-direction: row
-                            gap: 30px
-                        // display: none
-                .popup__container--right
-                    padding-top: 30px
-                    height: 100%
-                    grid-template-rows: auto 1fr auto
-                    grid-template-columns: 1fr
-                    gap: 30px
-                    .popup__btn-bar
-                        justify-content: space-between
-                        gap: 10px
-                        .btn-primary
-                            flex: 1 1 0
-                            padding: 0 15px
+                        gap: 15px
+                        .popup__btn-bar
+                            .btn-primary
+                                flex: 1 1 auto
+                .popup__text
+                    width: 100%
+
