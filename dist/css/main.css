@@ -3197,6 +3197,7 @@
   .container_wrapped-popup .popup .popup__container.popup__container--right .popup__footer .popup__btn-bar .btn-primary {
     flex: 1 1 auto;
     padding: 0;
+    touch-action: manipulation;
   }
   .container_wrapped-popup .popup .popup__container .popup__text {
     width: 100%;
