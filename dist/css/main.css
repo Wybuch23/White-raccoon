@@ -3220,11 +3220,11 @@
   }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__footer .popup__summary {
     flex-direction: row;
-    gap: 30px;
+    gap: 10px;
     justify-content: flex-start;
   }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__footer .popup__summary .popup__summary-item {
-    max-width: 177px;
+    flex: 1 1 auto;
   }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right {
     display: flex;
