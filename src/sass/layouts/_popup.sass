@@ -272,7 +272,15 @@
                         .popup__body
                             display: none
                         .popup__footer
-                            display: none    
+                            position: absolute
+                            bottom: 93px
+                            width: calc(100% - 30px)
+                            .popup__summary
+                                flex-direction: row
+                                gap: 30px
+                                justify-content: flex-start
+                                .popup__summary-item
+                                    max-width: 177px
                     &.popup__container--right
                         display: flex
                         flex-direction: column
