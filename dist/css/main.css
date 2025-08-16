@@ -3295,11 +3295,6 @@
   line-height: 130%;
   color: #0D1824;
   color: #0D1824;
-  white-space: nowrap;
-  overflow: hidden;
-  min-width: 0;
-  display: inline-block;
-  max-width: 250px;
 }
 @media (max-width: 375px) {
   .radio-group .radio .radio_wrapped .radio__text {
@@ -3340,13 +3335,38 @@
   height: auto;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1185px) {
   .radio-group.radio-group-inline {
     max-width: 410px;
     flex-wrap: wrap;
   }
-}
-@media (max-width: 1185px) {
+  .radio-group .radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .radio-group .radio .radio__right-space {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+  .radio-group .radio .radio_wrapped {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .radio-group .radio .radio_wrapped .radio__icon {
+    flex: 0 0 auto;
+  }
+  .radio-group .radio .radio_wrapped .radio__text {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 0;
+    display: inline-block;
+  }
   .radio-group .radio .radio_wrapped .radio__text.is-marquee .__marquee-track {
     animation: radio-marquee 8s linear infinite;
   }
