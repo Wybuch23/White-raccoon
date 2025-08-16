@@ -598,16 +598,10 @@ export function setupCalculatorPopup() {
     const minutes = duration % 60;
 
     if (minutes === 0) {
-      return `${hours} ${getHourWord(hours)}`;
+      return `${hours} ч`;
     } else {
-      return `${hours} ${getHourWord(hours)} ${minutes} мин`;
+      return `${hours} ч ${minutes} мин`;
     }
-  }
-
-  function getHourWord(h) {
-    if (h % 10 === 1 && h % 100 !== 11) return 'час';
-    if ([2, 3, 4].includes(h % 10) && ![12, 13, 14].includes(h % 100)) return 'часа';
-    return 'часов';
   }
 
 
