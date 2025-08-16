@@ -1,51 +1,129 @@
+// .radio-group 
+//     display: flex
+//     flex-direction: column
+//     // gap: 10px
+//     .radio input[type="radio"]
+//         display: none
+//     .radio
+//         display: flex
+//         justify-content: space-between
+//         align-items: center
+//         border-radius: 8px
+//         height: 48px
+//         padding: 0px 20px
+//         &:nth-of-type(even)
+//             background: $--white-secondary
+//         &:hover
+//             .radio_wrapped
+//                 .radio__icon
+//                     background-image: url('../../src/assets/icons/icons_raccoon/radio-filled-grey.svg')
+//         .radio_wrapped
+//             display: flex
+//             align-items: center
+//             gap: 10px
+//             // cursor: pointer
+//             .radio__icon
+//                 width: 24px
+//                 height: 24px
+//                 background-image: url('../../src/assets/icons/icons_raccoon/radio-empty-grey.svg')
+//                 background-size: contain
+//                 background-repeat: no-repeat
+//             input[type="radio"]:checked + .radio__icon
+//                 background-image: url('../../src/assets/icons/icons_raccoon/radio-filled.svg')
+//             .radio__text
+//                 +body-text-desktop
+//                 color: $--black-primary
+//         .radio__right-space
+//             +helper-text-desktop
+//             color: $--grey-primary
+//     &.radio-group-inline
+//         gap: 20px
+//         flex-direction: row
+//         .radio
+//             background: none
+//             padding: 0
+//             height: auto
+
+// @media (max-width: 1280px)
+//     .radio-group
+//         &.radio-group-inline
+//             max-width: 410px
+//             flex-wrap: wrap
+
+
 .radio-group 
+  display: flex
+  flex-direction: column
+  .radio input[type="radio"]
+    display: none
+  .radio
     display: flex
-    flex-direction: column
-    // gap: 10px
-    .radio input[type="radio"]
-        display: none
+    justify-content: space-between
+    align-items: center
+    border-radius: 8px
+    height: 48px
+    padding: 0px 20px
+    &:nth-of-type(even)
+      background: $--white-secondary
+    &:hover
+      .radio_wrapped
+        .radio__icon
+          background-image: url('../../src/assets/icons/icons_raccoon/radio-filled-grey.svg')
+    .radio_wrapped
+      display: flex
+      align-items: center
+      gap: 10px
+      .radio__icon
+        width: 24px
+        height: 24px
+        background-image: url('../../src/assets/icons/icons_raccoon/radio-empty-grey.svg')
+        background-size: contain
+        background-repeat: no-repeat
+      input[type="radio"]:checked + .radio__icon
+        background-image: url('../../src/assets/icons/icons_raccoon/radio-filled.svg')
+      .radio__text
+        +body-text-desktop
+        color: $--black-primary
+        white-space: nowrap
+        overflow: hidden
+        min-width: 0
+        display: inline-block
+        max-width: 250px
+        .__marquee-track
+          display: inline-flex
+          white-space: nowrap
+          will-change: transform
+          transform: translateX(0)
+        .__marquee-item
+          flex: 0 0 auto
+          padding-right: 32px
+    .radio__right-space
+      +helper-text-desktop
+      color: $--grey-primary
+  &.radio-group-inline
+    gap: 20px
+    flex-direction: row
     .radio
-        display: flex
-        justify-content: space-between
-        align-items: center
-        border-radius: 8px
-        height: 48px
-        padding: 0px 20px
-        &:nth-of-type(even)
-            background: $--white-secondary
-        &:hover
-            .radio_wrapped
-                .radio__icon
-                    background-image: url('../../src/assets/icons/icons_raccoon/radio-filled-grey.svg')
-        .radio_wrapped
-            display: flex
-            align-items: center
-            gap: 10px
-            // cursor: pointer
-            .radio__icon
-                width: 24px
-                height: 24px
-                background-image: url('../../src/assets/icons/icons_raccoon/radio-empty-grey.svg')
-                background-size: contain
-                background-repeat: no-repeat
-            input[type="radio"]:checked + .radio__icon
-                background-image: url('../../src/assets/icons/icons_raccoon/radio-filled.svg')
-            .radio__text
-                +body-text-desktop
-                color: $--black-primary
-        .radio__right-space
-            +helper-text-desktop
-            color: $--grey-primary
-    &.radio-group-inline
-        gap: 20px
-        flex-direction: row
-        .radio
-            background: none
-            padding: 0
-            height: auto
+      background: none
+      padding: 0
+      height: auto
 
 @media (max-width: 1280px)
-    .radio-group
-        &.radio-group-inline
-            max-width: 410px
-            flex-wrap: wrap
+  .radio-group
+    &.radio-group-inline
+      max-width: 410px
+      flex-wrap: wrap
+
+@media (max-width: 1185px)
+  .radio-group
+    .radio
+      .radio_wrapped
+        .radio__text.is-marquee
+          .__marquee-track
+            animation: radio-marquee 8s linear infinite
+
+  @keyframes radio-marquee
+    0%
+      transform: translateX(0)
+    100%
+      transform: translateX(-50%)

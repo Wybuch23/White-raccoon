@@ -466,3 +466,104 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+
+(function(){
+  const SEL = '.radio .radio_wrapped .radio__text';
+  const MQ  = '(max-width: 1185px)';
+  const SPEED = 40;        // px/сек
+  const PAUSE = 1000;      // мс: одинаковая пауза в начале и конце
+
+  const mm = window.matchMedia(MQ);
+  const states = new Map();   // el -> { el, max, x, pause, phase }
+  let running = false;
+  let last = 0;
+
+  function measure(el){ return Math.max(0, el.scrollWidth - el.clientWidth); }
+
+  function scan(){
+    const mobile = mm.matches;
+    const els = Array.from(document.querySelectorAll(SEL));
+    const seen = new Set();
+
+    if (!mobile) {
+      // десктоп: очистить всё
+      for (const st of states.values()) st.el.scrollLeft = 0;
+      states.clear();
+      stop();
+      return;
+    }
+
+    for (const el of els) {
+      if (el.scrollWidth <= el.clientWidth) {
+        if (states.has(el)) { el.scrollLeft = 0; states.delete(el); }
+        continue;
+      }
+      seen.add(el);
+      const max = measure(el);
+      const st = states.get(el);
+      if (st) {
+        st.max = max;                 // сохраняем x/pause/phase
+      } else {
+        states.set(el, { el, max, x: 0, pause: PAUSE, phase: 'start' });
+      }
+    }
+
+    // убрать те, что исчезли
+    for (const [el, st] of states) {
+      if (!seen.has(el)) { st.el.scrollLeft = 0; states.delete(el); }
+    }
+
+    if (states.size && !running) start();
+    if (!states.size && running) stop();
+  }
+
+  function start(){ running = true; last = performance.now(); requestAnimationFrame(tick); }
+  function stop(){ running = false; }
+
+  function tick(now){
+    if (!running) return;
+    const dt = now - last; last = now;
+    const dx = (SPEED * dt) / 1000;
+
+    for (const st of states.values()) {
+      const newMax = measure(st.el);
+      if (newMax !== st.max) {
+        st.max = newMax;
+        if (st.x > st.max) { st.x = 0; st.pause = PAUSE; st.phase = 'start'; }
+      }
+
+      if (st.pause > 0) {
+        st.pause -= dt;
+        st.el.scrollLeft = st.x;
+        continue;
+      }
+
+      if (st.phase === 'start' || st.phase === 'scroll') {
+        st.phase = 'scroll';
+        st.x += dx;
+        if (st.x >= st.max) {
+          st.x = st.max;
+          st.phase = 'end';
+          st.pause = PAUSE;          // пауза в конце
+        }
+      } else if (st.phase === 'end') {
+        st.x = 0;                    // сброс в начало
+        st.phase = 'start';
+        st.pause = PAUSE;            // пауза в начале
+      }
+
+      st.el.scrollLeft = st.x;
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  document.addEventListener('DOMContentLoaded', scan);
+  window.addEventListener('resize', debounce(scan, 150));
+  mm.addEventListener ? mm.addEventListener('change', scan) : mm.addListener(scan);
+
+  // лёгкий периодический скан для динамически добавленных элементов
+  setInterval(scan, 1000);
+
+  function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t = setTimeout(()=>fn(...a), ms); }; }
+})();
