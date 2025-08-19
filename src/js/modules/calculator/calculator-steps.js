@@ -94,3 +94,12 @@ export const finalSteps = [
   finalStep,    // с инпутами и радиокнопками
   thankYouStep  // с благодарностью
 ];
+
+export const mobileReviewStep = {
+  name: 'mobileReview',
+  stepTitle: 'Осталось немного',
+  title: 'Проверьте, все ли верно?',
+  onlyMobile: true,
+  fields: [],
+  nextButtonText: 'Далее'
+};

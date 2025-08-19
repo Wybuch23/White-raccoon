@@ -1,4 +1,4 @@
-import { commonSteps, finalSteps } from './calculator-steps.js';
+import { commonSteps, finalSteps, mobileReviewStep } from './calculator-steps.js';
 import {
   cleaningSteps, cleaningStepsLiving, cleaningStepsOffice, cleaningStepsIndustrial
 } from './cleaning-steps.js';
@@ -142,6 +142,14 @@ export function setupCalculatorPopup() {
       pillow: dryCleaningStepsPillow
     }}
   };
+
+  const isMobile = () => window.matchMedia('(max-width: 1185px)').matches;
+
+  function buildFlowWithMobileReview(baseSteps) {
+    const steps = [...baseSteps];
+    if (isMobile()) steps.push(mobileReviewStep); // вставляем ДО финальных
+    return [...steps, ...finalSteps];
+  }
 
   let finalErrorOpacityHandler = null;
 
@@ -394,6 +402,26 @@ export function setupCalculatorPopup() {
     // Подключаем контактные улучшения только если есть эти поля на шаге
     if (bodyEl.querySelector('input[name="contactPhone"]')) {
       attachPhoneMask(bodyEl);
+    }
+
+    const isMobileReview = stepData?.name === 'mobileReview';
+    const mobilePane = container.querySelector('#popup__body_mobile-step');
+
+    // показываем ваш заранее скрытый блок
+    if (mobilePane) mobilePane.classList.toggle('active', isMobileReview);
+
+    // тело шага можно скрывать, чтобы не мешало (пусто на этом шаге)
+    bodyEl.style.display = isMobileReview ? 'none' : '';
+
+    // при уходе со шага — класс снимается автоматически (toggle выше)
+
+    // ⤵︎ Скрываем summary только на финальном шаге в мобилке
+    const isFinalStep = !!stepData.isFinal;
+    const isMobileView = isMobile(); // твоя функция (<=1185px)
+
+    const summaryEl = container.querySelector('.popup__summary');
+    if (summaryEl) {
+      summaryEl.classList.toggle('is-hidden', isMobileView && isFinalStep);
     }
   }
 
@@ -1187,7 +1215,8 @@ export function setupCalculatorPopup() {
       selectedBranch = getSelectedRadioValue('serviceType');
       const branch = branchMap[selectedBranch];
       if (branch) {
-        currentBranchSteps = [...branch.steps, ...finalSteps];
+        currentBranchSteps = buildFlowWithMobileReview(branch.steps);
+        currentBranchSteps.branchName = selectedBranch;
         currentBranchSteps.branchName = selectedBranch;
         formData.meta = formData.meta || {};
         formData.meta.selectedBranch = selectedBranch; // 🧠 сохраняем выбранную ветку
@@ -1207,7 +1236,8 @@ export function setupCalculatorPopup() {
       const subSteps = branchMap[rootBranch]?.sub?.[selectedValue];
 
       if (subSteps) {
-        currentBranchSteps = [...subSteps, ...finalSteps];
+        currentBranchSteps = buildFlowWithMobileReview(subSteps);
+        currentBranchSteps.branchName = `${rootBranch}${selectedValue}`;
         currentBranchSteps.branchName = `${rootBranch}${selectedValue}`;
         allSteps = [...commonSteps, ...baseSteps, ...subSteps]; // ← теперь всё есть
 

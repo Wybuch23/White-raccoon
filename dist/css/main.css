@@ -3212,7 +3212,23 @@
     display: block;
   }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__body {
+    position: absolute;
+    bottom: 183px;
+    gap: 30px;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__body .history__step {
+    font-family: Roboto;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    max-width: 410px;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left #popup__body_mobile-step {
     display: none;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left #popup__body_mobile-step.active {
+    display: flex;
   }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__footer {
     position: absolute;
@@ -3223,6 +3239,9 @@
     flex-direction: row;
     gap: 10px;
     justify-content: flex-start;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__footer .popup__summary.is-hidden {
+    display: none;
   }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--left .popup__footer .popup__summary .popup__summary-item {
     flex: 1 1 auto;
