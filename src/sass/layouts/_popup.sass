@@ -308,9 +308,13 @@
                         flex-direction: column
                         justify-content: flex-end
                         flex: 1 1 auto
+                        &.is-final
+                            flex: none
                         .popup__body
                             display: flex
                             overflow: inherit
+                            &.final-step-hidden
+                                display: none
                             .input-wrapper
                                 .input-body
                                     width: calc(100% - 2px)

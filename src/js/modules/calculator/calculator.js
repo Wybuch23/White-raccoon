@@ -274,6 +274,9 @@ export function setupCalculatorPopup() {
   function renderStep() {
     const stepData = currentBranchSteps[currentStep];
     const stepEl = container.querySelector('#popup__step');
+    // Флаги текущего шага
+    const isFinalStep = !!stepData.isFinal;
+    const isThankYou  = !!stepData.isThankYou || stepData?.name === 'thankYouStep';
 
     if (stepEl) stepEl.textContent = stepData.stepTitle || '';
 
@@ -381,9 +384,16 @@ export function setupCalculatorPopup() {
     footerHelpTextEl.style.display = stepData.isFinal ? 'block' : 'none';
     btnNext.style.display = btnBack.style.display = stepData.hideNavButtons ? 'none' : '';
 
+    // Правый контейнер: особый режим только на thankYouStep
+    const rightContainerEl = container.querySelector('.popup__container.popup__container--right');
+    if (rightContainerEl) {
+      rightContainerEl.classList.toggle('is-final', isThankYou);
+    }
+
+    // Прячем контент справа ТОЛЬКО на thankYouStep
     const popupBodyEl = container.querySelector('.popup__container--right .popup__body');
     if (popupBodyEl) {
-      popupBodyEl.classList.toggle('final-step-hidden', !!stepData.isFinal);
+      popupBodyEl.classList.toggle('final-step-hidden', isThankYou);
     }
 
     const restartBtn = document.querySelector('#popup__new-calculation');
@@ -398,8 +408,8 @@ export function setupCalculatorPopup() {
 
     const thanksLogoEl = container.querySelector('#popup__thanks-logo');
     if (thanksLogoEl) {
-      const hideThanksOnMobile = isMobile(); // уже есть функция выше
-      thanksLogoEl.style.display = hideThanksOnMobile ? 'none' : (stepData.isThankYou ? 'block' : 'none');
+      const hideOnMobile = isMobile();
+      thanksLogoEl.style.display = hideOnMobile ? 'none' : (isThankYou ? 'block' : 'none');
     }
 
     // Подключаем контактные улучшения только если есть эти поля на шаге
@@ -419,9 +429,7 @@ export function setupCalculatorPopup() {
     // при уходе со шага — класс снимается автоматически (toggle выше)
 
     // ⤵︎ Скрываем summary только на финальном шаге в мобилке
-    const isFinalStep = !!stepData.isFinal;
-    const isMobileView = isMobile(); // твоя функция (<=1185px)
-
+    const isMobileView = isMobile();
     const summaryEl = container.querySelector('.popup__summary');
     if (summaryEl) {
       summaryEl.classList.toggle('is-hidden', isMobileView && isFinalStep);

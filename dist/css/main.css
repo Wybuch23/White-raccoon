@@ -3256,9 +3256,15 @@
     justify-content: flex-end;
     flex: 1 1 auto;
   }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right.is-final {
+    flex: none;
+  }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__body {
     display: flex;
     overflow: inherit;
+  }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__body.final-step-hidden {
+    display: none;
   }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__body .input-wrapper .input-body {
     width: calc(100% - 2px);
