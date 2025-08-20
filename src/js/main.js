@@ -466,6 +466,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Анимация текста бегущая строка в радио кнопках
+
 
 (function(){
   const SEL = '.radio .radio_wrapped .radio__text';

@@ -8,12 +8,24 @@ export function setupPopup() {
     const header = document.querySelector('.header');
     const openCalculatorBtn = document.getElementById('open-calculator');
 
+    const lockScroll = () => {
+        document.body.style.setProperty('--scroll-y', `-${window.scrollY}px`);
+        document.body.classList.add('scroll-lock');
+    };
+
+    const unlockScroll = () => {
+        const y = -parseInt(getComputedStyle(document.body).getPropertyValue('--scroll-y')) || 0;
+        document.body.classList.remove('scroll-lock');
+        document.body.style.removeProperty('--scroll-y');
+        window.scrollTo(0, y);
+    };
+
     const closeOverlay = () => {
         popup.classList.remove('active');
         popupCalculator.classList.remove('active');
         popupBlur.classList.remove('active');
         header?.classList.remove('hide');
-        document.body.style.overflow = '';
+        unlockScroll();
     };
 
     const openPopup = () => {
@@ -21,7 +33,7 @@ export function setupPopup() {
         popup.classList.add('active');
         popupBlur.classList.add('active');
         header?.classList.add('hide');
-        document.body.style.overflow = 'hidden';
+        lockScroll();
     };
 
     const openCalculator = () => {
@@ -29,7 +41,7 @@ export function setupPopup() {
         popupCalculator.classList.add('active');
         popupBlur.classList.add('active');
         header?.classList.add('hide');
-        document.body.style.overflow = 'hidden';
+        lockScroll();
     };
 
     orderButtons.forEach(button => {

@@ -44,6 +44,13 @@ body
     +transition-focus-blue
     &.focus-blue
         background: $--black-primary
+    &.scroll-lock
+        position: fixed
+        top: var(--scroll-y)
+        left: 0
+        right: 0
+        width: 100%
+        overflow: hidden
         
 .container
     max-width: 1186px
