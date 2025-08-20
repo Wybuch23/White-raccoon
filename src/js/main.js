@@ -278,6 +278,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // добавляет темную тему для хедера при пересечении dark section
 
+// const header = document.querySelector('.header');
+// const darkSection = document.querySelector('.dark-sections_wrapped');
+
+// const logoWhite = document.querySelector('.navigation .navigation__logo.white');
+// const logoDark = document.querySelector('.navigation .navigation__logo.dark');
+
+// const logoWhiteMobile = document.querySelector('.navigation__mobile .navigation__logo.white');
+// const logoDarkMobile = document.querySelector('.navigation__mobile .navigation__logo.dark');
+
+// const navButtons = document.querySelectorAll('.navigation .btn-nav');
+
+// window.addEventListener('scroll', () => {
+//   const sectionTop = darkSection.getBoundingClientRect().top;
+
+//   const inDarkSection = sectionTop <= 0;
+
+//   // Добавляем или убираем тему для шапки
+//   if (inDarkSection) {
+//     header.classList.add('dark-theme');
+//   } else {
+//     header.classList.remove('dark-theme');
+//   }
+
+//   // Переключаем логотипы (десктоп)
+//   logoWhite?.classList.toggle('active', !inDarkSection);
+//   logoDark?.classList.toggle('active', inDarkSection);
+
+//   // Переключаем логотипы (мобильная навигация)
+//   logoWhiteMobile?.classList.toggle('active', !inDarkSection);
+//   logoDarkMobile?.classList.toggle('active', inDarkSection);
+
+//   // Кнопки навигации
+//   navButtons.forEach(btn => {
+//     btn.classList.toggle('btn-nav_dark', inDarkSection);
+//   });
+// });
+
 const header = document.querySelector('.header');
 const darkSection = document.querySelector('.dark-sections_wrapped');
 
@@ -297,8 +334,10 @@ window.addEventListener('scroll', () => {
   // Добавляем или убираем тему для шапки
   if (inDarkSection) {
     header.classList.add('dark-theme');
+    document.documentElement.classList.add('active');
   } else {
     header.classList.remove('dark-theme');
+    document.documentElement.classList.remove('active');
   }
 
   // Переключаем логотипы (десктоп)

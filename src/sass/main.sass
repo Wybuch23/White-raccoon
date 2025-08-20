@@ -37,6 +37,19 @@
 html
     scroll-behavior: smooth
     scrollbar-gutter: stable
+    &::after
+        content: ""
+        position: fixed
+        left: 0
+        bottom: 0
+        height: 500px
+        width: 100vw
+        background: red
+        z-index: -10
+        background: $--grey-primary
+        display: none
+    &.active::after
+        display: block
 
 body
     overflow-x: hidden
