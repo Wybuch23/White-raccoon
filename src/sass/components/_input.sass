@@ -67,8 +67,9 @@
 
         border-radius: 8px
         background: $--white-secondary
-        &:hover
-            outline: 2px solid $--grey-primary
+        @media (hover: hover)
+            &:hover
+                outline: 2px solid $--grey-primary
         &:focus-within
             outline: 2px solid $--black-primary
         &:has(.input:not(:placeholder-shown))

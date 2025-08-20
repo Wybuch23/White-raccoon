@@ -142,10 +142,11 @@
     padding: 0px 20px
     &:nth-of-type(even)
       background: $--white-secondary
-    &:hover
-      .radio_wrapped
-        .radio__icon
-          background-image: url('../../src/assets/icons/icons_raccoon/radio-filled-grey.svg')
+    @media (hover: hover)
+      &:hover
+        .radio_wrapped
+          .radio__icon
+            background-image: url('../../src/assets/icons/icons_raccoon/radio-filled-grey.svg')
     .radio_wrapped
       display: flex
       align-items: center
