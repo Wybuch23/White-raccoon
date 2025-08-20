@@ -8,6 +8,23 @@ export function setupPopup() {
     const header = document.querySelector('.header');
     const openCalculatorBtn = document.getElementById('open-calculator');
 
+    let originalViewport = '';
+
+    function disableZoom() {
+    const meta = document.querySelector('meta[name="viewport"]');
+    if (!meta) return;
+    originalViewport = meta.getAttribute('content') || '';
+    // убираем возможность скейла
+    meta.setAttribute('content', originalViewport + ', maximum-scale=1, user-scalable=no');
+    }
+
+    function enableZoom() {
+    const meta = document.querySelector('meta[name="viewport"]');
+    if (!meta || !originalViewport) return;
+    meta.setAttribute('content', originalViewport);
+    originalViewport = '';
+    }
+
     const lockScroll = () => {
         document.body.style.setProperty('--scroll-y', `-${window.scrollY}px`);
         document.body.classList.add('scroll-lock');
@@ -26,6 +43,7 @@ export function setupPopup() {
         popupBlur.classList.remove('active');
         header?.classList.remove('hide');
         unlockScroll();
+        enableZoom();
     };
 
     const openPopup = () => {
@@ -34,6 +52,7 @@ export function setupPopup() {
         popupBlur.classList.add('active');
         header?.classList.add('hide');
         lockScroll();
+        disableZoom();
     };
 
     const openCalculator = () => {
@@ -42,6 +61,7 @@ export function setupPopup() {
         popupBlur.classList.add('active');
         header?.classList.add('hide');
         lockScroll();
+        disableZoom();
     };
 
     orderButtons.forEach(button => {
