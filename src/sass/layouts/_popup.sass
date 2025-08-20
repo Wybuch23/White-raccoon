@@ -189,6 +189,7 @@
         pointer-events: none
         display: flex
         justify-content: center
+
         .popup
             z-index: 11
             max-width: 440px
@@ -213,6 +214,10 @@
             //     position: absolute
             //     top: 15px
             //     right: 15px
+            touch-action: pan-y
+            &:is(input, select, textarea, button, a, label, [role="button"], .btn-primary)
+
+                touch-action: manipulation
             .popup__footer_display-flex
                 display: flex
                 flex-direction: column

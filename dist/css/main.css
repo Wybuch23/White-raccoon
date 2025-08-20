@@ -3118,6 +3118,10 @@
     top: 0;
     left: 0;
     gap: 30px;
+    touch-action: pan-y;
+  }
+  .container_wrapped-popup .popup:is(input, select, textarea, button, a, label, [role=button], .btn-primary) {
+    touch-action: manipulation;
   }
   .container_wrapped-popup .popup .popup__footer_display-flex {
     display: flex;
