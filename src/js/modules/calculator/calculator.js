@@ -397,7 +397,10 @@ export function setupCalculatorPopup() {
     updatePathSummary(formData);
 
     const thanksLogoEl = container.querySelector('#popup__thanks-logo');
-    if (thanksLogoEl) thanksLogoEl.style.display = stepData.isThankYou ? 'block' : 'none';
+    if (thanksLogoEl) {
+      const hideThanksOnMobile = isMobile(); // уже есть функция выше
+      thanksLogoEl.style.display = hideThanksOnMobile ? 'none' : (stepData.isThankYou ? 'block' : 'none');
+    }
 
     // Подключаем контактные улучшения только если есть эти поля на шаге
     if (bodyEl.querySelector('input[name="contactPhone"]')) {
