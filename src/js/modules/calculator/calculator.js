@@ -278,6 +278,14 @@ export function setupCalculatorPopup() {
     const isFinalStep = !!stepData.isFinal;
     const isThankYou  = !!stepData.isThankYou || stepData?.name === 'thankYouStep';
 
+    // --- Desktop-only collapse of the right body on final step (NOT thankYou) ---
+    const rightBodyEl = container.querySelector('.popup__container--right .popup__body');
+    if (rightBodyEl) {
+      const isDesktop = !isMobile(); // твоя функция уже есть выше
+      const shouldCollapse = isDesktop && isFinalStep && !isThankYou;
+      rightBodyEl.classList.toggle('desktop-final-collapse', shouldCollapse);
+    }
+
     if (stepEl) stepEl.textContent = stepData.stepTitle || '';
 
     titleEl.innerHTML = stepData.titleHtml || stepData.title;

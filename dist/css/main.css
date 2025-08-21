@@ -3055,7 +3055,7 @@
   grid-template-columns: 1fr;
   gap: 40px;
 }
-.popup.popup-calculator .popup__container--right .popup__body.final-step-hidden {
+.popup.popup-calculator .popup__container--right .popup__body.desktop-final-collapse {
   max-height: 255px;
   overflow: hidden;
 }
