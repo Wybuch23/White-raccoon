@@ -3263,6 +3263,9 @@
     display: flex;
     overflow: inherit;
   }
+  .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__body.mobile-final-clamp {
+    max-height: 260px;
+  }
   .container_wrapped-popup .popup.popup-calculator .popup__container.popup__container--right .popup__body.final-step-hidden {
     display: none;
   }
