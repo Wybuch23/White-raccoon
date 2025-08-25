@@ -101,6 +101,16 @@ function validateEmail(raw) {
   return null; // ок
 }
 
+function validateArea(raw) {
+  const val = String(raw ?? '').trim();
+  if (val === '') return 'Поле является обязательным для заполнения';
+  // Разрешаем только целые числа: 1,2,3... (без пробелов/букв)
+  if (!/^\d+$/.test(val)) return 'Значение должно быть в виде числа';
+  // (необязательно) можно запретить ноль
+  if (parseInt(val, 10) === 0) return 'Значение должно быть больше нуля';
+  return null;
+}
+
 
 
 export function setupCalculatorPopup() {
@@ -208,6 +218,16 @@ export function setupCalculatorPopup() {
         const emailError = validateEmail(val);
         if (emailError) {
           setInputError(w, emailError);
+          ok = false;
+          return;
+        }
+      }
+
+      // Площадь
+      if (input.name === 'area') {
+        const areaError = validateArea(val);
+        if (areaError) {
+          setInputError(w, areaError);
           ok = false;
           return;
         }
