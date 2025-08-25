@@ -65,7 +65,7 @@ export const cleaningStepsLiving = [
         name: 'area',
         inputType: 'number',
         label: 'м²',
-        placeholder: 'Введите значение',
+        placeholder: 'Количество метров²',
         helperText: ''
       }
     ]
@@ -136,7 +136,7 @@ export const cleaningStepsOffice = [
         name: 'area',
         inputType: 'number',
         label: 'м²',
-        placeholder: 'Введите значение',
+        placeholder: 'Количество метров²',
         helperText: ''
       }
     ]
@@ -205,7 +205,7 @@ export const cleaningStepsIndustrial = [
         name: 'area',
         inputType: 'number',
         label: 'м²',
-        placeholder: 'Введите значение',
+        placeholder: 'Количество метров²',
         helperText: ''
       }
     ]

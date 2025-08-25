@@ -135,8 +135,8 @@ export const dryCleaningStepsCarpet = [
         name: 'area',
         inputType: 'number',
         label: 'м²',
-        placeholder: 'Введите значение',
-        helperText: ''
+        placeholder: 'Количество метров²',
+        helperText: 'от 500 ₽/м<sup>2</sup>'
       }
     ]
   },
@@ -168,8 +168,8 @@ export const dryCleaningStepsCurtains = [
         name: 'area',
         inputType: 'number',
         label: 'м²',
-        placeholder: 'Введите значение',
-        helperText: '',
+        placeholder: 'Количество метров²',
+        helperText: 'от 200 ₽/м<sup>2</sup>',
       }
     ]
   }

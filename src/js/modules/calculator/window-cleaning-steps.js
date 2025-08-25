@@ -8,7 +8,7 @@ export const windowCleaningSteps = [
         name: 'area',
         inputType: 'number',
         label: 'M<sup>2</sup>',
-        placeholder: 'Введите значение',
+        placeholder: 'Количество метров²',
         helperText: 'от 450 ₽/м<sup>2</sup>'
       }
     ]
